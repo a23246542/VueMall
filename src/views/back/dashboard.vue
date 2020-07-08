@@ -23,11 +23,26 @@ export default {
         ColorPreview,
         dashProducts
     },
+    // created(){
+    mounted(){
+        this.getData();
+    },
     data(){
         return{
-            
+            res:{}
         }
     },
+    methods:{
+        getData(){
+            const vm = this;
+            console.log('getData');
+            
+            vm.$http.get(`ec`)
+            .then(res => {
+                vm.res = res;
+            })
+        }
+    }
 }
 </script>
 <style lang="sass" scoped>
