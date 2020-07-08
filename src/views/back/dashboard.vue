@@ -37,7 +37,7 @@ export default {
             const vm = this;
             console.log('getData');
             
-            vm.$http.get(`ec`)
+            vm.$http.get(`api/{uuid}/admin/ec/products`)
             .then(res => {
                 vm.res = res;
             })
