@@ -3,8 +3,7 @@
         <DashNavbar/>
         <DashSidebar/>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-          <!-- <router-view></router-view> -->
-            <h2 class="display-4">dashboard</h2>
+        <!-- <router-view></router-view> -->
             <dashProducts/>
             <ColorPreview/>
         </main>
@@ -26,28 +25,6 @@ export default {
         DashSidebar,
         ColorPreview,
         dashProducts
-    },
-    // created(){
-    mounted(){
-        this.getData();
-    },
-    data(){
-        return{
-            res:{},
-            uuid:'82a32758-aadc-4405-b535-2f6a678989d8'
-            // uuid:uuid,
-        }
-    },
-    methods:{
-        getData(){
-            const vm = this;
-            console.log('getData');
-            // vm.$http.get(`api/${vm.uuid}/admin/ec/products`)//@@為何無效
-            vm.$http.get(`api/${process.env.VUE_APP_UUID}/admin/ec/products`)
-            .then(res => {
-                vm.res = res;
-            })
-        }
     }
 }
 </script>
