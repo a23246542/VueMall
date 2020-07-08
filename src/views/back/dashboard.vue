@@ -15,6 +15,10 @@ import DashNavbar from "@/components/DashNavbar";
 import DashSidebar from "@/components/DashSidebar";
 import ColorPreview from "@/components/ColorPreview";
 import dashProducts from "@/views/back/dashProducts";
+// import {uuid,token,apiPath} from './api/index';//@@失敗
+// const uuid = '82a32758-aadc-4405-b535-2f6a678989d8';
+// const token = '7yaPDgRGh5hHKAkAeIUtl1H3yiFQS6wN8a6Cs0gGSFZNYaC45Mi02hhDcHZt';
+// const apiPath = 'https://course-ec-api.hexschool.io/';
 
 export default {
     components:{
@@ -29,15 +33,17 @@ export default {
     },
     data(){
         return{
-            res:{}
+            res:{},
+            uuid:'82a32758-aadc-4405-b535-2f6a678989d8',
+            // uuid:uuid,
         }
     },
     methods:{
         getData(){
             const vm = this;
             console.log('getData');
-            
             vm.$http.get(`api/{uuid}/admin/ec/products`)
+            // vm.$http.get(`api/{uuid}/admin/ec/products`)
             .then(res => {
                 vm.res = res;
             })

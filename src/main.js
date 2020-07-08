@@ -4,6 +4,7 @@ import App from './App.vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 //##自己寫的
+// import {uuid,token,apiPath} from './api/index';
 import router from './router';
 // import routers from './router/index.js';
 Vue.use(VueAxios, axios);//##原本的是可以this.axios.get()調用
@@ -14,7 +15,7 @@ const token = '7yaPDgRGh5hHKAkAeIUtl1H3yiFQS6wN8a6Cs0gGSFZNYaC45Mi02hhDcHZt';
 const apiPath = 'https://course-ec-api.hexschool.io/';
 
 //mock開關
-const mock = true;
+const mock = false;
 if(mock){
   require('./mock/api.js');
     // const mockData = require('./mock/api.js');
@@ -22,7 +23,7 @@ if(mock){
 }
 
 
-// axios.defaults.baseURL= apiPath;//@@localhost mock關掉
+axios.defaults.baseURL= apiPath;//@@localhost mock關掉
 // axios.defaults.timeout = 8000; 
 axios.defaults.headers['Authorization'] = `Bearer ${token}`; //%%空格
 
