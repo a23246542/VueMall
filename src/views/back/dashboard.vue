@@ -34,7 +34,7 @@ export default {
     data(){
         return{
             res:{},
-            uuid:'82a32758-aadc-4405-b535-2f6a678989d8',
+            uuid:'82a32758-aadc-4405-b535-2f6a678989d8'
             // uuid:uuid,
         }
     },
@@ -42,8 +42,8 @@ export default {
         getData(){
             const vm = this;
             console.log('getData');
-            vm.$http.get(`api/{uuid}/admin/ec/products`)
-            // vm.$http.get(`api/{uuid}/admin/ec/products`)
+            // vm.$http.get(`api/${vm.uuid}/admin/ec/products`)//@@無效
+            vm.$http.get(`api/82a32758-aadc-4405-b535-2f6a678989d8/admin/ec/products`)
             .then(res => {
                 vm.res = res;
             })
