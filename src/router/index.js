@@ -4,7 +4,8 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter)
 
-const routers = [
+// const routers = [ %%
+const routes = [
     {
         path: '/',
         // name: 'home',
@@ -35,7 +36,7 @@ const routers = [
 
 const router = new VueRouter({
     base: process.env.BASE_URL,//@@忘記是什麼變數
-    routers
+    routes
 })
 
 export default router;
