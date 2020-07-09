@@ -77,6 +77,8 @@ export default {
         getData(){
             const vm = this;
             console.log('getData');
+            // console.log(process.env.VUE_APP_UUID);
+            
             // vm.$http.get(`api/${vm.uuid}/admin/ec/products`)//@@為何無效
             vm.$http.get(`api/${process.env.VUE_APP_UUID}/admin/ec/products`)
             .then(res => {

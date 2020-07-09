@@ -3,9 +3,10 @@
         <DashNavbar/>
         <DashSidebar/>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <!-- <router-view></router-view> -->
-            <dashProducts/>
-            <ColorPreview/>
+            <router-view></router-view>
+            <!-- @@大小寫規範 -->
+            <!-- <dashProducts/>
+            <ColorPreview/> -->
         </main>
     </div>
 </template>

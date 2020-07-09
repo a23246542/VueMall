@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 
 // const routers = [ %%
 const routes = [
+    //前台
     {
         path: '/',
         // name: 'home',
@@ -18,11 +19,12 @@ const routes = [
             }
         ]
     },
+    // 後台
     {
         path:'/admin',
         component:() => import('../views/back/dashboard.vue'),
         name:'Dashboard',
-        redirect:'/products',
+        redirect:'/admin/products',
         children:[
             {
                 path:'products',
