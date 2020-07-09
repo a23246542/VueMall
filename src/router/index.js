@@ -7,13 +7,12 @@ Vue.use(VueRouter)
 const routers = [
     {
         path: '/',
-        // name: 'default',
+        // name: 'home',
         component:() => import('../views/front/home.vue'),
-        // redirect:'/index',
         children:[
             {
                 path:'',
-                // name:'index',
+                name:'home ',
                 component:() => import('../views/front/index.vue')
             }
         ]
@@ -21,10 +20,12 @@ const routers = [
     {
         path:'/admin',
         component:() => import('../views/back/dashboard.vue'),
+        name:'Dashboard',
+        redirect:'/products',
         children:[
             {
-                path:'',
-                name:'Dashboard',
+                path:'products',
+                name:'dashProducts',
                 component:() => import('../views/back/dashProducts.vue')
             }
         ]

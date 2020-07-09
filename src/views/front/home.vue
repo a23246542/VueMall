@@ -1,7 +1,8 @@
 <template>
     <div>
-        home
+        NavHeader
         <router-view></router-view>
+        NavFooter
     </div>
 </template>
 <script>
