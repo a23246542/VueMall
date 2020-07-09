@@ -37,7 +37,7 @@
               <button class="btn btn-outline-primary btn-sm" @click="openModal('edit',item)">
                 編輯
               </button>
-              <button class="btn btn-outline-danger btn-sm" @click="openModal('delete',item.id)">
+              <button class="btn btn-outline-danger btn-sm" @click="openModal('delete',item)">
                 刪除
               </button>
             </div>
@@ -65,10 +65,12 @@
               <div class="col-sm-4">
                 <div class="form-group">
                   <label for="imageUrl">輸入圖片網址</label>
-                  <input id="imageUrl" v-model="tempProduct.imageUrl" type="text"
+                  <!--@@沒辦法寫入麻 <input id="imageUrl" v-model="tempProduct.imageUrl[0]" type="text" -->
+                    <input id="imageUrl" v-model="tempImgUrl" type="text"
                     class="form-control" placeholder="請輸入圖片連結">
                 </div>
-                <img class="img-fluid" :src="tempProduct.imageUrl" alt>
+                <!-- <img class="img-fluid" :src="tempProduct.imageUrl" alt> -->
+                <img class="img-fluid" :src="tempImgUrl" alt>
               </div>
               <div class="col-sm-8">
                 <div class="form-group">
@@ -127,10 +129,14 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"
+            @click="cancelUpdateProduct"
+            >
               取消
             </button>
-            <button type="button" class="btn btn-primary" @click="updateProduct">
+            <button type="button" class="btn btn-primary" 
+            @click="updateProduct"
+            >
               確認
             </button>
           </div>
@@ -175,11 +181,29 @@ export default {
         return {
             products: [],
             meta: {},
-            tempProduct:{}
+            tempImgUrl:'',
+            tempProduct:{
+                // imageUrl:[]
+            }
         }
     },
     mounted() {
         this.getProducts();
+    },
+    watch:{
+        // ##物件
+        // tempImgUrl:{
+        //     deep:true,
+        //     handler(val,oldval){
+        //         console.log(val);
+        //     }
+        // }
+        // ##函式形式
+        tempImgUrl:function(val,oldVal){
+            // Vue.$set(this.tempProduct.imageUrl[0])@@
+            this.tempProduct.imageUrl=[];
+            this.tempProduct.imageUrl.push(this.tempImgUrl);
+        }
     },
     methods: {
         getProducts() {
@@ -187,7 +211,8 @@ export default {
         console.log('getData');
         // console.log(process.env.VUE_APP_UUID);
         // vm.$http.get(`api/${vm.uuid}/admin/ec/products`)//@@為何無效
-        vm.$http.get(`api/${process.env.VUE_APP_UUID}/admin/ec/products`)
+        // vm.$http.get(`api/${process.env.VUE_APP_UUID}/admin/ec/products`)
+        vm.$http.get('admin/ec/products')
         .then(res => {
             console.log(res);
             vm.products = res.data.data;
@@ -207,16 +232,58 @@ export default {
                     break;
                 case 'delete':
                     this.tempProduct = JSON.parse(JSON.stringify(item));
-                    $('#productModal').modal('show');
+                    $('#delProductModal').modal('show');
                 default:
                     break;
             }
         },
         updateProduct(){
+            let api="";
+            if(this.tempProduct.id){//編輯
+                api = `admin/ec/product/${this.tempProduct.id}`;
+                this.$http.patch(api,this.tempProduct)
+                .then(res => {
+                    console.log(res);
+                    this.getProducts(); 
+                    //loading關閉
+                    this.tempProduct = {};
+                    $('#productModal').modal('hide');
+
+                })
+            }else{//新增
+                api = `admin/ec/product`;
+                this.$http.post(api,this.tempProduct)
+                .then(res => {
+                    console.log(res);
+                    this.getProducts();
+                    this.tempProduct = {};
+                    $('#productModal').modal('hide');
+                })
+            }
 
         },
+        // @@如果是只傳item.id會有傳參考的問題嗎
         delProduct(){
+            let api ='';
+            if(this.tempProduct.id){
+                api = `admin/ec/product/${this.tempProduct.id}`;
+                this.$http.delete(api)
+                .then(res => {
+                    console.log(res);
+                    this.reStartPage('delProductModal');
+                })
+            }else{
+                console.log('err');
+            }
+        },
+        cancelUpdateProduct(){
 
+        },
+        reStartPage(modalName){
+            this.getProducts();
+            // -[ ]拿回資料再關閉 promise
+            this.tempProduct = {}
+            $(`#${modalName}`).modal('hide');
         }
     }
 }
