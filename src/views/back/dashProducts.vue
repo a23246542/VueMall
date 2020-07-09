@@ -37,7 +37,7 @@
               <button class="btn btn-outline-primary btn-sm" @click="openModal('edit',item)">
                 編輯
               </button>
-              <button class="btn btn-outline-danger btn-sm" @click="openModal('delet',item.id)">
+              <button class="btn btn-outline-danger btn-sm" @click="openModal('delete',item.id)">
                 刪除
               </button>
             </div>
@@ -180,7 +180,6 @@ export default {
     },
     mounted() {
         this.getProducts();
-        $('#productModal').modal('show');
     },
     methods: {
         getProducts() {
@@ -196,17 +195,29 @@ export default {
         })
         },
         openModal(action,item){
-        switch(action){
-            case 'new':
-                this.tempProduct = {};
+            console.log(action,item);
+            switch(action){
+                case 'new':
+                    this.tempProduct = {};
+                    $('#productModal').modal('show');
+                    break;//%%往下執行
+                case 'edit':
+                    this.tempProduct = JSON.parse(JSON.stringify(item));
+                    $('#productModal').modal('show');
+                    break;
+                case 'delete':
+                    this.tempProduct = JSON.parse(JSON.stringify(item));
+                    $('#productModal').modal('show');
+                default:
+                    break;
+            }
+        },
+        updateProduct(){
 
-
-            case 'edit':
-
-            case 'delet':
+        },
+        delProduct(){
 
         }
-    }
     }
 }
 
