@@ -4,16 +4,16 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter)
 
-const routers = [
+// const routers = [ %%
+const routes = [
     {
         path: '/',
-        // name: 'default',
+        // name: 'home',
         component:() => import('../views/front/home.vue'),
-        // redirect:'/index',
         children:[
             {
                 path:'',
-                // name:'index',
+                name:'home ',
                 component:() => import('../views/front/index.vue')
             }
         ]
@@ -21,10 +21,12 @@ const routers = [
     {
         path:'/admin',
         component:() => import('../views/back/dashboard.vue'),
+        name:'Dashboard',
+        redirect:'/products',
         children:[
             {
-                path:'',
-                name:'Dashboard',
+                path:'products',
+                name:'dashProducts',
                 component:() => import('../views/back/dashProducts.vue')
             }
         ]
@@ -34,7 +36,7 @@ const routers = [
 
 const router = new VueRouter({
     base: process.env.BASE_URL,//@@忘記是什麼變數
-    routers
+    routes
 })
 
 export default router;
