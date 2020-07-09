@@ -4,7 +4,7 @@
         <DashSidebar/>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <router-view></router-view>
-            <!-- @@大小寫規範 -->
+            <!-- @@大小寫規範限制問題 -->
             <!-- <dashProducts/>
             <ColorPreview/> -->
         </main>

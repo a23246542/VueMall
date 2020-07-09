@@ -1,10 +1,11 @@
+//npm套件
 import Vue from 'vue';
-import App from './App.vue';
-//插件
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-//##自己寫的
+import 'bootstrap';
+//##自定義
 // import {uuid,token,apiPath} from './api/index';
+import App from './App.vue';
 import router from './router';
 // import routers from './router/index.js';
 Vue.use(VueAxios, axios);//##原本的是可以this.axios.get()調用
