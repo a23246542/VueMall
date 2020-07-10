@@ -63,16 +63,72 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-sm-4">
-                <div class="form-group">
-                  <label for="imageUrl">輸入圖片網址</label>
-                  <!--@@沒辦法寫入麻 <input id="imageUrl" v-model="tempProduct.imageUrl[0]" type="text" -->
-                    <input id="imageUrl" v-model="tempImgUrl" type="text"
-                    class="form-control" placeholder="請輸入圖片連結">
-                </div>
-                <!-- <img class="img-fluid" :src="tempProduct.imageUrl" alt> -->
-                <img class="img-fluid" :src="tempImgUrl" alt>
-              </div>
-              <div class="col-sm-8">
+                <!-- <template v-if="isNewImg == 'edit'"> -->
+                <template v-if="false">
+                    <!-- <div class="form-group"> -->
+                    <!-- <label for="imageUrl">輸入圖片網址</label> -->
+                    <!--@@沒辦法寫入麻 <input id="imageUrl" v-model="tempProduct.imageUrl[0]" type="text" -->
+                        <!-- <input id="imageUrl" v-model="tempImgUrl" type="text"
+                        class="form-control" placeholder="請輸入圖片連結"> -->
+                        <!-- <input id="imageUrl" v-model="tempImgUrl" type="text"
+                        class="form-control" placeholder="請輸入圖片連結"> -->
+                    <!-- </div> -->
+                    <div v-for="(url,index) in tempProduct.imageUrl" :key="url">
+                        <div class="form-group" >
+                            <label for="imageUrl">輸入圖片網址</label>
+                            <!-- <input id="imageUrl" v-model="url" type="text"
+                            class="form-control" placeholder="請輸入圖片連結">%%會報錯 -->
+                            <input id="imageUrl" v-model="tempProduct.imageUrl[index]" type="text"
+                            class="form-control" placeholder="請輸入圖片連結">
+                        </div>
+                        <!-- <img class="img-fluid" :src="tempProduct.imageUrl" alt> -->
+                        <!-- <img class="img-fluid" :src="tempImgUrl" alt> -->
+                        <!-- <img class="img-fluid" :src="tempProduct.imageUrl[0]" alt> -->
+                        <!-- ##陣列就是v-for -->
+                        <!-- @@不知道為什麼輸入會卡卡的 -->
+                        <!-- @@tempProduct裡面的陣列沒有預先定義或set進去 卻可以響應畫面 -->
+                        <img class="img-fluid" :src=url alt>
+                    </div>
+                    
+                </template>
+                
+                <!-- <template v-if="isNewImg == 'new'"> -->
+                <template v-if="true">
+                    <!-- <div v-for="(url,index) in tempProduct.imageUrl" :key="url">
+                        <div class="form-group">
+                        <label for="imageUrl">輸入圖片網址</label>
+                        <input id="imageUrl" v-model="tempProduct.imageUrl[index]" type="text"
+                        class="form-control" placeholder="請輸入圖片連結">
+                        </div>
+                        <img class="img-fluid" :src="tempProduct.imageUrl[index]" alt>
+                    </div> -->
+                    <!-- -
+                    <div v-for="(item) in tempArrImgUrl" :key="item">
+                        <div class="form-group">
+                        <label for="imageUrl">輸入圖片網址</label>
+                        <input id="imageUrl" v-model="item.imgUrl" type="text"
+                        class="form-control" placeholder="請輸入圖片連結">
+                        </div>
+                        <img class="img-fluid" :src="item.imgUrl" alt>
+                    </div>
+                    - -->
+                    <!-- @@index當作key有雷? -->
+                    <button class="btn btn-primary" @click="addImg">新增照片</button>
+                    <div v-for="(url,index) in tempProduct.imageUrl" :key="index">
+                        <div class="form-group">
+                        <label for="imageUrl">輸入圖片網址</label>
+                        <input id="imageUrl" v-model="tempProduct.imageUrl[index]" type="text"
+                        class="form-control" placeholder="請輸入圖片連結">
+                        </div>
+                        <!-- <img class="img-fluid" :src="url" alt> -->
+                        <!-- <img class="img-fluid" :src="tempProduct.imageUrl[index]" alt> -->
+                        <!-- ##不用用像v-model那個方式 -->
+                        <img class="img-fluid" :src="url" alt>
+                    </div>
+                    
+                </template>
+            </div>
+            <div class="col-sm-8">
                 <div class="form-group">
                   <label for="title">標題</label>
                   <input id="title" v-model="tempProduct.title" type="text" class="form-control"
@@ -161,7 +217,9 @@
             <strong class="text-danger">{{ tempProduct.title }}</strong> 商品(刪除後將無法恢復)。
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"
+            @click="cancelUpdateProduct"
+            >
               取消
             </button>
             <button type="button" class="btn btn-danger" @click="delProduct">
@@ -181,7 +239,13 @@ export default {
         return {
             products: [],
             meta: {},
+            isNewImg:'',
             tempImgUrl:'',
+            tempArrImgUrl:[
+                {//##物件不按照順序
+                    imgUrl:''
+                }
+            ],
             tempProduct:{
                 // imageUrl:[]
             }
@@ -201,8 +265,11 @@ export default {
         // ##函式形式
         tempImgUrl:function(val,oldVal){
             // Vue.$set(this.tempProduct.imageUrl[0])@@
-            this.tempProduct.imageUrl=[];
+            this.tempProduct.imageUrl=[];//移去新增產品
             this.tempProduct.imageUrl.push(this.tempImgUrl);
+            this.tempProduct.imageUrl.forEach((item,index) => {
+                Vue.$set(this.tempProduct.imageUrl,index,item);
+            })
         }
     },
     methods: {
@@ -224,10 +291,26 @@ export default {
             switch(action){
                 case 'new':
                     this.tempProduct = {};
+                    // this.tempProduct.imageUrl=[];
+                    // this.tempProduct.imageUrl.push('');//陣列隨便放個內容
+                    // Vue.$set(this.tempProduct,imageUrl,['']);//@@憶起寫可以set到裡面的值嗎?
+                    // Vue.$set(this.tempProduct,imageUrl,[]);
+                    // this.$set(this.tempProduct,imageUrl,[]);%%字串
+                    // @@為什麼沒辦法用全局Vue了 會出現Vue is not defined
+                    this.$set(this.tempProduct,'imageUrl',['']);//##可以合併!! @@是因為陣列的關係嗎??
+                    // this.$set(this.tempProduct,'imageUrl',[]);
+                    // this.$set(this.tempProduct.imageUrl,0,'');
+                    // this.$set(this.tempProduct.imageUrl,1,'');//依序增加
+                    // this.tempProduct.imageUrl.push('')//@@[]哪種方式可以依序增加 不知到索引號
+
+                    this.isNewImg = 'new';//最後再開啟
+                    //[]改成編輯圖片網址 rel取同一個dom是否好
                     $('#productModal').modal('show');
                     break;//%%往下執行
                 case 'edit':
                     this.tempProduct = JSON.parse(JSON.stringify(item));
+                    // @@為什麼我只是放進去沒有綁定的問題 喔喔我知道了是沒有辦法偵測到物件裡面的物件變動 但整個物件換掉是可以偵測到的
+                    this.isNewImg = 'edit';
                     $('#productModal').modal('show');
                     break;
                 case 'delete':
@@ -236,6 +319,13 @@ export default {
                 default:
                     break;
             }
+        },
+        addImg(){
+            let arrLen = this.tempProduct.imageUrl.length;
+            console.log('arrLen',arrLen);
+            // this.$set(this.tempProduct.imageUrl,arrLen+1,'');%%不用加1
+            this.$set(this.tempProduct.imageUrl,arrLen,'');
+            
         },
         updateProduct(){
             let api="";
@@ -277,7 +367,8 @@ export default {
             }
         },
         cancelUpdateProduct(){
-
+            //清空tempProduct modal不要留下資料
+            this.tempProduct = {};
         },
         reStartPage(modalName){
             this.getProducts();
