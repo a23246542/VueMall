@@ -6,6 +6,11 @@ Vue.use(VueRouter)
 
 // const routers = [ %%
 const routes = [
+    // {
+    //     path: 'login',@@會失敗 不知道為什麼 難道說這樣不行
+    //     component: () => import('../views/front/login')
+
+    // },
     //前台
     {
         path: '/',
@@ -16,7 +21,12 @@ const routes = [
                 path:'',
                 name:'home ',
                 component:() => import('../views/front/index.vue')
-            }
+            },
+            {
+                path: 'login',
+                name:'login',
+                component: () => import('../views/front/login')
+            },
         ]
     },
     // 後台

@@ -233,10 +233,12 @@
 </template>
 <script>
 import $ from "jquery";
+import {instanceAdmin} from '../../api/https';
 
 export default {
     data() {
         return {
+            token: "",
             products: [],
             meta: {},
             isNewImg:'',
@@ -276,14 +278,20 @@ export default {
         getProducts() {
         const vm = this;
         console.log('getData');
+        this.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         // console.log(process.env.VUE_APP_UUID);
         // vm.$http.get(`api/${vm.uuid}/admin/ec/products`)//@@為何無效
         // vm.$http.get(`api/${process.env.VUE_APP_UUID}/admin/ec/products`)
-        vm.$http.get('admin/ec/products')
+        // vm.$http.get('admin/ec/products')
+        instanceAdmin.defaults.headers['Authorization'] = `Bearer ${this.token}`
+        instanceAdmin.get('admin/ec/products')
         .then(res => {
             console.log(res);
             vm.products = res.data.data;
             vm.meta = res.data.meta;
+        })
+        .catch(err =>{
+            console.log(err);
         })
         },
         openModal(action,item){

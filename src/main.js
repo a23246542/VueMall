@@ -25,8 +25,8 @@ if(mock){
 
 // axios.defaults.timeout = 8000; 
 //未做跨域
-axios.defaults.baseURL= `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_UUID}/`;//@@localhost mock關掉
-axios.defaults.headers['Authorization'] = `Bearer ${process.env.VUE_APP_TOKEN}`; //%%空格
+// axios.defaults.baseURL= `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_UUID}/`;//@@localhost mock關掉
+// axios.defaults.headers['Authorization'] = `Bearer ${process.env.VUE_APP_TOKEN}`; //%%空格
 
 
 
