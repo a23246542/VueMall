@@ -46,7 +46,8 @@ export default {
         signIn(){
             const vm = this;
             // let api = 'api/auth/login'
-            instanceLogin.post('auth/login',vm.user)
+            const api = 'auth/login'
+            instanceLogin.post(api,vm.user)
             .then(res =>{
                 // if(res.data.success){}//有响应的
                 // @@catch是请求失败的

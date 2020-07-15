@@ -7,6 +7,7 @@ import 'bootstrap';
 // import {uuid,token,apiPath} from './api/index';
 import App from './App.vue';
 import router from './router';
+import {instanceLogin} from './api/https';
 // import routers from './router/index.js';
 Vue.use(VueAxios, axios);//##原本的是可以this.axios.get()調用
 Vue.config.productionTip = false;
@@ -35,3 +36,30 @@ new Vue({
   router,
   render: (h) => h(App),
 }).$mount('#app');
+
+router.beforeEach((to,from,next) => {
+    console.log('to',to,'from',from,'next',next);
+
+    if(to.meta.requireAuth){
+        const api = 'auth/check'
+        const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        instanceLogin.post(api,{'api_token':token})
+        .then((res) => {
+            // console.log(res.message);%%
+            console.log(res.data.message);
+            if(res.data.success){
+                next();
+            }else{//res.success為false
+                next({
+                    path:'/login'
+                });
+            }
+        }).catch((err) =>{
+            console.log(err);
+            
+        })
+    }else{
+        next();
+    }
+    
+})

@@ -11,6 +11,10 @@ const routes = [
     //     component: () => import('../views/front/login')
 
     // },
+    {
+        path: '*',
+        redirect:'/'
+    },
     //前台
     {
         path: '/',
@@ -35,11 +39,13 @@ const routes = [
         component:() => import('../views/back/dashboard.vue'),
         name:'Dashboard',
         redirect:'/admin/products',
+        // meta:{ requireAuth: true },//##有redirect沒用
         children:[
             {
                 path:'products',
                 name:'dashProducts',
-                component:() => import('../views/back/dashProducts.vue')
+                component:() => import('../views/back/dashProducts.vue'),
+                meta:{ requireAuth:true}
             }
         ]
     }

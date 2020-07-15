@@ -21,7 +21,7 @@ http.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.
 const instanceAdmin = axios.create({
     baseURL:`${process.env.VUE_APP_APIPATH}api/${http.uuid}/`
 })
-const instanceCus = axios.create({
+const instanceCus = axios.create({//@@沒登入也需要UUID
     baseURL:`${process.env.VUE_APP_APIPATH}api/${http.uuid}`
 })
 
