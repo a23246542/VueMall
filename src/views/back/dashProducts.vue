@@ -290,6 +290,7 @@ export default {
             console.log(res);
             vm.products = res.data.data;
             vm.meta = res.data.meta;
+            
         })
         // .catch(err =>{
         //     console.log(err);

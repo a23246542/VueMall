@@ -30,7 +30,7 @@ instanceAdmin.interceptors.request.use( config => {
      // 每次傳送請求之前判斷是否存在token
     // 如果存在，則統一在http請求的header都加上token，這樣後臺根據token判斷你的登入情況，此處token一般是使用者完成登入後儲存到localstorage裡的
     http.token && (config.headers.Authorization = `Bearer ${http.token}`)
-    // -[] 沒有登入token的處理@@
+    // -[] 沒有登入token的處理(就不用發請求這邊直接處理)@@
     // if(token){}
     // -[] 開啟loading
     return config

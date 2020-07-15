@@ -16,6 +16,8 @@
 * uuid跟token.expired登入后才取得
 * 可是我要作疙功能 如果是别的学员
 
+*本地沒有token就是沒有登入過
+
 ##报错
 *401是未授权错误
  *https://blog.csdn.net/SpicyBoiledFish/article/details/78903932
