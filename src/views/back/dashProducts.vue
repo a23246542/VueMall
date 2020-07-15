@@ -278,21 +278,21 @@ export default {
         getProducts() {
         const vm = this;
         console.log('getData');
-        this.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        // this.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         // console.log(process.env.VUE_APP_UUID);
         // vm.$http.get(`api/${vm.uuid}/admin/ec/products`)//@@為何無效
         // vm.$http.get(`api/${process.env.VUE_APP_UUID}/admin/ec/products`)
         // vm.$http.get('admin/ec/products')
-        instanceAdmin.defaults.headers['Authorization'] = `Bearer ${this.token}`
+        // instanceAdmin.defaults.headers['Authorization'] = `Bearer ${this.token}`
         instanceAdmin.get('admin/ec/products')
         .then(res => {
             console.log(res);
             vm.products = res.data.data;
             vm.meta = res.data.meta;
         })
-        .catch(err =>{
-            console.log(err);
-        })
+        // .catch(err =>{
+        //     console.log(err);
+        // })
         },
         openModal(action,item){
             console.log(action,item);
@@ -339,7 +339,8 @@ export default {
             let api="";
             if(this.tempProduct.id){//編輯
                 api = `admin/ec/product/${this.tempProduct.id}`;
-                this.$http.patch(api,this.tempProduct)
+                // this.$http.patch(api,this.tempProduct)
+                instanceAdmin.patch(api,this.tempProduct)
                 .then(res => {
                     console.log(res);
                     this.getProducts(); 
@@ -350,7 +351,8 @@ export default {
                 })
             }else{//新增
                 api = `admin/ec/product`;
-                this.$http.post(api,this.tempProduct)
+                // this.$http.post(api,this.tempProduct)
+                instanceAdmin.post(api,this.tempProduct)
                 .then(res => {
                     console.log(res);
                     this.getProducts();
@@ -365,7 +367,8 @@ export default {
             let api ='';
             if(this.tempProduct.id){
                 api = `admin/ec/product/${this.tempProduct.id}`;
-                this.$http.delete(api)
+                // this.$http.delete(api)
+                instanceAdmin.delete(api)
                 .then(res => {
                     console.log(res);
                     this.reStartPage('delProductModal');
