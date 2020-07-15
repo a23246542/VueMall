@@ -253,7 +253,8 @@ export default {
             }
         }
     },
-    mounted() {
+    // mounted() {//太慢
+    created() {
         this.getProducts();
     },
     watch:{
