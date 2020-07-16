@@ -7,7 +7,9 @@
           <h5 id="exampleModalLabel" class="modal-title">
             <span>新增產品</span>
           </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            @click="cancelUpdateProduct"
+          >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -150,17 +152,87 @@
 </template>
 
 <script>
+    import $ from "jquery";
+    import {instanceAdmin} from '../api/https';
   export default {
     //   name:'dash'
+    // @@?這是什麼props的預設值用法嗎
     props:{
-      
+    //   @@已經透過ref傳參還需要productId傳props嗎
+        productId:'',
+        isNew:true,
     },
     data() {
       return {
-        
+        // ##預先定義
+        //@@一開始v-model綁定的是空的物件屬性不會報錯
+        tempProduct:{
+            // imageUrl:[]
+            imageUrl:['']
+        }
       }
     },
-  }
+    methods:{
+        newProductModal(){
+            //保險
+            this.tempProduct={
+                imageUrl:['']
+            }
+            // ------等於下面-----------------
+            //保險除了資料結構又再set依次
+            // this.tempProduct = {};
+            // this.$set(this.tempProduct,'imageUrl',['']);//##可以合併!! @@是因為陣列的關係嗎??
+            // ---------------------------------
+            $('#productModal').modal('show');
+        },
+        editProductModal(id){//編輯時
+            const api = `ec/product/${id}`
+            instanceAdmin.get(api)
+            .then(res => {
+                this.tempProduct = res.data.data;//##重新賦值
+                $('#productModal').modal('show');
+            })
+        },
+        addImg(){
+            let arrLen = this.tempProduct.imageUrl.length;
+            console.log('arrLen',arrLen);
+            // this.$set(this.tempProduct.imageUrl,arrLen+1,'');%%不用加1
+            // this.$set(this.tempProduct.imageUrl,arrLen,'');
+            // #實驗 前面有定義資料結構 這邊也可不用set!
+            this.tempProduct.imageUrl.push('');
+        },
+        updateProduct(){
+            let api = 'ec/product';
+            let httpMethod = 'post';
+            // 1 依資料狀態變化更新方法
+            if(!this.isNew){
+                api =`ec/product/${this.tempProduct.id}`;
+                httpMethod ='patch';
+            }
+            //2 發送api
+                instanceAdmin[httpMethod](api,this.tempProduct)
+                .then(res =>{
+                    // 3 emit更新產品列表
+                    this.$emit('update');
+                    //4 關閉modal
+                    this.tempProduct={
+                        imageUrl:['']
+                    }
+                    $('#productModal').modal('hide')
+                })
+
+        },
+         // @@如果是只傳item.id會有傳參考的問題嗎
+        cancelUpdateProduct(){
+            //清空tempProduct modal不要留下資料
+            console.log('關掉ProductModal');
+            
+            this.tempProduct = {
+                imageUrl:['']
+            };
+        },
+    }
+}
 
 </script>
 

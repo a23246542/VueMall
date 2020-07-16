@@ -61,6 +61,11 @@ export default {
 
                 document.cookie = `token=${token}; uuid=${uuid}; expires=${new Date(expired * 1000)}; path=/`;
                 document.cookie = `uuid=${uuid}; path=/`;
+
+                if(res.data.success){
+                    // router.push('/admin')不像main.js
+                    vm.$router.push('/admin');//%%
+                }
                 
             })
             .catch(err => {

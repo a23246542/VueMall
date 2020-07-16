@@ -37,6 +37,7 @@ new Vue({
   render: (h) => h(App),
 }).$mount('#app');
 
+// ##直接物件方法調用
 router.beforeEach((to,from,next) => {
     console.log('to',to,'from',from,'next',next);
 
