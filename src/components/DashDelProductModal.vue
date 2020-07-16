@@ -33,6 +33,27 @@
   export default {
       props:{
         tempProduct:{}
+      },
+      methods:{
+         // @@如果是只傳item.id會有傳參考的問題嗎
+        delProduct(){
+            let api =`ec/product${this.tempProduct.id}`;
+            if(this.tempProduct.id){
+                instanceAdmin.delete(api)
+                .then(res => {
+                    // this.reStartPage('delProductModal');
+                    this.$emit('reLoad','delProductModal');
+                })
+            }else{
+                console.log('err');
+            }
+        },
+        cancelUpdateProduct(){
+            //清空tempProduct modal不要留下資料
+            this.tempProduct = {
+                imgUrl:[]
+            };
+        },
       }
   }
 

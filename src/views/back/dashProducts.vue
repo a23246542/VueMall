@@ -55,6 +55,7 @@
     />
     <DashDelProductModal
     :temp-product="tempProduct"
+    @re-load="reStartPage"
     />
     
  </div>
@@ -114,7 +115,7 @@ export default {
     methods: {
         getProducts() {
         const vm = this;
-        console.log('getData');
+        console.log('執行getProducts');
         // this.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         // console.log(process.env.VUE_APP_UUID);
         // vm.$http.get(`api/${vm.uuid}/admin/ec/products`)//@@為何無效
@@ -168,6 +169,7 @@ export default {
                 case 'delete':
                     this.tempProduct = JSON.parse(JSON.stringify(item));
                     // $('#delProductModal').modal('show');
+                    
                     break;
                 default:
                     break;
@@ -223,7 +225,7 @@ export default {
         },
         reStartPage(modalName){
             this.getProducts();
-            // -[ ]拿回資料再關閉 promise
+            // -[ ]拿回資料再關閉 或是跑loading
             this.tempProduct = {}
             $(`#${modalName}`).modal('hide');
         }

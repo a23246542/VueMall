@@ -55,14 +55,14 @@ export default {
                 // vm.expired = res.data.expired;//改存跨页面cookeies
                 // vm.token = res.data.token;//改存跨页面cookies
                 // vm.uuid = res.data.uuid;//原本process.env
-                const token = res.data.token;
-                const expired = res.data.expired;
-                const uuid = res.data.uuid;
-
-                document.cookie = `token=${token}; uuid=${uuid}; expires=${new Date(expired * 1000)}; path=/`;
-                document.cookie = `uuid=${uuid}; path=/`;
 
                 if(res.data.success){
+                    const token = res.data.token;
+                    const expired = res.data.expired;
+                    const uuid = res.data.uuid;
+    
+                    document.cookie = `token=${token}; uuid=${uuid}; expires=${new Date(expired * 1000)}; path=/`;
+                    document.cookie = `uuid=${uuid}; path=/`;
                     // router.push('/admin')不像main.js
                     vm.$router.push('/admin');//%%
                 }
