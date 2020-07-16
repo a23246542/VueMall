@@ -30,6 +30,7 @@
 </template>
 
 <script>
+  import {instanceAdmin} from '../api/https';
   export default {
       props:{
         tempProduct:{}
@@ -37,12 +38,15 @@
       methods:{
          // @@如果是只傳item.id會有傳參考的問題嗎
         delProduct(){
-            let api =`ec/product${this.tempProduct.id}`;
+            let api =`ec/product/${this.tempProduct.id}`;
             if(this.tempProduct.id){
                 instanceAdmin.delete(api)
                 .then(res => {
                     // this.reStartPage('delProductModal');
                     this.$emit('reLoad','delProductModal');
+
+                    // this.$emit('update');
+                    $('#delProductModal').modal('hide');
                 })
             }else{
                 console.log('err');
@@ -50,6 +54,7 @@
         },
         cancelUpdateProduct(){
             //清空tempProduct modal不要留下資料
+            // - [] 這樣改道prop了
             this.tempProduct = {
                 imgUrl:[]
             };

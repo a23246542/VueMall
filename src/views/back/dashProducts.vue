@@ -56,6 +56,7 @@
     <DashDelProductModal
     :temp-product="tempProduct"
     @re-load="reStartPage"
+    @update="getProducts"
     />
     
  </div>
@@ -168,7 +169,7 @@ export default {
                     break;
                 case 'delete':
                     this.tempProduct = JSON.parse(JSON.stringify(item));
-                    // $('#delProductModal').modal('show');
+                    $('#delProductModal').modal('show');
                     
                     break;
                 default:
@@ -226,7 +227,11 @@ export default {
         reStartPage(modalName){
             this.getProducts();
             // -[ ]拿回資料再關閉 或是跑loading
-            this.tempProduct = {}
+            this.tempProduct = {
+              imageUrl:['']
+            }
+            console.log(modalName);
+            // @@變成元件取不到??可是範例是可以的
             $(`#${modalName}`).modal('hide');
         }
     }
