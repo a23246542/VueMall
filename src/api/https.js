@@ -26,17 +26,53 @@ const instanceCus = axios.create({//@@沒登入也需要UUID
 })
 
 // =======================================================================
-instanceAdmin.interceptors.request.use( config => {
+instanceAdmin.interceptors.request.use(async config => {
      // 每次傳送請求之前判斷是否存在token
     // 如果存在，則統一在http請求的header都加上token，這樣後臺根據token判斷你的登入情況，此處token一般是使用者完成登入後儲存到localstorage裡的
-    http.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    console.log(http.token);
+    
+    // - [ ] 還要做個Frontend 前台 - Check. 確認 Token 狀態是否有效。
+            // 發現因為在家裡登入會變成新的token 所以要拿本地存的token去check舊的話就更新成新的token，難怪直接getProduct會401
+    // console.log(http.token);
+
+    const api = 'auth/check'
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    console.log('uuid:',http.uuid,'token:',token);
+    
+    
+
+    const cancelToken = axios.CancelToken.source();
+
+    // 驗證是否no access token
     // http.token && (config.headers.Authorization = `Bearer ${http.token}`)
-    if(http.token){
-        config.headers.Authorization = `Bearer ${http.token}`
+    if(token){
+        // @@axios 设置headers.Authorization都成功了，但是请求头还是没有，这是为什么？
+        // @@常常401後來發現都要重新登入才行
+
+        //發出任何admin請求之前，先用驗證token
+        // @@Axios:如何正确取消请求拦截器中的请求？
+        await instanceLogin.post(api,{'api_token':token})
+        .then((res) => {
+            // console.log(res.message);%%
+            console.log(res.data.message);
+            if(res.data.success){
+                config.headers.Authorization = `Bearer ${token}`
+                console.log(config.headers.Authorization);
+            }else{
+                router.push('/login');
+                throw new axios.Cancel('token驗證不成功，重新登入取得token');
+                //- [ ]取消這個響應攔截請求
+                
+            }
+        
+        }).catch((err) =>{
+            console.log(err);
+            
+        })
+        
     }else{
         console.log('cookies缺少token');
         router.push('/login');
+        throw new axios.Cancel('cookies缺少token，重新登入取得token');
     }
     // -[] 沒有登入token的處理(就不用發請求這邊直接處理)@@
     // if(token){}
