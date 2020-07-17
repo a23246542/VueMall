@@ -7,7 +7,9 @@
           <h5 id="exampleModalLabel" class="modal-title">
             <span>刪除產品</span>
           </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          @click="cancelDelProduct"
+          >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -17,10 +19,12 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"
-            @click="cancelUpdateProduct">
+            @click="cancelDelProduct">
             取消
           </button>
-          <button type="button" class="btn btn-danger" @click="delProduct">
+          <button type="button" class="btn btn-danger" 
+            @click="delProduct"
+            >
             確認刪除
           </button>
         </div>
@@ -46,16 +50,16 @@
                 .then(res => {
                     // this.reStartPage('delProductModal');
                     // this.$emit('reLoad','delProductModal');%%
-                    this.$emit('re-load','delProductModal');
+                    // this.$emit('re-load','delProductModal');
 
-                    // this.$emit('update');
+                    this.$emit('update');
                     $('#delProductModal').modal('hide');
                 })
             }else{
                 console.log('err');
             }
         },
-        cancelUpdateProduct(){
+        cancelDelProduct(){
             //清空tempProduct modal不要留下資料
             // - [] 這樣改道prop了
             // this.tempProduct = {

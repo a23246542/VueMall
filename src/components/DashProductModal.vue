@@ -215,9 +215,6 @@
                     // 3 emit更新產品列表
                     this.$emit('update');
                     //4 關閉modal
-                    this.tempProduct={
-                        imageUrl:['']
-                    }
                     $('#productModal').modal('hide')
                 })
 
@@ -225,12 +222,14 @@
          // @@如果是只傳item.id會有傳參考的問題嗎
         cancelUpdateProduct(){
             //清空tempProduct modal不要留下資料
-            console.log('關掉ProductModal');
-            
-            this.tempProduct = {
-                imageUrl:['']
-            };
+            this.$emit('cancel');
         },
+        clearTemp(){
+            //不過開啟新modal或編輯modal都有被初始化了 考慮更新成功或關閉modal時是否有必要加
+            this.tempProduct={
+                imageUrl:['']
+            }
+        }
     }
 }
 

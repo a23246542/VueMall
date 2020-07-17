@@ -52,12 +52,13 @@
     ref="dashProductModal" 
     :is-new="isNew"
     @update="getProducts"
+    @cancel="cancelModal"
     />
     <DashDelProductModal
     :temp-product="tempProduct"
     @re-load="reStartPage"
     @update="getProducts"
-    @cancel="cancelUpdateProduct"
+    @cancel="cancelModal"
     />
     
  </div>
@@ -124,6 +125,11 @@ export default {
         // vm.$http.get(`api/${process.env.VUE_APP_UUID}/admin/ec/products`)
         // vm.$http.get('admin/ec/products')
         // instanceAdmin.defaults.headers['Authorization'] = `Bearer ${this.token}`
+
+        this.tempProduct = {
+            imageUrl:['']
+        }
+
         instanceAdmin.get('ec/products')
         .then(res => {
             vm.products = res.data.data;
@@ -152,7 +158,7 @@ export default {
                     // this.$set(this.tempProduct.imageUrl,1,'');//依序增加
                     // this.tempProduct.imageUrl.push('')//@@[]哪種方式可以依序增加 不知到索引號
                     this.isNew = true;
-                    this.isNewImg = 'new';//最後再開啟
+                    // this.isNewImg = 'new';//最後再開啟
                     //[]改成編輯圖片網址 rel取同一個dom是否好
                     // $('#productModal').modal('show');
                     this.$refs.dashProductModal.newProductModal();
@@ -161,7 +167,7 @@ export default {
                     this.tempProduct = JSON.parse(JSON.stringify(item));
                     // @@為什麼我只是放進去沒有綁定的問題 喔喔我知道了是沒有辦法偵測到物件裡面的物件變動 但整個物件換掉是可以偵測到的
                     this.isNew = false;
-                    this.isNewImg = 'edit';
+                    // this.isNewImg = 'edit';
                     // @@如何變成同步執行取得資料後開啟 Ray助教有洗臉
                     // async this.$ref.DashProductModal.getProduct(this.tempProduct.id);
                     this.$refs.dashProductModal.editProductModal(this.tempProduct.id);
@@ -204,36 +210,36 @@ export default {
 
         // },
         // @@如果是只傳item.id會有傳參考的問題嗎
-        delProduct(){
-            let api ='';
-            if(this.tempProduct.id){
-                api = `ec/product/${this.tempProduct.id}`;
-                // this.$http.delete(api)
-                instanceAdmin.delete(api)
-                .then(res => {
-                    console.log(res);
-                    this.reStartPage('delProductModal');
-                })
-            }else{
-                console.log('err');
-            }
-        },
-        cancelUpdateProduct(){
+        // delProduct(){
+        //     let api ='';
+        //     if(this.tempProduct.id){
+        //         api = `ec/product/${this.tempProduct.id}`;
+        //         // this.$http.delete(api)
+        //         instanceAdmin.delete(api)
+        //         .then(res => {
+        //             console.log(res);
+        //             this.reStartPage('delProductModal');
+        //         })
+        //     }else{
+        //         console.log('err');
+        //     }
+        // },
+        cancelModal(){
             //清空tempProduct modal不要留下資料
             this.tempProduct = {
                 imageUrl:['']
             };
         },
-        reStartPage(modalName){
-            this.getProducts();
-            // -[ ]拿回資料再關閉 或是跑loading
-            this.tempProduct = {
-              imageUrl:['']
-            }
-            console.log(modalName);
-            // @變成元件也取得到
-            $(`#${modalName}`).modal('hide');
-        }
+        // reStartPage(modalName){
+        //     this.getProducts();
+        //     // -[ ]拿回資料再關閉 或是跑loading
+        //     this.tempProduct = {
+        //       imageUrl:['']
+        //     }
+        //     console.log(modalName);
+        //     // @變成元件也取得到
+        //     $(`#${modalName}`).modal('hide');
+        // }
     }
 }
 
