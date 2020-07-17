@@ -1,5 +1,6 @@
 <template>
   <div>
+    <BaseLoading :active.sync="isLoading"/>
     <div class="mt-4 text-right">
       <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">新增產品</button> -->
         <!-- @click="productModal(true)">新增產品</button> -->
@@ -56,7 +57,6 @@
     />
     <DashDelProductModal
     :temp-product="tempProduct"
-    @re-load="reStartPage"
     @update="getProducts"
     @cancel="cancelModal"
     />
@@ -81,6 +81,7 @@ export default {
             products: [],
             isNew:true,
             meta: {},
+            isLoading:false,
             isNewImg:'',
             tempImgUrl:'',
             tempArrImgUrl:[
@@ -118,6 +119,7 @@ export default {
     methods: {
         getProducts() {
         const vm = this;
+        vm.isLoading = true;
         console.log('執行getProducts');
         // this.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         // console.log(process.env.VUE_APP_UUID);
@@ -134,7 +136,7 @@ export default {
         .then(res => {
             vm.products = res.data.data;
             vm.meta = res.data.meta;
-            
+            vm.isLoading = false;
         })
         // .catch(err =>{
         //     console.log(err);

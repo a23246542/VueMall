@@ -11,3 +11,8 @@
     //     component: () => import('../views/front/login')
 
     // },
+
+
+* main.js 全局組件用這樣為什麼不行 app.component('BaseLoading',Loading);
+    * 報錯 Uncaught TypeError: app.component is not a function
+    * 報錯 [Vue warn]: Unknown custom element: <BaseLoading> - did you register the component correctly? For recursive components, make sure to provide the "name" option.

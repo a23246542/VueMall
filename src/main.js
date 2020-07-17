@@ -3,6 +3,11 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import 'bootstrap';
+ // Import component
+ import Loading from 'vue-loading-overlay';
+ // Import stylesheet
+//  @@為何js 
+ import 'vue-loading-overlay/dist/vue-loading.css';
 //##自定義
 // import {uuid,token,apiPath} from './api/index';
 import App from './App.vue';
@@ -31,11 +36,18 @@ if(mock){
 
 
 
-new Vue({
+const app = new Vue({
   // router: routers//填入屬性值
   router,
   render: (h) => h(App),
 }).$mount('#app');
+
+//全局組件
+// @@為什麼不行
+// app.component('BaseLoading',Loading);
+
+Vue.component('BaseLoading',Loading);
+
 
 // ##直接物件方法調用
 router.beforeEach((to,from,next) => {
