@@ -57,6 +57,7 @@
     :temp-product="tempProduct"
     @re-load="reStartPage"
     @update="getProducts"
+    @cancel="cancelUpdateProduct"
     />
     
  </div>
@@ -125,7 +126,6 @@ export default {
         // instanceAdmin.defaults.headers['Authorization'] = `Bearer ${this.token}`
         instanceAdmin.get('ec/products')
         .then(res => {
-            console.log(res);
             vm.products = res.data.data;
             vm.meta = res.data.meta;
             
@@ -221,7 +221,7 @@ export default {
         cancelUpdateProduct(){
             //清空tempProduct modal不要留下資料
             this.tempProduct = {
-                imgUrl:[]
+                imageUrl:['']
             };
         },
         reStartPage(modalName){
@@ -231,7 +231,7 @@ export default {
               imageUrl:['']
             }
             console.log(modalName);
-            // @@變成元件取不到??可是範例是可以的
+            // @變成元件也取得到
             $(`#${modalName}`).modal('hide');
         }
     }

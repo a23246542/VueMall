@@ -30,7 +30,9 @@
 </template>
 
 <script>
+    import $ from "jquery";
   import {instanceAdmin} from '../api/https';
+  //   - []改掛載到vue上
   export default {
       props:{
         tempProduct:{}
@@ -43,7 +45,8 @@
                 instanceAdmin.delete(api)
                 .then(res => {
                     // this.reStartPage('delProductModal');
-                    this.$emit('reLoad','delProductModal');
+                    // this.$emit('reLoad','delProductModal');%%
+                    this.$emit('re-load','delProductModal');
 
                     // this.$emit('update');
                     $('#delProductModal').modal('hide');
@@ -55,9 +58,10 @@
         cancelUpdateProduct(){
             //清空tempProduct modal不要留下資料
             // - [] 這樣改道prop了
-            this.tempProduct = {
-                imgUrl:[]
-            };
+            // this.tempProduct = {
+            //     imgUrl:[]
+            // };
+            this.$emit('cancel');
         },
       }
   }
