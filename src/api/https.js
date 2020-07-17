@@ -50,6 +50,7 @@ instanceAdmin.interceptors.request.use(async config => {
 
         //發出任何admin請求之前，先用驗證token
         // @@Axios:如何正确取消请求拦截器中的请求？
+        // ##console發現沒辦法等驗證完畢再發出請求 後來用async await解決
         await instanceLogin.post(api,{'api_token':token})
         .then((res) => {
             // console.log(res.message);%%
