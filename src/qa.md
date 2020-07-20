@@ -16,3 +16,5 @@
 * main.js 全局組件用這樣為什麼不行 app.component('BaseLoading',Loading);
     * 報錯 Uncaught TypeError: app.component is not a function
     * 報錯 [Vue warn]: Unknown custom element: <BaseLoading> - did you register the component correctly? For recursive components, make sure to provide the "name" option.
+
+* 話說import名稱有什麼約定俗成的嗎，import Vue 大寫是因為什麼 物件嗎 小寫不行嗎

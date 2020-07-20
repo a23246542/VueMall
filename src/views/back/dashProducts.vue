@@ -81,7 +81,7 @@ export default {
             products: [],
             isNew:true,
             meta: {},
-            isLoading:false,
+            // isLoading:false,
             isNewImg:'',
             tempImgUrl:'',
             tempArrImgUrl:[
@@ -97,6 +97,11 @@ export default {
     // mounted() {//太慢
     created() {
         this.getProducts();
+    },
+    computed:{
+        isLoading(){
+            return this.$store.state.isLoading;
+        }
     },
     watch:{
         // ##物件
@@ -119,7 +124,8 @@ export default {
     methods: {
         getProducts() {
         const vm = this;
-        vm.isLoading = true;
+        // vm.isLoading = true;
+        vm.$store.state.isLoading = true;
         console.log('執行getProducts');
         // this.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         // console.log(process.env.VUE_APP_UUID);
@@ -136,7 +142,8 @@ export default {
         .then(res => {
             vm.products = res.data.data;
             vm.meta = res.data.meta;
-            vm.isLoading = false;
+            // vm.isLoading = false;
+            vm.$store.state.isLoading = false;
         })
         // .catch(err =>{
         //     console.log(err);

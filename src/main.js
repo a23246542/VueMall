@@ -11,8 +11,9 @@ import 'bootstrap';
 //##自定義
 // import {uuid,token,apiPath} from './api/index';
 import App from './App.vue';
-import router from './router';
 import {instanceLogin} from './api/https';
+import router from './router';
+import store from './store';
 // import routers from './router/index.js';
 Vue.use(VueAxios, axios);//##原本的是可以this.axios.get()調用
 Vue.config.productionTip = false;
@@ -39,6 +40,7 @@ if(mock){
 const app = new Vue({
   // router: routers//填入屬性值
   router,
+  store,
   render: (h) => h(App),
 }).$mount('#app');
 
