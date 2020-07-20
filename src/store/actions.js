@@ -1,5 +1,5 @@
 export default {
     updateLoading(context,isLoading){
-        context.commit('updateLoading',isLoading);
+        context.commit('LOADING',isLoading);
     }
 }

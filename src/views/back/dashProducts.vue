@@ -125,7 +125,9 @@ export default {
         getProducts() {
         const vm = this;
         // vm.isLoading = true;
-        vm.$store.state.isLoading = true;
+        // vm.$store.state.isLoading = true;
+        // vm.$store.dispatch('updateLoading',true);
+        vm.$store.commit('LOADING',true);
         console.log('執行getProducts');
         // this.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         // console.log(process.env.VUE_APP_UUID);
@@ -143,7 +145,9 @@ export default {
             vm.products = res.data.data;
             vm.meta = res.data.meta;
             // vm.isLoading = false;
-            vm.$store.state.isLoading = false;
+            // vm.$store.state.isLoading = false;
+            // vm.$store.dispatch('updateLoading',false)
+            vm.$store.commit('LOADING',false);
         })
         // .catch(err =>{
         //     console.log(err);

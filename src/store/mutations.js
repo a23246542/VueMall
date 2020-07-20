@@ -1,5 +1,5 @@
 export default {
-    updateLoading(state,isLoading){
+    LOADING(state,isLoading){
         state.isLoading = isLoading;
     }
 }
