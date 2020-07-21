@@ -42,6 +42,8 @@
                   <!-- @@tempProduct裡面的陣列沒有預先定義或set進去 卻可以響應畫面 -->
                   <img class="img-fluid" :src=url alt>
                 </div>
+                
+                
 
               </template>
 
@@ -67,6 +69,7 @@
                     - -->
                 <!-- @@index當作key有雷? -->
                 <button class="btn btn-primary" @click="addImg">新增照片</button>
+                <button class="btn btn-primary" @click="addImg2">新增上傳照片</button>
                 <div v-for="(url,index) in tempProduct.imageUrl" :key="index">
                   <div class="form-group">
                     <label for="imageUrl">輸入圖片網址</label>
@@ -78,6 +81,17 @@
                   <!-- ##不用用像v-model那個方式 -->
                   <img class="img-fluid" :src="url" alt>
                 </div>
+                <!-- <div> -->
+                    <div class="form-group">
+                        <label for="fileImg">或上傳圖片</label>
+                        <input type="file" class="form-control"
+                        id="fileImg"
+                        ref="file"
+                        @change="addImg2"
+                        >
+                    </div>
+                    <img :src="filePath" alt="">
+                <!-- </div> -->
 
               </template>
             </div>
@@ -169,7 +183,8 @@
         tempProduct:{
             // imageUrl:[]
             imageUrl:['']
-        }
+        },
+        filePath:''
       }
     },
     methods:{
@@ -200,6 +215,22 @@
             // this.$set(this.tempProduct.imageUrl,arrLen,'');
             // #實驗 前面有定義資料結構 這邊也可不用set!
             this.tempProduct.imageUrl.push('');
+        },
+        addImg2(){
+            const api = 'storage';
+
+            const uploadedFile = this.$refs.file.files[0];
+            const formData = new FormData();
+            formData.append('file',uploadedFile);
+            
+            instanceAdmin.post(api,formData,{
+                headers:{
+                    'content-type':'multipart/form-data'
+                }
+            })
+            .then(res => {
+                this.filePath = res.data.data.path;
+            })
         },
         updateProduct(){
             let api = 'ec/product';
