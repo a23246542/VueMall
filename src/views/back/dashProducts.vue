@@ -48,6 +48,10 @@
       </tbody>
 
     </table>
+    <BasePagination
+    :pages="pagination"
+    @change-page="getProducts(page)"
+    />
     <!---------- Modal ---------------------->
     <DashProductModal 
     ref="dashProductModal" 
@@ -67,20 +71,22 @@
 import $ from "jquery";
 import DashProductModal from '../../components/DashProductModal.vue';
 import DashDelProductModal from '../../components/DashDelProductModal.vue';
+import BasePagination from '../../components/BasePagination.vue';
 
 import {instanceAdmin} from '../../api/https';
 
 export default {
     components:{
         DashProductModal,
-        DashDelProductModal
+        DashDelProductModal,
+        BasePagination
     },
     data() {
         return {
             token: "",
             products: [],
             isNew:true,
-            meta: {},
+            pagination: {},
             // isLoading:false,
             isNewImg:'',
             tempImgUrl:'',
@@ -122,7 +128,11 @@ export default {
         }
     },
     methods: {
-        getProducts() {
+        // changPage(){
+            
+        // },
+        // getProducts() {
+        getProducts(page=1){
         const vm = this;
         // vm.isLoading = true;
         // vm.$store.state.isLoading = true;
@@ -140,10 +150,10 @@ export default {
             imageUrl:['']
         }
 
-        instanceAdmin.get('ec/products')
+        instanceAdmin.get(`ec/products?page=${page}`)
         .then(res => {
             vm.products = res.data.data;
-            vm.meta = res.data.meta;
+            vm.pagination = res.data.meta.pagination;
             // vm.isLoading = false;
             // vm.$store.state.isLoading = false;
             // vm.$store.dispatch('updateLoading',false)

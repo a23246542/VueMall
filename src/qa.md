@@ -18,3 +18,8 @@
     * 報錯 [Vue warn]: Unknown custom element: <BaseLoading> - did you register the component correctly? For recursive components, make sure to provide the "name" option.
 
 * 話說import名稱有什麼約定俗成的嗎，import Vue 大寫是因為什麼 物件嗎 小寫不行嗎
+
+#為什麼Pagination
+官方文件說不是true就是存在
+:disabled="pages.current_page==1"
+但為什麼不行
