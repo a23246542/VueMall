@@ -60,16 +60,17 @@ instanceAdmin.interceptors.request.use(async config => {
                 console.log(config.headers.Authorization);
             }else{
                 console.log(res.data.message);
-                throw new axios.Cancel('token驗證不成功，重新登入取得token');
                 router.push('/login');
+                throw new axios.Cancel('token驗證不成功，重新登入取得token');
+                // router.push('/login');//%%放後面無法執行
                 //- [ ]取消這個響應攔截請求
                 
             }
         
         }).catch((err) =>{
             console.log(err);
-            throw new axios.Cancel('token驗證不成功，重新登入取得token');
             router.push('/login');
+            throw new axios.Cancel('token驗證不成功，重新登入取得token');
         })
         
     }else{
