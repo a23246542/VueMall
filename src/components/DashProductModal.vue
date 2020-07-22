@@ -68,30 +68,45 @@
                     </div>
                     - -->
                 <!-- @@index當作key有雷? -->
-                <button class="btn btn-primary" @click="addImg">新增照片</button>
-                <button class="btn btn-primary" @click="addImg2">新增上傳照片</button>
-                <div v-for="(url,index) in tempProduct.imageUrl" :key="index">
-                  <div class="form-group">
+                <!-- <button class="btn btn-primary" @click="addImg">新增照片</button>
+                <button class="btn btn-primary" @click="addImg2">新增上傳照片</button> -->
+                <div class="form-group">
                     <label for="imageUrl">輸入圖片網址</label>
-                    <input id="imageUrl" v-model="tempProduct.imageUrl[index]" type="text"
-                      class="form-control" placeholder="請輸入圖片連結">
-                  </div>
-                  <!-- <img class="img-fluid" :src="url" alt> -->
-                  <!-- <img class="img-fluid" :src="tempProduct.imageUrl[index]" alt> -->
-                  <!-- ##不用用像v-model那個方式 -->
-                  <img class="img-fluid" :src="url" alt>
+                    <!-- <input id="imageUrl" v-model="tempProduct.imageUrl[index]" type="text" -->
+                    <input id="imageUrl" type="text" class="form-control" placeholder="請輸入圖片連結"
+                        v-model="tempImgUrl"
+                        @keyup.enter="addImg"
+                    >
                 </div>
-                <!-- <div> -->
-                    <div class="form-group">
-                        <label for="fileImg">或上傳圖片</label>
-                        <input type="file" class="form-control"
+                <div class="form-group">
+                    <label for="fileImg">或上傳圖片</label>
+                    <input type="file" class="form-control"
                         id="fileImg"
                         ref="file"
-                        @change="addImg2"
+                        @change="uploadImg"
+                    >
+                </div>
+                <hr>
+                <div style="overflow-x:auto;display:flex" class="w-100">
+                    <div v-for="(url,index) in tempProduct.imageUrl" :key="'img'+index" class="w-100 flex-shrink-0 px-2 text-center">
+                        <div class="form-group">
+                            <!-- <label for="imageUrl">編輯圖片網址</label>要有id對應%% -->
+                            <label :for="'img'+index">圖片網址{{isReadonly(url)?"(不可編輯)":"(可編輯)"}}</label>
+                            <input :id="'img'+index" type="text" class="form-control" placeholder="請輸入圖片連結"
+                            :readonly="isReadonly(url)"
+                            v-model="tempProduct.imageUrl[index]"
+                            >
+                        </div>
+                        <img class="img-fluid" alt=""
+                        :src="tempProduct.imageUrl[index]"
                         >
+                    <!-- <img class="img-fluid" :src="url" alt> -->
+                    <!-- <img class="img-fluid" :src="tempProduct.imageUrl[index]" alt> -->
+                    <!-- ##不用用像v-model那個方式 -->
+                    <!-- <img class="img-fluid" :src="url" alt> -->
                     </div>
-                    <img :src="filePath" alt="">
-                <!-- </div> -->
+                </div>
+              
 
               </template>
             </div>
@@ -181,17 +196,43 @@
         // ##預先定義
         //@@一開始v-model綁定的是空的物件屬性不會報錯
         tempProduct:{
-            // imageUrl:[]
-            imageUrl:['']
+            imageUrl:[]
+            // imageUrl:['']
         },
-        filePath:''
+        filePath:'',//剛上傳圖檔後的圖片網址
+        tempImgUrl:'',//剛輸入的圖片網址
+        // fileIndexs:[]
       }
+    },
+    computed:{
+        isReadonly(){
+            // if (val == 1) return true;
+            // const vm = this
+            // return function (val){
+                
+            //     return vm.fileIndexs.some((item)=>{
+            //         return val == item;
+            //     })
+            // }
+
+            // ##竟然可以
+            // return function (){
+            //     return true;
+            // }
+            // ##不對 這樣下次讀取圖片的陣列不准
+            return function(url){
+                if(url.indexOf("hexschool")!==-1){
+                    return true;
+                }
+            }
+        }
     },
     methods:{
         newProductModal(){
             //保險
             this.tempProduct={
-                imageUrl:['']
+                // imageUrl:['']
+                imageUrl:[]
             }
             // ------等於下面-----------------
             //保險除了資料結構又再set依次
@@ -208,15 +249,19 @@
                 $('#productModal').modal('show');
             })
         },
+        // addImg(){
+        //     let arrLen = this.tempProduct.imageUrl.length;
+        //     console.log('arrLen',arrLen);
+        //     // this.$set(this.tempProduct.imageUrl,arrLen+1,'');%%不用加1
+        //     // this.$set(this.tempProduct.imageUrl,arrLen,'');
+        //     // #實驗 前面有定義資料結構 這邊也可不用set!
+        //     this.tempProduct.imageUrl.push('');
+        // },
         addImg(){
-            let arrLen = this.tempProduct.imageUrl.length;
-            console.log('arrLen',arrLen);
-            // this.$set(this.tempProduct.imageUrl,arrLen+1,'');%%不用加1
-            // this.$set(this.tempProduct.imageUrl,arrLen,'');
-            // #實驗 前面有定義資料結構 這邊也可不用set!
-            this.tempProduct.imageUrl.push('');
+             this.tempProduct.imageUrl.push(this.tempImgUrl);
+             this.tempImg = "";
         },
-        addImg2(){
+        uploadImg(){
             const api = 'storage';
 
             const uploadedFile = this.$refs.file.files[0];
@@ -230,6 +275,9 @@
             })
             .then(res => {
                 this.filePath = res.data.data.path;
+                this.tempProduct.imageUrl.push(this.filePath);
+                // this.fileIndexs.push(this.tempProduct.imageUrl.length-1);
+                // this.filePath ="";
             })
         },
         updateProduct(){
@@ -258,7 +306,8 @@
         clearTemp(){
             //不過開啟新modal或編輯modal都有被初始化了 考慮更新成功或關閉modal時是否有必要加
             this.tempProduct={
-                imageUrl:['']
+                // imageUrl:['']
+                imageUrl:[]
             }
         }
     }

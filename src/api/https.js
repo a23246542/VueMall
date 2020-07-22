@@ -59,15 +59,17 @@ instanceAdmin.interceptors.request.use(async config => {
                 config.headers.Authorization = `Bearer ${token}`
                 console.log(config.headers.Authorization);
             }else{
-                router.push('/login');
+                console.log(res.data.message);
                 throw new axios.Cancel('token驗證不成功，重新登入取得token');
+                router.push('/login');
                 //- [ ]取消這個響應攔截請求
                 
             }
         
         }).catch((err) =>{
             console.log(err);
-            
+            throw new axios.Cancel('token驗證不成功，重新登入取得token');
+            router.push('/login');
         })
         
     }else{
