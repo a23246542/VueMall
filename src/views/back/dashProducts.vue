@@ -147,7 +147,7 @@ export default {
         // instanceAdmin.defaults.headers['Authorization'] = `Bearer ${this.token}`
 
         this.tempProduct = {
-            imageUrl:['']
+            imageUrl:[]
         }
 
         instanceAdmin.get(`ec/products?page=${page}`)
@@ -250,7 +250,7 @@ export default {
         cancelModal(){
             //清空tempProduct modal不要留下資料
             this.tempProduct = {
-                imageUrl:['']
+                imageUrl:[]
             };
         },
         // reStartPage(modalName){
