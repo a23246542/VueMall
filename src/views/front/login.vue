@@ -57,7 +57,7 @@ export default {
                 // vm.uuid = res.data.uuid;//原本process.env
 
                 if(res.data.success){
-                    const token = res.data.token;
+                    const token = res.data.token;//跨页面cookeies
                     const expired = res.data.expired;
                     const uuid = res.data.uuid;
     
@@ -86,7 +86,7 @@ export default {
         padding-bottom: 40px;
         background-color: #f5f5f5;
     }
-    // @@加這個改這個 為什麼每次都要重整
+    // @@重整螢幕黑掉
     .form-signin {
         width: 100%;
         max-width: 330px;

@@ -34,37 +34,30 @@
 </template>
 
 <script>
-    import $ from "jquery";
+  import $ from "jquery";
   import {instanceAdmin} from '../api/https';
-  //   - []改掛載到vue上
   export default {
       props:{
         tempProduct:{}
       },
       methods:{
-         // @@如果是只傳item.id會有傳參考的問題嗎
+        openDelModal(){
+          $('#delProductModal').modal('show');
+        },
         delProduct(){
             let api =`ec/product/${this.tempProduct.id}`;
             if(this.tempProduct.id){
                 instanceAdmin.delete(api)
                 .then(res => {
-                    // this.reStartPage('delProductModal');
-                    // this.$emit('reLoad','delProductModal');%%
-                    // this.$emit('re-load','delProductModal');
-
                     this.$emit('update');
                     $('#delProductModal').modal('hide');
                 })
             }else{
-                console.log('err');
+                console.log('取不到tempProduct.id');
             }
         },
         cancelDelProduct(){
-            //清空tempProduct modal不要留下資料
-            // - [] 這樣改道prop了
-            // this.tempProduct = {
-            //     imgUrl:[]
-            // };
+            // %%prop由父層清空
             this.$emit('cancel');
         },
       }

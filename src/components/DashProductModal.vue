@@ -122,21 +122,35 @@
     import $ from "jquery";
     import {instanceAdmin} from '../api/https';
   export default {
+      /**
+   * Vue data 說明
+   * @param products 放置 AJAX 回來的產品資料。
+   * @param pagination 放置分頁資料用。
+   * @param tempProduct 暫存資料用，必須預先定義 imageUrl 並且是一個陣列，否則新增或更新會出現錯誤。
+   * @param isNew 用於判斷接下來的行為是新增產品或編輯產品。
+   * @param status 用於切換上傳圖片時的小 icon，主要是增加使用者體驗。
+   * @param user 底下分別有 token 的放置處，但主要必須注意 uuid 需改成自己的，目前是助教示範用。
+   */
+
+  /**
+   * @param isNew 判斷接下來的行為是新增產品或編輯產品
+   * @param tempProduct 用來暫存編輯的單一產品資料，預先定義imageUrl或是打開modal時定義也可以
+   * @param tempImgUrl 暫存自行輸入的圖片網址
+   * @param filePath 暫存上傳圖檔後回傳的圖片網址
+   */
+
     // @@props的型別檢查用法
     props:{
-    //   @@已經透過ref傳參還需要productId傳props嗎
-        // productId:'',
         isNew:true,
     },
     data() {
       return {
-        // ##預先定義
         //@@一開始v-model綁定的是空的物件屬性不會報錯
         tempProduct:{
             imageUrl:[]
         },
-        filePath:'',//剛上傳圖檔後的圖片網址
-        tempImgUrl:'',//剛輸入的圖片網址
+        tempImgUrl:'',
+        filePath:'',
       }
     },
     computed:{
@@ -193,7 +207,7 @@
             let api = 'ec/product';
             let httpMethod = 'post';
             // 1 依資料狀態變化更新方法
-            if(!this.isNew){
+            if(!this.isNew){//#或是tempProduct.id存在
                 api =`ec/product/${this.tempProduct.id}`;
                 httpMethod ='patch';
             }
@@ -207,16 +221,12 @@
                 })
 
         },
-         // @@如果是只傳item.id會有傳參考的問題嗎
         cancelUpdateProduct(){
-            //清空tempProduct modal不要留下資料
+            this.tempProduct={ //#非prop資料，此處清空
+                imageUrl:[]
+            }
             this.$emit('cancel');
         },
-        // clearTemp(){
-        //     this.tempProduct={
-        //         imageUrl:[]
-        //     }
-        // }
     }
 }
 
