@@ -32,6 +32,11 @@ const routes = [
             //     name:'login',
             //     component: () => import('../views/front/login')
             // },
+            {
+                path: 'orderform',
+                component: () => import('../views/front/orderForm.vue')
+                
+            }
         ]
     },
     // 後台
