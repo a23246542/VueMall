@@ -1,11 +1,10 @@
 <template>
   <div>
-    <BaseLoading :active.sync="isLoading"/>
+    <!-- <BaseLoading :active.sync="isLoading"/> -->
     <div class="mt-4 text-right">
-      <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">新增產品</button> -->
-        <!-- @click="productModal(true)">新增產品</button> -->
-      <button class="btn btn-primary" data-target="#productModal"
-        @click="openModal('new')">新增產品</button>
+        <button class="btn btn-primary"
+            @click="openModal('new')">新增產品
+        </button>
     </div>
     <table class="table mt-4">
       <thead>
@@ -56,13 +55,12 @@
     ref="dashProductModal" 
     :is-new="isNew"
     @update="getProducts"
-    @cancel="cancelModal"
+    @cancel="clearModal"
     />
     <DashDelProductModal
     ref="dashDelProductModal"
-    :temp-product="tempProduct"
+    :temp-product.sync="tempProduct"
     @update="getProducts"
-    @cancel="cancelModal"
     />
     
  </div>
@@ -85,6 +83,7 @@ export default {
      * @param products 放當頁產品的object list
      * @param pagination 取得產品列表時存下的分頁資料
      * @param isNew 使用者點擊的是否是新增產品
+     * @param tempProduct 傳送要編輯或刪除的產品是什麼
      */
     data() {
         return {
@@ -100,9 +99,9 @@ export default {
         this.getProducts();
     },
     computed:{
-        isLoading(){
-            return this.$store.state.isLoading;
-        }
+        // isLoading(){
+        //     return this.$store.state.isLoading;
+        // }
     },
     methods: {
         getProducts(page=1){
@@ -112,42 +111,41 @@ export default {
             // vm.$store.dispatch('updateLoading',true);
             vm.$store.commit('LOADING',true);
             console.log('執行getProducts');
-            // this.tempProduct = {
-            //     imageUrl:[]
-            // }
+            this.tempProduct = {
+                imageUrl:[]
+            }
             instanceAdmin.get(`ec/products?page=${page}`)
             .then(res => {
                 vm.products = res.data.data;
                 vm.pagination = res.data.meta.pagination;
                 vm.$store.commit('LOADING',false);
-          })
+            })
         },
         openModal(action,item){
             console.log(action,item);
+            // this.$store.commit('LOADING',true);//@@非同步沒效果
             switch(action){
                 case 'new':
-                    // Vue.$set(this.tempProduct,imageUrl,[]);//@不用再寫
                     this.isNew = true;
-                    // this.isNewImg = 'new';//最後再開啟
-                    this.$refs.dashProductModal.newProductModal();
+                    this.$refs.dashProductModal.openNewModal();
                     break;//%%往下執行
                 case 'edit':
                     this.tempProduct = JSON.parse(JSON.stringify(item));
                     this.isNew = false;
-                    // this.isNewImg = 'edit';
-                    this.$refs.dashProductModal.editProductModal(this.tempProduct.id);
+                    this.$refs.dashProductModal.openEditModal(this.tempProduct.id);
+                    // this.$store.commit('LOADING',false);//非同步問題
                     break;
                 case 'delete':
                     this.tempProduct = JSON.parse(JSON.stringify(item));
                     this.$refs.dashDelProductModal.openDelModal()
                     // $('#delProductModal').modal('show');##可以取到組件內dom
-                    
                     break;
                 default:
                     break;
             }
+            // this.$store.commit('LOADING',false);
         },
-        cancelModal(){
+        clearModal(){
             //清空tempProduct modal 恢復原狀
             this.tempProduct = {
                 imageUrl:[]

@@ -14,13 +14,10 @@ import App from './App.vue';
 import {instanceLogin} from './api/https';
 import router from './router';
 import store from './store';
-// import routers from './router/index.js';
 Vue.use(VueAxios, axios);//##原本的是可以this.axios.get()調用
 Vue.config.productionTip = false;
 
-// const uuid = '82a32758-aadc-4405-b535-2f6a678989d8';
-// const token = '7yaPDgRGh5hHKAkAeIUtl1H3yiFQS6wN8a6Cs0gGSFZNYaC45Mi02hhDcHZt';
-// const apiPath = 'https://course-ec-api.hexschool.io/';
+
 
 //mock開關
 const mock = false;
@@ -30,12 +27,10 @@ if(mock){
     // console.log(mockData);
 }
 
-// axios.defaults.timeout = 8000; 
-//未做跨域
-// axios.defaults.baseURL= `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_UUID}/`;//@@localhost mock關掉
-// axios.defaults.headers['Authorization'] = `Bearer ${process.env.VUE_APP_TOKEN}`; //%%空格
+// axios.defaults.timeout = 8000;
 
-
+// @@为何要放前面
+Vue.component('BaseLoading',Loading);
 
 const app = new Vue({
   // router: routers//填入屬性值
@@ -45,10 +40,9 @@ const app = new Vue({
 }).$mount('#app');
 
 //全局組件
-// @@為什麼不行
+// @@為什麼不行Uncaught TypeError: app.component is not a function
 // app.component('BaseLoading',Loading);
-
-Vue.component('BaseLoading',Loading);
+// Vue.component('BaseLoading',Loading);
 
 
 // ##直接物件方法調用
@@ -56,11 +50,13 @@ router.beforeEach((to,from,next) => {
     console.log('to',to,'from',from,'next',next);
 
     if(to.meta.requireAuth){
+        app.$store.commit('LOADING',true);//##app.$store
         const api = 'auth/check'
         const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         instanceLogin.post(api,{'api_token':token})
         .then((res) => {
             // console.log(res.message);%%
+            app.$store.commit('LOADING',false);
             console.log(res.data.message);
             if(res.data.success){
                 next();

@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 import mutations from './mutations';
 import actions from './actions';
 
-Vue.use(Vuex);//@@改加在main.js
+Vue.use(Vuex);//@也可加在main.js
 
 const state = {
     isLoading: false

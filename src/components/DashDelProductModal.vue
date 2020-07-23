@@ -45,20 +45,25 @@
           $('#delProductModal').modal('show');
         },
         delProduct(){
+            this.$store.commit('LOADING',true);
             let api =`ec/product/${this.tempProduct.id}`;
             if(this.tempProduct.id){
                 instanceAdmin.delete(api)
                 .then(res => {
                     this.$emit('update');
                     $('#delProductModal').modal('hide');
+                    
                 })
             }else{
                 console.log('取不到tempProduct.id');
             }
         },
         cancelDelProduct(){
-            // %%prop由父層清空
-            this.$emit('cancel');
+            // %%prop给父層清空
+            // this.$emit('cancel');
+            this.$emit('update:tempProduct',{
+                imageUrl:[]
+            });
         },
       }
   }

@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="imageUrl">輸入圖片網址</label>
+                    <label for="imageUrl">輸入圖片網址(enter)</label>
                     <input id="imageUrl" type="text" class="form-control" placeholder="請輸入圖片連結"
                         v-model="tempImgUrl"
                         @keyup.enter="addImg"
@@ -122,23 +122,13 @@
     import $ from "jquery";
     import {instanceAdmin} from '../api/https';
   export default {
-      /**
-   * Vue data 說明
-   * @param products 放置 AJAX 回來的產品資料。
-   * @param pagination 放置分頁資料用。
-   * @param tempProduct 暫存資料用，必須預先定義 imageUrl 並且是一個陣列，否則新增或更新會出現錯誤。
-   * @param isNew 用於判斷接下來的行為是新增產品或編輯產品。
-   * @param status 用於切換上傳圖片時的小 icon，主要是增加使用者體驗。
-   * @param user 底下分別有 token 的放置處，但主要必須注意 uuid 需改成自己的，目前是助教示範用。
-   */
-
   /**
    * @param isNew 判斷接下來的行為是新增產品或編輯產品
    * @param tempProduct 用來暫存編輯的單一產品資料，預先定義imageUrl或是打開modal時定義也可以
    * @param tempImgUrl 暫存自行輸入的圖片網址
    * @param filePath 暫存上傳圖檔後回傳的圖片網址
+   * @param status 用於切換上傳圖片時的小 icon，主要是增加使用者體驗。-[]還未新增
    */
-
     // @@props的型別檢查用法
     props:{
         isNew:true,
@@ -163,7 +153,8 @@
         }
     },
     methods:{
-        newProductModal(){
+        openNewModal(){
+            this.$store.commit('LOADING',true);
             //保險
             this.tempProduct={
                 imageUrl:[]
@@ -172,19 +163,22 @@
             // this.tempProduct = {};
             // this.$set(this.tempProduct,'imageUrl',[]);
             // ---------------------------------
+            this.$store.commit('LOADING',false);
             $('#productModal').modal('show');
         },
-        editProductModal(id){//編輯時
+        openEditModal(id){//編輯時
+            this.$store.commit('LOADING',true);
             const api = `ec/product/${id}`
             instanceAdmin.get(api)
             .then(res => {
                 this.tempProduct = res.data.data;//##重新賦值
+                this.$store.commit('LOADING',false);
                 $('#productModal').modal('show');
             })
         },
         addImg(){
-             this.tempProduct.imageUrl.push(this.tempImgUrl);
-             this.tempImgUrl = "";
+            this.tempProduct.imageUrl.push(this.tempImgUrl);
+            this.tempImgUrl = "";
         },
         uploadImg(){
             const api = 'storage';

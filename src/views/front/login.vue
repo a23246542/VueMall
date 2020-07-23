@@ -26,45 +26,40 @@
 </template>
 
 <script>
-// import instanceLogin from "@api/https";//失败
+// import instanceLogin from "@api/https";//@@失败
 import {instanceLogin} from "../../api/https";
 export default {
     name:'login',
     data() {
         return {
             user:{
-                // username:'a23246542@gmail.com',
-                email:'a23246542@gmail.com',
-                password:'no512seed851',
+                email:'',
+                password:'',
             },
-            expired:'',
             token:'',
+            expired:'',
             uuid:''
         }
     },
     methods:{
         signIn(){
+            this.$store.commit('LOADING',true);
             const vm = this;
-            // let api = 'api/auth/login'
             const api = 'auth/login'
-            instanceLogin.post(api,vm.user)
+            instanceLogin.post(api,this.user)
             .then(res =>{
-                // if(res.data.success){}//有响应的
-                // @@catch是请求失败的
+                this.$store.commit('LOADING',false);
+                // catch是请求失败的
                 console.log(res);
-                // vm.expired = res.data.expired;//改存跨页面cookeies
-                // vm.token = res.data.token;//改存跨页面cookies
-                // vm.uuid = res.data.uuid;//原本process.env
-
                 if(res.data.success){
-                    const token = res.data.token;//跨页面cookeies
-                    const expired = res.data.expired;
-                    const uuid = res.data.uuid;
+                    this.token = res.data.token;//跨页面cookeies
+                    this.expired = res.data.expired;
+                    this.uuid = res.data.uuid;
     
                     document.cookie = `token=${token}; uuid=${uuid}; expires=${new Date(expired * 1000)}; path=/`;
                     document.cookie = `uuid=${uuid}; path=/`;
                     // router.push('/admin')不像main.js
-                    vm.$router.push('/admin');//%%
+                    this.$router.push('/admin');//%%
                 }
                 
             })

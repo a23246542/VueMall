@@ -6,14 +6,15 @@ Vue.use(VueRouter)
 
 // const routers = [ %%
 const routes = [
-    // {
-    //     path: 'login',@@會失敗 不知道為什麼 難道說這樣不行
-    //     component: () => import('../views/front/login')
-
-    // },
     {
         path: '*',
         redirect:'/'
+    },
+    {
+        // path: 'login',//@@父組件要/
+        path: '/login',
+        name: 'login',
+        component: () => import('../views/front/login')
     },
     //前台
     {
@@ -26,18 +27,18 @@ const routes = [
                 name:'home ',
                 component:() => import('../views/front/index.vue')
             },
-            {
-                path: 'login',
-                name:'login',
-                component: () => import('../views/front/login')
-            },
+            // {
+            //     path: 'login',
+            //     name:'login',
+            //     component: () => import('../views/front/login')
+            // },
         ]
     },
     // 後台
     {
         path:'/admin',
-        component:() => import('../views/back/dashboard.vue'),
         name:'Dashboard',
+        component:() => import('../views/back/dashboard.vue'),
         redirect:'/admin/products',
         // meta:{ requireAuth: true },//##有redirect沒用
         children:[

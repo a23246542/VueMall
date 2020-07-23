@@ -1,5 +1,5 @@
 import axios from 'axios';
-import router from '../router';//@@router要做什麼
+import router from '../router';//@做router.push
 
 
 // ============后台admin==========================================
@@ -10,7 +10,7 @@ const http = {
 
 // @@會先執行道嗎?
 http.uuid =  document.cookie.replace(/(?:(?:^|.*;\s*)uuid\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '82a32758-aadc-4405-b535-2f6a678989d8';
-// http.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+http.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
 // ======================後台登入api=============================
 const instanceLogin = axios.create({
@@ -22,13 +22,13 @@ const instanceAdmin = axios.create({
 const instanceCus = axios.create({//@@沒登入也需要UUID
     baseURL:`${process.env.VUE_APP_APIPATH}api/${http.uuid}`
 })
-
 // ===================後台api=============================================
 instanceAdmin.interceptors.request.use(async config => {
      // 每次傳送請求之前判斷本地是否存在token，以及async/await確認token有效性
     // 如果存在，則統一在http請求的header都加上token，這樣後臺根據token判斷你的登入情況，此處token一般是使用者完成登入後儲存到localstorage或cookies裡的
     
-    const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    // const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    const token = http.token;
     console.log('uuid:',http.uuid,'token:',token);
     
     // const cancelToken = axios.CancelToken.source();
@@ -47,6 +47,7 @@ instanceAdmin.interceptors.request.use(async config => {
                 console.log(config.headers.Authorization);
             }else{
                 console.log(res.data.message);
+                // this.$router.push('/login');
                 router.push('/login');
                 throw new axios.Cancel('token驗證不成功，重新登入取得token');
                 // router.push('/login');//%%放後面無法執行
@@ -56,6 +57,7 @@ instanceAdmin.interceptors.request.use(async config => {
         
         }).catch((err) =>{//no access token
             console.log(err);
+            // this.$router.push('/login');
             router.push('/login');
             // return config@@?
             throw new axios.Cancel('token驗證不成功，重新登入取得token');
@@ -67,11 +69,9 @@ instanceAdmin.interceptors.request.use(async config => {
         // return config@@?
         throw new axios.Cancel('cookies缺少token，重新登入取得token');
     }
-    // -[] 開啟loading
     return config
 },err => {
     console.log('請求錯誤');
-    
     // console.log(err);
     // -[]錯誤訊息轉換
     return Promise.reject(err)
@@ -79,19 +79,15 @@ instanceAdmin.interceptors.request.use(async config => {
 
 // ##callback回調同步
 instanceAdmin.interceptors.response.use( res => {
-    // -[] 關閉loading
     console.log(res);
     return res
 } , err => {
     console.log('響應錯誤');
     // console.log('error:',err);
-    
     return Promise.reject(err)
 })
 // ===================前台api===================================
-instanceCus.interceptors.request.use( config => {
-    // - [] loading
-    
+instanceCus.interceptors.request.use( config => { 
     return config
 },err =>{
     
@@ -100,10 +96,8 @@ instanceCus.interceptors.request.use( config => {
 
 instanceCus.interceptors.response.use( res => {
     console.log(res);
-    // - [] loading
     return res
 },err =>{
-
     return Promise.reject(err)
 })
 
