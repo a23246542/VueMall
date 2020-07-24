@@ -22,3 +22,6 @@ export default {
     },
 }
 </script>
+<style lang="scss" scoped>
+//    @import "../assets/scss/pages/dashboard";//##可以作用
+</style>
