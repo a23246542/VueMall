@@ -2,11 +2,13 @@
 import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import $ from 'jquery';
+windows.$ = $;//@@效能問題
 import 'bootstrap';
  // Import component
  import Loading from 'vue-loading-overlay';
  // Import stylesheet
-//  @@為何js 
+//  @@為何css
  import 'vue-loading-overlay/dist/vue-loading.css';
 //##自定義
 // import {uuid,token,apiPath} from './api/index';
