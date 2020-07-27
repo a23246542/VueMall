@@ -26,8 +26,8 @@
 </template>
 
 <script>
-// import instanceLogin from "@api/https";//@@失败
-import {instanceLogin} from "../../api/https";
+import instanceLogin from "@/api/https";//%%
+// import {instanceLogin} from "../../api/https";
 export default {
     name:'login',
     data() {
@@ -36,9 +36,9 @@ export default {
                 email:'',
                 password:'',
             },
-            token:'',
-            expired:'',
-            uuid:''
+            // token:'',//%%不能呈現在前端頁面
+            // expired:'',
+            // uuid:''
         }
     },
     methods:{
@@ -52,12 +52,11 @@ export default {
                 // catch是请求失败的
                 console.log(res);
                 if(res.data.success){
-                    this.token = res.data.token;//跨页面cookeies
-                    this.expired = res.data.expired;
-                    this.uuid = res.data.uuid;
+                    const token = res.data.token;//跨页面cookeies
+                    const expired = res.data.expired;
+                    const uuid = res.data.uuid;
     
                     document.cookie = `token=${token}; uuid=${uuid}; expires=${new Date(expired * 1000)}; path=/`;
-                    document.cookie = `uuid=${uuid}; path=/`;
                     // router.push('/admin')不像main.js
                     this.$router.push('/admin');//%%
                 }
