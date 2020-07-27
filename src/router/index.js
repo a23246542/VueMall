@@ -14,7 +14,7 @@ const routes = [
         // path: 'login',//@@父組件要/
         path: '/login',
         name: 'login',
-        component: () => import('../views/front/login')
+        component: () => import('../views/back/login')
     },
     //前台
     {

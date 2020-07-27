@@ -3,7 +3,7 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import $ from 'jquery';
-windows.$ = $;//@@效能問題
+window.$ = $;//@@效能問題
 import 'bootstrap';
  // Import component
  import Loading from 'vue-loading-overlay';
