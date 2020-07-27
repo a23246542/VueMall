@@ -7,7 +7,7 @@
             <label for="inputEmail" class="sr-only">電子信箱</label>
             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required
             autofocus
-            v-model="user.username"
+            v-model="user.email"
             >
             <label for="inputPassword" class="sr-only">密碼</label>
             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required

@@ -9,6 +9,9 @@ const http = {
     token:'',
 }
 
+// var CancelToke = axios.CancelToken;
+var source = axios.CancelToken.source();
+
 // @@是否會先執行到
 http.apiPath = process.env.VUE_APP_APIPATH;
 // http.uuid =  document.cookie.replace(/(?:(?:^|.*;\s*)uuid\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '82a32758-aadc-4405-b535-2f6a678989d8';
@@ -42,7 +45,7 @@ instanceAdmin.interceptors.request.use(async config => {
         
         // ##console發現沒辦法等驗證完畢再發出請求 後來用async await解決
         const api = 'auth/check'
-        await instanceLogin.post(api,{'api_token':token})
+        await instanceLogin.post(api,{ cancelToken:source.toke,'api_token':token})
         .then((res) => {
             console.log(res.data.message);
             if(res.data.success){
@@ -52,7 +55,10 @@ instanceAdmin.interceptors.request.use(async config => {
                 console.log(res.data.message);
                 // this.$router.push('/login');
                 router.push('/login');
-                throw new axios.Cancel('token驗證不成功，重新登入取得token');
+
+                // @@好像會中斷 無法取消這個請求
+                source.cancel("操作被用戶取消");
+                // throw new axios.Cancel('token驗證不成功，重新登入取得token');
                 // router.push('/login');//%%放後面無法執行
                 //- [ ]取消這個響應攔截請求
                 
@@ -63,7 +69,8 @@ instanceAdmin.interceptors.request.use(async config => {
             // this.$router.push('/login');
             router.push('/login');
             // return config@@?
-            throw new axios.Cancel('token驗證不成功，重新登入取得token');
+            source.cancel("token驗證不成功，重新登入取得token");
+            // throw new axios.Cancel('token驗證不成功，重新登入取得token');
         })
         
     }else{//no access token
