@@ -18,7 +18,8 @@ export default {
     DashNavbar,
     DashSidebar,
     dashProducts
-  }
+  },
+  
 }
 
 </script>

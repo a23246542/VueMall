@@ -57,7 +57,6 @@ export default {
                     const uuid = res.data.uuid;
     
                     document.cookie = `token=${token}; uuid=${uuid}; expires=${new Date(expired * 1000)}; path=/`;
-                    document.cookie = `uuid=${uuid}; path=/`;
                     // router.push('/admin')不像main.js
                     this.$router.push('/admin');//%%
                 }

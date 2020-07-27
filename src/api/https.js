@@ -4,23 +4,26 @@ import router from '../router';//@做router.push
 
 // ============后台admin==========================================
 const http = {
+    apiPath:'',
     uuid:'',
-    token:''
+    token:'',
 }
 
 // @@是否會先執行到
-http.uuid =  document.cookie.replace(/(?:(?:^|.*;\s*)uuid\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '82a32758-aadc-4405-b535-2f6a678989d8';
+http.apiPath = process.env.VUE_APP_APIPATH;
+// http.uuid =  document.cookie.replace(/(?:(?:^|.*;\s*)uuid\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '82a32758-aadc-4405-b535-2f6a678989d8';
+http.uuid = process.env.VUE_APP_UUID;
 http.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
 // ======================後台登入api=============================
 const instanceLogin = axios.create({
-    baseURL:`${process.env.VUE_APP_APIPATH}api/`,
+    baseURL:`${http.apiPath}api/`,
 })
 const instanceAdmin = axios.create({
-    baseURL:`${process.env.VUE_APP_APIPATH}api/${http.uuid}/admin/`
+    baseURL:`${http.apiPath}api/${http.uuid}/admin/`
 })
 const instanceCus = axios.create({//@@沒登入也需要UUID
-    baseURL:`${process.env.VUE_APP_APIPATH}api/${http.uuid}`
+    baseURL:`${http.apiPath}api/${http.uuid}`
 })
 // ===================後台api=============================================
 instanceAdmin.interceptors.request.use(async config => {
