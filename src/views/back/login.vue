@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import instanceLogin from "@/api/https";//%%
+import {instanceLogin} from "@/api/https";//%%
 // import {instanceLogin} from "../../api/https";
 export default {
     name:'login',
