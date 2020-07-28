@@ -236,38 +236,38 @@ export default {
     };
   },
   computed: {
-    cart() {
-      return this.$store.state.cart;
-    },
+    // cart() {
+    //   return this.$store.state.cart;
+    // },
   },
   methods: {
-    createOrder() {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order`;
-      const vm = this;
-      // 開啟 loading
-      vm.$store.commit('LOADING', true);
-      const order = vm.form;
-      vm.$http.post(api, { data: order }).then((response) => {
-        // 關閉 loading
-        vm.$store.commit('LOADING', false);
-        if (response.data.success) {
-          const { message } = response.data;
-          const status = 'success';
-          vm.$store.dispatch('updateMessage', { message, status });
-          vm.$router.push(`/cart/payment/${response.data.orderId}`);
-        } else {
-          const { message } = response.data;
-          const status = 'danger';
-          vm.$store.dispatch('updateMessage', { message, status });
-        }
-      });
-    },
-    getCart() {
-      this.$store.dispatch('getCart');
-    },
+    // createOrder() {
+    //   const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order`;
+    //   const vm = this;
+    //   // 開啟 loading
+    //   vm.$store.commit('LOADING', true);
+    //   const order = vm.form;
+    //   vm.$http.post(api, { data: order }).then((response) => {
+    //     // 關閉 loading
+    //     vm.$store.commit('LOADING', false);
+    //     if (response.data.success) {
+    //       const { message } = response.data;
+    //       const status = 'success';
+    //       vm.$store.dispatch('updateMessage', { message, status });
+    //       vm.$router.push(`/cart/payment/${response.data.orderId}`);
+    //     } else {
+    //       const { message } = response.data;
+    //       const status = 'danger';
+    //       vm.$store.dispatch('updateMessage', { message, status });
+    //     }
+    //   });
+    // },
+    // getCart() {
+    //   this.$store.dispatch('getCart');
+    // },
   },
   created() {
-    this.getCart();
+    // this.getCart();
   },
 };
 </script>

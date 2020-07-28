@@ -26,7 +26,7 @@ const instanceAdmin = axios.create({
     baseURL:`${http.apiPath}api/${http.uuid}/admin/`
 })
 const instanceCus = axios.create({//@@沒登入也需要UUID
-    baseURL:`${http.apiPath}api/${http.uuid}`
+    baseURL:`${http.apiPath}api/${http.uuid}/`
 })
 // ===================後台api=============================================
 instanceAdmin.interceptors.request.use(async config => {
@@ -100,7 +100,8 @@ instanceAdmin.interceptors.response.use( res => {
 instanceCus.interceptors.request.use( config => { 
     return config
 },err =>{
-    
+    console.log("請求錯誤");
+    console.log(err);
     return Promise.reject(err)
 })
 
@@ -108,6 +109,8 @@ instanceCus.interceptors.response.use( res => {
     console.log(res);
     return res
 },err =>{
+    console.log("響應錯誤");
+    console.log(err);
     return Promise.reject(err)
 })
 

@@ -11,7 +11,6 @@ const routes = [
         redirect:'/'
     },
     {
-        // path: 'login',//@@父組件要/
         path: '/login',
         name: 'login',
         component: () => import('../views/back/login')
@@ -24,17 +23,13 @@ const routes = [
         children:[
             {
                 path:'',
-                name:'home ',
-                component:() => import('../views/front/index.vue')
+                name:'home',//-[]首頁改index
+                // component:() => import('../views/front/index.vue')
+                component:() => import('../views/front/products.vue')
             },
-            // {
-            //     path: 'login',
-            //     name:'login',
-            //     component: () => import('../views/front/login')
-            // },
             {
                 path: 'orderform',
-                component: () => import('../views/front/orderForm.vue')
+                component: () => import('../views/front/orderForm1.vue')
                 
             }
         ]
