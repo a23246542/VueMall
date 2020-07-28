@@ -60,7 +60,7 @@ export default {
     },
     methods:{
         getProducts(){
-            const api ='ec/products';
+            const api ="ec/products";
             instanceCus.get(api)
             .then((res) => {
                 this.products = res.data.data;
@@ -71,11 +71,15 @@ export default {
             // instanceCus.post(api,)
         },
         getCart(){
-            const api ='ec/shopping'
+            const api ="ec/shopping"
             instanceCus.get(api)
             .then((res) => {
                 console.log(res);
             })
+        },
+        editCart(){
+            const api ="ec/shopping"
+            instanceCus.patch(api,{product:id,quantity:"1"})
         }
     }
 }
