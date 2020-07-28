@@ -26,6 +26,9 @@ import App from './App.vue';
 import {instanceLogin} from './api/https';
 import router from './router';
 import store from './store';
+import currencyFilter from './filters/currencyFilter';
+import dateFilter from './filters/dateFilter';
+// import filters from './filters'
 
 VeeValidate.localize('tw',zh_TW);
 // 自定義設定檔案，錯誤的 className
@@ -50,6 +53,14 @@ Vue.use(VueAxios, axios);//##原本的是可以this.axios.get()調用
 Vue.component('BaseLoading',Loading);
 Vue.component('ValidationProvider', VeeValidate.ValidationProvider);
 Vue.component('ValidationObserver',VeeValidate.ValidationObserver);
+
+Vue.filter('currency',currencyFilter);
+Vue.filter('date',dateFilter);
+
+//過濾器統一處理加載
+// Object.keys(filters).forEach(key => {
+//     Vue.filter(key, filters[key])
+// })
 
 //mock開關
 const mock = false;
