@@ -6,7 +6,7 @@ import router from '../router';//@做router.push
 const http = {
     apiPath:'',
     uuid:'',
-    token:'',
+    // token:'',
 }
 
 // var CancelToke = axios.CancelToken;
@@ -16,7 +16,7 @@ var source = axios.CancelToken.source();
 http.apiPath = process.env.VUE_APP_APIPATH;
 // http.uuid =  document.cookie.replace(/(?:(?:^|.*;\s*)uuid\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '82a32758-aadc-4405-b535-2f6a678989d8';
 http.uuid = process.env.VUE_APP_UUID;
-http.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+// http.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
 // ======================後台登入api=============================
 const instanceLogin = axios.create({
@@ -33,9 +33,9 @@ instanceAdmin.interceptors.request.use(async config => {
      // 每次傳送請求之前判斷本地是否存在token，以及async/await確認token有效性
     // 如果存在，則統一在http請求的header都加上token，這樣後臺根據token判斷你的登入情況，此處token一般是使用者完成登入後儲存到localstorage或cookies裡的
     
-    // const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    const token = http.token;
-    console.log('uuid:',http.uuid,'token:',token);
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    // const token = http.token;%%重新登入後token不一樣會不能用
+    console.log('uuid:',http.uuid,'token:',token,'http.token',http.token);
     
     // const cancelToken = axios.CancelToken.source();
     // @@Axios:如何正确取消请求拦截器中的请求？
