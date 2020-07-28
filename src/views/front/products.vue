@@ -55,8 +55,9 @@ export default {
         }
     },
     created() {
-        // this.getProducts();
-        this.getCart();
+        this.getProducts();
+        // this.getCart();
+        // this.delAllCart();
     },
     methods:{
         getProducts(){
@@ -74,12 +75,22 @@ export default {
             const api ="ec/shopping"
             instanceCus.get(api)
             .then((res) => {
-                console.log(res);
+                // console.log(res);
             })
         },
         editCart(){
             const api ="ec/shopping"
             instanceCus.patch(api,{product:id,quantity:"1"})
+        },
+        delAllCart(){
+            // DELETE api/{uuid}/ec/shopping/all/product
+            const api ="ec/shopping/all/product";
+            instanceCus.delete(api)
+            .then((res) => {
+                
+            })
+
+
         }
     }
 }
