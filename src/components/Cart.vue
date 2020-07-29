@@ -10,13 +10,12 @@
     <tbody>
         <tr v-for="item in carts" :key="item.product.id">
             <td class="align-middle text-center">
-                <a
-                href="#"
-                class="text-muted"
+                <button
+                class="btn"
                 @click.prevent="deleteModal(item)"
                 >
                 <i class="fa fa-trash" aria-hidden="true"></i>
-                </a>
+                </button>
             </td>
             <td class="align-middle">
                 {{ item.product.title }}

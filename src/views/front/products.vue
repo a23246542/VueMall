@@ -101,12 +101,13 @@ export default {
             .then((res) => {
                 this.$refs.cart.getCart();
             })
-            .catch((err) => {
-                console.dir(err.response.data.message);
-                if(err.response.data.errors[0]==="該商品已放入購物車當中。"){
-                    console.log("呼叫改方法");
-                }
-            })
+            // .catch((err) => {
+            //     console.dir(err.response.data.message);
+            //     if(err.response.data.errors[0]==="該商品已放入購物車當中。"){
+            //         const originNum = this.carts
+            //         this.$refs.cart.editCart(id,)
+            //     }
+            // })
         },
         openSingleProduct(id) {
             this.$router.push(`/products/${id}`);
