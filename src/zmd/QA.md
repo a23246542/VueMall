@@ -31,3 +31,5 @@ W5
 * ~valid-feedback為何失敗是用在errors沒用嗎? 原來是要打invaild
 * ~助教錯誤訊息為何會自動跑username原來是會自動找id(lable的for)當對應欄位名稱
 * 為何email的passed訊息已填出不來
+###購物車
+* 可不可以新增跟vue電商一樣 有item.coupon判斷這項產品有沒有已使用優惠券
