@@ -2,8 +2,9 @@
 import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-import $ from 'jquery';
-window.$ = $;//@@效能問題
+// import $ from 'jquery';
+// window.$ = $;//@@效能問題
+import 'jquery';
 import 'bootstrap';
  // Import component
 // import {
@@ -26,9 +27,10 @@ import App from './App.vue';
 import {instanceLogin} from './api/https';
 import router from './router';
 import store from './store';
-import currencyFilter from './filters/currencyFilter';
+// import currencyFilter from './filters/currencyFilter';
 import dateFilter from './filters/dateFilter';
 // import filters from './filters'
+
 
 VeeValidate.localize('tw',zh_TW);
 // 自定義設定檔案，錯誤的 className
@@ -54,8 +56,19 @@ Vue.component('BaseLoading',Loading);
 Vue.component('ValidationProvider', VeeValidate.ValidationProvider);
 Vue.component('ValidationObserver',VeeValidate.ValidationObserver);
 
-Vue.filter('currency',currencyFilter);
+// Vue.filter('currency',currencyFilter);
 Vue.filter('date',dateFilter);
+Vue.filter('dollars',(value)=>{
+    // console.log(value)
+    // const intPart = value.toString().split('.');@@不是空格分成怎麼會是點
+    // intPart[0] = intPart[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    // return 'NT$' + intPart.join('.');
+
+    const str = value.toString();
+    // return 'NT$' + str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return '$' + str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+})
 
 //過濾器統一處理加載
 // Object.keys(filters).forEach(key => {

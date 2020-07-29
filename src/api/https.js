@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import axios from 'axios';
 import router from '../router';//@做router.push
 
@@ -28,6 +29,9 @@ const instanceAdmin = axios.create({
 const instanceCus = axios.create({//@@沒登入也需要UUID
     baseURL:`${http.apiPath}api/${http.uuid}/`
 })
+
+
+
 // ===================後台api=============================================
 instanceAdmin.interceptors.request.use(async config => {
      // 每次傳送請求之前判斷本地是否存在token，以及async/await確認token有效性
@@ -93,15 +97,16 @@ instanceAdmin.interceptors.response.use( res => {
     return res
 } , err => {
     console.log('響應錯誤');
-    // console.log('error:',err);
+    console.dir(err);
     return Promise.reject(err)
 })
 // ===================前台api===================================
+// Vue.prototype.instanceCus = instanceCus;
 instanceCus.interceptors.request.use( config => { 
     return config
 },err =>{
     console.log("請求錯誤");
-    console.log(err);
+    console.dir(err);
     return Promise.reject(err)
 })
 
@@ -110,12 +115,15 @@ instanceCus.interceptors.response.use( res => {
     return res
 },err =>{
     console.log("響應錯誤");
-    console.log(err);
+    console.dir(err);//##
     return Promise.reject(err)
 })
 
+Vue.prototype.$instanceLoing = instanceLogin;
+Vue.prototype.$instanceAdmin = instanceAdmin;
+Vue.prototype.$instanceCus = instanceCus;
 
-
+// ##物件縮寫
 export {instanceLogin,instanceAdmin,instanceCus};
 
 

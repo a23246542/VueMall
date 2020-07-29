@@ -32,4 +32,10 @@ W5
 * ~助教錯誤訊息為何會自動跑username原來是會自動找id(lable的for)當對應欄位名稱
 * 為何email的passed訊息已填出不來
 ###購物車
-* 可不可以新增跟vue電商一樣 有item.coupon判斷這項產品有沒有已使用優惠券
+* ~可不可以新增跟vue電商一樣 有item.coupon判斷這項產品有沒有已使用優惠券
+*~Vue.prototype.instanceCus = instanceCus;//@@發現攔截無效 
+*~<!-- {{ (item.quantity*item.product.price) | currency }} -->
+為什麼這個會Nan是filter的話只能填一個值嗎
+那這樣各別的item是要怎麼做計算
+<!-- -[]這個currency有錯 -->
+

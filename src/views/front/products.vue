@@ -3,49 +3,10 @@
         <div class="row flex-row-reverse">
             <div class="col-2">
                 <!-- <table class="table table-sm" v-if="cart.carts.length"> -->
-                <table class="table table-sm">
-                    <thead>
-                    <th>已選購商品</th>
-                    <!-- <th></th>
-                    <th>品名</th>
-                    <th>數量</th>
-                    <th>單價</th> -->
-                    </thead>
-                    <tbody>
-                        <tr v-for="item in carts" :key="item.product.id">
-                            <td class="align-middle text-center">
-                                <a
-                                href="#"
-                                class="text-muted"
-                                @click.prevent="deleteModal(item)"
-                                >
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                </a>
-                            </td>
-                            <td class="align-middle">
-                                {{ item.product.title }}
-                                <!-- <div class="text-success" v-if="item.coupon">
-                                已套用優惠券
-                                </div> -->
-                            </td>
-                            <td class="align-middle">x{{ item.quantity }}</td>
-                            <!-- <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td> -->
-                            <td class="align-middle text-center">
-                                {{ (item.quantity* item.product.price) | currency }}
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="3" class="text-right">總計</td>
-                            <td class="text-right">{{ cart.total }}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class="text-right text-success">折扣價</td>
-                            <td class="text-right text-success">{{ cart.final_total }}</td>
-                        </tr>
-                    </tfoot>
-                </table>
+                <Cart
+                ref="cart"
+                @emitCart="getEmitCart"
+                />
             </div>
 
             
@@ -92,83 +53,65 @@
 </template>
 
 <script>
-
 import {instanceCus} from '../../api/https';
+import Cart from '@/components/Cart';
 
 export default {
+    components:{
+        Cart
+    },
     data() {
         return { 
             product:{
                 num:1,//要雙向綁定預設值%%%
             },
             products:[],
-            cartData:{},
+            carts:[]//子組件購物車的
 
         }
     },
     computed:{
-        carts(){
-            return this.cartData.data;
-        }
+       
     },
     created() {
         this.getProducts();
-        this.getCart();
+        // this.getCart();
         // this.delAllCart();
     },
     methods:{
         getProducts(){
+            this.$store.commit('LOADING',true);
             const api ="ec/products";
             instanceCus.get(api)
             .then((res) => {
                 this.products = res.data.data;
+                this.$store.commit('LOADING',false);
+            })
+        },
+        //接收資料 子傳父元件
+        getEmitCart(carts){
+            this.carts = carts;
+        },
+        addToCart(id,qty=1){
+            console.log(id,qty);
+            // this.$store.commit('LOADING',true);
+            const api ="ec/shopping";
+            const cartItem = {product:id,quantity:qty};
+            this.$instanceCus.post(api,cartItem)
+            .then((res) => {
+                this.$refs.cart.getCart();
+            })
+            .catch((err) => {
+                console.dir(err.response.data.message);
+                if(err.response.data.errors[0]==="該商品已放入購物車當中。"){
+                    console.log("呼叫改方法");
+                }
             })
         },
         openSingleProduct(id) {
             this.$router.push(`/products/${id}`);
         },
-        getCart(){
-            const api ="ec/shopping"
-            instanceCus.get(api)
-            .then((res) => {
-                console.log("上面是取得購物車");
-                this.cartData = res.data;
-            })
-        },
-        addToCart(id,qty=1){
-            console.log(id,qty);
-            const api ="ec/shopping";
-            const cartItem = {product:id,quantity:qty};
-            instanceCus.post(api,cartItem)
-            .then((res) => {
-                this.getCart();
-            })
 
-        },
-        editCart(id,qty){
-            const api ="ec/shopping"
-            const cartItem = {product:id,quantity:qty};
-            instanceCus.patch(api,cartItem)
-            .then((res) => {
-                this.getCart();
-            })
-        },
-        delCart(id,qty){
-            const api ="ec/shopping";
-            const cartItem = {product:id};
-            instanceCus.delete(api,cartItem)
-            .then((res) => {
-                this.getCart();
-            })
-        },
-        delAllCart(){
-            // DELETE api/{uuid}/ec/shopping/all/product
-            const api ="ec/shopping/all/product";
-            instanceCus.delete(api)
-            .then((res) => {
-                this.getCart();
-            })
-        }
     }
 }
 </script>
