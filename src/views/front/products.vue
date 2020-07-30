@@ -50,7 +50,7 @@
                                         {{item.price}}
                                     </div>
                                     <a href="#" class="btn bg-green ml-auto"
-                                    @click.prevent="addToCart(item.id,product.num)"
+                                    @click.prevent="addToCart(item.id,item.num)"
                                     >加入購物車</a>
                                 </div>
                             </div>
@@ -75,9 +75,9 @@ export default {
     },
     data() {
         return { 
-            product:{
-                num:1,//要雙向綁定預設值%%%
-            },
+            // product:{//點擊那個modal再出現
+            //     num:1,//要雙向綁定預設值%%%
+            // },
             products:[],
             carts:[]//子組件購物車的
 
@@ -95,6 +95,11 @@ export default {
             instanceCus.get(api)
             .then((res) => {
                 this.products = res.data.data;
+                //###%% 可先暫時寫入api外的，幫助渲染
+                this.products.forEach((item) => {
+                    // item.num = 1;
+                    this.$set(item,'num',1);
+                })
                 this.$store.commit('LOADING',false);
             })
         },
