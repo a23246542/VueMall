@@ -73,11 +73,12 @@ export default {
 
     #message-alert{
         position: fixed;
-        z-index: 100;
+        max-width: 30%;
         top: 40px;
         right: 30px;
-        transition: all .5s;
-
+        z-index: 100;
+        // transition: all .5s;//##沒用
+        
         //vue列表過度動畫
         .list-item {
             display: inline-block;
