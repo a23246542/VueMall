@@ -30,7 +30,7 @@
                 已套用優惠券
                 </div> -->
             </td>
-            <td class="align-middle">x{{ item.quantity }}</td>
+            <td class="align-middle text-right">x{{ item.quantity }}</td>
             <!-- <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td> -->
             <td class="align-middle text-center">
                 <!-- ## -->

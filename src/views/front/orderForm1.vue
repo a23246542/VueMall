@@ -1,5 +1,13 @@
 <template>
     <div class="my-5 row justify-content-center">
+        <!-- 購物清單 開始 -->
+        <!-- @@這樣排版是可以的嗎 -->
+        <Cart
+        class="col-md-8"
+        ></Cart>
+        <!-- 購物清單 結束 -->
+
+        <!-- 收件表單 開始     -->
         <ValidationObserver
         tag="div"
         class="col-md-6"
@@ -100,11 +108,17 @@
             </div>
         </form>
         </ValidationObserver>
+        <!-- 收件表單 結束 -->
     </div>
 </template>
 
 <script>
+import Cart from "@/components/Cart";
+
 export default {
+    components:{
+        Cart
+    },
     data() {
         return{
             form:{

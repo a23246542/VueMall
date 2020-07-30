@@ -18,10 +18,10 @@ import * as VeeValidate from 'vee-validate';
 import * as rules from 'vee-validate/dist/rules';
 import zh_TW from 'vee-validate/dist/locale/zh_TW.json';
 import Loading from 'vue-loading-overlay';
-import VueSweetalert2 from 'vue-sweetalert2';
+// import VueSweetalert2 from 'vue-sweetalert2';
  // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
-import 'sweetalert2/dist/sweetalert2.min.css';
+// import 'sweetalert2/dist/sweetalert2.min.css';
 //##自定義
 // import {uuid,token,apiPath} from './api/index';
 import App from './App.vue';
@@ -33,7 +33,7 @@ import "./bus";
 import dateFilter from './filters/dateFilter';
 // import filters from './filters'
 
-Vue.use(VueSweetalert2);
+// Vue.use(VueSweetalert2);
 
 VeeValidate.localize('tw',zh_TW);
 // 自定義設定檔案，錯誤的 className
