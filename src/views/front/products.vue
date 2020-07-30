@@ -27,12 +27,22 @@
                                 <div class="d-flex">
                                     <div class="form-inline">
                                         <!-- ###寫入只能用v-model了 -->
-                                        <select class="form-control"
+                                        
+                                        <!-- <select class="form-control"
                                         v-model="product.num"
                                         >
                                             <option v-for="i in 5" :key="'num'+i"
                                             :value="i"
                                             >{{i}}</option>
+                                        </select> -->
+
+                                        <select class="form-control"
+                                        v-model="item.num"
+                                        >
+                                            <option :value="1" selected >1</option>
+                                            <option v-for="i in 5" :key="'num'+i"
+                                            :value="i+1"
+                                            >{{i+1}}</option>
                                         </select>
                                     </div>
                                     <div class="h3 ml-2">
@@ -71,12 +81,9 @@ export default {
         }
     },
     computed:{
-       
     },
     created() {
         this.getProducts();
-        // this.getCart();
-        // this.delAllCart();
     },
     methods:{
         getProducts(){

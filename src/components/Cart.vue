@@ -8,11 +8,18 @@
         <th>單價</th> -->
     </thead>
     <tbody>
+        <tr>
+            <td colspan="4" class="text-right">
+                <button class="btn btn-outline-danger btn-sm"
+                @click="delAllCart"
+                >刪除全部品項</button>
+            </td>
+        </tr>
         <tr v-for="item in carts" :key="item.product.id">
             <td class="align-middle text-center">
                 <button
                 class="btn"
-                @click.prevent="deleteModal(item)"
+                @click.prevent="delCart(item.product.id)"
                 >
                 <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
@@ -50,7 +57,18 @@ export default {
         return {
             carts:[],
             cartPagination:{},
-            cartTotal:0
+            // cartTotal:0
+        }
+    },
+    computed:{
+        cartTotal(){
+            let total =0;
+            this.carts.forEach((item) => {
+                let subtotal = 0;
+                subtotal = item.quantity*item.product.price;
+                total+=subtotal;
+            })
+            return total;
         }
     },
     created() {
@@ -69,16 +87,17 @@ export default {
                 this.$emit('emitCart',this.carts)
                 // @@這樣會傳參考嗎???
 
-                this.carts.forEach((item) => {
-                    let subtotal = 0;
-                    subtotal = item.quantity*item.product.price;
-                    this.cartTotal+=subtotal;
+                // this.carts.forEach((item) => {
+                //     let subtotal = 0;
+                //     subtotal = item.quantity*item.product.price;
+                //     this.cartTotal+=subtotal;
 
-                })
+                // })
                 this.$store.commit('LOADING',false);
             })
         },
         editCart(id,qty){
+            this.$store.commit('LOADING',true);
             const api ="ec/shopping"
             const cartItem = {product:id,quantity:qty};
             this.$instanceCus.patch(api,cartItem)
@@ -86,10 +105,10 @@ export default {
                 this.getCart();
             })
         },
-        delCart(id,qty){
-            const api ="ec/shopping";
-            const cartItem = {product:id};
-            this.$instanceCus.delete(api,cartItem)
+        delCart(id){//%%405 delete方法用錯
+            const api =`ec/shopping/${id}`;
+            // const cartItem = {product:id};
+            this.$instanceCus.delete(api)
             .then((res) => {
                 this.getCart();
             })
