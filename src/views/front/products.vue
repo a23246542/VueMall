@@ -37,6 +37,7 @@
                                             >{{i}}</option>
                                         </select> -->
 
+                                        <!-- ##v-model沒有值的話 option預設不會顯示 雙向綁定變空白 -->
                                         <select class="form-control"
                                         v-model="item.num"
                                         >
@@ -50,7 +51,7 @@
                                         {{item.price}}
                                     </div>
                                     <a href="#" class="btn bg-green ml-auto"
-                                    @click.prevent="addToCart(item.id,item.num)"
+                                    @click.prevent="addToCart(item,item.num)"
                                     >加入購物車</a>
                                 </div>
                             </div>
@@ -107,22 +108,26 @@ export default {
         getEmitCart(carts){
             this.carts = carts;
         },
-        addToCart(id,qty=1){
-            console.log(id,qty);
+        addToCart(item,qty=1){
             // this.$store.commit('LOADING',true);
             const api ="ec/shopping";
-            const cartItem = {product:id,quantity:qty};
+            const cartItem = {product:item.id,quantity:qty};
             this.$instanceCus.post(api,cartItem)
             .then((res) => {
+                this.$bus.$emit('message:push',`${item.title}已加入購物車`,'success')
                 this.$refs.cart.getCart();
             })
-            // .catch((err) => {
-            //     console.dir(err.response.data.message);
-            //     if(err.response.data.errors[0]==="該商品已放入購物車當中。"){
-            //         const originNum = this.carts
-            //         this.$refs.cart.editCart(id,)
-            //     }
-            // })
+            //###這邊判斷post patch缺點會跑兩次api
+            .catch((err) => {
+                console.dir(err.response.data.message);
+                // if(err.response.data.errors[0]==="該商品已放入購物車當中。"){
+                //     const originNum = this.carts
+                //     this.$refs.cart.editCart(id,)
+                // }
+                if(err.response.data.errors[0]==="該商品已放入購物車當中。"){          
+                    this.$bus.$emit('message:push',`${item.title}已存在購物車`)
+                }
+            })
         },
         openSingleProduct(id) {
             this.$router.push(`/products/${id}`);

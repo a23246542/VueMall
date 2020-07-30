@@ -19,7 +19,7 @@
             <td class="align-middle text-center">
                 <button
                 class="btn"
-                @click.prevent="delCart(item.product.id)"
+                @click.prevent="delCart(item)"
                 >
                 <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
@@ -116,12 +116,13 @@ export default {
                 this.getCart();
             })
         },
-        delCart(id){//%%405 delete方法用錯
+        delCart(item){//%%405 delete方法用錯
             this.$store.commit('LOADING',true);
-            const api =`ec/shopping/${id}`;
+            const api =`ec/shopping/${item.product.id}`;
             // const cartItem = {product:id};
             this.$instanceCus.delete(api)
             .then((res) => {
+                this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
                 this.getCart();
             })
         },
@@ -131,6 +132,7 @@ export default {
             const api ="ec/shopping/all/product";
             this.$instanceCus.delete(api)
             .then((res) => {
+                this.$bus.$emit('message:push','全部商品已刪除','success')
                 this.getCart();
             })
         }

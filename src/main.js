@@ -28,6 +28,7 @@ import App from './App.vue';
 import {instanceLogin} from './api/https';
 import router from './router';
 import store from './store';
+import "./bus";
 // import currencyFilter from './filters/currencyFilter';
 import dateFilter from './filters/dateFilter';
 // import filters from './filters'
