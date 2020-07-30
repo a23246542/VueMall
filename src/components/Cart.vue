@@ -8,7 +8,7 @@
         <th>單價</th> -->
     </thead>
     <tbody>
-        <tr>
+        <tr v-if="carts.length>0">
             <td colspan="4" class="text-right">
                 <button class="btn btn-outline-danger btn-sm"
                 @click="delAllCart"
@@ -47,6 +47,17 @@
             <td colspan="3" class="text-right text-success">折扣價</td>
             <td class="text-right text-success">{{ cart.final_total }}</td>
         </tr> -->
+        <tr>
+            <td colspan="4">
+                <router-link
+                to="./orderform"
+                tag="a"
+                class="btn btn-success btn-sm w-100"
+                >
+                結帳去
+                </router-link>
+            </td>
+        </tr>
     </tfoot>
 </table>
 </template>
@@ -106,6 +117,7 @@ export default {
             })
         },
         delCart(id){//%%405 delete方法用錯
+            this.$store.commit('LOADING',true);
             const api =`ec/shopping/${id}`;
             // const cartItem = {product:id};
             this.$instanceCus.delete(api)
@@ -114,6 +126,7 @@ export default {
             })
         },
         delAllCart(){
+            this.$store.commit('LOADING',true);
             // DELETE api/{uuid}/ec/shopping/all/product
             const api ="ec/shopping/all/product";
             this.$instanceCus.delete(api)

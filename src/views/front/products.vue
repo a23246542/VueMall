@@ -1,5 +1,6 @@
 <template>
-    <div class="container-fluid pt-5" id="products"> 
+    <div class="container-fluid pt-5" id="products">
+        <Alert></Alert>
         <div class="row flex-row-reverse">
             <div class="col-2">
                 <!-- <table class="table table-sm" v-if="cart.carts.length"> -->
@@ -65,10 +66,12 @@
 <script>
 import {instanceCus} from '../../api/https';
 import Cart from '@/components/Cart';
+import Alert from '@/components/BaseAlertMessage';
 
 export default {
     components:{
-        Cart
+        Cart,
+        Alert
     },
     data() {
         return { 
