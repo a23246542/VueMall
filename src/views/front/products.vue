@@ -90,9 +90,10 @@ export default {
         this.getProducts();
     },
     methods:{
-        getProducts(){
+        getProducts(page=1,paged=8,orderBy,sort){
             this.$store.commit('LOADING',true);
-            const api ="ec/products";
+            // const api =`ec/products/page=${page}`;%%
+            const api =`ec/products?page=${page}&paged=${paged}`;
             instanceCus.get(api)
             .then((res) => {
                 this.products = res.data.data;
