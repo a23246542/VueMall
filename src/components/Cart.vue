@@ -96,7 +96,7 @@ export default {
                 this.carts = res.data.data.reverse();
                 this.cartPagination = res.data.meta.pagination;
                 this.$emit('emitCart',this.carts)
-                // @@這樣會傳參考嗎???
+                // @@是否會傳參考
 
                 // this.carts.forEach((item) => {
                 //     let subtotal = 0;

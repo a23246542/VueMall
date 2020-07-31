@@ -7,7 +7,8 @@ import actions from './actions';
 Vue.use(Vuex);//@也可加在main.js
 
 const state = {
-    isLoading: false
+    isLoading: false,
+    carts
 };
 
 // export default new Vuex.store({%%
