@@ -52,5 +52,6 @@ W6 cli&路由
 
 ### shopping.vue
 * router-view的name不起作用，是否沒有這用法了
+* row col-8 col-6是可以的嗎
 
 
