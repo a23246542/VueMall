@@ -1,7 +1,9 @@
 <template>
-  <div>
-       <h2>訂單列表</h2>
-  </div>
+    <div>
+        <h2>
+            產品內頁
+        </h2>
+    </div>
 </template>
 
 <script>

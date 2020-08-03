@@ -1,6 +1,7 @@
 <template>
   <div>
-       <h2>訂單列表</h2>
+      <h2>優惠券</h2>
+      <p>透過優惠券 Code 去搜尋優惠券。</p>
   </div>
 </template>
 

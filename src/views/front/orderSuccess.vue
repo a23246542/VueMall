@@ -1,6 +1,7 @@
 <template>
   <div>
-       <h2>訂單列表</h2>
+      <h2>訂單已建立</h2>
+      <p>去付款</p>
   </div>
 </template>
 

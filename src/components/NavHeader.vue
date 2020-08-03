@@ -11,8 +11,12 @@
                 <router-link :to="{name:'home'}" tag="a" class="nav-link">首頁<span class="sr-only">(current)</span></router-link>
             </li>
             <li class="nav-item">
+                <!-- <a class="nav-link" href="#">首頁 <span class="sr-only">(current)</span></a> -->
+                <router-link :to="{name:'products'}" tag="a" class="nav-link">產品<span class="sr-only">(current)</span></router-link>
+            </li>
+            <li class="nav-item">
                 <!-- <a class="nav-link" href="#">表單驗證</a> -->
-                <router-link to="/orderform" tag="a" class="nav-link">表單驗證</router-link>
+                <router-link :to="{name:'購物車'}" tag="a" class="nav-link">購物明細</router-link>
             </li>
             <li class="nav-item">
                 <router-link to="/login" tag="a" class="nav-link">登入</router-link>

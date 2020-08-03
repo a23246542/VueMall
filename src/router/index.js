@@ -24,15 +24,96 @@ const routes = [
             {
                 path:'',
                 name:'home',//-[]首頁改index
-                // component:() => import('../views/front/index.vue')
-                component:() => import('../views/front/products.vue')
+                component:() => import('../views/front/index.vue')
+                // component:() => import('../views/front/products.vue')
             },
             {
-                path: 'orderform',
-                component: () => import('../views/front/orderForm1.vue')
+                path: 'products',
+                name: 'products',
+                component:() => import('../views/front/products'),
+                children:[
+                    {
+                        path: ':id',
+                        name: 'singleProduct',
+                        component:() => import('../views/front/product')
+
+                    }
+                ]
+            },
+            {
+                path: 'aboutUs',
+                name: '關於我們',
+                component:() => import('../views/front/aboutUs'),
+            },
+            {
+                path: 'order_list',
+                name: '我的訂單',
+                component:() => import('../views/front/orderList')
+            },
+            {
+                path: 'coupon',
+                name: '優惠券',
+                component:() => import('../views/front/coupon')
+            },
+            // {
+            //     path: 'orderform',
+            //     component: () => import('../views/front/orderForm1.vue')
                 
-            }
+            // },
         ]
+    },
+    {
+        
+        path: '/shopping',//專注購物頁
+        name: '購物車',
+        component: () => import('../views/front/shopping'),
+        // redirect:'/shopping/order_preview',
+        children: [
+            {
+                path:'order_preview',
+                name:'購物明細',//+付款方式
+                component:() => import('../views/front/orderPreview'),
+                // -[]cart
+                // -[]CustomerForm
+                // components:{ @@??
+                //     Cart: () => import('../components/Cart'),
+                //     CustomerForm: () => import('../views/front/orderForm1')
+                // }
+                children:[
+                    {
+                        path: '1111',
+                        name: '1111',
+                        component:{
+                            Cart: () => import('../components/Cart'),
+                            CustomerForm: () => import('../views/front/orderForm1')
+                        }
+                    }
+                ]
+            },
+            {
+                path:'order_confirm',
+                name:'最後確認',
+                component:() => import('../views/front/orderConfirm')
+                // -[]Cart
+                // -[]CustomerInfo
+            },
+            {
+                path:'order_success',
+                name:'訂單完成',
+                component:() => import('../views/front/orderSuccess')
+            },
+            // {
+            //     path:'payment/:orderId',
+            //     name:'付款頁',
+            //     component:() => import('../views/'),
+            // },
+            // {
+            //     path:'payment_success/:orderId',
+            //     name:'付款完成',
+            //     component:() => import('../views/front/')
+            // }
+        ]
+        
     },
     // 後台
     {
