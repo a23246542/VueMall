@@ -67,7 +67,7 @@ const routes = [
         path: '/shopping',//專注購物頁
         name: '購物車',
         component: () => import('../views/front/shopping'),
-        // redirect:'/shopping/order_preview',
+        redirect:'/shopping/order_preview',
         children: [
             {
                 path:'order_preview',
@@ -75,7 +75,7 @@ const routes = [
                 component:() => import('../views/front/orderPreview'),
                 // -[]cart
                 // -[]CustomerForm
-                // components:{ @@??
+                // components:{
                 //     Cart: () => import('../components/Cart'),
                 //     CustomerForm: () => import('../views/front/orderForm1')
                 // }
@@ -83,7 +83,7 @@ const routes = [
                     {
                         path: '1111',
                         name: '1111',
-                        component:{
+                        components:{
                             Cart: () => import('../components/Cart'),
                             CustomerForm: () => import('../views/front/orderForm1')
                         }
