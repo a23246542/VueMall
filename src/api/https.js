@@ -29,8 +29,25 @@ const instanceAdmin = axios.create({
 const instanceCus = axios.create({//@@沒登入也需要UUID
     baseURL:`${http.apiPath}api/${http.uuid}/`
 })
+// ======================登入api============================================
+
+instanceLogin.interceptors.request.use( config => { 
+    return config
+},err =>{
+    console.log("請求錯誤");
+    console.dir(err);
+    return Promise.reject(err)
+})
 
 
+instanceLogin.interceptors.response.use( res => {
+    console.log(res);
+    return res
+} , err => {
+    console.log('響應錯誤');
+    console.dir(err);
+    return Promise.reject(err)
+})
 
 // ===================後台api=============================================
 instanceAdmin.interceptors.request.use(async config => {

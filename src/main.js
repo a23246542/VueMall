@@ -113,7 +113,9 @@ router.beforeEach((to,from,next) => {
         app.$store.commit('LOADING',true);//##app.$store
         const api = 'auth/check'
         const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        if(token){
+        // console.log("xxxx",token);
+        // if(token){//@@為何還執行
+        if(token!==""){
              instanceLogin.post(api,{'api_token':token})
             .then((res) => {
                 // console.log(res.message);%%
@@ -122,20 +124,22 @@ router.beforeEach((to,from,next) => {
                 if(res.data.success){
                     next();
                 }else{//res.success為false
+                    app.$store.commit('LOADING',false);
                     console.log("響應驗證失敗");
                     next({
                         name:'login'
                     });
                 }
             }).catch((err) =>{
-                console.log("請求驗證失敗",err);
+                console.log("響應驗證失敗",err);
                 app.$store.commit('LOADING',false);
                 next({
                     name:'login'
                 });
             })
         }else{//no access token
-            console.log("token不存在");
+            app.$store.commit('LOADING',false);
+            console.log("未登入(token不存在)");
             next({
                 name:'login'
             });

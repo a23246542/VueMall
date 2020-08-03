@@ -53,5 +53,7 @@ W6 cli&路由
 ### shopping.vue
 * router-view的name不起作用，是否沒有這用法了
 * row col-8 col-6是可以的嗎
+* dashSidebar data-feather無效
+* sockjs.js?9be2:1606 GET http://192.168.43.187:8081/sockjs-node/info?t=1596477033180 net::ERR_CONNECTION_TIMED_OUT (半夜伺服器已經關閉的意思?)
 
 
