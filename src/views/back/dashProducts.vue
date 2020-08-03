@@ -48,7 +48,7 @@
     </table>
     <BasePagination
     :pages="pagination"
-    @change-page="getProducts(page)"
+    @change-page="getProducts"
     />
     <!---------- Modal ---------------------->
     <DashProductModal 

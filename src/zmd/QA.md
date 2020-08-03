@@ -39,9 +39,12 @@ W5
 那這樣各別的item是要怎麼做計算
 <!-- -[]這個currency有錯 -->
 * 子層購物車data emit CART到父層data放會有傳參考問題嗎
+* vuex如何讀取到vue實例好可以用綁定的axios跟bus (this讀取不到)
 
 ###Alert彈窗
 * 蝦 為什麼組件內scoped 寫寬600 我在products內放竟然沒效果!!! 這樣寫scoped有什麼用 根本不能搬
 
 ###產品結帳
-* 我這頁排版 一個row 上面col-8 下面col-6 會不會很不專業
+* 我這頁排版 一個row 上面col-8 下面col-6 是否應該修正
+
+

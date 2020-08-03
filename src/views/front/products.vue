@@ -58,6 +58,12 @@
                         </div>
                     </div>
                 </div>
+                <!-- 分頁 開始 -->
+                <pagination
+                :pages="pagination"
+                @change-page="getProducts"
+                />
+                <!-- 分頁 結束 -->
             </div>
             
         </div>
@@ -67,12 +73,14 @@
 <script>
 import {instanceCus} from '../../api/https';
 import Cart from '@/components/Cart';
+import pagination from '@/components/BasePagination'
 import Alert from '@/components/BaseAlertMessage';
 
 export default {
     components:{
         Cart,
-        Alert
+        Alert,
+        pagination
     },
     data() {
         return { 
@@ -80,7 +88,9 @@ export default {
             //     num:1,//要雙向綁定預設值%%%
             // },
             products:[],
+            pagination:{},
             carts:[]//子組件購物車的
+
 
         }
     },
@@ -90,13 +100,14 @@ export default {
         this.getProducts();
     },
     methods:{
-        getProducts(page=1,paged=8,orderBy,sort){
+        getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
             this.$store.commit('LOADING',true);
             // const api =`ec/products/page=${page}`;%%
-            const api =`ec/products?page=${page}&paged=${paged}`;
+            const api =`ec/products?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}`;
             instanceCus.get(api)
             .then((res) => {
                 this.products = res.data.data;
+                this.pagination = res.data.meta.pagination;
                 //###%% 可先暫時寫入api外的，幫助渲染
                 this.products.forEach((item) => {
                     // item.num = 1;
@@ -120,11 +131,7 @@ export default {
             })
             //###這邊判斷post patch缺點會跑兩次api
             .catch((err) => {
-                console.dir(err.response.data.message);
-                // if(err.response.data.errors[0]==="該商品已放入購物車當中。"){
-                //     const originNum = this.carts
-                //     this.$refs.cart.editCart(id,)
-                // }
+                console.dir(err.response.data);
                 if(err.response.data.errors[0]==="該商品已放入購物車當中。"){          
                     this.$bus.$emit('message:push',`${item.title}已存在購物車`)
                 }

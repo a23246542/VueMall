@@ -66,20 +66,29 @@
 export default {
     data() {
         return {
-            carts:[],
-            cartPagination:{},
+            // carts:[],
+            // cartPagination:{},
             // cartTotal:0
         }
     },
     computed:{
+        // cartTotal(){
+        //     let total =0;
+        //     this.carts.forEach((item) => {
+        //         let subtotal = 0;
+        //         subtotal = item.quantity*item.product.price;
+        //         total+=subtotal;
+        //     })
+        //     return total;
+        // },
+        carts(){
+            return this.$store.state.cart.carts;
+        },
+        cartPagination(){
+            return this.$store.state.cart.pagination;
+        },
         cartTotal(){
-            let total =0;
-            this.carts.forEach((item) => {
-                let subtotal = 0;
-                subtotal = item.quantity*item.product.price;
-                total+=subtotal;
-            })
-            return total;
+            return this.$store.getters.cartTotal;
         }
     },
     created() {
@@ -87,54 +96,54 @@ export default {
     },
     methods:{
         getCart(){
-            this.$store.commit('LOADING',true);
-            const api ="ec/shopping"
-            this.$instanceCus.get(api)
-            .then((res) => {
-                console.log("上面是取得購物車");
-                // this.cartData = res.data;
-                this.carts = res.data.data.reverse();
-                this.cartPagination = res.data.meta.pagination;
-                this.$emit('emitCart',this.carts)
-                // @@是否會傳參考
+            this.$store.dispatch('getCart');
 
-                // this.carts.forEach((item) => {
-                //     let subtotal = 0;
-                //     subtotal = item.quantity*item.product.price;
-                //     this.cartTotal+=subtotal;
-
-                // })
-                this.$store.commit('LOADING',false);
-            })
+            // this.$store.commit('LOADING',true);
+            // const api ="ec/shopping"
+            // this.$instanceCus.get(api)
+            // .then((res) => {
+            //     console.log("上面是取得購物車");
+            //     this.carts = res.data.data.reverse();
+            //     this.cartPagination = res.data.meta.pagination;
+            //     this.$emit('emitCart',this.carts)
+            //     // @@是否會傳參考
+            //     this.$store.commit('LOADING',false);
+            // })
         },
         editCart(id,qty){
-            this.$store.commit('LOADING',true);
-            const api ="ec/shopping"
-            const cartItem = {product:id,quantity:qty};
-            this.$instanceCus.patch(api,cartItem)
-            .then((res) => {
-                this.getCart();
-            })
+            this.$store.dispatch('editCart',{id,qty})
+
+            // this.$store.commit('LOADING',true);
+            // const api ="ec/shopping"
+            // const cartItem = {product:id,quantity:qty};
+            // this.$instanceCus.patch(api,cartItem)
+            // .then((res) => {
+            //     this.getCart();
+            // })
         },
         delCart(item){//%%405 delete方法用錯
-            this.$store.commit('LOADING',true);
-            const api =`ec/shopping/${item.product.id}`;
-            // const cartItem = {product:id};
-            this.$instanceCus.delete(api)
-            .then((res) => {
-                this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
-                this.getCart();
-            })
+
+            this.$store.dispatch('delCart',item);
+
+            // this.$store.commit('LOADING',true);
+            // const api =`ec/shopping/${item.product.id}`;
+            // this.$instanceCus.delete(api)
+            // .then((res) => {
+            //     this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
+            //     this.getCart();
+            // })
         },
         delAllCart(){
-            this.$store.commit('LOADING',true);
-            // DELETE api/{uuid}/ec/shopping/all/product
-            const api ="ec/shopping/all/product";
-            this.$instanceCus.delete(api)
-            .then((res) => {
-                this.$bus.$emit('message:push','全部商品已刪除','success')
-                this.getCart();
-            })
+
+            this.$store.dispatch('delAllCart');
+
+            // this.$store.commit('LOADING',true);
+            // const api ="ec/shopping/all/product";
+            // this.$instanceCus.delete(api)
+            // .then((res) => {
+            //     this.$bus.$emit('message:push','全部商品已刪除','success')
+            //     this.getCart();
+            // })
         }
     }
 }

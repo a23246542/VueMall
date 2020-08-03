@@ -25,15 +25,17 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 //##自定義
 // import {uuid,token,apiPath} from './api/index';
 import App from './App.vue';
-import {instanceLogin} from './api/https';
+import {instanceLogin,instanceAdmin,instanceCus} from './api/https';
 import router from './router';
 import store from './store';
 import "./bus";
 // import currencyFilter from './filters/currencyFilter';
 import dateFilter from './filters/dateFilter';
 // import filters from './filters'
-
 // Vue.use(VueSweetalert2);
+
+Vue.prototype.$instanceAdmin = instanceAdmin;
+Vue.prototype.$instanceCus = instanceCus;
 
 VeeValidate.localize('tw',zh_TW);
 // 自定義設定檔案，錯誤的 className
@@ -89,7 +91,7 @@ if(mock){
 
 
 
-const app = new Vue({
+export const app = new Vue({
   // router: routers//填入屬性值
   router,
   store,
@@ -100,6 +102,7 @@ const app = new Vue({
 // @@為什麼不行Uncaught TypeError: app.component is not a function
 // app.component('BaseLoading',Loading);
 // Vue.component('BaseLoading',Loading);
+
 
 
 // ##直接物件方法調用
