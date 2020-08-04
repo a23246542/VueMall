@@ -4,6 +4,6 @@ export default {
     },
     CART(state,resData){
         state.cart.carts = resData.data.reverse();
-        state.cart.Pagination = resData.meta.pagination;
+        state.cart.pagination = resData.meta.pagination;
     }
 }
