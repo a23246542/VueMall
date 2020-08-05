@@ -36,16 +36,19 @@ export default {
     },
     delCart(context,item){
         // this.$store.commit('LOADING',true);
-        context.commit('LOADING',true);
-        const api =`ec/shopping/${item.product.id}`;
-        instanceCus.delete(api)
-        .then((res) => {
-            // this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
-            // app.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
-            // this.getCart();
-            context.dispatch('getCart')
-            
-        })
+        // return new Promise((resolve, reject) => {
+
+            context.commit('LOADING',true);
+            const api =`ec/shopping/${item.product.id}`;
+            instanceCus.delete(api)
+            .then((res) => {
+                // this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
+                // app.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
+                // this.getCart();
+                // resolve()
+                context.dispatch('getCart')
+            })
+        // })
     },
     delAllCart(context){
         context.commit('LOADING',true);

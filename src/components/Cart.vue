@@ -123,7 +123,11 @@ export default {
         },
         delCart(item){//%%405 delete方法用錯
 
-            this.$store.dispatch('delCart',item);
+            // this.$store.dispatch('delCart',item);
+            this.$store.dispatch('delCart',item)
+            // .then(() =>{
+            //      this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
+            // })
 
             // this.$store.commit('LOADING',true);
             // const api =`ec/shopping/${item.product.id}`;
