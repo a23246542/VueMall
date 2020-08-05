@@ -7,49 +7,131 @@
                 <!-- 購物車 開始 -->
                     <Cart></Cart>
                 <div class="col-md-8 mx-auto">
-                    <div class="cart_box">
-                        <div class="cart_header">
-                            <h2>購物清單</h2>
-                        </div>
-                        <ul class="cart_list bg-light">
-                            <li class="cart_item d-flex align-items-center mb-3"
-                            v-for="(item) in cart.carts"
-                            :key="item.id"
-                            >
-                                <!-- 圖片 -->
-                                <div class="bg-cover flex-shrink-0"
-                                :style="{
-                                    backgroundImage:`url(${item.product.imageUrl})`,
-                                    width:'120px',
-                                    height:'120px',
-                                }"
+                    <div class="mb-4">
+                        <div class="cart__box pt-4">
+                            <div class="cart__header mb-2">
+                                <h2>購物清單 有{{cart.carts.length}}項</h2>
+                            </div>
+                            <div class="cart__body p-4 bg-light">
+                                <div class="cart__item row mb-3"
+                                v-for="(item) in cart.carts"
+                                :key="item.id"
                                 >
+                                    <div class="col-3 col-md-3">
+                                        <!-- 圖片 -->
+                                        <!-- <div class="bg-cover"
+                                            :style="{
+                                                backgroundImage:`url(${item.product.imageUrl})`,
+                                                width:'120px',
+                                                height:'120px',
+                                            }"
+                                        >
+                                        </div> -->
+                                        <!-- <img :src="${item.product.imageUrl}" alt=""> -->
+                                        <img class="img-fluid"
+                                        :src="item.product.imageUrl" alt=""
+                                        >
+                                    </div>
+                                    <div class="col-9 col-md-9"> 
+                                        <!-- @@row是否需要搭配h-100 -->
+                                        <div class="row h-100">
+                                            <!-- 名稱跟單價 -->
+                                            <!-- <div class="col-md-6 align-self-md-center"> -->
+                                            <div class="col-md-6">
+                                                <div class="d-flex flex-column h-100">
+                                                    <div class="fz-2 fw-b mb-md-2">{{item.product.title}}</div>
+                                                    <div class="fz-3">{{item.product.price | dollars}}</div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-md-6 align-self-md-center"> -->
+                                            <div class="col-md-6">
+                                                <div class="d-flex justify-content-between align-items-center h-100">
+                                                    <!-- 數量加減 -->
+                                                    <div class="input-group input-group-sm d-inline-flex w-auto flex-nowrap">
+                                                        <span class="input-group-prepend">
+                                                            <button class="btn btn-primary">+</button>
+                                                        </span>
+                                                        <input type="text" class="text-center"
+                                                        style="width:30px"
+                                                        v-model="item.quantity">
+                                                        <span class="input-group-append">
+                                                            <button class="btn btn-primary">-</button>
+                                                        </span>
+                                                    </div>
+                                                    <div class="d-flex align-items-center">
+                                                        <!-- 小計 -->
+                                                        <!-- @@top無效 -->
+                                                        <!-- <p class="h4 mb-0 px-2 align-top"> -->
+                                                        <p class="h4 mb-0 px-2">
+                                                            {{(item.product.price*item.quantity) | dollars}}
+                                                        </p>
+                                                        <!-- 操作 -->
+                                                        <div class="d-flex flex-column px-2">
+                                                            <a href="" class="text-nowrap">移除</a>
+                                                            <a href="" class="text-nowrap">愛心</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="d-flex justify-content-between align-items-center"> -->
+                                        <!-- </div> -->
+                                    </div>
                                 </div>
-                                <!-- 名稱跟單價 -->
-                                <div class="d-flex flex-column flex-4">
-                                    <div>{{item.product.title}}</div>
-                                    <div>{{item.product.price | dollars}}</div>
-                                </div>
-                                <!-- 數量加減 -->
-                                <div class="input-group input-group-sm flex-nowrap flex-3">
-                                    <span class="input-group-prepend">
-                                        <button class="btn btn-primary">+</button>
-                                    </span>
-                                    <input type="text" class="text-center"
-                                    v-model="item.quantity">
-                                    <span class="input-group-append">
-                                        <button class="btn btn-primary">_</button>
-                                    </span>
-                                </div>
-                                <!-- 小計 -->
-                                <div class="flex-3 text-center">
-                                    {{item.product.price*item.quantity}}
-                                </div>
-                                <!-- 操作 -->
-                            </li>
-                        </ul>
+                            </div>
+                            
+                        </div>
                     </div>
+                    
                 </div>
+                <!-- <div class="row mb-4">
+                    <div class="col-md-5 col-lg-3 col-xl-3">
+                    <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                        <img class="img-fluid w-100"
+                        src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
+                        <a href="#!">
+                        <div class="mask">
+                            <img class="img-fluid w-100"
+                            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg">
+                            <div class="mask rgba-black-slight"></div>
+                        </div>
+                        </a>
+                    </div>
+                    </div>
+                    <div class="col-md-7 col-lg-9 col-xl-9">
+                    <div>
+                        <div class="d-flex justify-content-between">
+                        <div>
+                            <h5>Blue denim shirt</h5>
+                            <p class="mb-3 text-muted text-uppercase small">Shirt - blue</p>
+                            <p class="mb-2 text-muted text-uppercase small">Color: blue</p>
+                            <p class="mb-3 text-muted text-uppercase small">Size: M</p>
+                        </div>
+                        <div>
+                            <div class="def-number-input number-input safari_only mb-0 w-100">
+                            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                class="minus decrease"></button>
+                            <input class="quantity" min="0" name="quantity" value="1" type="number">
+                            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                class="plus increase"></button>
+                            </div>
+                            <small id="passwordHelpBlock" class="form-text text-muted text-center">
+                            (Note, 1 piece)
+                            </small>
+                        </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3"><i
+                                class="fas fa-trash-alt mr-1"></i> Remove item </a>
+                            <a href="#!" type="button" class="card-link-secondary small text-uppercase"><i
+                                class="fas fa-heart mr-1"></i> Move to wish list </a>
+                        </div>
+                        <p class="mb-0"><span><strong id="summary">$17.99</strong></span></p class="mb-0">
+                        </div>
+                    </div>
+                    </div>
+                </div> -->
                 <!-- 購物車 結束 -->
                 <!-- 訂單摘要 開始 -->
                 <!-- <div class="col-md-4">

@@ -56,4 +56,9 @@ W6 cli&路由
 * dashSidebar data-feather無效
 * sockjs.js?9be2:1606 GET http://192.168.43.187:8081/sockjs-node/info?t=1596477033180 net::ERR_CONNECTION_TIMED_OUT (半夜伺服器已經關閉的意思?)
 
+### cart切板疑問
+*input-group 怎麼都無法內連縮小至內容，外層w-auto inline-flex或是自身input加上inline-block都沒用，只好強制寫style
+*@@想讓col裡面的東西暫滿高 是該大量用h-100 or 還是col用d-flex
+*小計的120 為何align-middle無效 最後是父層align-items-center
+
 
