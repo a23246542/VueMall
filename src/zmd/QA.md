@@ -60,5 +60,10 @@ W6 cli&路由
 *input-group 怎麼都無法內連縮小至內容，外層w-auto inline-flex或是自身input加上inline-block都沒用，只好強制寫style
 *@@想讓col裡面的東西暫滿高 是該大量用h-100 or 還是col用d-flex
 *小計的120 為何align-middle無效 最後是父層align-items-center
+*是否沒辦法watch 多項v-for出來的item (item.quatiy)
+*this.$store.dispatch('editCart',{id,qty});
+editCart(context,{id,qty}){ 
+    為什麼物件傳過去的參數 那邊解構的屬性名也要一樣 不能重命名 @#好像本來就不能  解構是取他的屬性
+* 做刪除的時候 複習vue電商影片才發現vuex一次只能傳遞一個參數
 
 

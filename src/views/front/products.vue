@@ -36,7 +36,6 @@
                                             :value="i"
                                             >{{i}}</option>
                                         </select> -->
-
                                         <!-- ##v-model沒有值的話 option預設不會顯示 雙向綁定變空白 -->
                                         <select class="form-control"
                                         v-model="item.num"
@@ -90,8 +89,6 @@ export default {
             products:[],
             pagination:{},
             carts:[]//子組件購物車的
-
-
         }
     },
     computed:{
@@ -121,21 +118,25 @@ export default {
             this.carts = carts;
         },
         addToCart(item,qty=1){
-            // this.$store.commit('LOADING',true);
+            this.$store.commit('LOADING',true);
             const api ="ec/shopping";
             const cartItem = {product:item.id,quantity:qty};
+
             this.$instanceCus.post(api,cartItem)
             .then((res) => {
+                this.$store.commit('LOADING',false);
                 this.$bus.$emit('message:push',`${item.title}已加入購物車`,'success')
                 this.$refs.cart.getCart();
             })
             //###這邊判斷post patch缺點會跑兩次api
             .catch((err) => {
+                this.$store.commit('LOADING',false);
                 console.dir(err.response.data);
                 if(err.response.data.errors[0]==="該商品已放入購物車當中。"){          
                     this.$bus.$emit('message:push',`${item.title}已存在購物車`)
                 }
             })
+            // this.$store.dispatch('addToCart',{productId,qty})
         },
         openSingleProduct(id) {
             this.$router.push(`/products/${id}`);

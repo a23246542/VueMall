@@ -82,10 +82,10 @@ export default {
         //     return total;
         // },
         carts(){
-            return this.$store.state.cart.carts;
+            return this.$store.state.Cart.cart.carts;
         },
         cartPagination(){
-            return this.$store.state.cart.pagination;
+            return this.$store.state.Cart.cart.pagination;
         },
         cartTotal(){
             return this.$store.getters.cartTotal;

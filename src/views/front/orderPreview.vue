@@ -5,7 +5,7 @@
             <p>{{ $route.name }}</p>
             <div class="row">
                 <!-- 購物車 開始 -->
-                    <Cart></Cart>
+            
                 <div class="col-md-8 mx-auto">
                     <div class="mb-4">
                         <div class="cart__box pt-4">
@@ -50,14 +50,18 @@
                                                     <div class="input-group input-group-sm d-inline-flex w-auto flex-nowrap">
                                                         <span class="input-group-prepend">
                                                             <button class="btn btn-primary"
-                                                            
+                                                            @click.prevent="updateCartQty('add1',item)"
                                                             >+</button>
                                                         </span>
                                                         <input type="text" class="text-center"
                                                         style="width:30px"
-                                                        v-model="item.quantity">
+                                                        v-model.number="item.quantity"
+                                                        @input="updateCartQty('input',item)"
+                                                        >
                                                         <span class="input-group-append">
-                                                            <button class="btn btn-primary">-</button>
+                                                            <button class="btn btn-primary"
+                                                            @click.prevent="updateCartQty('subtract1',item)"
+                                                            >-</button>
                                                         </span>
                                                     </div>
                                                     <div class="d-flex align-items-center">
@@ -69,8 +73,10 @@
                                                         </p>
                                                         <!-- 操作 -->
                                                         <div class="d-flex flex-column px-2">
-                                                            <a href="" class="text-nowrap">移除</a>
-                                                            <a href="" class="text-nowrap">愛心</a>
+                                                            <a href="" class="text-nowrap"
+                                                            @click.prevent ="removeCart(item)"
+                                                            >移除</a>
+                                                            <a href="" class="text-nowrap">收藏</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -153,12 +159,12 @@
 </template>
 
 <script>
-import Cart from "@/components/Cart";
+// import Cart from "@/components/Cart";
 import CustomerForm from "@/components/CustomerForm";
 
 export default {
     components:{
-        Cart,
+        // Cart,
         CustomerForm
     },
     created() {
@@ -168,8 +174,35 @@ export default {
         getCart(){
             this.$store.dispatch('getCart');
         },
-        updateCartQty(item){
-
+        updateCartQty(type,item){
+            const productId = item.product.id;
+            let qty = item.quantity;
+            // let num = qty;
+            switch (type) {
+                case 'add1':
+                    
+                    qty+=1;
+                    break;
+                case 'subtract1':
+                    
+                    qty-=1;
+                    break;
+                case 'input':
+                    break;
+                    
+            }
+            console.log("更新购物车",productId,qty);
+            // this.$store.dispatch('editCart',{id,qty});//@@
+            const data = {
+                productId,
+                newQty:qty
+            }
+            
+            this.$store.dispatch('editCart',data);
+        },
+        removeCart(item){
+            const productId = item.product.id;
+            this.$store.dispatch('delCart',productId);
         }
     },
     computed:{
@@ -179,6 +212,9 @@ export default {
         cartTotal(){
             return this.$store.getters.cartTotal;
         }
+    },
+    watch:{
+
     }
 }
 </script>

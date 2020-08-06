@@ -42,10 +42,30 @@ export default {
                 context.commit('LOADING',false);
             })
         },
-        editCart(context,{id,qty}) {
-            context.commit('LOADING',true);
+        addToCart(context,{productId,qty}){
+             // this.$store.commit('LOADING',true);
             const api ="ec/shopping";
-            const cartItem = {product:id,quantity:qty};
+            const cartItem = {product:productId,quantity:qty};
+
+            this.$instanceCus.post(api,cartItem)
+            .then((res) => {
+                this.$bus.$emit('message:push',`${item.title}已加入購物車`,'success')
+                this.$refs.cart.getCart();
+            })
+            //###這邊判斷post patch缺點會跑兩次api
+            // .catch((err) => {
+            //     console.dir(err.response.data);
+            //     if(err.response.data.errors[0]==="該商品已放入購物車當中。"){          
+            //         this.$bus.$emit('message:push',`${item.title}已存在購物車`)
+            //     }
+            // })
+        },
+        editCart(context,{productId,newQty}) {
+            context.commit('LOADING',true);
+            console.log(productId,newQty);
+            
+            const api ="ec/shopping";
+            const cartItem = {product:productId,quantity:newQty};
             instanceCus.patch(api,cartItem)
             .then((res) => {
                 // this.getCart();
@@ -53,12 +73,12 @@ export default {
                 context.dispatch('getCart');
             })
         },
-        delCart(context,item){
+        delCart(context,productId){
             // this.$store.commit('LOADING',true);
             // return new Promise((resolve, reject) => {
     
                 context.commit('LOADING',true);
-                const api =`ec/shopping/${item.product.id}`;
+                const api =`ec/shopping/${productId}`;
                 instanceCus.delete(api)
                 .then((res) => {
                     // this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
