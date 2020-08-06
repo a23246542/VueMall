@@ -25,6 +25,15 @@
                     <router-link :to="{name:'購物車'}" tag="a" class="nav-link">購物車</router-link>
                 </li>
                 <li class="nav-item">
+                    <!-- <CartModal
+                    ref="cart"
+                    @emitCart="getEmitCart"
+                    /> -->
+                    <CartModal
+                    ref="cart"
+                    />
+                </li>
+                <li class="nav-item">
                     <router-link :to="{name:'我的訂單'}" tag="a" class="nav-link">我的訂單</router-link>
                 </li>
                 <li class="nav-item">
@@ -38,7 +47,11 @@
     </nav>
 </template>
 <script>
+import CartModal from '@/components/CartModal'
 export default {
     name:'nav-header',
+    components:{
+        CartModal
+    }
 }
 </script>

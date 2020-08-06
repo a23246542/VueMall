@@ -4,12 +4,11 @@
         <div class="row flex-row-reverse">
             <div class="col-2">
                 <!-- <table class="table table-sm" v-if="cart.carts.length"> -->
-                <Cart
+                <!-- <CartModal
                 ref="cart"
                 @emitCart="getEmitCart"
-                />
+                /> -->
             </div>
-
             
             <!-- <div class="col-10 mx-auto"> -->
             <div class="col-10">
@@ -71,13 +70,13 @@
 
 <script>
 import {instanceCus} from '../../api/https';
-import Cart from '@/components/Cart';
+import CartModal from '@/components/CartModal';
 import pagination from '@/components/BasePagination'
 import Alert from '@/components/BaseAlertMessage';
 
 export default {
     components:{
-        Cart,
+        CartModal,
         Alert,
         pagination
     },
@@ -114,9 +113,9 @@ export default {
             })
         },
         //接收資料 子傳父元件
-        getEmitCart(carts){
-            this.carts = carts;
-        },
+        // getEmitCart(carts){
+        //     this.carts = carts;
+        // },
         addToCart(item,qty=1){
             this.$store.commit('LOADING',true);
             const api ="ec/shopping";
@@ -137,6 +136,7 @@ export default {
                 }
             })
             // this.$store.dispatch('addToCart',{productId,qty})
+            this.$store.dispatch('getCart');
         },
         openSingleProduct(id) {
             this.$router.push(`/products/${id}`);
