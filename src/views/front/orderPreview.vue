@@ -49,7 +49,9 @@
                                                     <!-- 數量加減 -->
                                                     <div class="input-group input-group-sm d-inline-flex w-auto flex-nowrap">
                                                         <span class="input-group-prepend">
-                                                            <button class="btn btn-primary">+</button>
+                                                            <button class="btn btn-primary"
+                                                            
+                                                            >+</button>
                                                         </span>
                                                         <input type="text" class="text-center"
                                                         style="width:30px"
@@ -165,14 +167,17 @@ export default {
     methods:{
         getCart(){
             this.$store.dispatch('getCart');
+        },
+        updateCartQty(item){
+
         }
     },
     computed:{
         cart(){
-            return this.$store.state.cart;
+            return this.$store.state.Cart.cart;
         },
         cartTotal(){
-            return this.$store.getter.cartTotal;
+            return this.$store.getters.cartTotal;
         }
     }
 }

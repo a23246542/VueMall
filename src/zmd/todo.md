@@ -11,4 +11,8 @@
 - [ ] 竟然按過的不能按 {message: "The given data was invalid.", errors: ["該商品已放入購物車當中。"]}
 errors: ["該商品已放入購物車當中。"]
 message: "The given data was invalid."
+- [ ] 按刪除會跳確認視窗
+- [ ] 不只加減 輸入的方式 小計什麼也要即時更新
+- [ ] 圖片是否改固定 右邊col或flex-1伸縮
+- [ ] 購物車給藝影助教看
 

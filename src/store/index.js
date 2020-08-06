@@ -5,27 +5,16 @@ import Vuex from 'vuex';
 import mutations from './mutations';
 import actions from './actions';
 
+import Cart from './modules/front/cart';
+
 Vue.use(Vuex);//@也可加在main.js
 
 const state = {
     isLoading: false,
-    cart: {
-        carts:[],
-        pagination:{},
-        // total: 0
-    }
+    
 };
-
 const getters = {
-    cartTotal : (state) => {
-        let total =0;
-        state.cart.carts.forEach((item) => {
-            let subtotal = 0;
-            subtotal = item.quantity*item.product.price;
-            total+=subtotal;
-        })
-        return total;
-    }
+   
 }
 
 // export default new Vuex.store({%%
@@ -34,7 +23,7 @@ export default new Vuex.Store({
     getters,
     mutations,
     actions,
-    // modules:{
-
-    // }
+    modules:{
+        Cart,
+    }
 })
