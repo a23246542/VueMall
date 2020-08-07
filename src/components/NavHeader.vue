@@ -30,7 +30,7 @@
                     @emitCart="getEmitCart"
                     /> -->
                     <CartModal
-                    ref="cart"
+                    ref="cartModal"
                     />
                 </li>
                 <li class="nav-item">

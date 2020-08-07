@@ -66,4 +66,8 @@ editCart(context,{id,qty}){
     為什麼物件傳過去的參數 那邊解構的屬性名也要一樣 不能重命名 @#好像本來就不能  解構是取他的屬性
 * 做刪除的時候 複習vue電商影片才發現vuex一次只能傳遞一個參數
 
+### products.vue
+* ok~ this.$refs.cart.getCart();失敗 好像只能取同個vue檔的
+    emit 的接收及 ref 的操作都是在 Product.vue 這個檔案
+
 

@@ -5,7 +5,7 @@
             <div class="col-2">
                 <!-- <table class="table table-sm" v-if="cart.carts.length"> -->
                 <!-- <CartModal
-                ref="cart"
+                ref="cartModal"
                 @emitCart="getEmitCart"
                 /> -->
             </div>
@@ -125,7 +125,8 @@ export default {
             .then((res) => {
                 this.$store.commit('LOADING',false);
                 this.$bus.$emit('message:push',`${item.title}已加入購物車`,'success')
-                this.$refs.cart.getCart();
+                // this.$refs.cartModal.getCart();
+                this.$store.dispatch('getCart');
             })
             //###這邊判斷post patch缺點會跑兩次api
             .catch((err) => {
@@ -136,7 +137,7 @@ export default {
                 }
             })
             // this.$store.dispatch('addToCart',{productId,qty})
-            this.$store.dispatch('getCart');
+            // this.$store.dispatch('getCart');//%%
         },
         openSingleProduct(id) {
             this.$router.push(`/products/${id}`);
