@@ -21,10 +21,6 @@
                     <router-link :to="{name:'優惠券'}" tag="a" class="nav-link">優惠券<span class="sr-only">(current)</span></router-link>
                 </li>
                 <li class="nav-item">
-                    <!-- <a class="nav-link" href="#">表單驗證</a> -->
-                    <router-link :to="{name:'購物車'}" tag="a" class="nav-link">購物車</router-link>
-                </li>
-                <li class="nav-item">
                     <!-- <CartModal
                     ref="cart"
                     @emitCart="getEmitCart"

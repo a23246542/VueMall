@@ -6,6 +6,14 @@
         margin: auto;
     }
 <!-- =============================================== -->
+## W4 元件化
+```
+LV1：參考範例程式碼，並重新撰寫及補上註解（禁止複製範例程式碼）
+LV2：依據條件開發完成，並至少有另外套用一個元件（至少加上分頁的元件）
+LV3：依據條件開發完成：
+至少套用兩個以上的元件且皆使用 import 方式載入
+加入 API 中的 options 的開發（需將該文字轉字串才可加入）
+```
      // {
     //     path: 'login',@@會失敗 不知道為什麼 難道說這樣不行
     //     component: () => import('../views/front/login')
@@ -26,12 +34,17 @@
 奇怪我後來打又行了
 
 <!-- ==================================================================== -->
-W5 插件
-###表單驗證
+## W5 插件
+```
+LV1：參考範例程式碼，至少完成表單驗證功能
+LV2：除了 LV1 以外，還完成了產品列表呈現、加入購物車、購物車列表的功能
+LV3：自行設計購物車的版型
+```
+### 表單驗證
 * ~valid-feedback為何失敗是用在errors沒用嗎? 原來是要打invaild
 * ~助教錯誤訊息為何會自動跑username原來是會自動找id(lable的for)當對應欄位名稱
 * 為何email的passed訊息已填出不來
-###購物車
+### 購物車
 * ~可不可以新增跟vue電商一樣 有item.coupon判斷這項產品有沒有已使用優惠券
 *~Vue.prototype.instanceCus = instanceCus;//@@發現攔截無效 
 *~<!-- {{ (item.quantity*item.product.price) | currency }} -->
@@ -41,15 +54,19 @@ W5 插件
 * 子層購物車data emit CART到父層data放會有傳參考問題嗎
 * vuex如何讀取到vue實例好可以用綁定的axios跟bus (this讀取不到)
 
-###Alert彈窗
+### Alert彈窗
 * 蝦 為什麼組件內scoped 寫寬600 我在products內放竟然沒效果!!! 這樣寫scoped有什麼用 根本不能搬
 
-###產品結帳
+### 產品結帳
 * 我這頁排版 一個row 上面col-8 下面col-6 是否應該修正
 
 
-W6 cli&路由
-
+## W6 cli&路由
+```
+LV1：完成路由設定，並可瀏覽所有頁面（請提供導覽選單以供使用）
+LV2：前台顯示完整的產品列表，並可進入產品頁面（前台 API）
+LV3：完成登入、驗證頁面（後台 API），並客製化導覽選單
+```
 ### shopping.vue
 * router-view的name不起作用，是否沒有這用法了
 * row col-8 col-6是可以的嗎
@@ -69,5 +86,6 @@ editCart(context,{id,qty}){
 ### products.vue
 * ok~ this.$refs.cart.getCart();失敗 好像只能取同個vue檔的
     emit 的接收及 ref 的操作都是在 Product.vue 這個檔案
+* category-list看div內文字到底會不會自動換行呢
 
 
