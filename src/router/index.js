@@ -30,7 +30,7 @@ const routes = [
                     {
                         path: ':id',
                         name: 'singleProduct',
-                        component:() => import('../views/front/product')
+                        component:() => import('../views/front/productSingle')
 
                     }
                 ]
@@ -43,12 +43,12 @@ const routes = [
             {
                 path: 'order_list',
                 name: '我的訂單',
-                component:() => import('../views/front/orderList')
+                component:() => import('../views/front/CusOrders')
             },
             {
                 path: 'coupon',
                 name: '優惠券',
-                component:() => import('../views/front/coupon')
+                component:() => import('../views/front/CusCoupon')
             },
             // {
             //     path: 'orderform',
