@@ -86,14 +86,19 @@ const routes = [
                 // ]
             },
             {
+                path: 'order_info',
+                name: '收件資訊',
+                component:() => import('../views/front/orderInfo')
+            },
+            {
                 path:'order_confirm',
                 name:'最後確認',
                 component:() => import('../views/front/orderConfirm')
-                // -[]Cart
-                // -[]CustomerInfo
+                // -[]Cart購物明細
+                // -[]orderInfo寄送資訊與付款方式
             },
             {
-                path:'order_success',
+                path:'order_success',//query ?orderId:orderId
                 name:'訂單完成',
                 component:() => import('../views/front/orderSuccess')
             },

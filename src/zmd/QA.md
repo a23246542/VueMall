@@ -17,9 +17,7 @@ LV3：依據條件開發完成：
      // {
     //     path: 'login',@@會失敗 不知道為什麼 難道說這樣不行
     //     component: () => import('../views/front/login')
-
     // },
-
 
 * main.js 全局組件用這樣為什麼不行 app.component('BaseLoading',Loading);
     * 報錯 Uncaught TypeError: app.component is not a function

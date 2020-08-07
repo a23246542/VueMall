@@ -31,6 +31,7 @@ import store from './store';
 import "./bus";
 // import currencyFilter from './filters/currencyFilter';
 import dateFilter from './filters/dateFilter';
+import dollarsFilter from './filters/dollarsFilter';
 // import filters from './filters'
 // Vue.use(VueSweetalert2);
 
@@ -63,17 +64,7 @@ Vue.component('ValidationObserver',VeeValidate.ValidationObserver);
 
 // Vue.filter('currency',currencyFilter);
 Vue.filter('date',dateFilter);
-Vue.filter('dollars',(value)=>{
-    // console.log(value)
-    // const intPart = value.toString().split('.');@@不是空格分成怎麼會是點
-    // intPart[0] = intPart[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    // return 'NT$' + intPart.join('.');
-
-    const str = value.toString();
-    // return 'NT$' + str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return '$' + str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-})
+Vue.filter('dollars',dollarsFilter)
 
 //過濾器統一處理加載
 // Object.keys(filters).forEach(key => {

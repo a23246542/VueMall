@@ -1,5 +1,4 @@
 <template>
-    
         <!-- 購物清單 開始 -->
         <!-- @@這樣排版是可以的嗎 -->
         <!-- <Cart
@@ -104,7 +103,7 @@
                 ></textarea>
             </div>
             <div class="text-right">
-                <button type="submit" class="btn btn-danger"
+                <button type="submit" class="btn btn-block btn-lg py-3 btn-danger"
                 :disabled="invalid"
                 >送出訂單</button>
             </div>
