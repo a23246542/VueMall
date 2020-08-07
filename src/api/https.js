@@ -11,7 +11,7 @@ const http = {
 }
 
 // var CancelToke = axios.CancelToken;
-var source = axios.CancelToken.source();
+// var source = axios.CancelToken.source();
 
 // @@是否會先執行到
 http.apiPath = process.env.VUE_APP_APIPATH;

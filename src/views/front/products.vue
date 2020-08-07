@@ -93,7 +93,7 @@ export default {
             // },
             products:[],
             pagination:{},
-            carts:[]//子組件購物車的
+            // carts:[]//子組件購物車的
         }
     },
     computed:{

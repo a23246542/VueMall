@@ -6,7 +6,6 @@ import VueAxios from 'vue-axios';
 // window.$ = $;//@@效能問題
 import 'jquery';
 import 'bootstrap';
- // Import component
 // import {
 //     ValidationObserver,
 //     ValidationProvider,
@@ -18,10 +17,11 @@ import * as VeeValidate from 'vee-validate';
 import * as rules from 'vee-validate/dist/rules';
 import zh_TW from 'vee-validate/dist/locale/zh_TW.json';
 import Loading from 'vue-loading-overlay';
-// import VueSweetalert2 from 'vue-sweetalert2';
+
  // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
-// import 'sweetalert2/dist/sweetalert2.min.css';
+
+
 //##自定義
 // import {uuid,token,apiPath} from './api/index';
 import App from './App.vue';
@@ -29,11 +29,12 @@ import {instanceLogin,instanceAdmin,instanceCus} from './api/https';
 import router from './router';
 import store from './store';
 import "./bus";
+
 // import currencyFilter from './filters/currencyFilter';
 import dateFilter from './filters/dateFilter';
 import dollarsFilter from './filters/dollarsFilter';
-// import filters from './filters'
-// Vue.use(VueSweetalert2);
+// import filters from './filters';
+
 
 Vue.prototype.$instanceAdmin = instanceAdmin;
 Vue.prototype.$instanceCus = instanceCus;
@@ -57,7 +58,6 @@ VeeValidate.configure({
 
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);//##原本的是可以this.axios.get()調用
-// @@为何要放前面
 Vue.component('BaseLoading',Loading);
 Vue.component('ValidationProvider', VeeValidate.ValidationProvider);
 Vue.component('ValidationObserver',VeeValidate.ValidationObserver);
@@ -65,8 +65,7 @@ Vue.component('ValidationObserver',VeeValidate.ValidationObserver);
 // Vue.filter('currency',currencyFilter);
 Vue.filter('date',dateFilter);
 Vue.filter('dollars',dollarsFilter)
-
-//過濾器統一處理加載
+// 過濾器統一處理加載
 // Object.keys(filters).forEach(key => {
 //     Vue.filter(key, filters[key])
 // })
@@ -90,7 +89,7 @@ const app = new Vue({
 }).$mount('#app');
 
 //全局組件
-// @@為什麼不行Uncaught TypeError: app.component is not a function
+// @@不行Uncaught TypeError: app.component is not a function
 // app.component('BaseLoading',Loading);
 // Vue.component('BaseLoading',Loading);
 
@@ -107,7 +106,7 @@ router.beforeEach((to,from,next) => {
         // console.log("xxxx",token);
         // if(token){//@@為何還執行
         if(token!==""){
-             instanceLogin.post(api,{'api_token':token})
+            instanceLogin.post(api,{'api_token':token})
             .then((res) => {
                 // console.log(res.message);%%
                 app.$store.commit('LOADING',false);

@@ -33,5 +33,10 @@ message: "The given data was invalid."
 - [ ] 4:17分有目錄的方法
 
 <!-- =================後台================================================================== -->
+### DashNavbar
+* .navbar-nav是flex-direction: column怎麼改好的問提;
 
-- [ ] 產品列表 例如在第四頁編輯後重整 會跳回第一頁 
+### 產品列表
+- [ ] 產品列表 例如在第四頁編輯後重整 會跳回第一頁
+- [ ] 商品啟用、關閉可以使用不同的顏色標示
+- [ ] 修正發現要調整第四頁的產品2 啟用與否時 有報錯Error in render: "TypeError: Cannot read property 'indexOf' of null" 

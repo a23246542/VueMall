@@ -66,7 +66,7 @@ const routes = [
         children: [
             {
                 path:'order_preview',
-                name:'購物明細',//+付款方式
+                name:'購物清單',//+付款方式
                 component:() => import('../views/front/orderPreview'),
                 // -[]cart
                 // -[]CustomerForm
@@ -108,7 +108,7 @@ const routes = [
             //     component:() => import('../views/'),
             // },
             // {
-            //     path:'payment_success/:orderId',
+            //     path:'pay_success/:orderId',
             //     name:'付款完成',
             //     component:() => import('../views/front/')
             // }
