@@ -32,6 +32,8 @@ LV3：依據條件開發完成：
 但為什麼不行
 奇怪我後來打又行了
 
+* http.uuid是否會有非同步沒執行到
+
 ### dashNavbar
 * input搜尋欄w-100 會讓右邊navbar-nav壓縮到，加上flex-shrink-1 沒達到想要的效果 最後還是只能再個別li加上text-nowrap 這樣對嗎
 

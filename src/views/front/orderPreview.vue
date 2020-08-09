@@ -18,15 +18,6 @@
                                 >
                                     <div class="col-3 col-md-3">
                                         <!-- 圖片 -->
-                                        <!-- <div class="bg-cover"
-                                            :style="{
-                                                backgroundImage:`url(${item.product.imageUrl})`,
-                                                width:'120px',
-                                                height:'120px',
-                                            }"
-                                        >
-                                        </div> -->
-                                        <!-- <img :src="${item.product.imageUrl}" alt=""> -->
                                         <img class="img-fluid"
                                         :src="item.product.imageUrl" alt=""
                                         >
@@ -99,12 +90,11 @@
 
 <script>
 // import Cart from "@/components/Cart";
-import CustomerForm from "@/components/CustomerForm";
+
 
 export default {
     components:{
         // Cart,
-        CustomerForm
     },
     created() {
         this.getCart();

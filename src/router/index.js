@@ -50,11 +50,6 @@ const routes = [
                 name: '優惠券',
                 component:() => import('../views/front/CusCoupon')
             },
-            // {
-            //     path: 'orderform',
-            //     component: () => import('../views/front/orderForm1.vue')
-                
-            // },
         ]
     },
     {
@@ -66,7 +61,7 @@ const routes = [
         children: [
             {
                 path:'order_preview',
-                name:'購物清單',//+付款方式
+                name:'購物清單',
                 component:() => import('../views/front/orderPreview'),
                 // -[]cart
                 // -[]CustomerForm
@@ -74,16 +69,6 @@ const routes = [
                 //     Cart: () => import('../components/Cart'),
                 //     CustomerForm: () => import('../views/front/orderForm1')
                 // }
-                // children:[
-                //     {
-                //         path: '1111',
-                //         name: '1111',
-                //         components:{
-                //             Cart: () => import('../components/Cart'),
-                //             CustomerForm: () => import('../views/front/orderForm1')
-                //         }
-                //     }
-                // ]
             },
             {
                 path: 'order_info',
