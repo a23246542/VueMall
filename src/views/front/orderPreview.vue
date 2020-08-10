@@ -146,9 +146,9 @@ export default {
         cartTotal(){
             return this.$store.getters.cartTotal;
         },
-        carts(){
-            return this.$store.state.Cart.cart.carts;
-        }
+        // carts(){
+        //     return this.$store.state.Cart.cart.carts;
+        // }
     },
     watch:{
         ['cart.carts']:{

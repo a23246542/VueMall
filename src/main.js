@@ -3,9 +3,9 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 // import $ from 'jquery';
-// window.$ = $;//@@效能問題
+// window.$ = $;//@@全域效能問題
 import 'jquery';
-import 'bootstrap';
+import 'bootstrap';//@@不寫.css會是載入js
 // import {
 //     ValidationObserver,
 //     ValidationProvider,
