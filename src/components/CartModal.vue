@@ -3,7 +3,8 @@
         <div class="dropdown">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="badge badge-pill badge-danger"></span>
+                <!-- <span class="badge badge-pill badge-danger">{{carts.length}}</span> -->
+                <span class="badge badge-pill badge-danger">3</span>
             </button>
             <div class="dropdown-menu" style="min-width: 300px;" aria-labelledby="dropdownMenuButton">
                 <!-- <a class="dropdown-item" href="#">Action</a> -->
@@ -171,5 +172,14 @@ export default {
     .dropdown-menu {
         right: 0;
         left: auto;//##必加
+    }
+    .btn>.badge{
+        position: absolute;
+        top: -1px;
+        right: 19px;
+    }
+    .badge-pill{
+        padding-right:.4em;
+        padding-left:.4em;
     }
 </style>

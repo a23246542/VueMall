@@ -58,10 +58,14 @@ LV3：自行設計購物車的版型
 那這樣各別的item是要怎麼做計算
 <!-- -[]這個currency有錯 -->
 * 子層購物車data emit CART到父層data放會有傳參考問題嗎
-* vuex如何讀取到vue實例好可以用綁定的axios跟bus (this讀取不到)
-
+* ~vuex如何讀取到vue實例好可以用綁定的axios跟bus (this讀取不到) @#最後用return一個promise
+* 再看alex試試看watch item
 ### Alert彈窗
-* 蝦 為什麼組件內scoped 寫寬600 我在products內放竟然沒效果!!! 這樣寫scoped有什麼用 根本不能搬
+* 蝦 為什麼組件內scoped 寫寬600 我在products內放竟然沒效果!!! 這樣寫scoped有什麼用 不能搬  @#後來試又可以了
+* 不能把index當作key的雷?  Module Warning (from ./node_modules/vue-loader/lib/loaders/templateLoader.js):
+(Emitted value instead of an instance of Error) Do not use v-for index as key on <transition-group> children, this is the same as not using keys.
+* 3.在CartModal組件內有scoped有客制設定badge樣式寬高，但是發現父層組件NavHeader其他nav-item(ex.優惠券)加上badge也會影響到
+後來重啟才正常 或是其他有錯誤影響後面的編譯
 
 ### 產品結帳
 * 我這頁排版 一個row 上面col-8 下面col-6 是否應該修正
@@ -75,7 +79,7 @@ LV2：前台顯示完整的產品列表，並可進入產品頁面（前台 API�
 LV3：完成登入、驗證頁面（後台 API），並客製化導覽選單
 ```
 ### shopping.vue
-* router-view的name不起作用，是否沒有這用法了
+* router-view的name不起作用，是否沒有這用法了 @#後來又成功了
 * row col-8 col-6是可以的嗎
 * dashSidebar data-feather無效
 * sockjs.js?9be2:1606 GET http://192.168.43.187:8081/sockjs-node/info?t=1596477033180 net::ERR_CONNECTION_TIMED_OUT (半夜伺服器已經關閉的意思?)

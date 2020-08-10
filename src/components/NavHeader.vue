@@ -18,6 +18,7 @@
                     <router-link :to="{name:'關於我們'}" tag="a" class="nav-link">關於我們<span class="sr-only">(current)</span></router-link>
                 </li>
                 <li class="nav-item">
+                    <!-- <span class="badge badge-pill badge-danger">3</span> -->
                     <router-link :to="{name:'優惠券'}" tag="a" class="nav-link">優惠券<span class="sr-only">(current)</span></router-link>
                 </li>
                 <li class="nav-item">
