@@ -100,3 +100,6 @@ editCart(context,{id,qty}){
 * category-list看div內文字到底會不會自動換行呢
 
 
+<!-- ===========卡斯伯老師======================= -->
+掛載原型會建議統一在main.js嗎
+index key的雷

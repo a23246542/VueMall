@@ -2,7 +2,7 @@ import {instanceCus} from '../api/https';
 import Vue from 'vue';//@@無法
 // import {app} from '../main'
 
-Vue.prototype.$instanceCus = instanceCus;
+// Vue.prototype.$instanceCus = instanceCus;
 
 export default {
     updateLoading(context,isLoading){

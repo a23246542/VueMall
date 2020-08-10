@@ -92,6 +92,7 @@ instanceCus.interceptors.response.use( res => {
     return Promise.reject(err)
 })
 
+// @@是否也會執行的問題
 Vue.prototype.$instanceLogin = instanceLogin;
 Vue.prototype.$instanceAdmin = instanceAdmin;
 Vue.prototype.$instanceCus = instanceCus;

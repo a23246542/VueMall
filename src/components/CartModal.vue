@@ -3,8 +3,8 @@
         <div class="dropdown">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-shopping-cart"></i>
-                <!-- <span class="badge badge-pill badge-danger">{{carts.length}}</span> -->
-                <span class="badge badge-pill badge-danger">3</span>
+                <span class="badge badge-pill badge-danger">{{carts.length}}</span>
+                <!-- <span class="badge badge-pill badge-danger">3</span> -->
             </button>
             <div class="dropdown-menu" style="min-width: 300px;" aria-labelledby="dropdownMenuButton">
                 <!-- <a class="dropdown-item" href="#">Action</a> -->

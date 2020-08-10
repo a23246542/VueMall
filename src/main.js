@@ -35,9 +35,9 @@ import dateFilter from './filters/dateFilter';
 import dollarsFilter from './filters/dollarsFilter';
 // import filters from './filters';
 
-
-Vue.prototype.$instanceAdmin = instanceAdmin;
-Vue.prototype.$instanceCus = instanceCus;
+// Vue.prototype.$instanceLogin = instanceLogin;
+// Vue.prototype.$instanceAdmin = instanceAdmin;
+// Vue.prototype.$instanceCus = instanceCus;
 
 VeeValidate.localize('tw',zh_TW);
 // 自定義設定檔案，錯誤的 className
