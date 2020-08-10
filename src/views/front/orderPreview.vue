@@ -96,6 +96,11 @@ export default {
     components:{
         // Cart,
     },
+    data() {
+        return{
+            // cart:this.cart
+        }
+    },
     created() {
         this.getCart();
     },
@@ -140,10 +145,22 @@ export default {
         },
         cartTotal(){
             return this.$store.getters.cartTotal;
+        },
+        carts(){
+            return this.$store.state.Cart.cart.carts;
         }
     },
     watch:{
-
+        ['cart.carts']:{
+        // carts:{
+            handler:function(newVal,oldVal){
+                console.log(newVal);
+                console.log(oldVal);
+                
+                
+            },
+            deep:true
+        }
     }
 }
 </script>

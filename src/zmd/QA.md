@@ -103,3 +103,4 @@ editCart(context,{id,qty}){
 <!-- ===========卡斯伯老師======================= -->
 掛載原型會建議統一在main.js嗎
 index key的雷
+watch v-for item的問題
