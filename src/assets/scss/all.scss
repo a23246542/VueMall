@@ -3,6 +3,9 @@
 @import "~bootstrap/scss/bootstrap";
 
 
+@import "~bootstrap";//一次元件全部導入 @@之前沒加好像沒事
+
+
 //中文字體,"Microsoft JhengHei"
 //數字字體 "Yu Gothic"
 @import "./helpers/base";
