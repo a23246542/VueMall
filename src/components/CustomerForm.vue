@@ -105,6 +105,7 @@
             <div class="text-right">
                 <button type="submit" class="btn btn-block btn-lg py-3 btn-danger"
                 :disabled="invalid"
+                @click.prevent="createOrder"
                 >送出訂單</button>
             </div>
         </form>
@@ -132,8 +133,9 @@ export default {
     },
     methods: {
         createOrder(){
-
-        }
+            console.log('送出訂單');
+            this.$router.push({name: '訂單完成'});
+        },
     }
 }
 </script>

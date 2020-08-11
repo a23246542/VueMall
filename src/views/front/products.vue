@@ -93,6 +93,7 @@ export default {
             // },
             products:[],
             pagination:{},
+            categories:[]
             // carts:[]//子組件購物車的
         }
     },
@@ -110,6 +111,7 @@ export default {
             .then((res) => {
                 this.products = res.data.data;
                 this.pagination = res.data.meta.pagination;
+                this.getCategories();
                 //###%% 可先暫時寫入api外的，幫助渲染
                 this.products.forEach((item) => {
                     // item.num = 1;
@@ -117,6 +119,14 @@ export default {
                 })
                 this.$store.commit('LOADING',false);
             })
+        },
+        getCategories(){
+            const categories = new Set();
+            this.products.forEach((item) => {
+                // categories.push(item.category)//%%@@
+                categories.add(item.category)
+            })
+            this.categories = Array.from(categories);
         },
         //接收資料 子傳父元件
         // getEmitCart(carts){

@@ -5,7 +5,7 @@
             <!-- <p>{{ $route.name }}</p> -->
             <div class="row">
                 <!-- 購物車 開始 -->
-                <div class="col-md-8 mx-auto">
+                <div class="col-md-8">
                     <div class="mb-4">
                         <div class="cart__box pt-4">
                             <div class="cart__header mb-2">
@@ -51,6 +51,12 @@
                                                         v-model.number="item.quantity"
                                                         @input="updateCartQty('input',item)"
                                                         >
+                                                        <!-- <input type="text" class="text-center form-control"
+                                                        style="width:30px"
+                                                        v-model.number="item.quantity"
+                                                        v-debounce:100s="updateCartQty('input',item)"
+                                                        :debounce-events="'input'"
+                                                        > -->
                                                         <span class="input-group-append">
                                                             <button class="btn btn-primary"
                                                             @click.prevent="updateCartQty('subtract1',item)"
@@ -86,6 +92,13 @@
                     
                 </div>
                 <!-- 購物車 結束 -->
+                <div class="col-md-4">
+                    <h3>訂單摘要</h3>
+                    <p>小計{{cartTotal}}</p>
+                    <router-link tag="a" href="#" class="btn btn-primary btn-block"
+                    :to="{name:'收件資訊'}"
+                    >下一步</router-link>
+                </div>
             </div>
         </div>
     </div>
@@ -93,6 +106,7 @@
 
 <script>
 // import Cart from "@/components/Cart";
+import { debounce } from 'vue-debounce'
 
 
 export default {
@@ -105,6 +119,7 @@ export default {
         }
     },
     created() {
+        // this.debounceInputCart = debounce(this.updateCartQty('subtract1',item),'400')
         this.getCart();
     },
     methods:{
@@ -159,7 +174,6 @@ export default {
             handler:function(newVal,oldVal){
                 console.log(newVal);
                 console.log(oldVal);
-                
                 
             },
             deep:true

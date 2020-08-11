@@ -104,3 +104,9 @@ editCart(context,{id,qty}){
 掛載原型會建議統一在main.js嗎
 index key的雷
 watch v-for item的問題
+router name用中文會很不專業嗎
+頁面組件只放組件
+
+yoko助教關於更新不上去的問題
+是部屬腳本只要更新上去就行嗎???
+還是只是我gh-分支不該checkout會造成大量更動

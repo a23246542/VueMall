@@ -17,6 +17,7 @@
 * vue-swiper
 ### 產品列表
 * 卡片帶上內品內頁 router id
+- [ ] 產品改成組件跟產品資料從vuex拿   
 ### 購物車
 - [ ] currencyFilter
 - [ ] 竟然按過的不能按 {message: "The given data was invalid.", errors: ["該商品已放入購物車當中。"]}

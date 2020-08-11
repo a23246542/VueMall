@@ -17,6 +17,7 @@ import * as VeeValidate from 'vee-validate';
 import * as rules from 'vee-validate/dist/rules';
 import zh_TW from 'vee-validate/dist/locale/zh_TW.json';
 import Loading from 'vue-loading-overlay';
+import vueDebounce from 'vue-debounce'
 
  // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
@@ -61,6 +62,11 @@ Vue.use(VueAxios, axios);//##原本的是可以this.axios.get()調用
 Vue.component('BaseLoading',Loading);
 Vue.component('ValidationProvider', VeeValidate.ValidationProvider);
 Vue.component('ValidationObserver',VeeValidate.ValidationObserver);
+
+
+Vue.use(vueDebounce, {
+    listenTo: 'input'
+  })
 
 // Vue.filter('currency',currencyFilter);
 Vue.filter('date',dateFilter);
