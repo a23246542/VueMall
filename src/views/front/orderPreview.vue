@@ -17,12 +17,14 @@
                                 :key="item.id"
                                 >
                                     <div class="col-3 col-md-3">
+                                    <!-- <div class="flex-1"> -->
                                         <!-- 圖片 -->
                                         <img class="img-fluid"
                                         :src="item.product.imageUrl" alt=""
                                         >
                                     </div>
                                     <div class="col-9 col-md-9"> 
+                                    <!-- <div class="flex-3">  -->
                                         <!-- @@row是否需要搭配h-100 -->
                                         <div class="row h-100">
                                             <!-- 名稱跟單價 -->
@@ -43,7 +45,8 @@
                                                             @click.prevent="updateCartQty('add1',item)"
                                                             >+</button>
                                                         </span>
-                                                        <input type="text" class="text-center"
+                                                        <!-- <input type="text" class="text-center"%%% -->
+                                                        <input type="text" class="text-center form-control"
                                                         style="width:30px"
                                                         v-model.number="item.quantity"
                                                         @input="updateCartQty('input',item)"
