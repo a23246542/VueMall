@@ -32,7 +32,12 @@
                 <!-- <div class="col-10 mx-auto"> -->
                 <div class="col-10">
                     <div class="row">
-                        <div class="col-4 mb-5" v-for="(item) in filterProducts" :key="item.id">
+                        <productCard
+                            v-for="(item) in filterProducts"
+                            :key="item.id"
+                            :item="item"
+                        />
+                        <!-- <div class="col-4 mb-5" v-for="(item) in filterProducts" :key="item.id">
                             <div class="card">
                                 <img :src="item.imageUrl[0]" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -55,7 +60,7 @@
                                                 >{{i}}</option>
                                             </select> -->
                                             <!-- ##v-model沒有值的話 option預設不會顯示 雙向綁定變空白 -->
-                                            <select class="form-control"
+                                            <!-- <select class="form-control"
                                             v-model="item.num"
                                             >
                                                 <option :value="1" selected >1</option>
@@ -73,7 +78,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- 分頁 開始 -->
                     <pagination
@@ -90,12 +95,14 @@
 
 <script>
 import {instanceCus} from '../../api/https';
+import productCard from '@/components/productCard';
 import CartModal from '@/components/CartModal';
 import pagination from '@/components/BasePagination'
 import Alert from '@/components/BaseAlertMessage';
 
 export default {
     components:{
+        productCard,
         CartModal,
         Alert,
         pagination

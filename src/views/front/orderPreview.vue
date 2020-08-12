@@ -14,7 +14,7 @@
                             <div class="cart__body p-4 bg-light">
                                 <div class="cart__item row mb-3"
                                 v-for="(item) in cart.carts"
-                                :key="item.id"
+                                :key="item.product.id"
                                 >
                                     <div class="col-3 col-md-3">
                                     <!-- <div class="flex-1"> -->
@@ -49,18 +49,20 @@
                                                         <!-- <input type="text" class="text-center form-control"
                                                         style="width:30px"
                                                         v-model.number="item.quantity"
+                                                         @input.prevent="updateCartQty('input',item)"
+                                                        > -->
+                                                        <!-- <input type="text" class="text-center form-control"
+                                                        style="width:30px"
+                                                        v-model.number="item.quantity"
+                                                         @input.prevent="stayUpCart"
                                                         > -->
                                                         <input type="text" class="text-center form-control"
                                                         style="width:30px"
                                                         v-model.number="item.quantity"
-                                                         @click.prevent="stayUpCart"
-                                                        >
-                                                        <!-- <input type="text" class="text-center form-control"
-                                                        style="width:30px"
-                                                        v-model.number="item.quantity"
-                                                        v-debounce:100s.lock="updateCartQty('input',item)"
+                                                        v-debounce:1s.lock="stayUpCart1"
                                                         :debounce-events="'input'"
-                                                        > -->
+                                                        :data-item-id="item.product.id"
+                                                        >
                                                         <span class="input-group-append">
                                                             <button class="btn btn-primary"
                                                             @click.prevent="updateCartQty('subtract1',item)"
@@ -163,6 +165,17 @@ export default {
             
             _.debounce(()=>{console.log('現在才打api');
             },10000)();
+        },
+        stayUpCart1(val,e){
+            console.log(val);
+            console.dir(e);
+            console.dir(e.target.dataset.itemId);
+            
+            const data = {
+                productId:e.target.dataset.itemId,//產品id
+                newQty:val//值
+            }
+            this.$store.dispatch('editCart',data);
         },
         removeCart(item){
             const productId = item.product.id;

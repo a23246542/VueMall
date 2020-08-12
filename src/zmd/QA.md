@@ -106,6 +106,10 @@ editCart(context,{id,qty}){
 * 方法裡面this.searchText =text; 發現為何vue devtool無法及時響應data(雖然後來發現其實有變)，這樣不就沒有幫助了嗎(以為沒有偵測變動到)，且明明預先定義了資料
 後來多綁了個computed，data的資料才及時響應在f12 vue上，這是正常開發遇到嗎
 
+* ~vue的官方文件Mutation 需遵守Vue 的響應規則 這邊
+既然vuex不能取得Vue對象，是要如何使用Vue.set(obj, 'newProp', 123),
+喔 是this的vue實例無法取得 但Vue import就好了!
+https://vuex.vuejs.org/zh/guide/mutations.html
 
 <!-- ===========卡斯伯老師======================= -->
 掛載原型會建議統一在main.js嗎

@@ -1,5 +1,6 @@
 <template>
-    <div class="col-4 mb-5" v-for="(item) in filterProducts" :key="item.id">
+    <div>
+    <div class="col-4 mb-5">
         <div class="card">
             <img :src="item.imageUrl[0]" class="card-img-top" alt="...">
             <div class="card-body">
@@ -41,15 +42,20 @@
             </div>
         </div>
     </div>
+    </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 export default {
-    computed:mapState({
-        products:'products',
-        // pagination
-    })
+    props: {
+        item:'Object'
+    },
+    // computed:mapState({
+    //     products:'products',
+    //     pagination:'pagination',
+    //     categories:'categories'
+    // })
 }
 </script>
 
