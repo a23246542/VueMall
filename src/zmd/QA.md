@@ -99,6 +99,13 @@ editCart(context,{id,qty}){
     emit 的接收及 ref 的操作都是在 Product.vue 這個檔案
 * category-list看div內文字到底會不會自動換行呢
 
+* ??為何@click.prevent="searchText=item"
+沒有反應 可是看文件又好像找不到
+是移除了嗎?
+
+* 方法裡面this.searchText =text; 發現為何vue devtool無法及時響應data(雖然後來發現其實有變)，這樣不就沒有幫助了嗎(以為沒有偵測變動到)，且明明預先定義了資料
+後來多綁了個computed，data的資料才及時響應在f12 vue上，這是正常開發遇到嗎
+
 
 <!-- ===========卡斯伯老師======================= -->
 掛載原型會建議統一在main.js嗎
@@ -110,3 +117,5 @@ router name用中文會很不專業嗎
 yoko助教關於更新不上去的問題
 是部屬腳本只要更新上去就行嗎???
 還是只是我gh-分支不該checkout會造成大量更動
+
+

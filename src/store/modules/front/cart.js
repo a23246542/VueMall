@@ -75,7 +75,7 @@ export default {
         },
         delCart(context,productId){
             // this.$store.commit('LOADING',true);
-            // return new Promise((resolve, reject) => {
+            return new Promise((resolve, reject) => {
     
                 context.commit('LOADING',true);
                 const api =`ec/shopping/${productId}`;
@@ -84,10 +84,10 @@ export default {
                     // this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
                     // app.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
                     // this.getCart();
-                    // resolve()
+                    resolve()
                     context.dispatch('getCart')
                 })
-            // })
+            })
         },
         delAllCart(context){
             context.commit('LOADING',true);

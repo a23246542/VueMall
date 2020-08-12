@@ -6,19 +6,33 @@
             <div class="row">
                 <div class="col-2">
                     <!-- <table class="table table-sm" v-if="cart.carts.length"> -->
-                    <!-- <CartModal
-                    ref="cartModal"
-                    @emitCart="getEmitCart"
-                    /> -->
-                    <div class="display-4">
-                        category-list
+                    <h3>產品分類</h3>
+                    <div class="list-group">
+                        <!-- <a href="#" class="list-group-item list-group-item-action"
+                        @click.prevent="searchText='all'"
+                        > -->
+                        <a href="#" class="list-group-item list-group-item-action"
+                        @click.prevent="setSearchText('all')"
+                        >
+                            全部
+                        </a>
+                        <!-- <a href="#" class="list-group-item list-group-item-action"
+                        v-for="item in categories" :key="item"
+                        @click.prevent="searchText=item"
+                        > -->
+                        <a href="#" class="list-group-item list-group-item-action"
+                        v-for="item in categories" :key="item"
+                        @click.prevent="setSearchText(item)"
+                        >
+                            {{item}}
+                        </a>
                     </div>
                 </div>
                 
                 <!-- <div class="col-10 mx-auto"> -->
                 <div class="col-10">
                     <div class="row">
-                        <div class="col-4 mb-5" v-for="(item) in products" :key="item.id">
+                        <div class="col-4 mb-5" v-for="(item) in filterProducts" :key="item.id">
                             <div class="card">
                                 <img :src="item.imageUrl[0]" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -93,11 +107,24 @@ export default {
             // },
             products:[],
             pagination:{},
-            categories:[]
+            categories:[],
+            searchText:"all",
             // carts:[]//子組件購物車的
         }
     },
     computed:{
+        filterProducts(){
+                
+                if (this.searchText === 'all'){
+                    return this.products;
+                }else {
+                    return this.products.filter( (item) => {
+                        // return item.category == this.searchText;
+                        return item.category.toLowerCase()
+                        .includes(this.searchText.toLowerCase());//%%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false
+                    })
+                }
+        }
     },
     created() {
         this.getProducts();
@@ -136,7 +163,7 @@ export default {
             this.$store.commit('LOADING',true);
             const api ="ec/shopping";
             const cartItem = {product:item.id,quantity:qty};
-
+            
             this.$instanceCus.post(api,cartItem)
             .then((res) => {
                 this.$store.commit('LOADING',false);
@@ -144,7 +171,7 @@ export default {
                 // this.$refs.cartModal.getCart();
                 this.$store.dispatch('getCart');
             })
-            //###這邊判斷post patch缺點會跑兩次api
+            // ###這邊判斷post patch缺點會跑兩次api
             .catch((err) => {
                 this.$store.commit('LOADING',false);
                 console.dir(err.response.data);
@@ -158,6 +185,11 @@ export default {
         openSingleProduct(id) {
             this.$router.push(`/products/${id}`);
         },
+        setSearchText(text){
+            this.searchText = text;
+            // console.log(text,this.searchText);
+
+        }
 
     }
 }

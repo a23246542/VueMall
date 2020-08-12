@@ -140,9 +140,9 @@ export default {
             const productId = item.product.id;
             // this.$store.dispatch('delCart',item);
             this.$store.dispatch('delCart',productId)
-            // .then(() =>{
-            //      this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
-            // })
+            .then(() =>{
+                 this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
+            })
 
             // this.$store.commit('LOADING',true);
             // const api =`ec/shopping/${item.product.id}`;
