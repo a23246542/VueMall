@@ -45,16 +45,20 @@
                                                             @click.prevent="updateCartQty('add1',item)"
                                                             >+</button>
                                                         </span>
-                                                        <!-- <input type="text" class="text-center"%%% -->
+
+                                                        <!-- <input type="text" class="text-center form-control"
+                                                        style="width:30px"
+                                                        v-model.number="item.quantity"
+                                                        > -->
                                                         <input type="text" class="text-center form-control"
                                                         style="width:30px"
                                                         v-model.number="item.quantity"
-                                                        @input="updateCartQty('input',item)"
+                                                         @click.prevent="stayUpCart"
                                                         >
                                                         <!-- <input type="text" class="text-center form-control"
                                                         style="width:30px"
                                                         v-model.number="item.quantity"
-                                                        v-debounce:100s="updateCartQty('input',item)"
+                                                        v-debounce:100s.lock="updateCartQty('input',item)"
                                                         :debounce-events="'input'"
                                                         > -->
                                                         <span class="input-group-append">
@@ -106,7 +110,8 @@
 
 <script>
 // import Cart from "@/components/Cart";
-import { debounce } from 'vue-debounce'
+import { debounce } from 'vue-debounce';
+import _ from 'lodash';
 
 
 export default {
@@ -152,6 +157,13 @@ export default {
             
             this.$store.dispatch('editCart',data);
         },
+        stayUpCart(){
+            // _.debounce(this.updateCartQty(type,item),1000)
+            console.log('執行stayUpCart');
+            
+            _.debounce(()=>{console.log('現在才打api');
+            },10000)();
+        },
         removeCart(item){
             const productId = item.product.id;
             this.$store.dispatch('delCart',productId);
@@ -172,9 +184,10 @@ export default {
         ['cart.carts']:{
         // carts:{
             handler:function(newVal,oldVal){
-                console.log(newVal);
-                console.log(oldVal);
-                
+                // console.log(newVal);
+                // console.log(oldVal);
+                console.log('觸發watch');
+                // this.stayUpCart();
             },
             deep:true
         }

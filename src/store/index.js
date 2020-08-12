@@ -6,6 +6,7 @@ import mutations from './mutations';
 import actions from './actions';
 
 import Cart from './modules/front/cart';
+import cusProducts from './modules/front/cusProducts';
 
 Vue.use(Vuex);//@也可加在main.js
 
@@ -25,5 +26,6 @@ export default new Vuex.Store({
     actions,
     modules:{
         Cart,
+        cusProducts
     }
 })

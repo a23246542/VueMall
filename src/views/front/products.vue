@@ -128,6 +128,7 @@ export default {
     },
     created() {
         this.getProducts();
+        this.$store.dispatch('getProducts');
     },
     methods:{
         getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
