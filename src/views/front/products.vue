@@ -50,7 +50,7 @@
                                     </p>
                                     <div class="d-flex">
                                         <div class="form-inline">
-                                            <!-- ###寫入只能用v-model了 -->
+                                            <###寫入只能用v-model了 -->
                                             
                                             <!-- <select class="form-control"
                                             v-model="product.num"
@@ -99,6 +99,7 @@ import productCard from '@/components/productCard';
 import CartModal from '@/components/CartModal';
 import pagination from '@/components/BasePagination'
 import Alert from '@/components/BaseAlertMessage';
+import { mapState } from 'vuex';
 
 export default {
     components:{
@@ -112,9 +113,9 @@ export default {
             // product:{//點擊那個modal再出現
             //     num:1,//要雙向綁定預設值%%%
             // },
-            products:[],
-            pagination:{},
-            categories:[],
+            // products:[],
+            // pagination:{},
+            // categories:[],
             searchText:"all",
             // carts:[]//子組件購物車的
         }
@@ -122,74 +123,70 @@ export default {
     computed:{
         filterProducts(){
                 
-                if (this.searchText === 'all'){
-                    return this.products;
-                }else {
-                    return this.products.filter( (item) => {
-                        // return item.category == this.searchText;
-                        return item.category.toLowerCase()
-                        .includes(this.searchText.toLowerCase());//%%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false
-                    })
-                }
-        }
+            if (this.searchText === 'all'){
+                return this.products;
+            }else {
+                return this.products.filter( (item) => {
+                    // return item.category == this.searchText;
+                    return item.category.toLowerCase()
+                    .includes(this.searchText.toLowerCase());//%%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false
+                })
+            }
+        },
+        // ...mapState(['products','categories','pagination']),
+        // ...mapState({
+        //     products:'products',
+        //     categories:'categories',
+        //     pagination:'pagination'
+        // }),
+        products() {
+            return this.$store.state.cusProducts.products;
+        },
+        categories() {
+            return this.$store.state.cusProducts.categories;
+        },
+        pagination() {
+            return this.$store.state.cusProducts.pagination;
+        },
     },
     created() {
         this.getProducts();
-        this.$store.dispatch('getProducts');
+        
     },
     methods:{
-        getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
-            this.$store.commit('LOADING',true);
-            // const api =`ec/products/page=${page}`;%%
-            const api =`ec/products?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}`;
-            instanceCus.get(api)
-            .then((res) => {
-                this.products = res.data.data;
-                this.pagination = res.data.meta.pagination;
-                this.getCategories();
-                //###%% 可先暫時寫入api外的，幫助渲染
-                this.products.forEach((item) => {
-                    // item.num = 1;
-                    this.$set(item,'num',1);
-                })
-                this.$store.commit('LOADING',false);
-            })
+        // getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
+        getProducts(page=1){
+            this.$store.dispatch('getProducts',page);
         },
-        getCategories(){
-            const categories = new Set();
-            this.products.forEach((item) => {
-                // categories.push(item.category)//%%@@
-                categories.add(item.category)
-            })
-            this.categories = Array.from(categories);
-        },
+        // getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
+        //     this.$store.commit('LOADING',true);
+        //     // const api =`ec/products/page=${page}`;%%
+        //     const api =`ec/products?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}`;
+        //     instanceCus.get(api)
+        //     .then((res) => {
+        //         this.products = res.data.data;
+        //         this.pagination = res.data.meta.pagination;
+        //         this.getCategories();
+        //         //###%% 可先暫時寫入api外的，幫助渲染
+        //         this.products.forEach((item) => {
+        //             // item.num = 1;
+        //             this.$set(item,'num',1);
+        //         })
+        //         this.$store.commit('LOADING',false);
+        //     })
+        // },
+        // getCategories(){
+        //     const categories = new Set();
+        //     this.products.forEach((item) => {
+        //         // categories.push(item.category)//%%@@
+        //         categories.add(item.category)
+        //     })
+        //     this.categories = Array.from(categories);
+        // },
         //接收資料 子傳父元件
         // getEmitCart(carts){
         //     this.carts = carts;
         // },
-        addToCart(item,qty=1){
-            this.$store.commit('LOADING',true);
-            const api ="ec/shopping";
-            const cartItem = {product:item.id,quantity:qty};
-            
-            this.$instanceCus.post(api,cartItem)
-            .then((res) => {
-                this.$store.commit('LOADING',false);
-                this.$bus.$emit('message:push',`${item.title}已加入購物車`,'success')
-                // this.$refs.cartModal.getCart();
-                this.$store.dispatch('getCart');
-            })
-            // ###這邊判斷post patch缺點會跑兩次api
-            .catch((err) => {
-                this.$store.commit('LOADING',false);
-                console.dir(err.response.data);
-                if(err.response.data.errors[0]==="該商品已放入購物車當中。"){          
-                    this.$bus.$emit('message:push',`${item.title}已存在購物車`)
-                }
-            })
-            // this.$store.dispatch('addToCart',{productId,qty})
-            // this.$store.dispatch('getCart');//%%
-        },
         openSingleProduct(id) {
             this.$router.push(`/products/${id}`);
         },

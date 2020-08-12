@@ -41,3 +41,5 @@ message: "The given data was invalid."
 - [ ] 產品列表 例如在第四頁編輯後重整 會跳回第一頁
 - [ ] 商品啟用、關閉可以使用不同的顏色標示
 - [ ] 修正發現要調整第四頁的產品2 啟用與否時 有報錯Error in render: "TypeError: Cannot read property 'indexOf' of null" 
+- [ ] cusProduct改大寫 productCard組件也是 都是模組
+- [ ] addtoCart 產品內頁好像也有 可以用mixin??
