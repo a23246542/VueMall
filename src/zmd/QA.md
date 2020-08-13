@@ -60,6 +60,8 @@ LV3：自行設計購物車的版型
 * 子層購物車data emit CART到父層data放會有傳參考問題嗎
 * ~vuex如何讀取到vue實例好可以用綁定的axios跟bus (this讀取不到) @#最後用return一個promise
 * 再看alex試試看watch item
+
+* edit購物車後又觸發get購物車，用兩個promise解決等get購物車ajax結束 loading跑完 再觸發this.bus 可是要怎麼改寫成async/await呢 還是說簡單的部分才用async
 ### Alert彈窗
 * 蝦 為什麼組件內scoped 寫寬600 我在products內放竟然沒效果!!! 這樣寫scoped有什麼用 不能搬  @#後來試又可以了
 * 不能把index當作key的雷?  Module Warning (from ./node_modules/vue-loader/lib/loaders/templateLoader.js):

@@ -35,7 +35,7 @@
                         <ProductCard
                             v-for="(item) in filterProducts"
                             :key="item.id"
-                            :item="item"
+                            :thisProduct="item"
                         />
                         <!-- <div class="col-4 mb-5" v-for="(item) in filterProducts" :key="item.id">
                             <div class="card">

@@ -27,19 +27,23 @@ export default {
         }
     },
     actions:{
-        getCart(context){
-            context.commit('LOADING',true);
-            const api ="ec/shopping";
-            // Vue.$instanceCus.get(api)//@@
-            instanceCus.get(api)
-            .then((res) => {
-                console.log("上面是取得購物車");
-                // this.carts = res.data.data.reverse();
-                // this.cartPagination = res.data.meta.pagination;
-                context.commit("CART",res.data)
-                // this.$emit('emitCart',this.carts)
-                // @@是否會傳參考
-                context.commit('LOADING',false);
+        getCart(context,cb){
+            return new Promise((resolve, reject) => {
+
+                context.commit('LOADING',true);
+                const api ="ec/shopping";
+                // Vue.$instanceCus.get(api)//@@
+                instanceCus.get(api)
+                .then((res) => {
+                    console.log("上面是取得購物車");
+                    // this.carts = res.data.data.reverse();
+                    // this.cartPagination = res.data.meta.pagination;
+                    context.commit("CART",res.data)
+                    // this.$emit('emitCart',this.carts)
+                    // @@是否會傳參考
+                    context.commit('LOADING',false);
+                    resolve();
+                })
             })
         },
         addToCart(context,{productId,qty}){
@@ -61,16 +65,27 @@ export default {
             // })
         },
         editCart(context,{productId,newQty}) {
-            context.commit('LOADING',true);
-            console.log(productId,newQty);
-            
-            const api ="ec/shopping";
-            const cartItem = {product:productId,quantity:newQty};
-            instanceCus.patch(api,cartItem)
-            .then((res) => {
-                // this.getCart();
-                // this.$store.dispatch('getCart');//%%
-                context.dispatch('getCart');
+            return new Promise((resolve, reject) => {
+
+                context.commit('LOADING',true);
+                console.log(productId,newQty);
+                
+                const api ="ec/shopping";
+                const cartItem = {product:productId,quantity:newQty};
+                instanceCus.patch(api,cartItem)
+                .then((res) => {
+                    // this.getCart();
+                    // this.$store.dispatch('getCart');//%%
+                    // context.dispatch('getCart');
+
+                    // context.dispatch('getCart',resolve);
+                    // resolve();
+                    
+                    context.dispatch('getCart')
+                    .then(() => {
+                        resolve();
+                    });
+                })
             })
         },
         delCart(context,productId){
