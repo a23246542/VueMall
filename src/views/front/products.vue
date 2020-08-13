@@ -32,7 +32,7 @@
                 <!-- <div class="col-10 mx-auto"> -->
                 <div class="col-10">
                     <div class="row">
-                        <productCard
+                        <ProductCard
                             v-for="(item) in filterProducts"
                             :key="item.id"
                             :item="item"
@@ -95,7 +95,7 @@
 
 <script>
 import {instanceCus} from '../../api/https';
-import productCard from '@/components/productCard';
+import ProductCard from '@/components/ProductCard';
 import CartModal from '@/components/CartModal';
 import pagination from '@/components/BasePagination'
 import Alert from '@/components/BaseAlertMessage';
@@ -103,7 +103,7 @@ import { mapState } from 'vuex';
 
 export default {
     components:{
-        productCard,
+        ProductCard,
         CartModal,
         Alert,
         pagination
@@ -134,21 +134,20 @@ export default {
             }
         },
         // ...mapState(['products','categories','pagination']),
-        // ...mapState({
-        //     countAlias:'products',
-        //     // products:'products',
-        //     // categories:'categories',
-        //     // pagination:'pagination'
-        // }),
-        products() {
-            return this.$store.state.cusProducts.products;
-        },
-        categories() {
-            return this.$store.state.cusProducts.categories;
-        },
-        pagination() {
-            return this.$store.state.cusProducts.pagination;
-        },
+        ...mapState({
+            products:(state) => state.CusProducts.products,
+            categories:(state) => state.CusProducts.categories,
+            pagination: (state) => state.CusProducts.pagination
+        }),
+        // products() {
+        //     return this.$store.state.CusProducts.products;
+        // },
+        // categories() {
+        //     return this.$store.state.CusProducts.categories;
+        // },
+        // pagination() {
+        //     return this.$store.state.CusProducts.pagination;
+        // },
     },
     created() {
         this.getProducts();

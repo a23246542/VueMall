@@ -57,17 +57,42 @@ export default {
             required:true
         }
     },
-    // computed:mapState({
-    //     products:'products',
-    //     pagination:'pagination',
-    //     categories:'categories'
-    // })
+    computed:{
+        carts(){
+            return this.$store.state.Cart.cart.carts;
+        }
+    },
     methods: {
         addToCart(item,qty=1){
             this.$store.commit('LOADING',true);
             const api ="ec/shopping";
             const cartItem = {product:item.id,quantity:qty};
             
+            // const ifInCart = this.carts.some((cartItem)=>{
+            //         return cartItem.product.id === item.id;
+            // })
+            
+            //會是undefine 或{...}
+            const hasInCartItem = this.carts.find((cartItem)=>{
+                    return cartItem.product.id === item.id;
+            })
+            // console.log(hasInCartItem,!hasInCartItem);
+            
+            if(!hasInCartItem){
+                this.$instanceCus.post(api,cartItem)
+                .then((res) => {
+                    this.$store.commit('LOADING',false);
+                    this.$bus.$emit('message:push',`${item.title}已加入購物車`,'success')
+                    // this.$refs.cartModal.getCart();
+                    this.$store.dispatch('getCart');
+                })
+            }else{
+                console.log('已經有了');
+                console.log(hasInCartItem);
+                
+                // this.$store.dispatch('editCart',{productId,newQty});
+            }
+
             this.$instanceCus.post(api,cartItem)
             .then((res) => {
                 this.$store.commit('LOADING',false);
