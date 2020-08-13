@@ -135,9 +135,10 @@ export default {
         },
         // ...mapState(['products','categories','pagination']),
         // ...mapState({
-        //     products:'products',
-        //     categories:'categories',
-        //     pagination:'pagination'
+        //     countAlias:'products',
+        //     // products:'products',
+        //     // categories:'categories',
+        //     // pagination:'pagination'
         // }),
         products() {
             return this.$store.state.cusProducts.products;

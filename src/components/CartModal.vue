@@ -26,14 +26,6 @@
                                 </td>
                             </tr>
                             <tr v-for="item in carts" :key="item.product.id">
-                                <td class="align-middle text-center">
-                                    <button
-                                    class="btn"
-                                    @click.prevent="delCart(item)"
-                                    >
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
                                 <td class="align-middle">
                                     {{ item.product.title }}
                                     <!-- <div class="text-success" v-if="item.coupon">
@@ -45,6 +37,14 @@
                                 <td class="align-middle text-center">
                                     <!-- ## -->
                                     {{ (item.quantity*item.product.price) | dollars }}
+                                </td>
+                                <td class="align-middle text-center">
+                                    <button
+                                    class="btn"
+                                    @click.prevent="delCart(item)"
+                                    >
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>

@@ -13,6 +13,10 @@
 - [ ]
    @param status 用於切換上傳圖片時的小 icon，主要是增加使用者體驗。-[]還未新增
 
+
+
+- [ ] 組件不要用id那個 不然就不能複用了! 除非是很多都共用同一個
+
 ## 產品頁products
 * vue-swiper
 ### 產品列表
@@ -23,7 +27,7 @@
 - [ ] 竟然按過的不能按 {message: "The given data was invalid.", errors: ["該商品已放入購物車當中。"]}
 errors: ["該商品已放入購物車當中。"]
 message: "The given data was invalid."
-- [ ] 按刪除會跳確認視窗
+- [ ] 按刪除會跳確認是否自購物車刪除視窗(島津)
 - [ ] 不只加減 輸入的方式 小計什麼也要即時更新
 - [ ] 圖片是否改固定 右邊col或flex-1伸縮
 - [ ] 購物車給藝影助教看
@@ -32,6 +36,13 @@ message: "The given data was invalid."
 - [ ] // -[]延遲發送api 增加使用者體驗
 - [ ] addtoCart的判斷功能還沒做
 - [ ] 4:17分有目錄的方法
+
+### order_info 顧客表單
+- [x] carModal跟orderInfo 看可不可以用mixin處理 好像不行 不太一樣
+
+
+### navFooter
+- [ ] 訂閱電子報跳v-slot視窗通知(縮放zoom)
 
 <!-- =================後台================================================================== -->
 ### DashNavbar

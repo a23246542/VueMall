@@ -20,7 +20,7 @@
                                     <!-- <div class="flex-1"> -->
                                         <!-- 圖片 -->
                                         <img class="img-fluid"
-                                        :src="item.product.imageUrl" alt=""
+                                        :src="item.product.imageUrl[0]" alt=""
                                         >
                                     </div>
                                     <div class="col-9 col-md-9"> 
@@ -59,7 +59,7 @@
                                                         <input type="text" class="text-center form-control"
                                                         style="width:30px"
                                                         v-model.number="item.quantity"
-                                                        v-debounce:1s.lock="stayUpCart1"
+                                                        v-debounce:1s.lock="stayUpdateCart"
                                                         :debounce-events="'input'"
                                                         :data-item-id="item.product.id"
                                                         >
@@ -99,11 +99,18 @@
                 </div>
                 <!-- 購物車 結束 -->
                 <div class="col-md-4">
-                    <h3>訂單摘要</h3>
-                    <p>小計{{cartTotal}}</p>
-                    <router-link tag="a" href="#" class="btn btn-primary btn-block"
-                    :to="{name:'收件資訊'}"
-                    >下一步</router-link>
+                    <div class="card mt-6">
+                        <div class="card-header">訂單摘要</div>
+                        <div class="card-body">
+                            <p class="d-flex justify-content-between">
+                                <span>小計</span>
+                                <span>{{cartTotal | dollars}}</span>    
+                            </p>
+                            <router-link tag="a" href="#" class="btn btn-primary btn-block"
+                            :to="{name:'收件資訊'}"
+                            >下一步</router-link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -146,8 +153,8 @@ export default {
                     
                     qty-=1;
                     break;
-                case 'input':
-                    break;
+                // case 'input':
+                //     break;
                     
             }
             console.log("更新购物车",productId,qty);
@@ -159,14 +166,14 @@ export default {
             
             this.$store.dispatch('editCart',data);
         },
-        stayUpCart(){
-            // _.debounce(this.updateCartQty(type,item),1000)
-            console.log('執行stayUpCart');
+        // stayUpCart(){
+        //     // _.debounce(this.updateCartQty(type,item),1000)
+        //     console.log('執行stayUpCart');
             
-            _.debounce(()=>{console.log('現在才打api');
-            },10000)();
-        },
-        stayUpCart1(val,e){
+        //     _.debounce(()=>{console.log('現在才打api');
+        //     },10000)();
+        // },
+        stayUpdateCart(val,e){
             console.log(val);
             console.dir(e);
             console.dir(e.target.dataset.itemId);
@@ -193,18 +200,18 @@ export default {
         //     return this.$store.state.Cart.cart.carts;
         // }
     },
-    watch:{
-        ['cart.carts']:{
-        // carts:{
-            handler:function(newVal,oldVal){
-                // console.log(newVal);
-                // console.log(oldVal);
-                console.log('觸發watch');
-                // this.stayUpCart();
-            },
-            deep:true
-        }
-    }
+    // watch:{
+    //     ['cart.carts']:{
+    //     // carts:{
+    //         handler:function(newVal,oldVal){
+    //             // console.log(newVal);
+    //             // console.log(oldVal);
+    //             console.log('觸發watch');
+    //             // this.stayUpCart();
+    //         },
+    //         deep:true
+    //     }
+    // }
 }
 </script>
 
