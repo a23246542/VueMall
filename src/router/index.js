@@ -26,17 +26,9 @@ const routes = [
                 path: 'products',
                 name: 'products',
                 component:() => import('../views/front/products'),
-                // children:[
-                //     {
-                //         path: ':id',
-                //         name: 'singleProduct',
-                //         component:() => import('../views/front/productSingle.vue')
-
-                //     }
-                // ]
             },
             {
-                path: 'products/:id',
+                path: 'products/:productId',
                 name: 'productSingle',
                 component:() => import('../views/front/productSingle'),
             },
