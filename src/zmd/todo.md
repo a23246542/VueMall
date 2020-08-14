@@ -1,3 +1,7 @@
+!!!
+- [ ] 用vue eslint & vuter
+<!-- [Vue] 整合 Vue style guide, eslint-plugin-vue 和 VSCode ~ PJCHENder<br>那些沒告訴你的小細節
+https://pjchender.blogspot.com/2019/07/vue-vue-style-guide-eslint-plugin-vue.html -->
 
 <!-- ====router頁面 -->
 - [ ] 還有很多頁面還沒有相對應的連結

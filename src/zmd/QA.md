@@ -122,6 +122,18 @@ editCart(context,{id,qty}){
 喔 是this的vue實例無法取得 但Vue import就好了!
 https://vuex.vuejs.org/zh/guide/mutations.html
 
+
+### singleProduct
+* product:{
+        imageUrl:[],//@@ajax後被整個蓋掉寫了有意義嗎?
+        qty:1//@@被蓋掉寫了有意義嗎?
+    }
+    @#作用是給預設值先幫助模板渲染(ajax資料回來之前)
+    @# 雖然會跑但不會報錯 Cannot read property '0' of undefined"
+    @# 然後因為是整個物件換掉vue我想是可以偵測到並再另外幫每個屬性綁定的
+
+
+
 ### orderInfo
 * 為何樣式會出現data-v 奇怪 明明沒有寫scoped
 
