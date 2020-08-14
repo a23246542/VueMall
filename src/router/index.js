@@ -10,12 +10,6 @@ const routes = [
         path: '*',
         redirect:'/'
     },
-    {
-        // path: 'login',//@@父組件要/
-        path: '/login',
-        name: 'login',
-        component: () => import('../views/back/login')
-    },
     //前台
     {
         path: '/',
@@ -24,22 +18,92 @@ const routes = [
         children:[
             {
                 path:'',
-                name:'home ',
+                name:'home',//-[]首頁改index
                 component:() => import('../views/front/index.vue')
+                // component:() => import('../views/front/products.vue')
             },
-            // {
-            //     path: 'login',
-            //     name:'login',
-            //     component: () => import('../views/front/login')
-            // },
             {
-                path: 'orderform',
-                component: () => import('../views/front/orderForm.vue')
-                
-            }
+                path: 'products',
+                name: 'products',
+                component:() => import('../views/front/products'),
+            },
+            {
+                path: 'products/:productId',
+                name: 'productSingle',
+                component:() => import('../views/front/productSingle'),
+            },
+            {
+                path: 'aboutUs',
+                name: '關於我們',
+                component:() => import('../views/front/aboutUs'),
+            },
+            {
+                path: 'order_list',
+                name: '我的訂單',
+                component:() => import('../views/front/CusOrders')
+            },
+            {
+                path: 'coupon',
+                name: '優惠券',
+                component:() => import('../views/front/CusCoupon')
+            },
         ]
     },
+    {
+        
+        path: '/shopping',//專注購物頁
+        name: '購物車',
+        component: () => import('../views/front/shopping'),
+        redirect:'/shopping/order_preview',
+        children: [
+            {
+                path:'order_preview',
+                name:'購物清單',
+                component:() => import('../views/front/orderPreview'),
+                // -[]cart
+                // -[]CustomerForm
+                // components:{
+                //     Cart: () => import('../components/Cart'),
+                //     CustomerForm: () => import('../views/front/orderForm1')
+                // }
+            },
+            {
+                path: 'order_info',
+                name: '收件資訊',
+                component:() => import('../views/front/orderInfo')
+            },
+            {
+                path:'order_confirm',
+                name:'最後確認',
+                component:() => import('../views/front/orderConfirm')
+                // -[]Cart購物明細
+                // -[]orderInfo寄送資訊與付款方式
+            },
+            {
+                path:'order_success',//query ?orderId:orderId
+                name:'訂單完成',
+                component:() => import('../views/front/orderSuccess')
+            },
+            {
+                // path:'payment/:orderId',
+                path:'payment',
+                name:'付款頁',
+                component:() => import('../views/front/payment.vue'),
+            },
+            // {
+            //     path:'pay_success/:orderId',
+            //     name:'付款完成',
+            //     component:() => import('../views/front/')
+            // }
+        ]
+        
+    },
     // 後台
+    {
+        path: '/login',
+        name: 'login',
+        component: () => import('../views/back/login')
+    },
     {
         path:'/admin',
         name:'Dashboard',
@@ -52,6 +116,21 @@ const routes = [
                 name:'dashProducts',
                 component:() => import('../views/back/dashProducts.vue'),
                 meta:{ requireAuth:true}
+            },
+            {
+                path:'orders',
+                name:'訂單列表',
+                component:() => import('../views/back/dashOrders')
+            },
+            {
+                path:'coupons',
+                name:'優惠券列表',
+                component:() => import('../views/back/dashCoupons')
+            },
+            {
+                path:'images',
+                name:'圖片儲存列表',
+                component:() => import('../views/back/dashImages')
             }
         ]
     }

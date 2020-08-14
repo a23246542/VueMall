@@ -28,7 +28,7 @@
             {{item.price}}
           </td>
           <td>
-            <span v-if="item.is_enabled">啟用</span>
+            <span v-if="item.enabled">啟用</span>
             <span v-else>未啟用</span>
           </td>
           <td>
@@ -48,7 +48,7 @@
     </table>
     <BasePagination
     :pages="pagination"
-    @change-page="getProducts(page)"
+    @change-page="getProducts"
     />
     <!---------- Modal ---------------------->
     <DashProductModal 

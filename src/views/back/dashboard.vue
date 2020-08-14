@@ -3,7 +3,9 @@
         <DashNavbar/>
         <DashSidebar/>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-            <router-view></router-view>
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
         </main>
     </div>
 </template>
@@ -19,6 +21,9 @@ export default {
     DashSidebar,
     dashProducts
   },
+//   mounted(){
+//     this.$router.push()
+//   }
   
 }
 

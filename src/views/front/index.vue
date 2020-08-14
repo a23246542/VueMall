@@ -1,6 +1,6 @@
 <template>
     <div>
-        index
+        首頁
     </div>
 </template>
 <script>
