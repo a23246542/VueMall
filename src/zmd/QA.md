@@ -137,6 +137,8 @@ https://vuex.vuejs.org/zh/guide/mutations.html
 ### orderInfo
 * 為何樣式會出現data-v 奇怪 明明沒有寫scoped
 
+### 後台dashCp
+
 <!-- ===========卡斯伯老師======================= -->
 掛載原型會建議統一在main.js嗎
 index key的雷
