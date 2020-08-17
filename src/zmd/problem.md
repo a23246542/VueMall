@@ -9,3 +9,5 @@
 
 * orderInfo的購物清單一直消失 切去別頁會來有 重整就沒了
 原來這頁組件created時沒有 this.$store.dispatch('getCart');//%%
+
+* ~dashcoupon v-for 出來的item 如何computed
