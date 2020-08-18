@@ -137,7 +137,12 @@ https://vuex.vuejs.org/zh/guide/mutations.html
 ### orderInfo
 * 為何樣式會出現data-v 奇怪 明明沒有寫scoped
 
-### 後台dashCp
+### 後台dashCoupon
+* 感覺就算是新增也不是tempCoupon = {}這麼簡單 模板完全讀不到
+* ~為什麼getCoupon的cb會報錯 @#因為一開始的cb不存在
+* 後來像產品列表沒辦法開新分頁怎麼辦!!!
+* promise猜運作是有比較慢的特性嗎 原本callback改用promise結果 loading都結束了幾秒 modal才關閉，用callback幾乎loading跟modal關閉同時
+* modalUse ===xxx的判斷 改成computed有比較好嗎 閱讀
 
 <!-- ===========卡斯伯老師======================= -->
 掛載原型會建議統一在main.js嗎

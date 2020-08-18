@@ -27,6 +27,9 @@ https://pjchender.blogspot.com/2019/07/vue-vue-style-guide-eslint-plugin-vue.htm
 * 卡片帶上內品內頁 router id
 - [ ] 產品改成組件跟產品資料從vuex拿   
 ### 購物車
+- [ ] 運費想到可以用個如果沒到達就加上運費的商品 不過要問優惠券可以累加嗎?
+
+
 - [ ] currencyFilter
 - [ ] 竟然按過的不能按 {message: "The given data was invalid.", errors: ["該商品已放入購物車當中。"]}
 errors: ["該商品已放入購物車當中。"]
@@ -49,6 +52,13 @@ message: "The given data was invalid."
 - [ ] 訂閱電子報跳v-slot視窗通知(縮放zoom)
 
 <!-- =================後台================================================================== -->
+### W7 todo
+
+- [ ] 產品列表modal title還沒改過來
+- [ ] sidebar 要改成active
+- [ ] 啟用改成網路找按鍵 找css 
+
+
 ### DashNavbar
 * .navbar-nav是flex-direction: column怎麼改好的問提;
 
@@ -58,3 +68,7 @@ message: "The given data was invalid."
 - [ ] 修正發現要調整第四頁的產品2 啟用與否時 有報錯Error in render: "TypeError: Cannot read property 'indexOf' of null" 
 - [ ] cusProduct改大寫 productCard組件也是 都是模組
 - [ ] addtoCart 產品內頁好像也有 可以用mixin??
+
+
+### 優惠券列表
+- [ ] 選到之前的日期會跳視窗靜止 或disabled 

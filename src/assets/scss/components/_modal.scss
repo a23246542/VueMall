@@ -1,0 +1,13 @@
+.modal-dialog{
+    // position: absolute;
+    // top: 30%;
+    // left: 50%;
+    // transform:translate(-50%, -50%) !important;
+    @media (min-width: 576px){
+        margin: 7.55rem auto;
+    }
+}
+
+.modal-md{
+    max-width: 500px;
+}
