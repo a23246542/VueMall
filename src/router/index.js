@@ -121,7 +121,7 @@ const routes = [
                 path:'orders',
                 name:'訂單列表',
                 component:() => import('../views/back/dashOrders'),
-                meta:{requireAuth:true}
+                // meta:{requireAuth:true}
             },
             {
                 path:'coupons',

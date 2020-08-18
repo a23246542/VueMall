@@ -12,3 +12,7 @@
 
                 //     }
                 // ]
+
+### v-if可以拿來當等data回傳再渲染!!!不用預先寫預設值
+    *  <!-- ## !因沒設data會報錯 -->
+    <table class="table mt-4 bg-light" v-if="orders.length">

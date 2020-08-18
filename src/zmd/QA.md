@@ -153,6 +153,11 @@ https://vuex.vuejs.org/zh/guide/mutations.html
 * ??那現在很多網站是如何做到 我甲地登入也沒登入 乙地登入後 甲地回去用還是可以登入 是xxx嗎
 * 話說如果六角是這個機制 我應該還是可以用原本admin父路由 check一次就好，反正後台其他頁可以發api 代表有token是登入過的，但這樣的話要預防其他人不是經過router又從後台頁第一次進去開始看(???如果只有父路由寫驗證(meta check)不用redirct，用push的方式，這樣直接打admin/xxx也會自動吃到meta check嗎)，要寫個驗證err回應的是401或是本地沒有token也要router到login頁 
 
+### http.js & cart.js 理解這個vue實例的核心物件 如何運作work的 模糊
+*　！！話說好奇為何Vue.$store 可以運作 真的動到module嗎
+* 可是cart.js用 // Vue.$instanceCus 卻又呼叫不到 不是掛載上面了嗎
+
+
 
 <!-- ===========卡斯伯老師======================= -->
 掛載原型會建議統一在main.js嗎
