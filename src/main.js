@@ -77,7 +77,7 @@ Vue.filter('dollars',dollarsFilter)
 // })
 
 //mock開關
-const mock = false;
+const mock = true;
 if(mock){
   require('./mock/api.js');
     // const mockData = require('./mock/api.js');

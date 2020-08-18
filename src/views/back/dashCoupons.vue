@@ -1,12 +1,13 @@
 <template>
-    <div>
+    <div class="table-responsive" id="dashCoupon">
         <!-- <BaseLoading :active.sync="isLoading"/> -->
         <div class="mt-4 text-right">
             <button class="btn btn-primary"
                 @click="openModal('new')">新增產品
             </button>
         </div>
-        <table class="table mt-4">
+        <table class="table mt-4"
+        >
             <thead>
                 <tr>
                     <th width="100">產品名稱</th>
@@ -286,3 +287,16 @@ export default {
     }
 }
 </script>
+<style lang="scss">
+    #dashCoupon{
+        .table{
+            min-width: 670px;
+        }
+    }
+</style>
+
+<style lang="scss" scoped>
+    // .table{
+    //     min-width: 670px;
+    // }
+</style>   

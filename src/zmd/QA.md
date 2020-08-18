@@ -143,6 +143,8 @@ https://vuex.vuejs.org/zh/guide/mutations.html
 * 後來像產品列表沒辦法開新分頁怎麼辦!!!
 * promise猜運作是有比較慢的特性嗎 原本callback改用promise結果 loading都結束了幾秒 modal才關閉，用callback幾乎loading跟modal關閉同時
 * modalUse ===xxx的判斷 改成computed有比較好嗎 閱讀
+* ~scoped才加一個table寬度 就全部出現data-v 後來發現是只有要scoped標籤在(就算空的)就會全加
+* 頁面組件給id是可以的吧??探討
 
 <!-- ===========卡斯伯老師======================= -->
 掛載原型會建議統一在main.js嗎
