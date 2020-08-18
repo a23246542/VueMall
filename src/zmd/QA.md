@@ -123,6 +123,8 @@ editCart(context,{id,qty}){
 https://vuex.vuejs.org/zh/guide/mutations.html
 
 
+## w7 完成後台其他
+
 ### singleProduct
 * product:{
         imageUrl:[],//@@ajax後被整個蓋掉寫了有意義嗎?
@@ -145,6 +147,12 @@ https://vuex.vuejs.org/zh/guide/mutations.html
 * modalUse ===xxx的判斷 改成computed有比較好嗎 閱讀
 * ~scoped才加一個table寬度 就全部出現data-v 後來發現是只有要scoped標籤在(就算空的)就會全加
 * 頁面組件給id是可以的吧??探討
+
+### token運作機制疑問
+* 我原本以為甲地登入了 取得新token 乙地就不能使用舊本地token取得但其實可以，可check token又不會過這樣
+* ??那現在很多網站是如何做到 我甲地登入也沒登入 乙地登入後 甲地回去用還是可以登入 是xxx嗎
+* 話說如果六角是這個機制 我應該還是可以用原本admin父路由 check一次就好，反正後台其他頁可以發api 代表有token是登入過的，但這樣的話要預防其他人不是經過router又從後台頁第一次進去開始看(???如果只有父路由寫驗證(meta check)不用redirct，用push的方式，這樣直接打admin/xxx也會自動吃到meta check嗎)，要寫個驗證err回應的是401或是本地沒有token也要router到login頁 
+
 
 <!-- ===========卡斯伯老師======================= -->
 掛載原型會建議統一在main.js嗎

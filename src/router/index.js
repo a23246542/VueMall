@@ -115,22 +115,25 @@ const routes = [
                 path:'products',
                 name:'dashProducts',
                 component:() => import('../views/back/dashProducts.vue'),
-                meta:{ requireAuth:true}
+                meta:{requireAuth:true}
             },
             {
                 path:'orders',
                 name:'訂單列表',
-                component:() => import('../views/back/dashOrders')
+                component:() => import('../views/back/dashOrders'),
+                meta:{requireAuth:true}
             },
             {
                 path:'coupons',
                 name:'優惠券列表',
-                component:() => import('../views/back/dashCoupons')
+                component:() => import('../views/back/dashCoupons'),
+                meta:{requireAuth:true}
             },
             {
                 path:'images',
                 name:'圖片儲存列表',
-                component:() => import('../views/back/dashImages')
+                component:() => import('../views/back/dashImages'),
+                meta:{requireAuth:true}
             }
         ]
     }

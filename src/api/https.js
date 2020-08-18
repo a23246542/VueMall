@@ -69,8 +69,13 @@ instanceAdmin.interceptors.response.use( res => {
     console.log(res);
     return res
 } , err => {
+    
     console.log('響應錯誤');
     console.dir(err);
+    if(err.response.status === 401){ //message: "Unauthenticated."
+        Vue.$store.commit('LOADING',false);//@@可以的原理
+        router.push({name:'login'});
+    }
     return Promise.reject(err)
 })
 // ===================前台api===================================
