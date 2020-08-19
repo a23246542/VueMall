@@ -157,9 +157,15 @@ https://vuex.vuejs.org/zh/guide/mutations.html
 *　！！話說好奇為何Vue.$store 可以運作 真的動到module嗎
 * 可是cart.js用 // Vue.$instanceCus 卻又呼叫不到 不是掛載上面了嗎
 
-
+### dashOrder
+* api這兩個欄位是設計來做什麼的
+    "paid_at": null,
+        "paid_diff": null,
 
 <!-- ===========卡斯伯老師======================= -->
+
+### 如何開啟vuter高亮!!!
+
 掛載原型會建議統一在main.js嗎
 index key的雷
 watch v-for item的問題
