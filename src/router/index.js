@@ -115,7 +115,7 @@ const routes = [
                 path:'products',
                 name:'dashProducts',
                 component:() => import('../views/back/dashProducts.vue'),
-                meta:{requireAuth:true}
+                // meta:{requireAuth:true}
             },
             {
                 path:'orders',
@@ -127,13 +127,13 @@ const routes = [
                 path:'coupons',
                 name:'優惠券列表',
                 component:() => import('../views/back/dashCoupons'),
-                meta:{requireAuth:true}
+                // meta:{requireAuth:true}
             },
             {
                 path:'images',
                 name:'圖片儲存列表',
                 component:() => import('../views/back/dashImages'),
-                meta:{requireAuth:true}
+                // meta:{requireAuth:true}
             }
         ]
     }

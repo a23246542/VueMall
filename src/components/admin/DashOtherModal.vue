@@ -1,7 +1,6 @@
 <template>
     <div
       class="modal fade"
-      id="couponModal"
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -69,7 +68,7 @@ export default {
         modalUse:{
             type: String,
             required:true
-        }
+        },
         //暫時的單一項目可能是空的或是編輯舊的
     },
     methods:{

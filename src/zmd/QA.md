@@ -162,6 +162,9 @@ https://vuex.vuejs.org/zh/guide/mutations.html
     "paid_at": null,
         "paid_diff": null,
 
+* 了解用keepalive了也先把驗證api關閉了，還是重跑很慢
+可是有時候又可以是keepalive的緩存超過就會自動釋放掉嗎
+
 <!-- ===========卡斯伯老師======================= -->
 
 ### 如何開啟vuter高亮!!!
@@ -177,3 +180,10 @@ yoko助教關於更新不上去的問題
 還是只是我gh-分支不該checkout會造成大量更動
 
 
+## vue本身其他問題
+* Mike scoped的話改style無效 不動為何 是因為那是子元件的關係?
+    *如何在Vue裡面使用Element-ui並修改CSS樣式呢？. 大家好！我是Mike，今天要來說說大部分使用 Vue… | by Mike | I am Mike | Medium
+    *跟scoped吃不到共用樣是 mixin function卻吃得到class的原因??
+        *還是只是說style裡面無法引用而已
+        *所以難怪說style scoped 裡面克制改scss的class沒用嗎 不對可以改阿
+    https://medium.com/i-am-mike/%E5%A6%82%E4%BD%95%E5%9C%A8vue%E8%A3%A1%E9%9D%A2%E4%BD%BF%E7%94%A8element-ui%E4%B8%A6%E4%BF%AE%E6%94%B9css%E6%A8%A3%E5%BC%8F%E5%91%A2-f11c1e05787f

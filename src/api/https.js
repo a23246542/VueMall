@@ -41,11 +41,15 @@ instanceLogin.interceptors.request.use( config => {
 
 
 instanceLogin.interceptors.response.use( res => {
-    console.log(res);
+    if(process.env.NODE_ENV=='development'){
+        console.log(res);
+    }
     return res
 } , err => {
-    console.log('響應錯誤');
-    console.dir(err);
+    if(process.env.NODE_ENV=='development'){
+        console.log('響應錯誤');
+        console.dir(err);
+    }
     return Promise.reject(err)
 })
 
@@ -54,8 +58,8 @@ instanceAdmin.interceptors.request.use(async config => {
 
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
-    config.headers.Authorization = `Bearer ${token}`
-
+    config.headers.Authorization = `Bearer ${token}`   
+    
     return config
 },err => {
     console.log('請求錯誤');
@@ -89,11 +93,15 @@ instanceCus.interceptors.request.use( config => {
 })
 
 instanceCus.interceptors.response.use( res => {
-    console.log(res);
+    if(process.env.NODE_ENV=='development'){
+        console.log(res);
+    }
     return res
 },err =>{
-    console.log("響應錯誤");
-    console.dir(err);//##
+    if(process.env.NODE_ENV=='development'){
+        console.log("響應錯誤");
+        console.dir(err);//##
+    }
     return Promise.reject(err)
 })
 

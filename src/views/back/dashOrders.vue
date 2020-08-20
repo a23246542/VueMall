@@ -190,6 +190,8 @@ export default {
             this.getSingleOrder()
             .then(()=>{
                 $("#dashOrderModal").modal("show");
+                console.dir($("#dashOrderModal"));
+                
             });
             // $("#dashOrderModal").modal("show");
 

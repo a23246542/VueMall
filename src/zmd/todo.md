@@ -3,6 +3,16 @@
 <!-- [Vue] 整合 Vue style guide, eslint-plugin-vue 和 VSCode ~ PJCHENder<br>那些沒告訴你的小細節
 https://pjchender.blogspot.com/2019/07/vue-vue-style-guide-eslint-plugin-vue.html -->
 
+- [ ] 把compoent有些是公用組件 要跟頁頁組件拆(page)嗎?
+
+### css管理
+- [ ] mike全域載入mixin
+- [ ] id沒有效能優勢 頁面組件id改成bem class(可是又好處感覺可以避免重複) 暫定放scss資料夾 但組件style好像也可以
+- [ ] 共用組件 一樣用bem class 不用scoped方便客製修改 基本樣式一樣佔放scss資料夾(但基本樣式用bs4了) 設定樣式寫組件style
+<!-- 可是感覺專案應該基本樣式應該寫組件style拿來引用 客製修改寫在專案scss資料夾 -->
+二次複用這個組件的時候 scoped deep下去改子共用元件內樣式了
+
+
 <!-- ====router頁面 -->
 - [ ] 還有很多頁面還沒有相對應的連結
 - [ ]  加上 meta: {
@@ -64,6 +74,8 @@ message: "The given data was invalid."
 
 ### 產品列表
 - [ ] 產品列表 例如在第四頁編輯後重整 會跳回第一頁
+    * 咨询个问题，如果我刷新浏览器的按钮，怎么缓存？比如果分页，用户现在处于第二页，刷新之后会跳转到第一页的问题
+    :current-page.sync="currentPage" 我这个没设置导致的 尴尬
 - [ ] 商品啟用、關閉可以使用不同的顏色標示
 - [ ] 修正發現要調整第四頁的產品2 啟用與否時 有報錯Error in render: "TypeError: Cannot read property 'indexOf' of null" 
 - [ ] cusProduct改大寫 productCard組件也是 都是模組
