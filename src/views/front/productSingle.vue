@@ -2,9 +2,12 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <img :src="product.imageUrl[0]" alt="">
-                    <p>輪播v-if</p>
+                <div class="col-md-6 text-center">
+                    <img :src="product.imageUrl[0]" alt=""
+                    class="img-fluid"
+                    style="height:500px;object-fit:contain;"
+                    >
+                    <!-- <p>輪播v-if</p> -->
                 </div>
                 <div class="col-md-6">
                     <h2>{{product.title}}</h2>
