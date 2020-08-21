@@ -6,11 +6,12 @@
         <!-- <table class="table mt-4 bg-light"> -->
         <thead>
             <tr>
-            <th width="120">購買時間</th>
-            <th>購買項目</th>
+            <th width="120">訂單時間</th>
+            <th width="120">訂單編號</th>
+            <th>產品品項</th>
             <th width="100">應付金額</th>
             <th width="100">付款方式</th>
-            <th width="100">付款</th>
+            <th width="100">付款狀態</th>
             <th width="120">編輯</th>
             </tr>
         </thead>
@@ -23,7 +24,7 @@
             <!-- <td>{{ item.create_at | date }}</td> -->
             <td>{{item.created.timestamp}}</td>
             <!-- <td><span v-text="item.user.email" v-if="item.user"></span></td> -->
-            
+            <td>{{item.id.slice(-16)}}</td>
             <td>
                 <ul class="list-unstyled">
                 <li v-for="(product, i) in item.products" :key="i">

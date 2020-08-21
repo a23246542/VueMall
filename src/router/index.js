@@ -108,7 +108,7 @@ const routes = [
         path:'/admin',
         name:'Dashboard',
         component:() => import('../views/back/dashboard.vue'),
-        redirect:'/admin/products',
+        // redirect:'/admin/products',//##前台右鍵後台開新分頁會直接略過router.beforeEach
         // meta:{ requireAuth: true },//##有redirect沒用
         children:[
             {

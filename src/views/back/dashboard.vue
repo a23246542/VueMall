@@ -21,9 +21,9 @@ export default {
     DashSidebar,
     dashProducts
   },
-//   mounted(){
-//     this.$router.push()
-//   }
+  mounted(){
+    this.$router.push({name:'dashProducts'});
+  }
   
 }
 

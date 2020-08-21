@@ -56,15 +56,21 @@
               </div>
 
               <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <label for="category">分類</label>
                   <input id="category" v-model="tempProduct.category" type="text"
                     class="form-control" placeholder="請輸入分類">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <label for="price">單位</label>
-                  <input id="unit" v-model="tempProduct.unit" type="unit" class="form-control"
+                  <input id="unit" v-model="tempProduct.unit" type="text" class="form-control"
                     placeholder="請輸入單位">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="stock">庫存</label>
+                    <input id="stock" type="number" class="form-control"  placeholder="請輸入庫存"
+                    v-model.number="tempProduct.options.stock"
+                    >
                 </div>
               </div>
 
@@ -81,17 +87,20 @@
                 </div>
               </div>
               <hr>
-
-              <div class="form-group">
-                <label for="description">產品描述</label>
-                <textarea id="description" v-model="tempProduct.description" type="text"
-                  class="form-control" placeholder="請輸入產品描述">
-                      </textarea>
-              </div>
               <div class="form-group">
                 <label for="content">說明內容</label>
                 <textarea id="description" v-model="tempProduct.content" type="text"
-                  class="form-control" placeholder="請輸入說明內容">
+                  class="form-control" placeholder="請輸入說明內容"
+                  style="height:60px"
+                  >
+                      </textarea>
+              </div>
+              <div class="form-group">
+                <label for="description">產品描述</label>
+                <textarea id="description" v-model="tempProduct.description" type="text"
+                  class="form-control" placeholder="請輸入產品描述"
+                  style="height:140px"
+                  >
                       </textarea>
               </div>
               <div class="form-group">
@@ -140,7 +149,10 @@
       return {
         //@@一開始v-model綁定的是空的物件屬性不會報錯
         tempProduct:{
-            imageUrl:[]
+            imageUrl:[],
+            options:{
+                stock:0
+            }
         },
         tempImgUrl:'',
         filePath:'',
@@ -160,7 +172,8 @@
             this.$store.commit('LOADING',true);
             //保險
             this.tempProduct={
-                imageUrl:[]
+                imageUrl:[],
+                options:{}
             }
             // ------等於下面-----------------
             // this.tempProduct = {};
@@ -175,6 +188,7 @@
             instanceAdmin.get(api)
             .then(res => {
                 this.tempProduct = res.data.data;//##重新賦值
+                // this.$set(this.tempProduct,'options',{});//##增加欄位時才能用 且只能用一次
                 this.$store.commit('LOADING',false);
                 $('#productModal').modal('show');
             })
@@ -215,15 +229,59 @@
                     this.$emit('update');
                     //4 關閉modal
                     $('#productModal').modal('hide')
+                    
+                    this.tempProduct={ //清空以免
+                        imageUrl:[],
+                        options:{}
+                    }
                 })
 
         },
         cancelUpdateProduct(){
             this.tempProduct={ //#非prop資料，此處清空
-                imageUrl:[]
+                imageUrl:[],
+                options:{}
             }
             this.$emit('cancel');
         },
+        removeBlankImg(emptyIndex){
+            this.tempProduct.imageUrl.splice(emptyIndex,1);
+        }
+    },
+    watch:{
+        // ['this.tempProduct.imageUrl'](){
+            // console.log("圖片改動");
+            
+        // }
+        // ['this.tempProduct.imageUrl']:{//%%不用this
+        ['tempProduct.imageUrl']:{
+            handler(Val) {
+                // console.log(oldVal,Val);//無意義
+                // console.log("圖片陣列改動");
+                // 方法1 會無限迴圈
+                // let emptyIndex = 0;
+                // Val.forEach((url,index) => {
+                //     if(url==""){
+                //         emptyIndex = index;
+                //     }
+                // })
+                // Val.splice(emptyIndex,1);
+                
+                // 方法2
+                let emptyIndex = 0;
+                const ifHasEmpty = Val.some((item,index) =>{
+                    // if(item===""){ return true}
+                    emptyIndex = index;
+                    return item === "";
+                })
+                // console.log(ifHasEmpty);
+                if(ifHasEmpty){
+                    this.removeBlankImg(emptyIndex)
+                }
+                
+            },
+            deep:true
+        }
     }
 }
 

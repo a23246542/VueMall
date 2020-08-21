@@ -14,10 +14,12 @@ https://pjchender.blogspot.com/2019/07/vue-vue-style-guide-eslint-plugin-vue.htm
 
 
 <!-- ====router頁面 -->
-- [ ] 還有很多頁面還沒有相對應的連結
+- [ ] 還有很多頁面還沒有相對應的連結(頁面組件小寫好了 載入多個views有共用組件在大寫)
 - [ ]  加上 meta: {
             title: 'vueMall - 關於我們',
           },
+- [ ] 雖然改成在後台父頁面當入口導航守衛，但還是會看到後台 navHeader改成點下去就驗證 但要順便看開新分頁的話會變怎麼樣
+
 <!-- ======vuex==================== -->
 * 改用rayproducts mapAction
 <!-- =========================前台==================================================== -->
@@ -81,6 +83,9 @@ message: "The given data was invalid."
 - [ ] cusProduct改大寫 productCard組件也是 都是模組
 - [ ] addtoCart 產品內頁好像也有 可以用mixin??
 
+- [ ] 之後可以寫個增加欄位的按鈕 但好像太怪 不過是因為
+    * // this.$set(this.tempProduct,'options',{});//##增加欄位時才能用 且只能用一次
+- [ ] 編輯圖片有個bug需要修復=> 第一個地址刪掉為空時 應該去掉這個陣列(不留空白)，不然更新送出去回傳回來第一個陣列變null，並造成報錯 modal空白
 
 ### 優惠券列表
 - [ ] 選到之前的日期會跳視窗靜止 或disabled 
