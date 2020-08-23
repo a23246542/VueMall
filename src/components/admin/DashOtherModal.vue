@@ -9,7 +9,7 @@
       <div class="modal-dialog" role="document"
       :class="{
           'modal-lg':modalUse==='update',
-          'modal-md':modalUse==='delete'
+          'modal-md':(modalUse==='delete'||modalUse==='read')
       }"
       >
         <div class="modal-content border-0">
@@ -33,6 +33,9 @@
                 <template v-if="modalUse==='delete'">
                     <slot name="delete"></slot>
                 </template>
+                <template v-if="modalUse==='read'">
+                    <slot name="read"></slot>
+                </template>
           </div>
           <div class="modal-footer">
             <button
@@ -40,14 +43,15 @@
               class="btn btn-outline-secondary"
               data-dismiss="modal"
             >
-              取消
+              {{modalUse==='read'?'關閉':'取消'}}
             </button>
             <button type="button" class="btn"
-            :class="{
-                'btn-primary':modalUse==='update',
-                'btn-danger':modalUse==='delete'
-            }"
-             @click="sureBtn"
+                v-if="modalUse!=='read'"
+                :class="{
+                    'btn-primary':modalUse==='update',
+                    'btn-danger':modalUse==='delete'
+                }"
+                @click="sureBtn"
             >
             {{modalUse==='update'? '確認':'確認刪除'}}
             </button>

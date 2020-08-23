@@ -32,13 +32,19 @@
                     >
                 </div>
                 <hr>
-                <div style="overflow-x:auto;display:flex" class="w-100">
+                <div class="d-flex w-100 flex-column overflow-x-hidden overflow-y-auto"
+                style="height:500px"
+                >
                     <div v-for="(url,index) in tempProduct.imageUrl" :key="'img'+index" class="w-100 flex-shrink-0 px-2 text-center">
                         <div class="form-group">
                             <!-- <label for="imageUrl">編輯圖片網址</label>要有id對應%% -->
-                            <label :for="'img'+index">圖片網址{{isReadonly(url)?"(不可編輯)":"(可編輯)"}}</label>
-                            <input :id="'img'+index" type="text" class="form-control" placeholder="請輸入圖片連結"
+                            <!-- <label :for="'img'+index">圖片網址{{isReadonly(url)?"(不可編輯)":"(可編輯)"}}</label> -->
+                            <label :for="'img'+index">圖片網址</label>
+                            <!-- <input :id="'img'+index" type="text" class="form-control" placeholder="請輸入圖片連結"
                             :readonly="isReadonly(url)"
+                            v-model="tempProduct.imageUrl[index]"
+                            > -->
+                            <input :id="'img'+index" type="text" class="form-control" placeholder="請輸入圖片連結"
                             v-model="tempProduct.imageUrl[index]"
                             >
                         </div>
@@ -88,6 +94,12 @@
               </div>
               <hr>
               <div class="form-group">
+                  <label for="hashtag">產品標籤</label>
+                  <input id="hashtag" type="text" class="form-control" placeholder="請輸入產品標籤"
+                  v-model="tempProduct.options.hashtag"
+                  >
+              </div>
+              <div class="form-group">
                 <label for="content">說明內容</label>
                 <textarea id="description" v-model="tempProduct.content" type="text"
                   class="form-control" placeholder="請輸入說明內容"
@@ -102,6 +114,15 @@
                   style="height:140px"
                   >
                       </textarea>
+              </div>
+              <div class="form-group">
+                <label for="specification">產品規格</label>
+                <textarea id="specification" type="text"
+                  class="form-control" placeholder="請輸入產品規格、注意事項"
+                  v-model="tempProduct.options.specification"
+                  style="height:120px"
+                  >
+                </textarea>
               </div>
               <div class="form-group">
                 <div class="form-check">
@@ -159,13 +180,13 @@
       }
     },
     computed:{
-        isReadonly(){
-            return function(url){
-                if(url.indexOf("hexschool")!==-1){
-                    return true;
-                }
-            }
-        }
+        // isReadonly(){ //如果是上傳六角的圖片就不可編輯??
+        //     return function(url){
+        //         if(url.indexOf("hexschool")!==-1){
+        //             return true;
+        //         }
+        //     }
+        // }
     },
     methods:{
         openNewModal(){
