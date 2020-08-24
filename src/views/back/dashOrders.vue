@@ -22,7 +22,7 @@
             :class="{ 'text-secondary': !item.is_paid }"
             >
             <!-- <td>{{ item.create_at | date }}</td> -->
-            <td>{{item.created.timestamp}}</td>
+            <td>{{item.created.timestamp | date}}</td>
             <!-- <td><span v-text="item.user.email" v-if="item.user"></span></td> -->
             <td>{{item.id.slice(-16)}}</td>
             <td>
@@ -66,35 +66,39 @@
             @submit="updateOrder"
         >
             <template v-slot:update>
-                <div class="row">
+                <div class="row mb-3">
                     <!-- 購買時間 購買項目 應付金額 付款方式付款沒
                     user msg 折扣 -->
-                    <div class="col-md-7">
-                        <div>
-                            <span>訂單時間</span><span>{{tempOrder.created.timestamp}}</span>
-                        </div>
-                        <div class="overflow-y-auto"
-                        style="max-height:280px"
-                        >
-                            <!-- <div class="w-100 p-3"> -->
-                                <ul class="list-unstyled">
-                                    <li
-                                    v-for="(prdData,i) in tempOrder.products" :key="i+prdData.product.title"
-                                    >
-                                        {{prdData.product.title}} 數量：{{prdData.quantity}}
-                                    </li>
-                                </ul>
-                            <!-- </div> -->
+                    <div class="col-md-6">
+                        <div class="pl-3">
+                            <p>
+                                <!-- <span>訂單時間：</span><span>{{tempOrder.created.timestamp | date}}</span> -->
+                                <span>訂單時間：</span><span>{{tempOrder.created.datetime}}</span>
+                            </p>
+                            <div class="overflow-y-auto d-flex"
+                            style="max-height:280px"
+                            >
+                                <p>產品品項：</p>
+                                <!-- <div class="w-100 p-3"> -->
+                                    <ul class="list-unstyled">
+                                        <li
+                                        v-for="(prdData,i) in tempOrder.products" :key="i+prdData.product.title"
+                                        >
+                                            {{prdData.product.title}} 數量：{{prdData.quantity}}
+                                        </li>
+                                    </ul>
+                                <!-- </div> -->
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-5">
-                        <div>顧客名：{{tempOrder.user.name}}</div>
-                        <div>應付款項：{{tempOrder.amount}}</div>
-                        <div v-if="tempOrder.coupon.code">折扣：{{tempOrder.coupon.percent+'%'}} 活動：{{tempOrder.coupon.title}}</div>
-                        <div v-else >折扣：無</div>
-                        <span>付款方式：{{tempOrder.payment}}</span>
+                    <div class="col-md-6">
+                        <p>顧客名：{{tempOrder.user.name}}</p>
+                        <p>應付款項：{{tempOrder.amount}}</p>
+                        <p v-if="tempOrder.coupon.code">折扣：{{tempOrder.coupon.percent+'%'}} 活動：{{tempOrder.coupon.title}}</p>
+                        <p v-else >折扣：無</p>
+                        <p>付款方式：{{tempOrder.payment}}</p>
                         <!-- @@間隔 -->
-                        <div>付款：
+                        <!-- <div>付款：
                             <span>
                                 <input type="checkbox" class="checkbox"
                                     v-model="tempOrder.paid"
@@ -102,7 +106,7 @@
                             </span>
                             <span v-if="tempOrder.paid" class="text-success">已付款</span>
                             <span v-else class="text-muted">未付款</span>
-                        </div>
+                        </div> -->
                         <div>付款：
                             <div class="custom-control custom-checkbox d-inline-block">
                                 <!-- <span>付款：</span> %%-->
@@ -117,36 +121,38 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="form-group form-row">
-                            <label for="name" class="col-sm-3 col-form-label">購買人</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="name"
-                                v-model="tempOrder.user.name"
-                                >
+                        <div class="pl-3">
+                            <div class="form-group form-row">
+                                <label for="name" class="col-sm-2 col-form-label">姓名：</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="name"
+                                    v-model="tempOrder.user.name"
+                                    >
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group form-row">
-                            <label for="email" class="col-sm-3 col-form-label">信箱</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="email"
-                                v-model="tempOrder.user.email"
-                                >
+                            <div class="form-group form-row">
+                                <label for="email" class="col-sm-2 col-form-label">信箱：</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="email"
+                                    v-model="tempOrder.user.email"
+                                    >
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group form-row">
-                            <label for="tel" class="col-sm-3 col-form-label">電話</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="tel"
-                                v-model="tempOrder.user.tel"
-                                >
+                            <div class="form-group form-row">
+                                <label for="tel" class="col-sm-2 col-form-label">電話：</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="tel"
+                                    v-model="tempOrder.user.tel"
+                                    >
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group form-row">
-                            <label for="address" class="col-sm-3 col-form-label">地址</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="address"
-                                v-model="tempOrder.user.address"
-                                >
+                            <div class="form-group form-row">
+                                <label for="address" class="col-sm-2 col-form-label">地址：</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="address"
+                                    v-model="tempOrder.user.address"
+                                    >
+                                </div>
                             </div>
                         </div>
                     </div>

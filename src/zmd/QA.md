@@ -125,6 +125,8 @@ https://vuex.vuejs.org/zh/guide/mutations.html
 
 ## w7 完成後台其他
 
+### 為什麼後台重整會導回產品頁
+
 ### singleProduct
 * product:{
         imageUrl:[],//@@ajax後被整個蓋掉寫了有意義嗎?
