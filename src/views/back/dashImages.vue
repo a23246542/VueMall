@@ -27,7 +27,7 @@
                 </div>
                 <div class="card-footer text-right">
                     <!-- <button class="btn btn-outline-danger btn-sm" @click="destoryStorage(item,index)"> -->
-                    <button class="btn btn-outline-info btn-sm" @click="openModal('read',item,index)">
+                    <button class="btn btn-outline-info btn-sm mr-3" @click="openModal('read',item,index)">
                         查看
                     </button>
                     <button class="btn btn-outline-danger btn-sm" @click="openModal('delete',item,index)">
@@ -40,7 +40,7 @@
       <DashModal
       ref="dashStorageModal"
       id="dashStorageModal"
-      :title="'刪除檔案'"
+      :title="title"
       :modalUse="modalUse"
       @delete="destoryStorage"
       >
@@ -51,12 +51,10 @@
         </template>
         <template v-slot:read>
             <div class="p-3">
-                <p>
-                    圖片編號:{{checkedItem.id}}
-                </p>
-                <p>
-                    圖片地址:{{checkedItem.path}}
-                </p>
+                <p class="mb-1">圖片編號:</p>
+                <p class="pl-3">{{checkedItem.id}}</p>
+                <p class="mb-1">圖片地址:</p>
+                <p class="pl-3">{{checkedItem.path}}</p>
             </div>
         </template>
       </DashModal>
@@ -87,6 +85,11 @@ export default {
     methods:{
         openModal(modalUse,item,index){
             this.modalUse = modalUse;
+            if(modalUse==="read"){
+                this.title = "檢視檔案";
+            }else if (modalUse==="delete"){
+                this.title = "刪除檔案"
+            }
             this.checkedItem = {...item};
             this.checkedindex = index;
 
