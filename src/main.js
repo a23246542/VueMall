@@ -112,10 +112,12 @@ router.beforeEach((to,from,next) => {
         // console.log("xxxx",token);
         // if(token){//@@為何還執行
         if(token!==""){
+
             instanceLogin.post(api,{'api_token':token})
             .then((res) => {
                 // console.log(res.message);%%
                 app.$store.commit('LOADING',false);
+                console.log("導航守衛");
                 console.dir(res);
                 if(res.data.success){
                     next();

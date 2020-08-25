@@ -1,5 +1,5 @@
 <template>
-    <div class="table-responsive">
+    <div id="dashOrders" class="table-responsive">
     <!-- ## !因沒設data會報錯 -->
         <table class="table mt-4" v-if="orders.length">
         <!-- <table class="table mt-4 bg-light" v-if="false"> -->
@@ -9,7 +9,7 @@
             <th width="120">訂單時間</th>
             <th width="120">訂單編號</th>
             <th>產品品項</th>
-            <th width="100">應付金額</th>
+            <th width="100">訂單金額</th>
             <th width="100">付款方式</th>
             <th width="100">付款狀態</th>
             <th width="120">編輯</th>
@@ -27,15 +27,19 @@
             <td>{{item.id.slice(-16)}}</td>
             <td>
                 <ul class="list-unstyled">
-                <li v-for="(product, i) in item.products" :key="i">
-                    {{ product.product.title }} 數量：{{ product.quantity }}
-                    {{ product.product.unit }}
+                <li v-for="(product, i) in item.products" :key="i" class="d-flex">
+                  <span class="flex-1 mr-2">
+                    {{ product.product.title }}
+                  </span>
+                  <span>
+                    數量：{{ product.quantity }}{{ product.product.unit }}
+                  </span>
                 </li>
                 </ul>
             </td>
             <td class="text-right">
                 {{ item.amount | dollars }}
-                (折扣{{item.coupon.percent+'%'}})
+                (折扣率{{item.coupon.percent+'%'}})
             </td>
             <td>{{item.payment}}</td>
             <td>
@@ -66,7 +70,7 @@
             @submit="updateOrder"
         >
             <template v-slot:update>
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <!-- 購買時間 購買項目 應付金額 付款方式付款沒
                     user msg 折扣 -->
                     <div class="col-md-6">
@@ -80,11 +84,16 @@
                             >
                                 <p>產品品項：</p>
                                 <!-- <div class="w-100 p-3"> -->
-                                    <ul class="list-unstyled">
-                                        <li
+                                    <ul class="list-unstyled flex-1">
+                                        <li class="d-flex"
                                         v-for="(prdData,i) in tempOrder.products" :key="i+prdData.product.title"
                                         >
-                                            {{prdData.product.title}} 數量：{{prdData.quantity}}
+                                            <span class="flex-2 mr-3">
+                                              {{prdData.product.title}}
+                                            </span>
+                                            <span class="flex-1">
+                                              數量：{{prdData.quantity}}
+                                            </span>
                                         </li>
                                     </ul>
                                 <!-- </div> -->
@@ -92,9 +101,9 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <p>顧客名：{{tempOrder.user.name}}</p>
-                        <p>應付款項：{{tempOrder.amount}}</p>
-                        <p v-if="tempOrder.coupon.code">折扣：{{tempOrder.coupon.percent+'%'}} 活動：{{tempOrder.coupon.title}}</p>
+                        <p>購買人：{{tempOrder.user.name}}</p>
+                        <p>訂單金額：{{tempOrder.amount}}</p>
+                        <p v-if="tempOrder.coupon.code">折扣率：{{tempOrder.coupon.percent+'%'}}  活動：{{tempOrder.coupon.title}}</p>
                         <p v-else >折扣：無</p>
                         <p>付款方式：{{tempOrder.payment}}</p>
                         <!-- @@間隔 -->
@@ -119,6 +128,7 @@
                         </div>
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="pl-3">
@@ -157,9 +167,10 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <textarea name="" id="" cols="30" rows="8"
-                        class="w-100"
-                        style=""
+                        <p class="mb-2">訂單留言：</p>
+                        <textarea name="" id="" cols="30"
+                        class="w-100 p-3 border-radius"
+                        style="height:140px;border-color:#ced4da"
                         v-model="tempOrder.message"
                         ></textarea>
                     </div>
@@ -248,6 +259,14 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+#dashOrders{
+  min-height:calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .table{
+          min-width: 870px;
+  }
+}
 </style>

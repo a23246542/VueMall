@@ -46,6 +46,11 @@
       </tbody>
 
     </table>
+    <div>
+      <button class="btn btn-danger"
+      @click="delAllProducts"
+      >刪除本頁產品</button>
+    </div>
     <BasePagination
     :pages="pagination"
     @change-page="getProducts"
@@ -120,6 +125,34 @@ export default {
                 vm.pagination = res.data.meta.pagination;
                 vm.$store.commit('LOADING',false);
             })
+        },
+        delAllProducts(){
+          this.$store.commit('LOADING',true);
+          const productIds = this.products.map((prdItem)=>{
+              return prdItem.id;
+          })
+          // console.log(productIds);
+          
+          // console.log(productIds.map(id=>{
+          //   const api = `ec/product/${id}`;
+          //   //  return this.instanceAdmin.delete(api);
+          //    return this.$http.delete(api);
+          // }));
+          
+          // @@為何this.instanceAdmin.delete()會讀取不到
+          this.$http.all(productIds.map(id=>{
+            const api = `ec/product/${id}`;
+             return instanceAdmin.delete(api);
+          }))
+          .then(res=>{
+            console.log(res);//##回傳陣列裝每一個api的res
+              this.$store.commit('LOADING',false);
+              this.getProducts();
+          })
+        //   .then(axios.spread(() => {
+        //   context.dispatch('getCart');
+        //   context.commit('LOADING', false);
+        // }));
         },
         openModal(action,item){
             console.log(action,item);

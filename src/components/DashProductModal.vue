@@ -219,6 +219,7 @@
             this.tempImgUrl = "";
         },
         uploadImg(){
+          this.$store.commit('LOADING',true);
             const api = 'storage';
 
             const uploadedFile = this.$refs.file.files[0];
@@ -231,11 +232,13 @@
                 }
             })
             .then(res => {
+                this.$store.commit('LOADING',false);
                 this.filePath = res.data.data.path;
                 this.tempProduct.imageUrl.push(this.filePath);
             })
         },
         updateProduct(){
+            this.$store.commit('LOADING',true);
             let api = 'ec/product';
             let httpMethod = 'post';
             // 1 依資料狀態變化更新方法
@@ -246,6 +249,7 @@
             //2 發送api
                 instanceAdmin[httpMethod](api,this.tempProduct)
                 .then(res =>{
+                  this.$store.commit('LOADING',false);
                     // 3 emit更新產品列表
                     this.$emit('update');
                     //4 關閉modal

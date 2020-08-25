@@ -22,7 +22,7 @@ export default {
     dashProducts
   },
   mounted(){
-    this.$router.push({name:'dashProducts'});
+    // this.$router.push({name:'dashProducts'});
   }
   
 }

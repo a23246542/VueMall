@@ -108,14 +108,14 @@ const routes = [
         path:'/admin',
         name:'Dashboard',
         component:() => import('../views/back/dashboard.vue'),
-        // redirect:'/admin/products',//##前台右鍵後台開新分頁會直接略過router.beforeEach
+        redirect:'/admin/products',//##前台右鍵後台開新分頁會直接略過router.beforeEach
         // meta:{ requireAuth: true },//##有redirect沒用
         children:[
             {
                 path:'products',
                 name:'dashProducts',
                 component:() => import('../views/back/dashProducts.vue'),
-                meta:{requireAuth:true}
+                // meta:{requireAuth:true}
             },
             {
                 path:'orders',
@@ -142,7 +142,8 @@ const routes = [
 
 const router = new VueRouter({
     base: process.env.BASE_URL,//@@忘記是什麼變數
-    routes
+    routes,
+    linkActiveClass: 'active',
 })
 
 export default router;

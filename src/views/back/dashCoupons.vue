@@ -1,56 +1,59 @@
 <template>
     <div class="table-responsive" id="dashCoupon">
         <!-- <BaseLoading :active.sync="isLoading"/> -->
-        <div class="mt-4 text-right">
-            <button class="btn btn-primary"
-                @click="openModal('new')">新增產品
-            </button>
+        <div>
+          <div class="mt-4 text-right">
+              <button class="btn btn-primary"
+                  @click="openModal('new')">新增產品
+              </button>
+          </div>
+          <table class="table mt-4"
+          >
+              <thead>
+                  <tr>
+                      <th width="100">產品名稱</th>
+                      <th width="120">折扣碼</th>
+                      <th width="120">折扣百分比</th>
+                      <th width="100">是否開放</th>
+                      <th width="120">到期日</th>
+                      <th width="120">編輯</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr v-for="(item) in coupons" :key=item.id>
+                      <td>{{item.title}}</td>
+                      <td>{{item.code}}</td>
+                      <td class="text-right">
+                          {{item.percent}}
+                      </td>
+                      <td>
+                          <span v-if="item.enabled">啟用</span>
+                          <span v-else>未啟用</span>
+                      </td>
+                      <!-- <td class="text-right">
+                          {{item['deadline_at']}}
+                      </td> -->
+                      <td class="text-right">
+                          <!-- {{item.deadline.datetime.split('').slice(0,10).join('')}} -->
+                          {{showOnlyDate(item.deadline.datetime)}}
+                          <!-- {{compons[index].deadline.datetime}} -->
+                      </td>
+                      <td>
+                          <div class="btn-group">
+                          <button class="btn btn-outline-primary btn-sm" @click="openModal('edit',item)">
+                              編輯
+                          </button>
+                          <button class="btn btn-outline-danger btn-sm" @click="openModal('delete',item)">
+                              刪除
+                          </button>
+                          </div>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
         </div>
-        <table class="table mt-4"
-        >
-            <thead>
-                <tr>
-                    <th width="100">產品名稱</th>
-                    <th width="120">折扣碼</th>
-                    <th width="120">折扣百分比</th>
-                    <th width="100">是否開放</th>
-                    <th width="120">到期日</th>
-                    <th width="120">編輯</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item) in coupons" :key=item.id>
-                    <td>{{item.title}}</td>
-                    <td>{{item.code}}</td>
-                    <td class="text-right">
-                        {{item.percent}}
-                    </td>
-                    <td>
-                        <span v-if="item.enabled">啟用</span>
-                        <span v-else>未啟用</span>
-                    </td>
-                    <!-- <td class="text-right">
-                        {{item['deadline_at']}}
-                    </td> -->
-                    <td class="text-right">
-                        <!-- {{item.deadline.datetime.split('').slice(0,10).join('')}} -->
-                        {{showOnlyDate(item.deadline.datetime)}}
-                        <!-- {{compons[index].deadline.datetime}} -->
-                    </td>
-                    <td>
-                        <div class="btn-group">
-                        <button class="btn btn-outline-primary btn-sm" @click="openModal('edit',item)">
-                            編輯
-                        </button>
-                        <button class="btn btn-outline-danger btn-sm" @click="openModal('delete',item)">
-                            刪除
-                        </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
         <BasePagination
+        class="BasePagination"
         :pages="pagination"
         @change-page="getCoupons"
         />
@@ -231,7 +234,7 @@ export default {
             $("#couponModal").modal("show");
             // alert("aa");
         },
-        getCoupons(callback){
+        getCoupons(page,callback){
             // return new Promise((resolve, reject) =>{
 
                 this.$store.commit('LOADING',true);
@@ -289,9 +292,15 @@ export default {
 </script>
 <style lang="scss">
     #dashCoupon{
-        .table{
-            min-width: 670px;
-        }
+      min-height: calc(100vh - 48px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .table{
+          min-width: 670px;
+      }
+      
+        
     }
 </style>
 

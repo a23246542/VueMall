@@ -13,58 +13,64 @@
                 ref="storage"
                 @change="postStorage"
                 >
-                <label class="custom-file-label" for="customFile">瀏覽圖片檔案</label>
+                <label class="custom-file-label" for="customFile">選擇圖片檔案</label>
             </div>
     </div>
-      <div class="row">
-         <div class="col-md-4 mb-4"
-            v-for="(item,index) in storages" :key="item.id"
-         >
-            <div class="card">
-                <div class="card-body">
-                    <img class="img-fluid"
-                    :src="item.path">
-                </div>
-                <div class="card-footer text-right">
-                    <!-- <button class="btn btn-outline-danger btn-sm" @click="destoryStorage(item,index)"> -->
-                    <button class="btn btn-outline-info btn-sm mr-3" @click="openModal('read',item,index)">
-                        查看
-                    </button>
-                    <button class="btn btn-outline-danger btn-sm" @click="openModal('delete',item,index)">
-                        刪除
-                    </button>
-                </div>
-            </div>
-         </div>
-      </div>
-      <DashModal
-      ref="dashStorageModal"
-      id="dashStorageModal"
-      :title="title"
-      :modalUse="modalUse"
-      @delete="destoryStorage"
-      >
-        <template v-slot:delete>
-            <div class="p-3">
-                確定要刪除圖片嗎?
-            </div>
-        </template>
-        <template v-slot:read>
-            <div class="p-3">
-                <p class="mb-1">圖片編號:</p>
-                <p class="pl-3">{{checkedItem.id}}</p>
-                <p class="mb-1">圖片地址:</p>
-                <p class="pl-3">{{checkedItem.path}}</p>
-            </div>
-        </template>
-      </DashModal>
+    <div class="row">
+        <div class="col-md-6 col-lg-4 mb-4"
+          v-for="(item,index) in storages" :key="item.id"
+        >
+          <div class="card">
+              <div class="card-body">
+                  <img class="img-fluid"
+                  :src="item.path">
+              </div>
+              <div class="card-footer text-right">
+                  <!-- <button class="btn btn-outline-danger btn-sm" @click="destoryStorage(item,index)"> -->
+                  <button class="btn btn-outline-info btn-sm mr-3" @click="openModal('read',item,index)">
+                      查看
+                  </button>
+                  <button class="btn btn-outline-danger btn-sm" @click="openModal('delete',item,index)">
+                      刪除
+                  </button>
+              </div>
+          </div>
+        </div>
+    </div>
+    <pagination
+      :pages="pagination"
+      @change-page="getStorages"
+    ></pagination>
+    <DashModal
+    ref="dashStorageModal"
+    id="dashStorageModal"
+    :title="title"
+    :modalUse="modalUse"
+    @delete="destoryStorage"
+    >
+      <template v-slot:delete>
+          <div class="p-3">
+              確定要刪除圖片嗎?
+          </div>
+      </template>
+      <template v-slot:read>
+          <div class="p-3">
+              <p class="mb-1">圖片編號:</p>
+              <p class="pl-3">{{checkedItem.id}}</p>
+              <p class="mb-1">圖片地址:</p>
+              <p class="pl-3">{{checkedItem.path}}</p>
+          </div>
+      </template>
+    </DashModal>
   </div>
 </template>
 <script>
+import pagination from '@/components/BasePagination';
 import DashModal from '@/components/admin/DashOtherModal';
 export default {
     components:{
-        DashModal
+      pagination,
+      DashModal
     },
     data() {
         return {
@@ -163,6 +169,7 @@ export default {
 
     .custom-file{
         width:auto;
+        
     }
     .custom-file-input{ //隱藏且覆蓋在上面
         cursor: pointer;
@@ -173,6 +180,8 @@ export default {
         left: 0;
         border-left:0;//
         border-right:inherit;//##
+        border-top-right-radius:0;
+        border-bottom-right-radius:0;
     }
 }
 
