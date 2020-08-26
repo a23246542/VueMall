@@ -115,7 +115,7 @@ const routes = [
                 path:'products',
                 name:'dashProducts',
                 component:() => import('../views/back/dashProducts.vue'),
-                // meta:{requireAuth:true}
+                meta:{requireAuth:true}
             },
             {
                 path:'orders',
