@@ -234,25 +234,28 @@ export default {
             $("#couponModal").modal("show");
             // alert("aa");
         },
-        getCoupons(page,callback){
+        async getCoupons(page=1){
             // return new Promise((resolve, reject) =>{
 
                 this.$store.commit('LOADING',true);
                 const api = "ec/coupons";
-                this.$instanceAdmin.get(api)
+                await this.$instanceAdmin.get(api)
                 .then((res)=>{
                     this.coupons = res.data.data;
                     this.pagination = res.data.meta.pagination;
+                    // if(callback){
+                    //   callback();
+                    // }
                     this.$store.commit('LOADING',false);
-                    if(callback){
-                        callback();
-                    }
                     // resolve();
                 })
+                // console.log("getCoupons跑完");
+                
             // })
         },
-        updateCoupon(){
+        async updateCoupon(){
             this.$store.commit('LOADING',true);
+            const vm = this;
             let api = "ec/coupon";
             let apiMethod = "post";
             if(!this.isNew){
@@ -262,15 +265,16 @@ export default {
             const data = {...this.tempCoupon};
             data['deadline_at'] = data.deadline.datetime;
             delete data.deadline;
-            this.$instanceAdmin[apiMethod](api,data)
-            .then(() => {
-                this.getCoupons(()=>{
-                    $("#couponModal").modal("hide");
-                });
-                
+            await this.$instanceAdmin[apiMethod](api,data)
+            // .then(async () => {
+            .then(async function (){
+                // this.getCoupons(()=>{
+                //     $("#couponModal").modal("hide");
+                // });
+                await vm.getCoupons();//@@為何getCoupns有加這邊還要加的原因
+                // $("#couponModal").modal("hide");
             })
-            
-            
+            $("#couponModal").modal("hide");        
         },
         removeCoupon(){
             this.$store.commit('LOADING',true);

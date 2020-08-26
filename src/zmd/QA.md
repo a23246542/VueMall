@@ -125,7 +125,11 @@ https://vuex.vuejs.org/zh/guide/mutations.html
 
 ## w7 完成後台其他
 
-### 為什麼後台重整會導回產品頁
+### router.push 到query的報錯問題 & 切換頁保留query問題
+* 為了實現重整後可以停留在原本的頁數，getProducts的時候依page把網址加上query
+切換別頁的時候沒有問題，但是重整會報錯，上網查到都是馬報錯隱藏這是對的方法嗎
+另外還有sidebar切換回來的時候網址的query就不見了但有停留在頁數，難道用vux就可以解決嗎?
+
 
 ### singleProduct
 * product:{

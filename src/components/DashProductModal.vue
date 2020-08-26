@@ -194,7 +194,12 @@
             //保險
             this.tempProduct={
                 imageUrl:[],
-                options:{}
+                options:{
+                  stock:0,
+                  delivery:"",
+                  specification:""
+                  
+                }
             }
             // ------等於下面-----------------
             // this.tempProduct = {};
@@ -247,19 +252,19 @@
                 httpMethod ='patch';
             }
             //2 發送api
-                instanceAdmin[httpMethod](api,this.tempProduct)
-                .then(res =>{
-                  this.$store.commit('LOADING',false);
-                    // 3 emit更新產品列表
-                    this.$emit('update');
-                    //4 關閉modal
-                    $('#productModal').modal('hide')
-                    
-                    this.tempProduct={ //清空以免
-                        imageUrl:[],
-                        options:{}
-                    }
-                })
+            instanceAdmin[httpMethod](api,this.tempProduct)
+            .then(res =>{
+              this.$store.commit('LOADING',false);
+                // 3 emit更新產品列表
+                this.$emit('update');
+                //4 關閉modal
+                $('#productModal').modal('hide')
+                
+                this.tempProduct={ //清空以免
+                    imageUrl:[],
+                    options:{}
+                }
+            })
 
         },
         cancelUpdateProduct(){

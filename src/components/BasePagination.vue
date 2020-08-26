@@ -42,11 +42,13 @@ export default {
     data() {
         return {
             //%%不能跟prop重複
+            currentPage:'1'
         }
     },
     methods:{
         // changPage(){//%%
         emitPage(page){
+            this.currentPage = page;
             this.$emit("change-page",page);
         }
     }
