@@ -9,3 +9,7 @@
 
 * orderInfo的購物清單一直消失 切去別頁會來有 重整就沒了
 原來這頁組件created時沒有 this.$store.dispatch('getCart');//%%
+
+* ~dashcoupon v-for 出來的item 如何computed
+
+* 圖片有空白在watch要去除，先用deep去看物件，但遇到一個問題handler去除陣列後又會一直watch自己無限迴圈，後來用判斷去呼叫別的方法

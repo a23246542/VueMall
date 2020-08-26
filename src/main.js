@@ -2,8 +2,8 @@
 import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-// import $ from 'jquery';
-// window.$ = $;//@@全域效能問題
+import $ from 'jquery';
+window.$ = $;//@@全域效能問題
 import 'jquery';
 import 'bootstrap';//@@不寫.css會是載入js
 // import {
@@ -77,7 +77,7 @@ Vue.filter('dollars',dollarsFilter)
 // })
 
 //mock開關
-const mock = false;
+const mock = true;
 if(mock){
   require('./mock/api.js');
     // const mockData = require('./mock/api.js');
@@ -112,10 +112,12 @@ router.beforeEach((to,from,next) => {
         // console.log("xxxx",token);
         // if(token){//@@為何還執行
         if(token!==""){
+
             instanceLogin.post(api,{'api_token':token})
             .then((res) => {
                 // console.log(res.message);%%
                 app.$store.commit('LOADING',false);
+                console.log("導航守衛");
                 console.dir(res);
                 if(res.data.success){
                     next();

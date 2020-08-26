@@ -38,9 +38,45 @@
 .fz-3{
     font-size: 20px;
 }
+
+.fz-35{
+    font-size: 18px;
+}
+
 .fz-4{
     font-size: 16px;
 }
 .fz-5{
     font-size: 12px;
+}
+
+.overflow-x-auto{
+    overflow-x: auto;
+}
+
+.overflow-x-hidden{
+    overflow-x: auto;
+}
+
+.overflow-y-auto{
+    overflow-y: auto;
+}
+.overflow-y-hidden{
+    overflow-y: auto;
+}
+
+.border-radius-0{
+  border-radius: 0;
+}
+
+.border-radius{
+  border-radius: $border-radius;
+}
+
+.border-radius-sm{
+  border-radius:$border-radius-sm;
+}
+
+.border-radius-lg{
+  border-radius:$border-radius-lg;
 }

@@ -123,6 +123,14 @@ editCart(context,{id,qty}){
 https://vuex.vuejs.org/zh/guide/mutations.html
 
 
+## w7 完成後台其他
+
+### router.push 到query的報錯問題 & 切換頁保留query問題
+* 為了實現重整後可以停留在原本的頁數，getProducts的時候依page把網址加上query
+切換別頁的時候沒有問題，但是重整會報錯，上網查到都是馬報錯隱藏這是對的方法嗎
+另外還有sidebar切換回來的時候網址的query就不見了但有停留在頁數，難道用vux就可以解決嗎?
+
+
 ### singleProduct
 * product:{
         imageUrl:[],//@@ajax後被整個蓋掉寫了有意義嗎?
@@ -137,7 +145,36 @@ https://vuex.vuejs.org/zh/guide/mutations.html
 ### orderInfo
 * 為何樣式會出現data-v 奇怪 明明沒有寫scoped
 
+### 後台dashCoupon
+* 感覺就算是新增也不是tempCoupon = {}這麼簡單 模板完全讀不到
+* ~為什麼getCoupon的cb會報錯 @#因為一開始的cb不存在
+* 後來像產品列表沒辦法開新分頁怎麼辦!!!
+* promise猜運作是有比較慢的特性嗎 原本callback改用promise結果 loading都結束了幾秒 modal才關閉，用callback幾乎loading跟modal關閉同時
+* modalUse ===xxx的判斷 改成computed有比較好嗎 閱讀
+* ~scoped才加一個table寬度 就全部出現data-v 後來發現是只有要scoped標籤在(就算空的)就會全加
+* 頁面組件給id是可以的吧??探討
+
+### token運作機制疑問
+* 我原本以為甲地登入了 取得新token 乙地就不能使用舊本地token取得但其實可以，可check token又不會過這樣
+* ??那現在很多網站是如何做到 我甲地登入也沒登入 乙地登入後 甲地回去用還是可以登入 是xxx嗎
+* 話說如果六角是這個機制 我應該還是可以用原本admin父路由 check一次就好，反正後台其他頁可以發api 代表有token是登入過的，但這樣的話要預防其他人不是經過router又從後台頁第一次進去開始看(???如果只有父路由寫驗證(meta check)不用redirct，用push的方式，這樣直接打admin/xxx也會自動吃到meta check嗎)，要寫個驗證err回應的是401或是本地沒有token也要router到login頁 
+
+### http.js & cart.js 理解這個vue實例的核心物件 如何運作work的 模糊
+*　！！話說好奇為何Vue.$store 可以運作 真的動到module嗎
+* 可是cart.js用 // Vue.$instanceCus 卻又呼叫不到 不是掛載上面了嗎
+
+### dashOrder
+* api這兩個欄位是設計來做什麼的
+    "paid_at": null,
+        "paid_diff": null,
+
+* 了解用keepalive了也先把驗證api關閉了，還是重跑很慢
+可是有時候又可以是keepalive的緩存超過就會自動釋放掉嗎
+
 <!-- ===========卡斯伯老師======================= -->
+
+### 如何開啟vuter高亮!!!
+
 掛載原型會建議統一在main.js嗎
 index key的雷
 watch v-for item的問題
@@ -149,3 +186,10 @@ yoko助教關於更新不上去的問題
 還是只是我gh-分支不該checkout會造成大量更動
 
 
+## vue本身其他問題
+* Mike scoped的話改style無效 不動為何 是因為那是子元件的關係?
+    *如何在Vue裡面使用Element-ui並修改CSS樣式呢？. 大家好！我是Mike，今天要來說說大部分使用 Vue… | by Mike | I am Mike | Medium
+    *跟scoped吃不到共用樣是 mixin function卻吃得到class的原因??
+        *還是只是說style裡面無法引用而已
+        *所以難怪說style scoped 裡面克制改scss的class沒用嗎 不對可以改阿
+    https://medium.com/i-am-mike/%E5%A6%82%E4%BD%95%E5%9C%A8vue%E8%A3%A1%E9%9D%A2%E4%BD%BF%E7%94%A8element-ui%E4%B8%A6%E4%BF%AE%E6%94%B9css%E6%A8%A3%E5%BC%8F%E5%91%A2-f11c1e05787f

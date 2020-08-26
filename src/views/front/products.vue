@@ -24,7 +24,7 @@
                         v-for="item in categories" :key="item"
                         @click.prevent="setSearchText(item)"
                         >
-                            {{item}}
+                            {{firstFloor(item)}}
                         </a>
                     </div>
                 </div>
@@ -189,6 +189,15 @@ export default {
         // },
         openSingleProduct(id) {
             this.$router.push(`/products/${id}`);
+        },
+        firstFloor(item){//顯示第一層目錄
+            if(item.includes(">")){
+                return item.split(">")[0];
+                // console.log(item.split(">"));
+            }else{
+                return item
+                // console.log(item);
+            }
         },
         setSearchText(text){
             this.searchText = text;

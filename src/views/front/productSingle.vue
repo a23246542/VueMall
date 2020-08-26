@@ -2,15 +2,29 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <img :src="product.imageUrl[0]" alt="">
-                    <p>輪播v-if</p>
+                <div class="col-md-6 text-center">
+                    <img :src="product.imageUrl[0]" alt=""
+                    class="img-fluid"
+                    style="height:500px;object-fit:contain;"
+                    >
+                    <!-- <p>輪播v-if</p> -->
                 </div>
                 <div class="col-md-6">
+                    <small>商品編號{{product.id.slice(-5)}}</small>
                     <h2>{{product.title}}</h2>
                     <p>{{product.content}}</p>
                     <!-- <span>{{product.origin_price | dollars}}</span>/<span>{{product.price | dollars}}</span> -->
-                    <span>{{product.origin_price}}</span>/<span>{{product.price}}</span>
+                    <small class="text-success">尚有庫存</small>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span>{{product.origin_price}}</span>
+                            <br>
+                            <span>{{product.price}}</span>
+                        </div>
+                        <div>
+                            加入收藏
+                        </div>
+                    </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <button class="btn btn-secondary">+</button>
@@ -22,6 +36,9 @@
                         <div class="input-group-append mr-3">
                             <button class="btn btn-secondary">-</button>
                         </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary mr-3">直接購買</button>
                         <button class="btn btn-primary">加入購物車</button>
                     </div>
                     <!-- <div>
@@ -29,8 +46,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="bg-secondary">
-                    <p>{{product.description}}</p>
+                <div class="col-sm-8">
+                    <div class="border border-muted">
+                        <p>{{product.description}}</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <h3>同類商品</h3>
                 </div>
             </div>
         </div>
