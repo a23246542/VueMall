@@ -52,7 +52,7 @@ LV3：自行設計購物車的版型
 * 為何email的passed訊息已填出不來
 ### 購物車
 * ~可不可以新增跟vue電商一樣 有item.coupon判斷這項產品有沒有已使用優惠券
-*~Vue.prototype.instanceCus = instanceCus;//@@發現攔截無效 
+*~??Vue.prototype.instanceCus = instanceCus;//@@發現攔截無效 
 *~<!-- {{ (item.quantity*item.product.price) | currency }} -->
 為什麼這個會Nan是filter的話只能填一個值嗎
 那這樣各別的item是要怎麼做計算
@@ -61,12 +61,12 @@ LV3：自行設計購物車的版型
 * ~vuex如何讀取到vue實例好可以用綁定的axios跟bus (this讀取不到) @#最後用return一個promise
 * 再看alex試試看watch item
 
-* edit購物車後又觸發get購物車，用兩個promise解決等get購物車ajax結束 loading跑完 再觸發this.bus 可是要怎麼改寫成async/await呢 還是說簡單的部分才用async
+* ~edit購物車後又觸發get購物車，用兩個promise解決等get購物車ajax結束 loading跑完 再觸發this.bus 可是要怎麼改寫成async/await呢 還是說簡單的部分才用async
 ### Alert彈窗
 * 蝦 為什麼組件內scoped 寫寬600 我在products內放竟然沒效果!!! 這樣寫scoped有什麼用 不能搬  @#後來試又可以了
 * 不能把index當作key的雷?  Module Warning (from ./node_modules/vue-loader/lib/loaders/templateLoader.js):
 (Emitted value instead of an instance of Error) Do not use v-for index as key on <transition-group> children, this is the same as not using keys.
-* 3.在CartModal組件內有scoped有客制設定badge樣式寬高，但是發現父層組件NavHeader其他nav-item(ex.優惠券)加上badge也會影響到
+* ?? 3.在CartModal組件內有scoped有客制設定badge樣式寬高，但是發現父層組件NavHeader其他nav-item(ex.優惠券)加上badge也會影響到
 後來重啟才正常 或是其他有錯誤影響後面的編譯
 
 ### 產品結帳

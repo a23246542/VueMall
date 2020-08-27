@@ -56,7 +56,7 @@ export default {
                 this.$bus.$emit('message:push',`${item.title}已加入購物車`,'success')
                 this.$refs.cart.getCart();
             })
-            //###這邊判斷post patch缺點會跑兩次api
+            //##這邊判斷post patch會跑兩次api
             // .catch((err) => {
             //     console.dir(err.response.data);
             //     if(err.response.data.errors[0]==="該商品已放入購物車當中。"){          

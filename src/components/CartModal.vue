@@ -112,29 +112,9 @@ export default {
     methods:{
         getCart(){
             this.$store.dispatch('getCart');
-
-            // this.$store.commit('LOADING',true);
-            // const api ="ec/shopping"
-            // this.$instanceCus.get(api)
-            // .then((res) => {
-            //     console.log("上面是取得購物車");
-            //     this.carts = res.data.data.reverse();
-            //     this.cartPagination = res.data.meta.pagination;
-            //     this.$emit('emitCart',this.carts)
-            //     // @@是否會傳參考
-            //     this.$store.commit('LOADING',false);
-            // })
         },
         editCart(id,qty){
             this.$store.dispatch('editCart',{id,qty})
-
-            // this.$store.commit('LOADING',true);
-            // const api ="ec/shopping"
-            // const cartItem = {product:id,quantity:qty};
-            // this.$instanceCus.patch(api,cartItem)
-            // .then((res) => {
-            //     this.getCart();
-            // })
         },
         delCart(item){//%%405 delete方法用錯
             const productId = item.product.id;
