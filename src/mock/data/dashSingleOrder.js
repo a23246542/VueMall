@@ -1,7 +1,7 @@
 export default {
     "data": {
         "id": "oSxbOQyerynJfwj2KLx27uCo4B3JXL1poTiIppD8LACusH4XEMTrZJ0ma1YVT8za",
-        "message": "我不會寫程式。",
+        "message": "還有好多，要再加油。",
         "user": {
             "name": "六角學院",
             "email": "service@hexschool.com",
@@ -15,7 +15,7 @@ export default {
             "enabled": true,
             "deadline": {
                 "diff": "1秒前",
-                "datetime": "2019-12-31 01:23:45",
+                "datetime": "2019-8-26 01:23:45",
                 "timestamp": 1577755425
             }
         },

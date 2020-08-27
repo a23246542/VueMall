@@ -10,7 +10,7 @@
                         @click="openSingleProudct"
                     >
                         {{thisProduct.title}}
-                        <span class="badge badgeColor">{{thisProduct.category}}</span>
+                        <span class="badge badgeColor">{{productTag}}</span>
                     </h5>
                     <p class="card-text text-truncate lineCamp--4 text-wrap">
                         {{thisProduct.content}}
@@ -64,6 +64,13 @@ export default {
     computed:{
         carts(){
             return this.$store.state.Cart.cart.carts;
+        },
+        productTag(){//如果有子分類，回傳子分類名稱
+            if(this.thisProduct.category.includes(">")){
+              return this.thisProduct.category.split(">")[1]
+            }else{
+              return this.thisProduct.category;
+            }
         }
     },
     methods: {

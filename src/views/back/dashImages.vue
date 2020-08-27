@@ -1,13 +1,6 @@
 <template>
-  <!-- <div class="table-responsive"> -->
   <div id="dashStorage" class="dashStorage pt-4">
     <div class="form-inline justify-content-end mb-4">
-            <!-- <label for="fileImg">上傳圖片</label>
-            <input type="file" class="form-control"
-                id="fileImg"
-                ref="storage"
-                @change="postStorage"
-            > -->
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="customFile"
                 ref="storage"
@@ -26,7 +19,6 @@
                   :src="item.path">
               </div>
               <div class="card-footer text-right">
-                  <!-- <button class="btn btn-outline-danger btn-sm" @click="destoryStorage(item,index)"> -->
                   <button class="btn btn-outline-info btn-sm mr-3" @click="openModal('read',item,index)">
                       查看
                   </button>
@@ -105,8 +97,8 @@ export default {
         },
         getStorages(page=1,paged=25,orderBy="created_at",sort="desc") {
             this.$store.commit('LOADING',true);
-            // const api ="storage?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}";@@會500報錯
-            const api ="storage";
+            // const api ="storage?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}";//%%500報錯 符號錯誤
+            const api =`storage?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}`;
             this.$instanceAdmin.get(api)
             .then((res)=>{
                 this.storages = res.data.data;
@@ -128,20 +120,20 @@ export default {
                 }
             })
             .then(res => {
-                // this.getStorages();//太慢
+                // this.getStorages();//較慢
                 this.storages.unshift(res.data.data);
                 this.$store.commit('LOADING',false);
             })
         },
         // destoryStorage(item,index){
         destoryStorage(){
-            const {checkedItem,checkedindex} = this;
+            const {checkedItem,checkedindex} = this;//##
             this.$store.commit('LOADING',true);
             const api = `storage/${checkedItem.id}`;
             this.$instanceAdmin.delete(api)
             .then(res => {
                 this.storages.splice(checkedindex,1);
-                // this.$refs.dashStorageModal.modal('hide');
+                // this.$refs.dashStorageModal.modal('hide');//##jquery無效
                 $("#dashStorageModal").modal('hide');
                 this.$store.commit('LOADING',false);
             })

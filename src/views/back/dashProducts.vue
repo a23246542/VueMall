@@ -1,59 +1,61 @@
 <template>
-  <div>
+  <div id="dashProducts">
     <!-- <BaseLoading :active.sync="isLoading"/> -->
     <div class="mt-4 text-right">
         <button class="btn btn-primary"
             @click="openModal('new')">新增產品
         </button>
     </div>
-    <table class="table mt-4">
-      <thead>
-        <tr>
-          <th width="120">分類</th>
-          <th>產品名稱</th>
-          <th width="120">原價</th>
-          <th width="120">售價</th>
-          <th width="100">是否啟用</th>
-          <th width="120">編輯</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item) in products" :key=item.id>
-          <td>{{item.category}}</td>
-          <td>{{item.title}}</td>
-          <td class="text-right">
-            {{item.origin_price}}
-          </td>
-          <td class="text-right">
-            {{item.price}}
-          </td>
-          <td style="vertical-align: middle">
-            <!-- <span v-if="item.enabled">啟用</span>
-            <span v-else>未啟用</span> -->
-            <label class="toggle-control">
-              <!-- <input type="checkbox"> -->
-              <!-- <input type="checkbox" :checked="item.enabled"> -->
-              <input type="checkbox" v-model="item.enabled"
-              @change="enabledProduct(item)"
-              >
-              <span class="control"></span>
-            </label>
-          </td>
-          <td>
-            <div class="btn-group">
-              <button class="btn btn-outline-primary btn-sm" @click="openModal('edit',item)">
-                編輯
-              </button>
-              <button class="btn btn-outline-danger btn-sm" @click="openModal('delete',item)">
-                刪除
-              </button>
-            </div>
-          </td>
+    <div class="table-responsive">
+      <table class="table mt-4">
+        <thead>
+          <tr>
+            <th width="120">分類</th>
+            <th>產品名稱</th>
+            <th width="120">原價</th>
+            <th width="120">售價</th>
+            <th width="100">是否啟用</th>
+            <th width="120">編輯</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item) in products" :key=item.id>
+            <td>{{item.category.split(">")[0]}}</td>
+            <td>{{item.title}}</td>
+            <td class="text-right">
+              {{item.origin_price}}
+            </td>
+            <td class="text-right">
+              {{item.price}}
+            </td>
+            <td style="vertical-align: middle">
+              <!-- <span v-if="item.enabled">啟用</span>
+              <span v-else>未啟用</span> -->
+              <label class="toggle-control">
+                <!-- <input type="checkbox"> -->
+                <!-- <input type="checkbox" :checked="item.enabled"> -->
+                <input type="checkbox" v-model="item.enabled"
+                @change="enabledProduct(item)"
+                >
+                <span class="control"></span>
+              </label>
+            </td>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-outline-primary btn-sm" @click="openModal('edit',item)">
+                  編輯
+                </button>
+                <button class="btn btn-outline-danger btn-sm" @click="openModal('delete',item)">
+                  刪除
+                </button>
+              </div>
+            </td>
 
-        </tr>
-      </tbody>
+          </tr>
+        </tbody>
 
-    </table>
+      </table>
+    </div>
     <div class="text-right">
       <button class="btn btn-danger mr-5"
       @click="openDelAllProducts"
@@ -124,28 +126,22 @@ export default {
     },
     created() {
       // console.log(this.$route.query.page);
-        // if(this.$route.query.page){
-          this.currentPage = this.$route.query.page;
-          this.getProducts(this.currentPage);//@@@原本可以帶空的嗎?
-        // }else{
-        //   this.getProducts();
-        // }
-    },
-    mounted() {
-        // console.log(111);
-        
+
+      // if(this.$route.query.page){
+        this.currentPage = this.$route.query.page;
+        console.log("page",this.currentPage);
+        this.getProducts(this.currentPage);//@@#如是undefined的話 參數會用預設值page=1
+      // }else{
+      //   this.getProducts();
+      // }
     },
     computed:{
-        // isLoading(){
+        // isLoading(){//已註冊為全域
         //     return this.$store.state.isLoading;
-        // }
-        // cu
-    },
-    watch: {
-
+        // }  
     },
     methods: {
-        getProducts(page=1){
+        getProducts(page=1,paged=10,orderBy="created_at",sort="desc"){
             this.$router.push({
               // name:'dashProducts',
               query:{page:page}}
@@ -161,7 +157,7 @@ export default {
             this.tempProduct = {
                 imageUrl:[]
             }
-            instanceAdmin.get(`ec/products?page=${page}`)
+            instanceAdmin.get(`ec/products?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}`)//500 err
             .then(res => {
                 vm.products = res.data.data;
                 vm.pagination = res.data.meta.pagination;
@@ -199,46 +195,51 @@ export default {
             };
         },
         enabledProduct(item){
-
             // console.log(item.id,item);
             this.$store.commit('LOADING',true);
             const api = `ec/product/${item.id}`;
             this.$instanceAdmin.patch(api,item)
                 .then(res =>{
+                  // ##不需要再get 畫面跟api分開
                   this.$store.commit('LOADING',false);
                 })
         },
         delAllProducts(){
-        this.$store.commit('LOADING',true);
-        const productIds = this.products.map((prdItem)=>{
-            return prdItem.id;
-        })
-        // console.log(productIds);
-        
-        // console.log(productIds.map(id=>{
-        //   const api = `ec/product/${id}`;
-        //   //  return this.instanceAdmin.delete(api);
-        //    return this.$http.delete(api);
-        // }));
-        
-        // @@為何this.instanceAdmin.delete()會讀取不到
-        this.$http.all(productIds.map(id=>{
-          const api = `ec/product/${id}`;
-          console.log(this);
-            return instanceAdmin.delete(api);
-        }))
-        .then(res=>{
-          console.log(res);//##回傳陣列裝每一個api的res
-            this.$store.commit('LOADING',false);
-            this.getProducts();
-        })
+            this.$store.commit('LOADING',true);
+            const productIds = this.products.map((prdItem)=>{
+                return prdItem.id;
+            })
+            // console.log(productIds);
+            
+            // @@是否this.$instanceAdmin.delete()會讀取不到
+            this.$http.all(productIds.map(id=>{
+              const api = `ec/product/${id}`;
+              console.log(this);
+                return this.$instanceAdmin.delete(api);
+            }))
+            .then(res=>{
+              console.log(res);//##回傳陣列裝每一個api的res
+                this.$store.commit('LOADING',false);
+                this.getProducts();
+            })
       //   .then(axios.spread((...res) => {
       // }));
       },
       openDelAllProducts(){
         $("#delAll").modal("show");
-      }
+      },
     }
 }
 
 </script>
+
+<style lang="scss">
+  #dashProducts{
+    .table{
+      min-width: 800px;
+    }
+    // &__table{//## bem dashProducts為class才適合
+    //   min-width: 800px;
+    // }
+  }
+</style> 

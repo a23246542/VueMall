@@ -132,7 +132,7 @@ https://vuex.vuejs.org/zh/guide/mutations.html
 
 
 ### singleProduct
-* product:{
+* ~product:{
         imageUrl:[],//@@ajax後被整個蓋掉寫了有意義嗎?
         qty:1//@@被蓋掉寫了有意義嗎?
     }
@@ -143,16 +143,18 @@ https://vuex.vuejs.org/zh/guide/mutations.html
 
 
 ### orderInfo
-* 為何樣式會出現data-v 奇怪 明明沒有寫scoped
+* ??為何樣式會出現data-v 奇怪 明明沒有寫scoped
 
 ### 後台dashCoupon
-* 感覺就算是新增也不是tempCoupon = {}這麼簡單 模板完全讀不到
-* ~為什麼getCoupon的cb會報錯 @#因為一開始的cb不存在
-* 後來像產品列表沒辦法開新分頁怎麼辦!!!
-* promise猜運作是有比較慢的特性嗎 原本callback改用promise結果 loading都結束了幾秒 modal才關閉，用callback幾乎loading跟modal關閉同時
-* modalUse ===xxx的判斷 改成computed有比較好嗎 閱讀
+* ~感覺就算是新增也不是tempCoupon = {}這麼簡單 模板完全讀不到，沒錯至少這邊computed就報錯了 但如果沒computed會怎麼樣不確定
+* ~ 為什麼getCoupon的cb會報錯 @#因為一開始的cb不存在
+
+* ?? 後來像產品列表沒辦法開新分頁怎麼辦!!!
+
+* promise猜運作是有比較慢的特性嗎 原本callback改用promise結果 loading都結束了幾秒 modal才關閉，用callback幾乎loading跟modal關閉同時 又好像沒有
+* ~modalUse ===xxx的判斷 改成computed有比較好嗎 閱讀
 * ~scoped才加一個table寬度 就全部出現data-v 後來發現是只有要scoped標籤在(就算空的)就會全加
-* 頁面組件給id是可以的吧??探討
+* ~頁面組件給id是可以的吧??探討
 
 ### token運作機制疑問
 * 我原本以為甲地登入了 取得新token 乙地就不能使用舊本地token取得但其實可以，可check token又不會過這樣
@@ -170,6 +172,16 @@ https://vuex.vuejs.org/zh/guide/mutations.html
 
 * 了解用keepalive了也先把驗證api關閉了，還是重跑很慢
 可是有時候又可以是keepalive的緩存超過就會自動釋放掉嗎
+
+### ??老師 正則裡面可以用字串模板帶變量嗎?
+*不解決以後都無法帶上動態參數
+*// Mock.mock(`${http}/admin/ec/orders/id`,'get',dashSingleOrder);
+*Mock.mock(RegExp('https://course-ec-api.hexschool.io/api/82a32758-aadc-4405-b535-2f6a678989d8/admin/ec/orders/'+'.*'),'get',dashSingleOrder);
+* @# 結果好像這樣就好了 RegExp(`${http}/admin/ec/orders/`+'.*')
+* 不對又遇到mock重複吃到的問題
+* 可是這樣又可以 奇怪?????
+Mock.mock(`${http}/admin/ec/orders?page=1`,'get',dashOrders);
+Mock.mock(new RegExp(`${http}/admin/ec/orders`+'.*'),'get',dashSingleOrder);
 
 <!-- ===========卡斯伯老師======================= -->
 
