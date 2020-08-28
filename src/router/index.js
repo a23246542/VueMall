@@ -121,19 +121,19 @@ const routes = [
                 path:'orders',
                 name:'訂單列表',
                 component:() => import('../views/back/dashOrders'),
-                // meta:{requireAuth:true}
+                meta:{requireAuth:true}
             },
             {
                 path:'coupons',
                 name:'優惠券列表',
                 component:() => import('../views/back/dashCoupons'),
-                // meta:{requireAuth:true}
+                meta:{requireAuth:true}
             },
             {
                 path:'images',
                 name:'圖片儲存列表',
                 component:() => import('../views/back/dashImages'),
-                // meta:{requireAuth:true}
+                meta:{requireAuth:true}
             }
         ]
     }
