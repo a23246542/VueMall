@@ -73,79 +73,78 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            // carts:[],
-            // cartPagination:{},
-            // cartTotal:0
-        }
+  data() {
+    return {
+      // carts:[],
+      // cartPagination:{},
+      // cartTotal:0
+    };
+  },
+  computed: {
+    // cartTotal(){
+    //     let total =0;
+    //     this.carts.forEach((item) => {
+    //         let subtotal = 0;
+    //         subtotal = item.quantity*item.product.price;
+    //         total+=subtotal;
+    //     })
+    //     return total;
+    // },
+    carts() {
+      return this.$store.state.Cart.cart.carts;
     },
-    computed:{
-        // cartTotal(){
-        //     let total =0;
-        //     this.carts.forEach((item) => {
-        //         let subtotal = 0;
-        //         subtotal = item.quantity*item.product.price;
-        //         total+=subtotal;
-        //     })
-        //     return total;
-        // },
-        carts(){
-            return this.$store.state.Cart.cart.carts;
-        },
-        cartPagination(){
-            return this.$store.state.Cart.cart.pagination;
-        },
-        cartTotal(){
-            return this.$store.getters.cartTotal;
-        }
+    cartPagination() {
+      return this.$store.state.Cart.cart.pagination;
     },
-    created() {
-        this.getCart();
+    cartTotal() {
+      return this.$store.getters.cartTotal;
     },
-    methods:{
-        getCart(){
-            this.$store.dispatch('getCart');
-        },
-        editCart(id,qty){
-            this.$store.dispatch('editCart',{id,qty})
-        },
-        delCart(item){//%%405 delete方法用錯
-            const productId = item.product.id;
-            // this.$store.dispatch('delCart',item);
-            this.$store.dispatch('delCart',productId)
-            .then(() =>{
-                 this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
-            })
+  },
+  created() {
+    this.getCart();
+  },
+  methods: {
+    getCart() {
+      this.$store.dispatch('getCart');
+    },
+    editCart(id, qty) {
+      this.$store.dispatch('editCart', { id, qty });
+    },
+    delCart(item) { // %%405 delete方法用錯
+      const productId = item.product.id;
+      // this.$store.dispatch('delCart',item);
+      this.$store.dispatch('delCart', productId)
+        .then(() => {
+          this.$bus.$emit('message:push', `${item.product.title} 已刪除`, 'success');
+        });
 
-            // this.$store.commit('LOADING',true);
-            // const api =`ec/shopping/${item.product.id}`;
-            // this.$instanceCus.delete(api)
-            // .then((res) => {
-            //     this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
-            //     this.getCart();
-            // })
-        },
-        delAllCart(){
+      // this.$store.commit('LOADING',true);
+      // const api =`ec/shopping/${item.product.id}`;
+      // this.$instanceCus.delete(api)
+      // .then((res) => {
+      //     this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
+      //     this.getCart();
+      // })
+    },
+    delAllCart() {
+      this.$store.dispatch('delAllCart');
 
-            this.$store.dispatch('delAllCart');
-
-            // this.$store.commit('LOADING',true);
-            // const api ="ec/shopping/all/product";
-            // this.$instanceCus.delete(api)
-            // .then((res) => {
-            //     this.$bus.$emit('message:push','全部商品已刪除','success')
-            //     this.getCart();
-            // })
-        }
-    }
-}
+      // this.$store.commit('LOADING',true);
+      // const api ="ec/shopping/all/product";
+      // this.$instanceCus.delete(api)
+      // .then((res) => {
+      //     this.$bus.$emit('message:push','全部商品已刪除','success')
+      //     this.getCart();
+      // })
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,4 +1,3 @@
-
 // 商品products
 // export default {
 //     GET_PRODUCTS:"api/{uuid}/ec/products",

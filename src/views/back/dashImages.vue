@@ -59,89 +59,88 @@
 <script>
 import pagination from '@/components/BasePagination';
 import DashModal from '@/components/admin/DashOtherModal';
+
 export default {
-    components:{
-      pagination,
-      DashModal
+  components: {
+    pagination,
+    DashModal,
+  },
+  data() {
+    return {
+      storages: [],
+      pagination: {},
+      title: '',
+      modalUse: '',
+      // ##道理一樣
+      checkedItem: {}, // 選中的對象,
+      checkedindex: 0,
+
+    };
+  },
+  created() {
+    this.getStorages();
+  },
+  methods: {
+    openModal(modalUse, item, index) {
+      this.modalUse = modalUse;
+      if (modalUse === 'read') {
+        this.title = '檢視檔案';
+      } else if (modalUse === 'delete') {
+        this.title = '刪除檔案';
+      }
+      this.checkedItem = { ...item };
+      this.checkedindex = index;
+
+      // console.dir(this.$refs.dashStorageModal);
+      // this.$refs.dashStorageModal.modal('show');
+      $('#dashStorageModal').modal('show');
     },
-    data() {
-        return {
-            storages:[],
-            pagination:{},
-            title:"",
-            modalUse:"",
-            // ##道理一樣
-            checkedItem:{},//選中的對象,
-            checkedindex:0
-            
-            
-        }
+    getStorages(page = 1, paged = 25, orderBy = 'created_at', sort = 'desc') {
+      this.$store.commit('LOADING', true);
+      // const api ="storage?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}";//%%500報錯 符號錯誤
+      const api = `storage?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}`;
+      this.$instanceAdmin.get(api)
+        .then((res) => {
+          this.storages = res.data.data;
+          this.pagination = res.data.meta.pagination;
+          this.$store.commit('LOADING', false);
+        });
     },
-    created() {
-        this.getStorages();
+    postStorage() {
+      this.$store.commit('LOADING', true);
+      const api = 'storage';
+
+      const uploadedFile = this.$refs.storage.files[0];
+      const formData = new FormData();
+      formData.append('file', uploadedFile);
+
+      this.$instanceAdmin.post(api, formData, {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
+      })
+        .then((res) => {
+          // this.getStorages();//較慢
+          this.storages.unshift(res.data.data);
+          this.$store.commit('LOADING', false);
+        });
     },
-    methods:{
-        openModal(modalUse,item,index){
-            this.modalUse = modalUse;
-            if(modalUse==="read"){
-                this.title = "檢視檔案";
-            }else if (modalUse==="delete"){
-                this.title = "刪除檔案"
-            }
-            this.checkedItem = {...item};
-            this.checkedindex = index;
+    // destoryStorage(item,index){
+    destoryStorage() {
+      const { checkedItem, checkedindex } = this;// ##
+      this.$store.commit('LOADING', true);
+      const api = `storage/${checkedItem.id}`;
+      this.$instanceAdmin.delete(api)
+        .then((res) => {
+          this.storages.splice(checkedindex, 1);
+          // this.$refs.dashStorageModal.modal('hide');//##jquery無效
+          $('#dashStorageModal').modal('hide');
+          this.$store.commit('LOADING', false);
+        });
+    },
 
-            // console.dir(this.$refs.dashStorageModal);
-            // this.$refs.dashStorageModal.modal('show');
-            $("#dashStorageModal").modal('show');
-        },
-        getStorages(page=1,paged=25,orderBy="created_at",sort="desc") {
-            this.$store.commit('LOADING',true);
-            // const api ="storage?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}";//%%500報錯 符號錯誤
-            const api =`storage?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}`;
-            this.$instanceAdmin.get(api)
-            .then((res)=>{
-                this.storages = res.data.data;
-                this.pagination = res.data.meta.pagination;
-                this.$store.commit('LOADING',false);
-            })
-        },
-        postStorage(){
-            this.$store.commit('LOADING',true);
-            const api = 'storage';
-
-            const uploadedFile = this.$refs.storage.files[0];
-            const formData = new FormData();
-            formData.append('file',uploadedFile);
-            
-            this.$instanceAdmin.post(api,formData,{
-                headers:{
-                    'content-type':'multipart/form-data'
-                }
-            })
-            .then(res => {
-                // this.getStorages();//較慢
-                this.storages.unshift(res.data.data);
-                this.$store.commit('LOADING',false);
-            })
-        },
-        // destoryStorage(item,index){
-        destoryStorage(){
-            const {checkedItem,checkedindex} = this;//##
-            this.$store.commit('LOADING',true);
-            const api = `storage/${checkedItem.id}`;
-            this.$instanceAdmin.delete(api)
-            .then(res => {
-                this.storages.splice(checkedindex,1);
-                // this.$refs.dashStorageModal.modal('hide');//##jquery無效
-                $("#dashStorageModal").modal('hide');
-                this.$store.commit('LOADING',false);
-            })
-        }
-
-
-    }
-}
+  },
+};
 </script>
 
 <style lang="scss">
@@ -161,7 +160,7 @@ export default {
 
     .custom-file{
         width:auto;
-        
+
     }
     .custom-file-input{ //隱藏且覆蓋在上面
         cursor: pointer;

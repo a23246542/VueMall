@@ -1,6 +1,6 @@
 export default {
-    LOADING(state,isLoading){
-        state.isLoading = isLoading;
-    },
-    
-}
+  LOADING(state, isLoading) {
+    state.isLoading = isLoading;
+  },
+
+};

@@ -7,9 +7,9 @@
       <ul class="navbar-nav flex-row px-3">
         <li class="nav-item mx-2 text-nowrap">
             <router-link tag="a" class="nav-link" :to="{name:'home'}"
-            >回首頁</router-link>  
+            >回首頁</router-link>
         </li>
-        <li class="nav-item text-nowrap mx-2">  
+        <li class="nav-item text-nowrap mx-2">
             <a class="nav-link" href="#"
             @click.prevent="signOut"
             >登出</a>
@@ -21,24 +21,24 @@
 <script>
 
 export default {
-    data(){
-        return{
-            
-        }
+  data() {
+    return {
+
+    };
+  },
+  methods: {
+    signOut() {
+      const api = 'auth/logout';
+      const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+      this.$instanceLogin.post(api, { api_token: token })
+        .then((res) => {
+          this.$router.push('/');
+          // 清除token加快速度
+          document.cookie = "token='';expires='';path=/";
+        });
     },
-    methods:{
-        signOut(){
-            const api = "auth/logout";
-            const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-            this.$instanceLogin.post(api,{api_token:token})
-            .then(res => {
-                this.$router.push('/');
-                //清除token加快速度
-                document.cookie = "token='';expires='';path=/";
-            })
-        }
-    }
-}
+  },
+};
 </script>
 <style lang="scss" scoped>
 //    @import "../assets/scss/pages/dashboard";//##可以作用

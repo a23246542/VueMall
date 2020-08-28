@@ -7,17 +7,16 @@
 
 <script>
 
-
 export default {
   name: 'App',
   components: {
 
   },
-  computed:{
-      isLoading(){
-          return this.$store.state.isLoading;
-      }
-  }
+  computed: {
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
+  },
 };
 </script>
 

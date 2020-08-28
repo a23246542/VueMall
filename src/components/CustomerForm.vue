@@ -39,9 +39,9 @@
                     <span v-if="errors[0]" class="invalid-feedback">{{errors[0]}}</span>
                     <span v-if="passed" class="invalid-feedback">已填</span>
                 </ValidationProvider>
-                
+
             </div>
-        
+
             <div class="form-group">
                 <ValidationProvider rules="required|min:8" v-slot="{ errors, classes, passed }" name="收件人電話">
                     <label for="usertel">收件人電話</label>
@@ -52,9 +52,9 @@
                     <span v-if="errors[0]" class="invalid-feedback">{{errors[0]}}</span>
                     <span v-if="passed" class="invalid-feedback">已填</span>
                 </ValidationProvider>
-                
+
             </div>
-        
+
             <div class="form-group">
                 <ValidationProvider rules="required" v-slot="{ errors, classes, passed }" name="收件人地址">
                     <label for="useraddress">收件人地址</label>
@@ -65,7 +65,7 @@
                     <span v-if="errors[0]" class="invalid-feedback">{{errors[0]}}</span>
                     <span v-if="passed" class="invalid-feedback">已填</span>
                 </ValidationProvider>
-                
+
             </div>
             <div class="form-group">
                 <label for="message">購買方式</label>
@@ -116,28 +116,28 @@
 <script>
 
 export default {
-    components:{
-        
+  components: {
+
+  },
+  data() {
+    return {
+      form: {
+        name: '',
+        email: '',
+        tel: '',
+        address: '',
+        payment: '',
+        message: '',
+      },
+    };
+  },
+  methods: {
+    createOrder() {
+      console.log('送出訂單');
+      this.$router.push({ name: '訂單完成' });
     },
-    data() {
-        return{
-            form:{
-                name: '',
-                email: '',
-                tel: '',
-                address: '',
-                payment: '',
-                message: '',          
-            }
-        }
-    },
-    methods: {
-        createOrder(){
-            console.log('送出訂單');
-            this.$router.push({name: '訂單完成'});
-        },
-    }
-}
+  },
+};
 </script>
 
 <style>

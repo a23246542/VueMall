@@ -28,7 +28,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- <div class="col-10 mx-auto"> -->
                 <div class="col-md-10">
                     <div class="row">
@@ -47,126 +47,121 @@
                     />
                     <!-- 分頁 結束 -->
                 </div>
-                
+
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import {instanceCus} from '../../api/https';
 import ProductCard from '@/components/ProductCard';
 import CartModal from '@/components/CartModal';
-import pagination from '@/components/BasePagination'
+import pagination from '@/components/BasePagination';
 import Alert from '@/components/BaseAlertMessage';
 import { mapState } from 'vuex';
+import { instanceCus } from '../../api/https';
 
 export default {
-    components:{
-        ProductCard,
-        CartModal,
-        Alert,
-        pagination
+  components: {
+    ProductCard,
+    CartModal,
+    Alert,
+    pagination,
+  },
+  data() {
+    return {
+      // product:{//點擊那個modal再出現
+      //     num:1,//要雙向綁定預設值%%%
+      // },
+      // products:[],
+      // pagination:{},
+      // categories:[],
+      searchText: 'all',
+      // carts:[]//子組件購物車的
+    };
+  },
+  computed: {
+    filterProducts() {
+      if (this.searchText === 'all') {
+        return this.products;
+      }
+      return this.products.filter((item) =>
+      // return item.category == this.searchText;
+        item.category.toLowerCase()
+          .includes(this.searchText.toLowerCase()), // %%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false
+      );
     },
-    data() {
-        return { 
-            // product:{//點擊那個modal再出現
-            //     num:1,//要雙向綁定預設值%%%
-            // },
-            // products:[],
-            // pagination:{},
-            // categories:[],
-            searchText:"all",
-            // carts:[]//子組件購物車的
-        }
+    // ...mapState(['products','categories','pagination']),
+    ...mapState({
+      products: (state) => state.CusProducts.products,
+      categories: (state) => state.CusProducts.categories,
+      pagination: (state) => state.CusProducts.pagination,
+    }),
+    // products() {
+    //     return this.$store.state.CusProducts.products;
+    // },
+    // categories() {
+    //     return this.$store.state.CusProducts.categories;
+    // },
+    // pagination() {
+    //     return this.$store.state.CusProducts.pagination;
+    // },
+  },
+  created() {
+    this.getProducts();
+  },
+  methods: {
+    // getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
+    getProducts(page = 1) {
+      this.$store.dispatch('getProducts', page);
     },
-    computed:{
-        filterProducts(){
-                
-            if (this.searchText === 'all'){
-                return this.products;
-            }else {
-                return this.products.filter( (item) => {
-                    // return item.category == this.searchText;
-                    return item.category.toLowerCase()
-                    .includes(this.searchText.toLowerCase());//%%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false
-                })
-            }
-        },
-        // ...mapState(['products','categories','pagination']),
-        ...mapState({
-            products:(state) => state.CusProducts.products,
-            categories:(state) => state.CusProducts.categories,
-            pagination: (state) => state.CusProducts.pagination
-        }),
-        // products() {
-        //     return this.$store.state.CusProducts.products;
-        // },
-        // categories() {
-        //     return this.$store.state.CusProducts.categories;
-        // },
-        // pagination() {
-        //     return this.$store.state.CusProducts.pagination;
-        // },
+    // getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
+    //     this.$store.commit('LOADING',true);
+    //     // const api =`ec/products/page=${page}`;%%
+    //     const api =`ec/products?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}`;
+    //     instanceCus.get(api)
+    //     .then((res) => {
+    //         this.products = res.data.data;
+    //         this.pagination = res.data.meta.pagination;
+    //         this.getCategories();
+    //         //###%% 可先暫時寫入api外的，幫助渲染
+    //         this.products.forEach((item) => {
+    //             // item.num = 1;
+    //             this.$set(item,'num',1);
+    //         })
+    //         this.$store.commit('LOADING',false);
+    //     })
+    // },
+    // getCategories(){
+    //     const categories = new Set();
+    //     this.products.forEach((item) => {
+    //         // categories.push(item.category)//%%@@
+    //         categories.add(item.category)
+    //     })
+    //     this.categories = Array.from(categories);
+    // },
+    // 接收資料 子傳父元件
+    // getEmitCart(carts){
+    //     this.carts = carts;
+    // },
+    openSingleProduct(id) {
+      this.$router.push(`/products/${id}`);
     },
-    created() {
-        this.getProducts();
-        
+    firstFloor(item) { // 顯示第一層目錄
+      if (item.includes('>')) {
+        return item.split('>')[0];
+        // console.log(item.split(">"));
+      }
+      return item;
+      // console.log(item);
     },
-    methods:{
-        // getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
-        getProducts(page=1){
-            this.$store.dispatch('getProducts',page);
-        },
-        // getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
-        //     this.$store.commit('LOADING',true);
-        //     // const api =`ec/products/page=${page}`;%%
-        //     const api =`ec/products?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}`;
-        //     instanceCus.get(api)
-        //     .then((res) => {
-        //         this.products = res.data.data;
-        //         this.pagination = res.data.meta.pagination;
-        //         this.getCategories();
-        //         //###%% 可先暫時寫入api外的，幫助渲染
-        //         this.products.forEach((item) => {
-        //             // item.num = 1;
-        //             this.$set(item,'num',1);
-        //         })
-        //         this.$store.commit('LOADING',false);
-        //     })
-        // },
-        // getCategories(){
-        //     const categories = new Set();
-        //     this.products.forEach((item) => {
-        //         // categories.push(item.category)//%%@@
-        //         categories.add(item.category)
-        //     })
-        //     this.categories = Array.from(categories);
-        // },
-        //接收資料 子傳父元件
-        // getEmitCart(carts){
-        //     this.carts = carts;
-        // },
-        openSingleProduct(id) {
-            this.$router.push(`/products/${id}`);
-        },
-        firstFloor(item){//顯示第一層目錄
-            if(item.includes(">")){
-                return item.split(">")[0];
-                // console.log(item.split(">"));
-            }else{
-                return item
-                // console.log(item);
-            }
-        },
-        setSearchText(text){
-            this.searchText = text;
-            // console.log(text,this.searchText);
+    setSearchText(text) {
+      this.searchText = text;
+      // console.log(text,this.searchText);
+    },
 
-        }
-
-    }
-}
+  },
+};
 </script>
 
 <style lang="scss">

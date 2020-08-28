@@ -7,7 +7,7 @@
             <ul class="nav flex-column p-2">
                 <li class="nav-item">
                     <!-- <router-link tag="a" class="nav-link" href="#"> -->
-                        
+
                     <!-- </router-link> -->
                     <router-link :to="{name:'dashProducts'}" tag="a" class="nav-link fz-35" href="#">
                         <!-- <span data-feather="home"></span> -->
@@ -42,12 +42,12 @@
 // feather.replace()
 
 export default {
-    data(){
-        return{
-            
-        }
-    },
-}
+  data() {
+    return {
+
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -23,7 +23,7 @@
                                         :src="item.product.imageUrl[0]" alt=""
                                         >
                                     </div>
-                                    <div class="col-9 col-md-9"> 
+                                    <div class="col-9 col-md-9">
                                     <!-- <div class="flex-3">  -->
                                         <!-- @@row是否需要搭配h-100 -->
                                         <div class="row h-100">
@@ -92,10 +92,10 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
-                    
+
                 </div>
                 <!-- 購物車 結束 -->
                 <div class="col-md-4">
@@ -104,7 +104,7 @@
                         <div class="card-body">
                             <p class="d-flex justify-content-between">
                                 <span>小計</span>
-                                <span>{{cartTotal | dollars}}</span>    
+                                <span>{{cartTotal | dollars}}</span>
                             </p>
                             <router-link tag="a" href="#" class="btn btn-primary btn-block"
                             :to="{name:'收件資訊'}"
@@ -122,97 +122,96 @@
 import { debounce } from 'vue-debounce';
 import _ from 'lodash';
 
-
 export default {
-    components:{
-        // Cart,
+  components: {
+    // Cart,
+  },
+  data() {
+    return {
+      // cart:this.cart
+    };
+  },
+  created() {
+    // this.debounceInputCart = debounce(this.updateCartQty('subtract1',item),'400')
+    this.$store.dispatch('delAllCart');
+    // this.getCart();
+  },
+  methods: {
+    getCart() {
+      this.$store.dispatch('getCart');
     },
-    data() {
-        return{
-            // cart:this.cart
-        }
-    },
-    created() {
-        // this.debounceInputCart = debounce(this.updateCartQty('subtract1',item),'400')
-        this.getCart();
-    },
-    methods:{
-        getCart(){
-            this.$store.dispatch('getCart');
-        },
-        updateCartQty(type,item){
-            const productId = item.product.id;
-            let qty = item.quantity;
-            // let num = qty;
-            switch (type) {
-                case 'add1':
-                    
-                    qty+=1;
-                    break;
-                case 'subtract1':
-                    
-                    qty-=1;
-                    break;
+    updateCartQty(type, item) {
+      const productId = item.product.id;
+      let qty = item.quantity;
+      // let num = qty;
+      switch (type) {
+        case 'add1':
+
+          qty += 1;
+          break;
+        case 'subtract1':
+
+          qty -= 1;
+          break;
                 // case 'input':
                 //     break;
-                    
-            }
-            console.log("更新购物车",productId,qty);
-            // this.$store.dispatch('editCart',{id,qty});//@@
-            const data = {
-                productId,
-                newQty:qty
-            }
-            
-            this.$store.dispatch('editCart',data);
-        },
-        // stayUpCart(){
-        //     // _.debounce(this.updateCartQty(type,item),1000)
-        //     console.log('執行stayUpCart');
-            
-        //     _.debounce(()=>{console.log('現在才打api');
-        //     },10000)();
-        // },
-        stayUpdateCart(val,e){
-            console.log(val);
-            console.dir(e);
-            console.dir(e.target.dataset.itemId);
-            
-            const data = {
-                productId:e.target.dataset.itemId,//產品id
-                newQty:val//值
-            }
-            this.$store.dispatch('editCart',data);
-        },
-        removeCart(item){
-            const productId = item.product.id;
-            this.$store.dispatch('delCart',productId);
-        }
+      }
+      console.log('更新购物车', productId, qty);
+      // this.$store.dispatch('editCart',{id,qty});//@@
+      const data = {
+        productId,
+        newQty: qty,
+      };
+
+      this.$store.dispatch('editCart', data);
     },
-    computed:{
-        cart(){
-            return this.$store.state.Cart.cart;
-        },
-        cartTotal(){
-            return this.$store.getters.cartTotal;
-        },
-        // carts(){
-        //     return this.$store.state.Cart.cart.carts;
-        // }
+    // stayUpCart(){
+    //     // _.debounce(this.updateCartQty(type,item),1000)
+    //     console.log('執行stayUpCart');
+
+    //     _.debounce(()=>{console.log('現在才打api');
+    //     },10000)();
+    // },
+    stayUpdateCart(val, e) {
+      console.log(val);
+      console.dir(e);
+      console.dir(e.target.dataset.itemId);
+
+      const data = {
+        productId: e.target.dataset.itemId, // 產品id
+        newQty: val, // 值
+      };
+      this.$store.dispatch('editCart', data);
     },
-    // watch:{
-    //     ['cart.carts']:{
-    //     // carts:{
-    //         handler:function(newVal,oldVal){
-    //             // console.log(newVal);
-    //             // console.log(oldVal);
-    //             console.log('觸發watch');
-    //             // this.stayUpCart();
-    //         },
-    //         deep:true
-    //     }
+    removeCart(item) {
+      const productId = item.product.id;
+      this.$store.dispatch('delCart', productId);
+    },
+  },
+  computed: {
+    cart() {
+      return this.$store.state.Cart.cart;
+    },
+    cartTotal() {
+      return this.$store.getters.cartTotal;
+    },
+    // carts(){
+    //     return this.$store.state.Cart.cart.carts;
     // }
-}
+  },
+  // watch:{
+  //     ['cart.carts']:{
+  //     // carts:{
+  //         handler:function(newVal,oldVal){
+  //             // console.log(newVal);
+  //             // console.log(oldVal);
+  //             console.log('觸發watch');
+  //             // this.stayUpCart();
+  //         },
+  //         deep:true
+  //     }
+  // }
+};
 </script>
 
 <style>

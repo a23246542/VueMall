@@ -9,64 +9,64 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-        </transition-group>     
+        </transition-group>
     </div>
 </template>
 
 <script>
 export default {
-    /**
+  /**
      * @param message
      * @param
     */
-    props:{
-        // message:""
+  props: {
+    // message:""
+  },
+  data() {
+    return {
+      messages: [
+        // {
+        //     message:"訊息內容",
+        //     status:'success',
+        //     id:123
+        // },
+        // {
+        //     message:"訊息內容",
+        //     status:'danger',
+        //     id:4123
+        // }
+      ],
+    };
+  },
+  created() {
+    this.$bus.$on('message:push', (message, status = 'warning') => {
+      this.updateMessage(message, status);
+    });
+  },
+  methods: {
+    updateMessage(message, status) {
+      const timeStamp = Math.floor(new Date() / 1000);
+      this.messages.push({
+        message,
+        status,
+        id: timeStamp,
+      });
+      this.removeMessageTiming(timeStamp);
     },
-    data() {
-        return{
-            messages:[
-                // {
-                //     message:"訊息內容",
-                //     status:'success',
-                //     id:123
-                // },
-                // {
-                //     message:"訊息內容",
-                //     status:'danger',
-                //     id:4123
-                // }
-            ]
-        }
+    removeMessage(index) {
+      this.messages.splice(index, 1);
     },
-    created(){
-        this.$bus.$on('message:push',(message,status="warning") => {
-            this.updateMessage(message,status);
-        })
+    removeMessageTiming(timeStampId) {
+      setTimeout(() => {
+        this.messages.forEach((item, index) => {
+          if (item.id === timeStampId) {
+            this.messages.splice(index, 1);
+          }
+        });
+      }, 5000);
     },
-    methods: {
-        updateMessage(message,status){
-            const timeStamp = Math.floor(new Date()/1000);
-            this.messages.push({
-                message,
-                status,
-                id:timeStamp
-            });
-            this.removeMessageTiming(timeStamp);
-        },
-        removeMessage(index){
-            this.messages.splice(index,1);
-        },
-        removeMessageTiming(timeStampId){
-            setTimeout(()=>{
-                this.messages.forEach((item,index)=>{
-                    if(item.id === timeStampId){
-                        this.messages.splice(index,1);
-                    }
-                })
-            },5000)
-        }
-    }
-}
+  },
+};
 </script>
 
 <style lang="scss">
@@ -77,7 +77,7 @@ export default {
         right: 30px;
         z-index: 100;
         // transition: all .5s;//##沒用
-        
+
         //vue列表過度動畫
         .list-item {
             display: inline-block;
@@ -92,7 +92,5 @@ export default {
             transform: translateY(-30px);
         }
     }
-
-
 
 </style>

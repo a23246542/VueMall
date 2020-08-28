@@ -11,7 +11,7 @@
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      <li class="page-item" 
+      <li class="page-item"
       v-for="(item,index) in pages.total_pages" :key="index"
       :class="{'active':item === pages.current_page}"
       >
@@ -33,26 +33,26 @@
 
 <script>
 export default {
-    props:{
-        pages:{
-            type:Object,
-            // default:"1"
-        },
+  props: {
+    pages: {
+      type: Object,
+      // default:"1"
     },
-    data() {
-        return {
-            //%%不能跟prop重複
-            currentPage:'1'
-        }
+  },
+  data() {
+    return {
+      // %%不能跟prop重複
+      currentPage: '1',
+    };
+  },
+  methods: {
+    // changPage(){//%%
+    emitPage(page) {
+      this.currentPage = page;
+      this.$emit('change-page', page);
     },
-    methods:{
-        // changPage(){//%%
-        emitPage(page){
-            this.currentPage = page;
-            this.$emit("change-page",page);
-        }
-    }
-}
+  },
+};
 </script>
 
 <style>

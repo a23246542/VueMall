@@ -22,7 +22,7 @@
             @click="cancelDelProduct">
             取消
           </button>
-          <button type="button" class="btn btn-danger" 
+          <button type="button" class="btn btn-danger"
             @click="delProduct"
             >
             確認刪除
@@ -34,39 +34,39 @@
 </template>
 
 <script>
-  import $ from "jquery";
-  import {instanceAdmin} from '../api/https';
-  export default {
-      props:{
-        tempProduct:{}
-      },
-      methods:{
-        openDelModal(){
-          $('#delProductModal').modal('show');
-        },
-        delProduct(){
-            this.$store.commit('LOADING',true);
-            let api =`ec/product/${this.tempProduct.id}`;
-            if(this.tempProduct.id){
-                instanceAdmin.delete(api)
-                .then(res => {
-                    this.$emit('update');
-                    $('#delProductModal').modal('hide');
-                    
-                })
-            }else{
-                console.log('取不到tempProduct.id');
-            }
-        },
-        cancelDelProduct(){
-            // %%prop给父層清空
-            // this.$emit('cancel');
-            this.$emit('update:tempProduct',{
-                imageUrl:[]
-            });
-        },
+import $ from 'jquery';
+import { instanceAdmin } from '../api/https';
+
+export default {
+  props: {
+    tempProduct: {},
+  },
+  methods: {
+    openDelModal() {
+      $('#delProductModal').modal('show');
+    },
+    delProduct() {
+      this.$store.commit('LOADING', true);
+      const api = `ec/product/${this.tempProduct.id}`;
+      if (this.tempProduct.id) {
+        instanceAdmin.delete(api)
+          .then((res) => {
+            this.$emit('update');
+            $('#delProductModal').modal('hide');
+          });
+      } else {
+        console.log('取不到tempProduct.id');
       }
-  }
+    },
+    cancelDelProduct() {
+      // %%prop给父層清空
+      // this.$emit('cancel');
+      this.$emit('update:tempProduct', {
+        imageUrl: [],
+      });
+    },
+  },
+};
 
 </script>
 

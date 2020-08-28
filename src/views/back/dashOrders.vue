@@ -164,82 +164,81 @@
 import Pagination from '@/components/BasePagination';
 import DashModal from '@/components/admin/DashOtherModal';
 import Vue from 'vue';
-export default {
-    components:{
-      Pagination,
-      DashModal
-    },
-    data(){
-      return{
-        orders:[],
-        pagination:{},
-        orderId:'',
-        tempOrder:{},
-        modalTitle:'編輯訂單',
-        modalUse:'update',
-      }
-    },
-    created() {
-        this.getOrders();
-    },
-    methods:{
-        openEditModal(orderItem){
-            this.orderId = orderItem.id;
-            this.getSingleOrder()
-            .then(()=>{
-                console.dir($("#dashOrderModal"));
-                Vue.nextTick(()=>{
-                  $("#dashOrderModal").modal("show");
-                })
-                
-            });
-            // $("#dashOrderModal").modal("show");
 
-        },
-        async getOrders(page=1){
-            this.$store.commit('LOADING',true);
-            const api = `ec/orders?page=${page}`;
-            await this.$instanceAdmin.get(api)
-            .then(res=>{
-                this.orders = res.data.data;
-                this.pagination = res.data.meta.pagination;
-                this.$store.commit('LOADING',false);
-            })
-        },
-        async getSingleOrder(){
-            this.$store.commit('LOADING',true);
-            const api = `ec/orders/${this.orderId}`;//@@mock重複 
-            // const api = `ec/orders/id`;
-            await this.$instanceAdmin.get(api)
-            .then(res=>{
-                this.tempOrder = res.data.data;
-                this.$store.commit('LOADING',false);
-            })
-        },
-        updateOrder(){
-            this.$store.commit('LOADING',true);
-            const api = `ec/orders/${this.orderId}`;
-            this.$instanceAdmin.patch(api,this.tempOrder)
-            .then(()=>{
-                this.getOrders()
-                .then(()=>{
-                    $("#dashOrderModal").modal("hide");
-                });
-            })
-        },
-        setOrderPaid(tempOrderPaid,tempOrderId){
-            this.$store.commit('LOADING',true);
-            let api = `ec/orders/${tempOrderId}/paid`;
-            if(!tempOrderPaid){
-                api = `ec/orders/${tempOrderId}/unpaid`
-            }
-            this.$instanceAdmin.patch(api)
-            .then(res=>{
-                this.getOrders();
-            })
-        }
-    }
-}
+export default {
+  components: {
+    Pagination,
+    DashModal,
+  },
+  data() {
+    return {
+      orders: [],
+      pagination: {},
+      orderId: '',
+      tempOrder: {},
+      modalTitle: '編輯訂單',
+      modalUse: 'update',
+    };
+  },
+  created() {
+    this.getOrders();
+  },
+  methods: {
+    openEditModal(orderItem) {
+      this.orderId = orderItem.id;
+      this.getSingleOrder()
+        .then(() => {
+          console.dir($('#dashOrderModal'));
+          Vue.nextTick(() => {
+            $('#dashOrderModal').modal('show');
+          });
+        });
+      // $("#dashOrderModal").modal("show");
+    },
+    async getOrders(page = 1) {
+      this.$store.commit('LOADING', true);
+      const api = `ec/orders?page=${page}`;
+      await this.$instanceAdmin.get(api)
+        .then((res) => {
+          this.orders = res.data.data;
+          this.pagination = res.data.meta.pagination;
+          this.$store.commit('LOADING', false);
+        });
+    },
+    async getSingleOrder() {
+      this.$store.commit('LOADING', true);
+      const api = `ec/orders/${this.orderId}`;// @@mock重複
+      // const api = `ec/orders/id`;
+      await this.$instanceAdmin.get(api)
+        .then((res) => {
+          this.tempOrder = res.data.data;
+          this.$store.commit('LOADING', false);
+        });
+    },
+    updateOrder() {
+      this.$store.commit('LOADING', true);
+      const api = `ec/orders/${this.orderId}`;
+      this.$instanceAdmin.patch(api, this.tempOrder)
+        .then(() => {
+          this.getOrders()
+            .then(() => {
+              $('#dashOrderModal').modal('hide');
+            });
+        });
+    },
+    setOrderPaid(tempOrderPaid, tempOrderId) {
+      this.$store.commit('LOADING', true);
+      let api = `ec/orders/${tempOrderId}/paid`;
+      if (!tempOrderPaid) {
+        api = `ec/orders/${tempOrderId}/unpaid`;
+      }
+      this.$instanceAdmin.patch(api)
+        .then((res) => {
+          this.getOrders();
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss">

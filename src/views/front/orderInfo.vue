@@ -15,7 +15,7 @@
                                 <!-- <td class="flex-1 align-middle">@@div垂直置中無用 -->
                                 <td class="flex-1 d-flex align-items-center">
                                     <div class="bg-cover w-100"
-                                    :style="{ 
+                                    :style="{
                                         backgroundImage:`url(${item.product.imageUrl[0]})`,
                                         minWidth:'80px',
                                         height:'80px',
@@ -63,28 +63,29 @@
 </template>
 <script>
 import CustomerForm from '@/components/CustomerForm';
-import {mapGetters,mapState} from 'vuex'
+import { mapGetters, mapState } from 'vuex';
+
 export default {
-    components:{
-        CustomerForm
-    },
-    data() {
-        return {}
-    },
-    computed: {
-        // ...mapState(['cart.carts'])
-        ...mapState({
-            carts: state => state.Cart.cart.carts,
-            pagination: state => state.Cart.cart.pagination
-        }),
-        ...mapGetters(['cartTotal']),
-    },
-    methods: {
-    
-    },
-    created() {
-        this.$store.dispatch('getCart');//%%
-    },
+  components: {
+    CustomerForm,
+  },
+  data() {
+    return {};
+  },
+  computed: {
+    // ...mapState(['cart.carts'])
+    ...mapState({
+      carts: (state) => state.Cart.cart.carts,
+      pagination: (state) => state.Cart.cart.pagination,
+    }),
+    ...mapGetters(['cartTotal']),
+  },
+  methods: {
+
+  },
+  created() {
+    this.$store.dispatch('getCart');// %%
+  },
 };
 </script>
 <style lang="scss" scoped>

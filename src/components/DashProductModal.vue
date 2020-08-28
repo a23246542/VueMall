@@ -152,9 +152,10 @@
 </template>
 
 <script>
-    import $ from "jquery";
-    import {instanceAdmin} from '../api/https';
-  export default {
+import $ from 'jquery';
+import { instanceAdmin } from '../api/https';
+
+export default {
   /**
    * @param isNew 判斷接下來的行為是新增產品或編輯產品
    * @param tempProduct 用來暫存編輯的單一產品資料，預先定義imageUrl或是打開modal時定義也可以
@@ -162,158 +163,156 @@
    * @param filePath 暫存上傳圖檔後回傳的圖片網址
    * @param status 用於切換上傳圖片時的小 icon，主要是增加使用者體驗。-[]還未新增
    */
-    // @@props的型別檢查用法
-    props:{
-        isNew:true,
-    },
-    data() {
-      return {
-        //@@一開始v-model綁定的是空的物件屬性不會報錯
-        tempProduct:{
-            imageUrl:[],
-            options:{
-                stock:0
-            }
+  // @@props的型別檢查用法
+  props: {
+    isNew: true,
+  },
+  data() {
+    return {
+      // @@一開始v-model綁定的是空的物件屬性不會報錯
+      tempProduct: {
+        imageUrl: [],
+        options: {
+          stock: 0,
         },
-        tempImgUrl:'',
-        filePath:'',
+      },
+      tempImgUrl: '',
+      filePath: '',
+    };
+  },
+  computed: {
+    // isReadonly(){ //如果是上傳六角的圖片就不可編輯??
+    //     return function(url){
+    //         if(url.indexOf("hexschool")!==-1){
+    //             return true;
+    //         }
+    //     }
+    // }
+  },
+  methods: {
+    openNewModal() {
+      this.$store.commit('LOADING', true);
+      // 保險
+      this.tempProduct = {
+        imageUrl: [],
+        options: {
+          stock: 0,
+          delivery: '',
+          specification: '',
+
+        },
+      };
+      // ------等於下面-----------------
+      // this.tempProduct = {};
+      // this.$set(this.tempProduct,'imageUrl',[]);
+      // ---------------------------------
+      this.$store.commit('LOADING', false);
+      $('#productModal').modal('show');
+    },
+    openEditModal(id) { // 編輯時
+      this.$store.commit('LOADING', true);
+      const api = `ec/product/${id}`;
+      instanceAdmin.get(api)
+        .then((res) => {
+          this.tempProduct = res.data.data;// ##重新賦值
+          // this.$set(this.tempProduct,'options',{});//##增加欄位時才能用 且只能用一次
+          this.$store.commit('LOADING', false);
+          $('#productModal').modal('show');
+        });
+    },
+    addImg() {
+      this.tempProduct.imageUrl.push(this.tempImgUrl);
+      this.tempImgUrl = '';
+    },
+    uploadImg() {
+      this.$store.commit('LOADING', true);
+      const api = 'storage';
+
+      const uploadedFile = this.$refs.file.files[0];
+      const formData = new FormData();
+      formData.append('file', uploadedFile);
+
+      instanceAdmin.post(api, formData, {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
+      })
+        .then((res) => {
+          this.$store.commit('LOADING', false);
+          this.filePath = res.data.data.path;
+          this.tempProduct.imageUrl.push(this.filePath);
+        });
+    },
+    updateProduct() {
+      this.$store.commit('LOADING', true);
+      let api = 'ec/product';
+      let httpMethod = 'post';
+      // 1 依資料狀態變化更新方法
+      if (!this.isNew) { // #或是tempProduct.id存在
+        api = `ec/product/${this.tempProduct.id}`;
+        httpMethod = 'patch';
       }
+      // 2 發送api
+      instanceAdmin[httpMethod](api, this.tempProduct)
+        .then((res) => {
+          this.$store.commit('LOADING', false);
+          // 3 emit更新產品列表
+          this.$emit('update');
+          // 4 關閉modal
+          $('#productModal').modal('hide');
+
+          this.tempProduct = { // 清空以免
+            imageUrl: [],
+            options: {},
+          };
+        });
     },
-    computed:{
-        // isReadonly(){ //如果是上傳六角的圖片就不可編輯??
-        //     return function(url){
-        //         if(url.indexOf("hexschool")!==-1){
-        //             return true;
-        //         }
+    cancelUpdateProduct() {
+      this.tempProduct = { // #非prop資料，此處清空
+        imageUrl: [],
+        options: {},
+      };
+      this.$emit('cancel');
+    },
+    removeBlankImg(emptyIndex) {
+      this.tempProduct.imageUrl.splice(emptyIndex, 1);
+    },
+  },
+  watch: {
+    // ['this.tempProduct.imageUrl'](){
+    // console.log("圖片改動");
+
+    // }
+    // ['this.tempProduct.imageUrl']:{//%%不用this
+    'tempProduct.imageUrl': {
+      handler(Val) {
+        // console.log(oldVal,Val);//無意義
+        // console.log("圖片陣列改動");
+        // 方法1 會無限迴圈
+        // let emptyIndex = 0;
+        // Val.forEach((url,index) => {
+        //     if(url==""){
+        //         emptyIndex = index;
         //     }
-        // }
-    },
-    methods:{
-        openNewModal(){
-            this.$store.commit('LOADING',true);
-            //保險
-            this.tempProduct={
-                imageUrl:[],
-                options:{
-                  stock:0,
-                  delivery:"",
-                  specification:""
-                  
-                }
-            }
-            // ------等於下面-----------------
-            // this.tempProduct = {};
-            // this.$set(this.tempProduct,'imageUrl',[]);
-            // ---------------------------------
-            this.$store.commit('LOADING',false);
-            $('#productModal').modal('show');
-        },
-        openEditModal(id){//編輯時
-            this.$store.commit('LOADING',true);
-            const api = `ec/product/${id}`
-            instanceAdmin.get(api)
-            .then(res => {
-                this.tempProduct = res.data.data;//##重新賦值
-                // this.$set(this.tempProduct,'options',{});//##增加欄位時才能用 且只能用一次
-                this.$store.commit('LOADING',false);
-                $('#productModal').modal('show');
-            })
-        },
-        addImg(){
-            this.tempProduct.imageUrl.push(this.tempImgUrl);
-            this.tempImgUrl = "";
-        },
-        uploadImg(){
-          this.$store.commit('LOADING',true);
-            const api = 'storage';
+        // })
+        // Val.splice(emptyIndex,1);
 
-            const uploadedFile = this.$refs.file.files[0];
-            const formData = new FormData();
-            formData.append('file',uploadedFile);
-            
-            instanceAdmin.post(api,formData,{
-                headers:{
-                    'content-type':'multipart/form-data'
-                }
-            })
-            .then(res => {
-                this.$store.commit('LOADING',false);
-                this.filePath = res.data.data.path;
-                this.tempProduct.imageUrl.push(this.filePath);
-            })
-        },
-        updateProduct(){
-            this.$store.commit('LOADING',true);
-            let api = 'ec/product';
-            let httpMethod = 'post';
-            // 1 依資料狀態變化更新方法
-            if(!this.isNew){//#或是tempProduct.id存在
-                api =`ec/product/${this.tempProduct.id}`;
-                httpMethod ='patch';
-            }
-            //2 發送api
-            instanceAdmin[httpMethod](api,this.tempProduct)
-            .then(res =>{
-              this.$store.commit('LOADING',false);
-                // 3 emit更新產品列表
-                this.$emit('update');
-                //4 關閉modal
-                $('#productModal').modal('hide')
-                
-                this.tempProduct={ //清空以免
-                    imageUrl:[],
-                    options:{}
-                }
-            })
-
-        },
-        cancelUpdateProduct(){
-            this.tempProduct={ //#非prop資料，此處清空
-                imageUrl:[],
-                options:{}
-            }
-            this.$emit('cancel');
-        },
-        removeBlankImg(emptyIndex){
-            this.tempProduct.imageUrl.splice(emptyIndex,1);
+        // 方法2
+        let emptyIndex = 0;
+        const ifHasEmpty = Val.some((item, index) => {
+          // if(item===""){ return true}
+          emptyIndex = index;
+          return item === '';
+        });
+        // console.log(ifHasEmpty);
+        if (ifHasEmpty) {
+          this.removeBlankImg(emptyIndex);
         }
+      },
+      deep: true,
     },
-    watch:{
-        // ['this.tempProduct.imageUrl'](){
-            // console.log("圖片改動");
-            
-        // }
-        // ['this.tempProduct.imageUrl']:{//%%不用this
-        ['tempProduct.imageUrl']:{
-            handler(Val) {
-                // console.log(oldVal,Val);//無意義
-                // console.log("圖片陣列改動");
-                // 方法1 會無限迴圈
-                // let emptyIndex = 0;
-                // Val.forEach((url,index) => {
-                //     if(url==""){
-                //         emptyIndex = index;
-                //     }
-                // })
-                // Val.splice(emptyIndex,1);
-                
-                // 方法2
-                let emptyIndex = 0;
-                const ifHasEmpty = Val.some((item,index) =>{
-                    // if(item===""){ return true}
-                    emptyIndex = index;
-                    return item === "";
-                })
-                // console.log(ifHasEmpty);
-                if(ifHasEmpty){
-                    this.removeBlankImg(emptyIndex)
-                }
-                
-            },
-            deep:true
-        }
-    }
-}
+  },
+};
 
 </script>
 

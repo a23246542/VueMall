@@ -44,11 +44,12 @@
     </nav>
 </template>
 <script>
-import CartModal from '@/components/CartModal'
+import CartModal from '@/components/CartModal';
+
 export default {
-    name:'nav-header',
-    components:{
-        CartModal
-    }
-}
+  name: 'nav-header',
+  components: {
+    CartModal,
+  },
+};
 </script>

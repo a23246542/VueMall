@@ -22,53 +22,52 @@
             <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
         </form>
     </div>
-    
+
 </template>
 
 <script>
-import {instanceLogin} from "@/api/https";//%%
+import { instanceLogin } from '@/api/https';// %%
 // import {instanceLogin} from "../../api/https";
 export default {
-    name:'login',
-    data() {
-        return {
-            user:{
-                email:'',
-                password:'',
-            },
-            // token:'',//%%不能呈現在前端頁面
-            // expired:'',
-            // uuid:''
-        }
+  name: 'login',
+  data() {
+    return {
+      user: {
+        email: '',
+        password: '',
+      },
+      // token:'',//%%不能呈現在前端頁面
+      // expired:'',
+      // uuid:''
+    };
+  },
+  methods: {
+    signIn() {
+      this.$store.commit('LOADING', true);
+      const vm = this;
+      const api = 'auth/login';
+      instanceLogin.post(api, this.user)
+        .then((res) => {
+          this.$store.commit('LOADING', false);
+          // catch是请求失败的
+          console.log(res);
+          if (res.data.success) {
+            const { token } = res.data;// 跨页面cookeies
+            const { expired } = res.data;
+            const { uuid } = res.data;
+
+            document.cookie = `token=${token}; uuid=${uuid}; expires=${new Date(expired * 1000)}; path=/`;
+            // router.push('/admin')不像main.js
+            this.$router.push('/admin');// %%
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    methods:{
-        signIn(){
-            this.$store.commit('LOADING',true);
-            const vm = this;
-            const api = 'auth/login'
-            instanceLogin.post(api,this.user)
-            .then(res =>{
-                this.$store.commit('LOADING',false);
-                // catch是请求失败的
-                console.log(res);
-                if(res.data.success){
-                    const token = res.data.token;//跨页面cookeies
-                    const expired = res.data.expired;
-                    const uuid = res.data.uuid;
-    
-                    document.cookie = `token=${token}; uuid=${uuid}; expires=${new Date(expired * 1000)}; path=/`;
-                    // router.push('/admin')不像main.js
-                    this.$router.push('/admin');//%%
-                }
-                
-            })
-            .catch(err => {
-                console.log(err);
-            })
-        }
-        
-    }
-}
+
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -88,5 +87,3 @@ export default {
         margin: auto;
     }
 </style>
-
-

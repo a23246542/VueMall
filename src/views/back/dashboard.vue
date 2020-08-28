@@ -10,22 +10,21 @@
     </div>
 </template>
 <script>
-import DashNavbar from "@/components/DashNavbar";
-import DashSidebar from "@/components/DashSidebar";
-import dashProducts from "@/views/back/dashProducts";
-
+import DashNavbar from '@/components/DashNavbar';
+import DashSidebar from '@/components/DashSidebar';
+import dashProducts from '@/views/back/dashProducts';
 
 export default {
   components: {
     DashNavbar,
     DashSidebar,
-    dashProducts
+    dashProducts,
   },
-  mounted(){
+  mounted() {
     // this.$router.push({name:'dashProducts'});
-  }
-  
-}
+  },
+
+};
 
 </script>
 <style lang="scss">
@@ -88,14 +87,10 @@ export default {
             text-transform: uppercase;
         }
 
-
-
         [role="main"] {
             padding-top: 48px;
             /* Space for fixed navbar */
         }
-
-
 
         .navbar-brand {
             padding-top: .75rem;
@@ -122,8 +117,6 @@ export default {
             box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
         }
 
-
-
         .border-top {
             border-top: 1px solid #e5e5e5;
         }
@@ -133,10 +126,10 @@ export default {
         }
     }
 </style>
-<style lang="scss"scoped> 
+<style lang="scss"scoped>
 // // /deep/ .dashboard {
 //     // .dashboard >>> { //@@域處理器無法解析
 // .dashboar /deep/ {//%%deep位置
- 
+
 // }
 </style>

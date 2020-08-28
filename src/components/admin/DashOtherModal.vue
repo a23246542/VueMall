@@ -63,29 +63,28 @@
 
 <script>
 export default {
-    props: {
-        title:{
-            type: String,
-            required: true
-        },
-        //看是新增還編輯決定出現哪一個
-        modalUse:{
-            type: String,
-            required:true
-        },
-        //暫時的單一項目可能是空的或是編輯舊的
+  props: {
+    title: {
+      type: String,
+      required: true,
     },
-    methods:{
-        sureBtn(){
-            
-            if(this.modalUse ==='update'){
-                this.$emit('submit');
-            }else if(this.modalUse === 'delete'){
-                this.$emit('delete');
-            }
-        }
-    }
-}
+    // 看是新增還編輯決定出現哪一個
+    modalUse: {
+      type: String,
+      required: true,
+    },
+    // 暫時的單一項目可能是空的或是編輯舊的
+  },
+  methods: {
+    sureBtn() {
+      if (this.modalUse === 'update') {
+        this.$emit('submit');
+      } else if (this.modalUse === 'delete') {
+        this.$emit('delete');
+      }
+    },
+  },
+};
 </script>
 
 <style>

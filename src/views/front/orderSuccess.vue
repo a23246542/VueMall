@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <div class="bg-cover" 
+                <div class="bg-cover"
                     style="min-height:calc(100vh - 72px);background-image: url(https://images.unsplash.com/photo-1492648272180-61e45a8d98a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)"
                 ></div>
             </div>
@@ -20,7 +20,7 @@
 <script>
 export default {
 
-}
+};
 </script>
 
 <style>

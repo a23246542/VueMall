@@ -58,8 +58,8 @@
         />
         <!---------- Modal ---------------------->
         <!-- 之前的組件 -->
-        <!-- <DashProductModal 
-        ref="dashProductModal" 
+        <!-- <DashProductModal
+        ref="dashProductModal"
         :is-new="isNew"
         @update="getProducts"
         @cancel="clearModal"
@@ -154,139 +154,140 @@
 <script>
 import BasePagination from '@/components/BasePagination';
 import DashModal from '@/components/admin/DashOtherModal';
+
 export default {
-    components:{
-        BasePagination,
-        DashModal
+  components: {
+    BasePagination,
+    DashModal,
+  },
+  data() {
+    return {
+      coupons: [],
+      tempCoupon: {
+        title: '',
+        code: '',
+        percent: '',
+        enabled: true,
+        deadline: { datetime: '' },
+      },
+      pagination: {},
+      isNew: true, // 決定新增還是編輯的api方法
+      modalUse: '',
+      modalTitle: '',
+    };
+  },
+  created() {
+    this.getCoupons();
+  },
+  computed: {
+    dueDate: { // 到期日v-model
+      get() {
+        // return this.tempCoupon['deadline_at'].split('').slice(0,10).join('');
+        return this.tempCoupon.deadline.datetime.split('').slice(0, 10).join('');
+      },
+      set(value) {
+        // this.tempCoupon['deadline_at'] = `${value} 23:59:59`;
+        this.tempCoupon.deadline.datetime = `${value} 23:59:59`;// 計算到當天結束為止
+      },
     },
-    data(){
-        return {
-            coupons:[],
-            tempCoupon:{
-                title:'',
-                code:'',
-                percent:'',
-                enabled:true,
-                deadline:{datetime:""}
-            },
-            pagination:{},
-            isNew:true,//決定新增還是編輯的api方法
-            modalUse:'',
-            modalTitle:'',
-        }
-    },
-    created() {
-        this.getCoupons();
-    },
-    computed:{
-        dueDate:{//到期日v-model
-            get(){
-                // return this.tempCoupon['deadline_at'].split('').slice(0,10).join('');
-                return this.tempCoupon.deadline.datetime.split('').slice(0,10).join('');
-            },
-            set(value){
-                // this.tempCoupon['deadline_at'] = `${value} 23:59:59`;
-                this.tempCoupon.deadline.datetime = `${value} 23:59:59`;//計算到當天結束為止
-            }
-        }
-    },
-    methods:{
-        // due(){
-        //     var dateControl = document.querySelector('input[type="datetime-local"]');
-        //         console.log(dateControl.value);
-        // },
-        // showOnlyDate(item){
-        //     return item.split('').slice(0,10).join('')
-        // },
-        openModal(action,CouponItem){
-            if(action==='new'){
-                this.isNew = true;
-                this.modalUse = 'update';
-                this.modalTitle = '新增優惠券';
-                // this.tempCoupon = {};//清空err讀取不到
-                this.tempCoupon = {
-                    title:'',
-                    code:'',
-                    percent:'',
-                    enabled:true,
-                    deadline:{datetime:""}
-                    // deadline:{}//computed報錯
-                };
-            }else if (action==='edit'){
-                this.isNew = false;
-                this.modalUse = 'update';
-                this.modalTitle = '編輯優惠券';
+  },
+  methods: {
+    // due(){
+    //     var dateControl = document.querySelector('input[type="datetime-local"]');
+    //         console.log(dateControl.value);
+    // },
+    // showOnlyDate(item){
+    //     return item.split('').slice(0,10).join('')
+    // },
+    openModal(action, CouponItem) {
+      if (action === 'new') {
+        this.isNew = true;
+        this.modalUse = 'update';
+        this.modalTitle = '新增優惠券';
+        // this.tempCoupon = {};//清空err讀取不到
+        this.tempCoupon = {
+          title: '',
+          code: '',
+          percent: '',
+          enabled: true,
+          deadline: { datetime: '' },
+          // deadline:{}//computed報錯
+        };
+      } else if (action === 'edit') {
+        this.isNew = false;
+        this.modalUse = 'update';
+        this.modalTitle = '編輯優惠券';
 
-                this.tempCoupon = {...CouponItem};
-            }else if (action==='delete'){
-                this.modalUse = 'delete';
-                this.modalTitle = '刪除優惠券';
-                this.tempCoupon = CouponItem;
-            }
-            $("#couponModal").modal("show");
-        },
-        async getCoupons(page=1,cb){
-            // return new Promise((resolve, reject) =>{
-                this.$store.commit('LOADING',true);
-                const api = "ec/coupons";
-                await this.$instanceAdmin.get(api)
-                .then((res)=>{
-                    this.coupons = res.data.data;
-                    this.pagination = res.data.meta.pagination;
-                    if(cb){
-                      cb()
-                    }
-                    this.$store.commit('LOADING',false);
-                    // resolve();
-                })                
-            // })
-        },
-        updateCoupon(){
-            this.$store.commit('LOADING',true);
-            const vm = this;
-            let api = "ec/coupon";
-            let apiMethod = "post";
-            if(!this.isNew){
-                api = `ec/coupon/${this.tempCoupon.id}`
-                apiMethod = "patch";
-            }
-            const data = {...this.tempCoupon};
-            data['deadline_at'] = data.deadline.datetime;//##
-            delete data.deadline;
-            this.$instanceAdmin[apiMethod](api,data)
-            // .then(async () => {
-            .then(()=>{
-                // this.getCoupons(()=>{ //callback
-                //     $("#couponModal").modal("hide");
-                // });
-                // -----
-                // await vm.getCoupons();//@@不用加
-                // $("#couponModal").modal("hide");
-                // -----
-                vm.getCoupons()
-                .then(()=>{
-                  $("#couponModal").modal("hide");   
-                })
-            })
-            // $("#couponModal").modal("hide");        
-        },
-        removeCoupon(){
-            this.$store.commit('LOADING',true);
-            const api = `ec/coupon/${this.tempCoupon.id}`;
-            this.$instanceAdmin.delete(api)
+        this.tempCoupon = { ...CouponItem };
+      } else if (action === 'delete') {
+        this.modalUse = 'delete';
+        this.modalTitle = '刪除優惠券';
+        this.tempCoupon = CouponItem;
+      }
+      $('#couponModal').modal('show');
+    },
+    async getCoupons(page = 1, cb) {
+      // return new Promise((resolve, reject) =>{
+      this.$store.commit('LOADING', true);
+      const api = 'ec/coupons';
+      await this.$instanceAdmin.get(api)
+        .then((res) => {
+          this.coupons = res.data.data;
+          this.pagination = res.data.meta.pagination;
+          if (cb) {
+            cb();
+          }
+          this.$store.commit('LOADING', false);
+          // resolve();
+        });
+      // })
+    },
+    updateCoupon() {
+      this.$store.commit('LOADING', true);
+      const vm = this;
+      let api = 'ec/coupon';
+      let apiMethod = 'post';
+      if (!this.isNew) {
+        api = `ec/coupon/${this.tempCoupon.id}`;
+        apiMethod = 'patch';
+      }
+      const data = { ...this.tempCoupon };
+      data.deadline_at = data.deadline.datetime;// ##
+      delete data.deadline;
+      this.$instanceAdmin[apiMethod](api, data)
+      // .then(async () => {
+        .then(() => {
+          // this.getCoupons(()=>{ //callback
+          //     $("#couponModal").modal("hide");
+          // });
+          // -----
+          // await vm.getCoupons();//@@不用加
+          // $("#couponModal").modal("hide");
+          // -----
+          vm.getCoupons()
             .then(() => {
-                // this.getCoupons(page=1,()=>{@@page not defined
-                this.getCoupons(1,()=>{//callback作法
-                    $("#couponModal").modal("hide");
-                })
-            })
-            // .then(() =>{//##只適合上面用promiseFn包的時候
-            //     $("#couponModal").modal("hide");
-            // })
-        }
+              $('#couponModal').modal('hide');
+            });
+        });
+      // $("#couponModal").modal("hide");
+    },
+    removeCoupon() {
+      this.$store.commit('LOADING', true);
+      const api = `ec/coupon/${this.tempCoupon.id}`;
+      this.$instanceAdmin.delete(api)
+        .then(() => {
+          // this.getCoupons(page=1,()=>{@@page not defined
+          this.getCoupons(1, () => { // callback作法
+            $('#couponModal').modal('hide');
+          });
+        });
+      // .then(() =>{//##只適合上面用promiseFn包的時候
+      //     $("#couponModal").modal("hide");
+      // })
+    },
 
-    }
-}
+  },
+};
 </script>
 <style lang="scss">
     #dashCoupon{
@@ -297,8 +298,7 @@ export default {
       .table{
           min-width: 670px;
       }
-      
-        
+
     }
 </style>
 
@@ -306,4 +306,4 @@ export default {
     // .table{
     //     min-width: 670px;
     // }
-</style>   
+</style>
