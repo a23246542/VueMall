@@ -1,22 +1,40 @@
 <template>
     <!-- <div> -->
-        <div class="col-4 mb-5">
-            <div class="card">
-                <img :src="thisProduct.imageUrl[0]" class="card-img-top" alt="..."
+        <div class="col-xl-4 col-sm-6 mb-5 productCardCol">
+            <div class="productCard card rounded-0">
+                <!-- <img :src="thisProduct.imageUrl[0]" class="productCard__img card-img-top img-fluid" alt="..."
                     @click="openSingleProudct(thisProduct.id)"
-                >
-                <div class="card-body">
+                > -->
+                <div class="p-2">
+                  <div class="productCard__imgWrapper bg-cover"
+                    :style="{
+                      backgroundImage:`url(${thisProduct.imageUrl[0]})`
+                    }"
+                  >
+                    <span class="productCard__imgWrapper__badge badge badge-primary">{{productTag}}</span>
+                  </div>
+                </div>
+                <div class="productCard__body card-body pt-1">
                     <h5 class="card-title font-weight-bold"
                         @click="openSingleProudct"
                     >
                         {{thisProduct.title}}
-                        <span class="badge badgeColor">{{productTag}}</span>
                     </h5>
-                    <p class="card-text text-truncate lineCamp--4 text-wrap">
+                    <p class="card-text text-truncate text-nowrap">
                         {{thisProduct.content}}
                     </p>
-                    <div class="d-flex">
-                        <div class="form-inline">
+                    <div class="d-flex align-items-end mb-2">
+                      <div class="__price h3 mb-0 mr-2 font-weight-bold">
+                        NT{{thisProduct.price | dollars}}
+                      </div>
+                      <div class="text-muted">
+                        <del>
+                          NT{{thisProduct.origin_price | dollars}}
+                        </del>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="form-inline mr-2">
                             <!-- ###寫入只能用v-model了 -->
                             
                             <!-- <select class="form-control"
@@ -27,7 +45,7 @@
                                 >{{i}}</option>
                             </select> -->
                             <!-- ##v-model沒有值的話 option預設不會顯示 雙向綁定變空白 -->
-                            <select class="form-control"
+                            <select class="__num form-control form-control-sm"
                             v-model="thisProduct.num"
                             >
                                 <option :value="1" selected >1</option>
@@ -36,12 +54,10 @@
                                 >{{i+1}}</option>
                             </select>
                         </div>
-                        <div class="h3 ml-2">
-                            {{thisProduct.price}}
-                        </div>
-                        <a href="#" class="btn bg-green ml-auto"
+                        <a href="#" class="__cart flex-1 btn btn-secondary btn-sm py-1 ml-auto"
                         @click.prevent="addToCart(thisProduct,thisProduct.num)"
                         >加入購物車</a>
+                        
                     </div>
                 </div>
             </div>
@@ -139,6 +155,7 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+  
 </style>
+

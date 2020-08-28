@@ -10,10 +10,12 @@
 //數字字體 "Yu Gothic"
 @import "./helpers/base";
 @import "./helpers/util";
+@import "./helpers/mixin";
 
 @import "./components/modal";
 @import "./components/pagination";
 @import "./components/switch";
+@import "./components/productCard";
 
 // @import "./pages/dashboard";
 @import "./pages/product-list";

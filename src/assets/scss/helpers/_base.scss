@@ -1,3 +1,7 @@
 *{
     word-break: break-word;
 }
+
+html,body{ //@@html bg被蓋掉
+  background-color: $brand-background;
+}

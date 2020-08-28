@@ -80,3 +80,10 @@
 .border-radius-lg{
   border-radius:$border-radius-lg;
 }
+
+.lineCamp--3{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp:3;
+  -webkit-line-clamp: 3;
+}
