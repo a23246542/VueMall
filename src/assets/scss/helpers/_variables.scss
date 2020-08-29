@@ -70,7 +70,7 @@ $colors: map-merge(
 );
 
 $primary:       $brand-primary;//$blue !default;
-$secondary:     $brand-secondary-coffee;//$gray-600 !default;
+$secondary:     $brand-secondary-green;//$gray-600 !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
@@ -1072,7 +1072,7 @@ $breadcrumb-margin-bottom:          1rem !default;
 $breadcrumb-bg:                     $gray-200 !default;
 $breadcrumb-divider-color:          $gray-600 !default;
 $breadcrumb-active-color:           $gray-600 !default;
-$breadcrumb-divider:                quote("/") !default;
+$breadcrumb-divider:                quote(">") !default;
 
 $breadcrumb-border-radius:          $border-radius !default;
 

@@ -3,34 +3,47 @@
         <div class="container pt-5">
             <Alert></Alert>
             <!-- <div class="row flex-row-reverse"> -->
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb bg-transparent">
+                <li class="breadcrumb-item">
+                  <router-link :to="{name:'home'}">首頁</router-link>            
+                </li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Data</li>
+              </ol>
+            </nav>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-2 products__sidebar px-0">
                     <!-- <table class="table table-sm" v-if="cart.carts.length"> -->
-                    <h3>產品分類</h3>
                     <div class="list-group">
                         <!-- <a href="#" class="list-group-item list-group-item-action"
                         @click.prevent="searchText='all'"
                         > -->
-                        <a href="#" class="list-group-item list-group-item-action"
+                        <a href="#" class="list-group-item list-group-item-action rounded-0"
                         @click.prevent="setSearchText('all')"
                         >
-                            全部
+                            <span>
+                              所有商品
+                            </span>
                         </a>
                         <!-- <a href="#" class="list-group-item list-group-item-action"
                         v-for="item in categories" :key="item"
                         @click.prevent="searchText=item"
                         > -->
-                        <a href="#" class="list-group-item list-group-item-action"
+                        <a href="#" class="list-group-item list-group-item-action rounded-0"
                         v-for="item in categories" :key="item"
                         @click.prevent="setSearchText(item)"
                         >
-                            {{firstFloor(item)}}
+                            <span>
+                              {{firstFloor(item)}}系列
+                            </span>
                         </a>
                     </div>
                 </div>
 
                 <!-- <div class="col-10 mx-auto"> -->
-                <div class="col-md-10">
+                <div class="col-md-10 products__list">
+                <!-- <div class="products__list"> -->
                     <div class="row">
                       <!-- <div class="col-xl-4 col-sm-6 mb-5 products__cardCol"> -->
                           <ProductCard
@@ -144,9 +157,6 @@ export default {
     // getEmitCart(carts){
     //     this.carts = carts;
     // },
-    openSingleProduct(id) {
-      this.$router.push(`/products/${id}`);
-    },
     firstFloor(item) { // 顯示第一層目錄
       if (item.includes('>')) {
         return item.split('>')[0];
@@ -165,6 +175,8 @@ export default {
 </script>
 
 <style lang="scss">
+  // @import "@/src/assets/scss/helpers/_mixin.scss";
+  // @import "../../assets/scss/helpers/_variables.scss";
     #products{
         // background-color: #FFFCE5;
         font-family:'Microsoft JhengHei',-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -177,12 +189,67 @@ export default {
         //     /* background-color: #F2A594; */
         //     background-color: #F29E38;
         // }
-    }
 
+    }
     .products{
-        &__cardCol{
-          padding-left: 12px;
-          padding-right: 12px;
+      .container{
+        // @include media-breakpoint-up(xl){//@@無法吃到
+        @media screen and(min-width: 1200px){
+          max-width: 1200px;
         }
+      }
+
+      &__sidebar{
+        // width: 200px;
+        // background-color:$brand-secondary-green;//@@undefined
+        background-color:#4E3111;
+        align-self: start;
+        padding-top:40px;
+        padding-bottom: 260px;
+        .list-group{
+          // margin:0 auto;
+        }
+        .list-group-item{
+          position: relative;
+          padding:10px 10px 10px 13%;
+          background-color:#4E3111;//@@undefined
+          border:0;
+          border:1px solid red;
+          // transition: all .05s;
+          &:hover,&.active{
+            background-color: #C9420D;
+          }
+          &>span{
+            
+            padding-left: 10%;
+            margin-bottom:26px;
+            color: #fff;
+            // border:1px solid red;
+            border-left:3px solid #fff;
+            border-radius: 0;
+          }
+          &::after {
+            content:"";
+            position: absolute;
+            top: 50%;
+            transform:translateY(-50%);
+            right: 5%;
+
+            width: 0;
+            height: 0;
+            border-left:7px solid #fff;
+            border-top:4px solid transparent;
+            border-bottom:4px solid transparent;
+          }
+        }
+
+      }
+
+      &__list{
+        flex: 1;
+      }
+
+     
+
     }
 </style>

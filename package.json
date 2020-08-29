@@ -52,7 +52,13 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "lintOnSave": false, 
+    "rules": {
+      "max-len":"off",
+      "no-console": "off",
+      "no-unused-vars":"off",
+      "no-shadow":"off"
+    }
   },
   "browserslist": [
     "> 1%",

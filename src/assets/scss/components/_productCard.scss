@@ -1,0 +1,57 @@
+.productCardCol{
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.productCard{
+  &:hover{
+    @include shadow($blur:.5rem);//##
+  }
+
+  &__imgWrap{
+    position: relative;
+    padding-bottom: 100%;
+
+    &__badge{
+      position: absolute;
+      left: 4%;
+      top: 3%;
+    }
+  }
+
+  &__body{
+
+  }
+
+  &__title{
+    font-size: 21px;
+    color:$brand-secondary-green;
+  }
+
+  &__content{
+    font-size: 15px;
+    margin-bottom: 9px;
+  }
+
+  &__price{
+    font-size: 27px;
+    font-weight: bold;
+    color: #A91604;
+  }
+  &__num{
+    color: #E8CA8A;
+    background-color: $brand-secondary-green;
+    border-radius: 8px;
+  }
+
+  &__cart{
+    // background-color: $brand-secondary-green;
+    font-weight: bold;
+    border-radius: 6px;
+    color: #E8CA8A;
+    &:hover{
+      background-color: $brand-primary !important;
+      
+    }
+  }
+}
