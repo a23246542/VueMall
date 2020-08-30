@@ -39,20 +39,22 @@
                             </span>
                         </a>
                     </div>
+                    <Category
+                    
+                    ></Category>
                 </div>
 
                 <!-- <div class="col-10 mx-auto"> -->
-                <div class="col-md-10 products__list">
+                <div class="col-md-10 products__content">
                 <!-- <div class="products__list"> -->
-                    <div class="row">
-                      <!-- <div class="col-xl-4 col-sm-6 mb-5 products__cardCol"> -->
-                          <ProductCard
+                    <!-- <div class="row"> -->
+                          <!-- <ProductCard
                               v-for="(item) in filterProducts"
                               :key="item.id"
                               :thisProduct="item"
-                          />
-                      <!-- </div> -->
-                    </div>
+                          /> -->
+                          <router-view></router-view>
+                    <!-- </div> -->
                     <!-- 分頁 開始 -->
                     <pagination
                     :pages="pagination"
@@ -71,6 +73,7 @@ import ProductCard from '@/components/ProductCard';
 import CartModal from '@/components/CartModal';
 import pagination from '@/components/BasePagination';
 import Alert from '@/components/BaseAlertMessage';
+import Category from '@/components/Category';
 import { mapState } from 'vuex';
 import { instanceCus } from '../../api/https';
 
@@ -80,6 +83,7 @@ export default {
     CartModal,
     Alert,
     pagination,
+    Category
   },
   data() {
     return {
@@ -89,21 +93,21 @@ export default {
       // products:[],
       // pagination:{},
       // categories:[],
-      searchText: 'all',
+      // searchText: 'all',
       // carts:[]//子組件購物車的
     };
   },
   computed: {
-    filterProducts() {
-      if (this.searchText === 'all') {
-        return this.products;
-      }
-      return this.products.filter((item) =>
-      // return item.category == this.searchText;
-        item.category.toLowerCase()
-          .includes(this.searchText.toLowerCase()), // %%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false
-      );
-    },
+    // filterProducts() {
+    //   if (this.searchText === 'all') {
+    //     return this.products;
+    //   }
+    //   return this.products.filter((item) =>
+    //   // return item.category == this.searchText;
+    //     item.category.toLowerCase()
+    //       .includes(this.searchText.toLowerCase()), // %%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false
+    //   );
+    // },
     // ...mapState(['products','categories','pagination']),
     ...mapState({
       products: (state) => state.CusProducts.products,
@@ -166,8 +170,9 @@ export default {
       // console.log(item);
     },
     setSearchText(text) {
-      this.searchText = text;
-      // console.log(text,this.searchText);
+      // this.searchText = text;
+      this.$store.commit('SEARCH_TEXT',text);
+      console.log(text);
     },
 
   },
@@ -245,8 +250,8 @@ export default {
 
       }
 
-      &__list{
-        flex: 1;
+      &__content{
+        // flex: 1;
       }
 
      

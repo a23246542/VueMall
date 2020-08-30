@@ -24,14 +24,34 @@ const routes = [
       },
       {
         path: 'products',
-        name: 'products',
+        // name: 'products',
         component: () => import('../views/front/products'),
+        children:[
+          {
+            path: '',
+            name: 'products',
+            component: () => import('../views/front/productList'),
+            // children: [
+            //   {
+            //   path: ':productId',
+            //   name: 'productSingle',
+            //   component: () => import('../views/front/productSingle'),
+            //   },
+            // ]
+          },
+          {
+            path: ':productId',
+            name: 'productSingle',
+            component: () => import('../views/front/productSingle'),
+          },
+          
+        ]
       },
-      {
-        path: 'products/:productId',
-        name: 'productSingle',
-        component: () => import('../views/front/productSingle'),
-      },
+      // {
+      //   path: 'products/:productId',
+      //   name: 'productSingle',
+      //   component: () => import('../views/front/productSingle'),
+      // },
       {
         path: 'aboutUs',
         name: '關於我們',
@@ -106,7 +126,7 @@ const routes = [
   },
   {
     path: '/admin',
-    name: 'Dashboard',
+    name: 'Dashboard', 
     component: () => import('../views/back/dashboard.vue'),
     redirect: '/admin/products', // ##前台右鍵後台開新分頁會直接略過router.beforeEach
     // meta:{ requireAuth: true },//##有redirect沒用

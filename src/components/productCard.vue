@@ -16,7 +16,7 @@
                 </div>
                 <div class="productCard__body card-body pt-1">
                     <h5 class="productCard__title mb-1 card-title font-weight-bold"
-                        @click="openSingleProudct(thisProduct.id)"
+                        @click="openSingleProudct()"
                     >
                         {{thisProduct.title}}
                     </h5>
@@ -142,11 +142,15 @@ export default {
       // this.$store.dispatch('addToCart',{productId,qty})
       // this.$store.dispatch('getCart');//%%
     },
-    openSingleProudct(id) {
-      // console.log(id);
+    openSingleProudct() {
+      console.log(this.thisProduct.id);
       this.$router.push({
-        path: `/products/${id}`,
+        // path: `/products/${id}`,
+        path:`${this.thisProduct.id}`
+        // path:`/coupon`
       });
+      console.log("跳頁");
+
     },
   },
 };

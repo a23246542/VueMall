@@ -7,6 +7,7 @@ export default {
     products: [],
     pagination: {},
     categories: [],
+    searchText:'all',
   },
   mutations: {
     PRODUCTS(state, payload) {
@@ -28,6 +29,9 @@ export default {
       });
       state.categories = Array.from(categories);
     },
+    SEARCH_TEXT(state,payload){
+      state.searchText = payload;
+    }
   },
   actions: {
     getProducts(context, page = 1, paged = 25, orderBy = 'created_at', sort = 'desc') {
