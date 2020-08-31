@@ -25,7 +25,8 @@ export default {
       const categories = new Set();
       state.products.forEach((item) => {
         // categories.push(item.category)//%%@@
-        categories.add(item.category.split('>')[0]);
+        // categories.add(item.category.split('>')[0]);
+        categories.add(item.category);
       });
       state.categories = Array.from(categories);
     },
