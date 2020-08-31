@@ -195,17 +195,21 @@ export default {
     // },
   },
   created() {
-    this.getProducts();
+    this.getProducts()
+    .then(() => {
+      console.log('111');
+      this.setClassObj();//@@改用watch做
+    });
   },
   mounted(){
-    this.setClassObj();
-    console.log('56uv');
+    // this.setClassObj();
+    // console.log('56uv');
     
   },
   methods: {
     // getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
-    getProducts(page = 1) {
-      this.$store.dispatch('getProducts', page);
+    async getProducts(page = 1) {
+      await this.$store.dispatch('getProducts', page);
     },
     // getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
     //     this.$store.commit('LOADING',true);
@@ -245,9 +249,9 @@ export default {
       // console.log(item);
     },
     setClassObj() {
+      console.log('ss');
         this.categories.forEach(item => {
         const firstClass = item.split('>')[0];
-        console.log('ss');
         
         console.log(firstClass);
         if(!this.classObj.map[firstClass]){
@@ -257,10 +261,11 @@ export default {
           //   sort:[],
           //   hidden:true
           // };
+          this.$set(this.classObj.map,firstClass,{});
           this.$set(this.classObj.map[firstClass],'sort',[]);
           this.$set(this.classObj.map[firstClass],'hidden',true);
         }
-        this.classObj.map[firstCalss].sort.push(item.split('>')[1]);
+        this.classObj.map[firstClass].sort.push(item.split('>')[1]);
       })
       // console.log(obj);
       // return obj
@@ -271,7 +276,11 @@ export default {
       console.log(text);
     },
     showSubClass(mainClass) {
-      this.classObj.map[mainClass].hidden = false;
+      // this.classObj.map[mainClass].hidden === true? false : true;//@#簡化
+      // !this.classObj.map[mainClass].hidden=;//#失敗
+
+      this.classObj.map[mainClass].hidden = !this.classObj.map[mainClass].hidden;
+      
     }
   },
 };
