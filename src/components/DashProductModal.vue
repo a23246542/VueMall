@@ -174,6 +174,8 @@ export default {
         imageUrl: [],
         options: {
           stock: 0,
+          delivery: '',
+          specification: '',
         },
       },
       tempImgUrl: '',
@@ -199,7 +201,6 @@ export default {
           stock: 0,
           delivery: '',
           specification: '',
-
         },
       };
       // ------等於下面-----------------

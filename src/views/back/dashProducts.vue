@@ -2,7 +2,7 @@
   <div id="dashProducts">
     <!-- <BaseLoading :active.sync="isLoading"/> -->
     <div class="mt-4 text-right">
-        <button class="btn btn-primary"
+        <button class="newBtn btn btn-primary"
             @click="openModal('new')">新增產品
         </button>
     </div>
@@ -120,6 +120,11 @@ export default {
       isNew: true,
       tempProduct: {
         imageUrl: [],
+        options : {
+          stock: 0,
+          delivery: '',
+          specification: '',
+        }
       },
       currentPage: '0',
     };
@@ -234,8 +239,14 @@ export default {
   #dashProducts{
     .table{
       min-width: 800px;
+      // @include shadow();//SassError: no mixin named shadow
     }
-    // &__table{//## bem dashProducts為class才適合
+    .newBtn{
+      // background-color: $brand-secondary-green;//SassError: Undefined variable
+    }
+
+
+    // &__table{//## bem dashProducts為class才用
     //   min-width: 800px;
     // }
   }
