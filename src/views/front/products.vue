@@ -55,9 +55,10 @@
                               {{item}}系列
                             </span>
                             <span class="mainClass__arrow"
-                              @click="showSubClass(item)"
+                              @click="showSubClass(item,$event)"
                               v-if="classObj.map[item].sort[0]"
                             ></span>
+
                             <ul class="subClass list-group"
                               v-if="classObj.map[item].sort[0]"
                               v-show="!classObj.map[item].hidden"
@@ -276,11 +277,14 @@ export default {
       this.$store.commit('SEARCH_TEXT',text);
       console.log(text);
     },
-    showSubClass(mainClass) {
+    showSubClass(mainClass,event) {
       // this.classObj.map[mainClass].hidden === true? false : true;//@#簡化
       // !this.classObj.map[mainClass].hidden=;//#失敗
-
-      this.classObj.map[mainClass].hidden = !this.classObj.map[mainClass].hidden;
+      console.log(event);
+      event.target.classList.toggle('show');
+      setTimeout(()=>{
+        this.classObj.map[mainClass].hidden = !this.classObj.map[mainClass].hidden;
+      },350)
       
     },
     
@@ -337,7 +341,7 @@ export default {
           padding:10px 10px 10px 13%;
           // background-color:#4E3111;//@@undefined
           border:0;
-          border:1px solid red;
+          // border:1px solid red;
           // transition: all .05s;
           
           &>span{
@@ -387,6 +391,11 @@ export default {
               border-style: solid;
               border-width: 6px 0 6px 8px;
               border-color: transparent transparent transparent #3F3B00;
+              transition: all .25s;
+
+              &.show{
+                transform:rotateZ(90deg);
+              }
           }
         }
         .subClass{
