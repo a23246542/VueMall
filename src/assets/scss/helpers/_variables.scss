@@ -3,9 +3,12 @@
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 $brand-primary:#C9420D;
-$brand-secondary-coffee:#4E3111; 
 $brand-secondary-green:#3F3B00;
+$brand-secondary1:#3F3B00;
+$brand-secondary-coffee:#4E3111; 
+$brand-secondary2:#4E3111; 
 $brand-background:#F2F2F2;
+$brand-gray:#707070;
 // Color system
 
 $white:    #fff !default;
@@ -63,8 +66,10 @@ $colors: map-merge(
     "teal":       $teal,
     "cyan":       $cyan,
     "white":      $white,
+    // "gray":       #707070,//$gray-600,
     "gray":       $gray-600,
-    "gray-dark":  $gray-800
+    "gray-dark":  $gray-800,
+    
   ),
   $colors
 );
@@ -84,12 +89,15 @@ $theme-colors: map-merge(
   (
     "primary":    $primary,
     "secondary":  $secondary,
+    "secondary1":  $brand-secondary1,
+    "secondary2":  $brand-secondary2,
     "success":    $success,
     "info":       $info,
     "warning":    $warning,
     "danger":     $danger,
     "light":      $light,
-    "dark":       $dark
+    "dark":       $dark,
+    "gray":       #707070,
   ),
   $theme-colors
 );
@@ -147,8 +155,11 @@ $spacers: map-merge(
     0: 0,
     1: ($spacer * .25),
     2: ($spacer * .5),
+    25:($spacer * .75),
     3: $spacer,
+    35: ($spacer * 1.25),
     4: ($spacer * 1.5),
+    45: ($spacer * 2),
     5: ($spacer * 3),
     6: ($spacer * 4)
   ),
@@ -285,7 +296,9 @@ $embed-responsive-aspect-ratios: join(
 
 // stylelint-disable value-keyword-case
 // $font-family-sans-serif:      -apple-system,"Microsoft JhengHei",BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-$font-family-sans-serif:      -apple-system,"Yu Gothic","Microsoft JhengHei",BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+// $font-family-sans-serif:      -apple-system,"Yu Gothic","Microsoft JhengHei",BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+//@@ "Segoe UI"擺前面似乎無效
+$font-family-sans-serif:      -apple-system, "Segoe UI","Yu Gothic","Microsoft JhengHei",BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:            $font-family-sans-serif !default;
 // stylelint-enable value-keyword-case
