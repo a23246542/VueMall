@@ -49,19 +49,20 @@
                         <a href="#" class="list-group-item list-group-item-action rounded-0"
                         v-for="item in classObj.sort" :key="item"
                         >
-                            <span
-                              @click="setSearchText(item)"
+                            <span class="mainClass__title"
+                              @click.stop="setSearchText(item)"
                             >
                               {{item}}系列
-                              <span class="arrow"
-                                @click="showSubClass(item)"
-                              ></span>
                             </span>
+                            <span class="mainClass__arrow"
+                              @click="showSubClass(item)"
+                              v-if="classObj.map[item].sort[0]"
+                            ></span>
                             <ul class="subClass list-group"
                               v-if="classObj.map[item].sort[0]"
                               v-show="!classObj.map[item].hidden"
                             >
-                              <li class="list-group-item border-0" 
+                              <li class="subClass__title list-group-item border-0" 
                                 v-for="item in classObj.map[item].sort" :key="item"
                                 @click.prevent="setSearchText(item)"
                               >
@@ -197,8 +198,8 @@ export default {
   created() {
     this.getProducts()
     .then(() => {
-      console.log('111');
-      this.setClassObj();//@@改用watch做
+      console.log('執行getProduct.then');
+      // this.setClassObj();//@@改用watch做
     });
   },
   mounted(){
@@ -209,7 +210,7 @@ export default {
   methods: {
     // getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
     async getProducts(page = 1) {
-      await this.$store.dispatch('getProducts', page);
+      await this.$store.dispatch('getProducts', page);//@@無效
     },
     // getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
     //     this.$store.commit('LOADING',true);
@@ -249,7 +250,7 @@ export default {
       // console.log(item);
     },
     setClassObj() {
-      console.log('ss');
+        console.log('執行setClassObj');
         this.categories.forEach(item => {
         const firstClass = item.split('>')[0];
         
@@ -281,7 +282,14 @@ export default {
 
       this.classObj.map[mainClass].hidden = !this.classObj.map[mainClass].hidden;
       
-    }
+    },
+    
+  },
+  watch: {
+      categories(val,oldVal){
+        console.log(val);
+        this.setClassObj();
+      }
   },
 };
 </script>
@@ -333,7 +341,22 @@ export default {
           // transition: all .05s;
           
           &>span{
+           
+            &>.arrow{
+             
+            }
+          }
+        }
+
+        .mainClass{
+          .list-group-item{
             position: relative;
+            // &:hover,&.active{
+            // background-color: #C9420D;
+            // }
+          }
+
+          &__title{
             padding-left: 10%;
             margin-bottom:26px;
             color:inherit;
@@ -341,27 +364,29 @@ export default {
             // border-left:3px solid inherit;//@@不行inherit
             border-left:3px solid #3F3B00;
             border-radius: 0;
-            &>.arrow{
-              // content:"";
-              position: absolute;
-              top: 50%;
-              transform:translateY(-50%);
-              right: -20px;
+          }
+
+          &__arrow{
+            display: inline-block;//##span三角形失敗
+             // content:"";
+              // position: absolute;
+              // top: 50%;
+              // transform:translateY(-50%);
+              // // right: -20px;
+              // right: -50px;
+
+              // width: 0;
+              // height: 0;
+              // border-left:7px solid #3F3B00;
+              // border-top:4px solid transparent;
+              // border-bottom:4px solid transparent;
 
               width: 0;
               height: 0;
-              border-left:7px solid #3F3B00;
-              border-top:4px solid transparent;
-              border-bottom:4px solid transparent;
-            }
-          }
-        }
-
-        .mainClass{
-          .list-group-item>span{
-            &:hover,&.active{
-            background-color: #C9420D;
-            }
+              margin-left: 10%;
+              border-style: solid;
+              border-width: 6px 0 6px 8px;
+              border-color: transparent transparent transparent #3F3B00;
           }
         }
         .subClass{
