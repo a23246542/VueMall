@@ -1,45 +1,23 @@
 <template>
     <!-- <div> -->
-        <div class="container productSingle"
-        v-if="product.imageUrl[0]"
-        >
-            <div class="row mb-45">
-                <div class="col-md-6 px-0 text-center">
-                    <img :src="product.imageUrl[selectedImgIndex]" alt=""
-                      class="img-fluid mb-3 bg-white"
-                      style="height:500px;object-fit:contain;"
+        <div class="container productSingle">
+            <div class="row">
+                <div class="col-md-6 px-0 text-center bg-white ">
+                    <img :src="product.imageUrl[0]" alt=""
+                    class="img-fluid"
+                    style="height:500px;object-fit:contain;"
                     >
-                    <div class="overflow-x-auto productSingle__cusScroll">
-                      <ul class="d-flex productSingle__thumbImgs mb-0 list-unstyled"
-                      >
-                        <li class="thumbImgs__oneThumbImg flex-shrink-0 bg-cover"
-                          v-for="(item,index) in product.imageUrl" :key="item"
-                          @click="setThumbImgIndex(index)"
-                          :class="{
-                            'thumbImgs__oneThumbImg--selected':selectedImgIndex==index,
-                          }"
-                          :style="{
-                            backgroundImage:`url(${product.imageUrl[index]})`
-                          }"
-                        >
-                          <!-- @@li會爆掉須研究 -->
-                          <!-- <img :src="product.imageUrl[index+1]" alt=""
-                            class=""
-                            style="height:100%;object-fit:cover;"
-                          > -->
-                        </li>
-                      </ul>
-                    </div>
+                    <!-- <p>輪播v-if</p> -->
                 </div>
                 <div class="col-md-6 px-35">
                     <div class="mb-3">
-                      <span class="d-inline-block px-1 text-primary border-bottom border-primary font-weight-bold"
+                      <span class="d-inline-blockpx-1 text-primary border-bottom border-primary font-weight-bold"
                         v-if="product.category"
                       >{{product.category.split('>')[1]}}系列</span>
                     </div>
                     <h2 class="text-secondary1 font-weight-bold">{{product.title}}</h2>
                     <p class="productSingle__content mb-2">{{product.content}}</p>
-                    <div class="d-flex justify-content-between mb-5 border-bottom">
+                    <div class="d-flex justify-content-between border-bottom">
                       <small class="productSingle__id"
                         v-if="product.id"
                       >
@@ -57,12 +35,11 @@
                         加入收藏 <i class="fas fa-heart"></i>
                       </span>
                     </div>
-                    <div class="productSingle__price d-flex align-items-baseline mb-3"
-                    >
+                    <div class="productSingle__price d-flex align-items-baseline">
                       <span class="mr-2">NT{{product.origin_price | dollars}}</span>
                       <span><del>NT{{product.price | dollars}}</del></span>
                     </div>
-                    <div class="d-flex align-items-end mb-6">
+                    <div class="d-flex align-items-end mb-45">
                       <!-- ##input-group -->
                       <div class="input-group w-auto">
                           <div class="input-group-prepend">
@@ -78,26 +55,12 @@
                       </div>
                       <small class="text-success">尚有庫存</small>
                     </div>
-                    <!-- <div class="productSingle__buyArea d-flex justify-content-end pr-4"> -->
-                    <div class="productSingle__buyArea">
+                    <div>
                         <button class="btn productSingle__nowBuy btn-primary mr-3">直接購買</button>
                         <button class="btn productSingle__addCar btn-primary">加入購物車</button>
                     </div>
-                    <p class="pl-2"><small class="text-muted"> 付款後，從備貨到寄出商品為 2 個工作天。（不包含假日）</small></p>
                     <!-- <div>
                     </div> -->
-                    <div class="promoTags">
-                      <div class="promoTags__title border-bottom">
-                        <span>優惠活動</span>
-                      </div>
-                      <div class="promoTags__container">
-                        <ul class="pl-3">
-                          <li class="promoTags__tag">
-                            <span>折扣</span><span>全館商品折扣中</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
                 </div>
             </div>
             <div class="row">
@@ -126,7 +89,6 @@ export default {
         imageUrl: [], // @@會被蓋掉寫了有用嗎?
         qty: 1,
       },
-      selectedImgIndex:0
     };
   },
   created() {
@@ -147,13 +109,11 @@ export default {
           this.$set(this.product, 'qty', 1);
         });
     },
-    setThumbImgIndex(index){
-        this.selectedImgIndex = index;
-    }
   },
 };
 </script>
 
-<style>
-
+<style lang="scss">
+// @import "../../../assets/scss/helpers";
+@import "./style/index.scss";
 </style>

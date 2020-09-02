@@ -5,7 +5,7 @@ import VueAxios from 'vue-axios';
 import $ from 'jquery';
 // @@全域效能問題
 import 'jquery';
-import 'bootstrap';
+import 'bootstrap';//js模組
 // @@不寫.css會是載入js
 // import {
 //     ValidationObserver,
@@ -22,6 +22,10 @@ import vueDebounce from 'vue-debounce';
 
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
+
+// import 'bootstrap/scss/bootstrap.scss';//all.scss import了
+// import 'bootstrap';
+// import './assets/scss/helpers/_helpers.scss';//@@
 
 // ##自定義
 // import {uuid,token,apiPath} from './api/index';

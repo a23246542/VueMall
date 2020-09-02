@@ -26,4 +26,11 @@ module.exports = { // 可先移除eslint偵測報錯
   //           }
   //   }
   // ]
+  // css: {
+  //   loaderOptions: {
+  //     sass: {
+  //       prependData: `@import "~@/scss/helpers/helpers.scss";`
+  //     }
+  //   }
+  // }
 };

@@ -1,6 +1,58 @@
 .productSingle{
 
 
+  &__thumbImgs{
+    // height: 90px;
+    // justify-content: flex-start;
+    // justify-content: space-around;
+    padding-bottom: 10px;
+    >li{
+      // flex-grow:0;
+      // flex: 1 1 auto;
+      // flex: ;//@@因bg没加会不见
+      img{
+        max-width: 100%;
+        
+      }
+    }
+  }
+
+  .thumbImgs{
+    &__oneThumbImg{
+        width: 86px;
+        height: 78px;
+        margin-right: 20px;
+        box-sizing: border-box;//@@無效縮框
+        &--selected{
+          border:2px solid rgb(184, 182, 182);
+        }
+    }
+  }
+  
+  &__cusScroll{
+          /* width */
+      &::-webkit-scrollbar {
+        // width: 10px;
+        height: 6px;
+        // border-radius:3px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+      
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: rgb(156, 148, 148);
+        border-radius:10px;
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: rgb(104, 92, 92); 
+      }
+  }
   &__content{
     color: #827E61;
   }
@@ -25,13 +77,33 @@
     }
   }
 
-}
-.buyArea{
   &__nowBuy{
-    color: #A91604
+    width: 160px;
+    height: 45px;
+    background-color: #A91604;
+    color:#fff;
   }
 
   &__addCar{
-    color: #C9420D
-}
+    width: 160px;
+    height: 45px;
+    background-color: $brand-primary;
+    color: #fff;
+  }
+
+  // ========================================
+  .promoTags{
+    &__title{
+      
+    }
+
+    &__container{
+
+    }
+
+    &__tag{
+
+    }
+  }
+
 }

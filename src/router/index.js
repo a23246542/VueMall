@@ -43,6 +43,7 @@ const routes = [
             path: ':productId',
             name: 'productSingle',
             component: () => import('../views/front/productSingle'),
+            // component: () => import('../views/front/productSingle/index'),
           },
           
         ]

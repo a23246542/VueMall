@@ -1,0 +1,36 @@
+.productSingle{
+
+
+  &__content{
+    color: #827E61;
+  }
+
+  &__id{
+    color: #707070;
+  }
+
+  &__favorite{
+
+  }
+
+  &__price{
+    vertical-align:baseline;
+    >span:nth-child(1){
+      font-size: 40px;
+      color: #A91604;
+    }
+    >span:nth-child(2){
+      font-size: 25px;
+      color: $brand-gray;
+    }
+  }
+
+  &__nowBuy{
+    color: #A91604
+  }
+
+  &__addCar{
+    color: #C9420D
+  }
+
+}
