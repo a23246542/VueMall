@@ -319,7 +319,7 @@ export default {
       .container{
         // @include media-breakpoint-up(xl){//@@無法吃到
         @media screen and(min-width: 1200px){
-          max-width: 1200px;
+          max-width: 1320px;
         }
       }
 

@@ -1,5 +1,8 @@
 .productSingle{
 
+  // &.container{
+  //   width: 1200px;
+  // }
 
   &__thumbImgs{
     // height: 90px;
@@ -94,7 +97,8 @@
   // ========================================
   .promoTags{
     &__title{
-      
+      color:$brand-secondary1-light;
+      // border-bottom:1px solid $brand-secondary1-light;
     }
 
     &__container{
@@ -102,8 +106,127 @@
     }
 
     &__tag{
-
+      font-size: 14px;
     }
+    
   }
 
+  .productInfo{
+
+    &__nav{
+      >ul{
+        
+      }
+
+      li{
+        
+      }
+
+    }
+    .nav{
+      &__item{
+        position: relative;
+        padding: 8px 15px;
+        font-weight: bold;
+        color: $brand-secondary1;
+        cursor: pointer;
+
+        &--active{//@@可以增加權重 是否只是先後順利
+          color: $brand-primary;
+          background-color: #fff;
+          &::before{
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 80%;
+            height: 3.5px;
+            background-color: $brand-primary;
+          }
+        }
+
+        // &::after:not(:last-child) {
+        &:not(:last-child)::after {//##
+          content: '';
+          position: absolute;
+          right: -1px;
+          top: 0;
+          bottom: 0;
+          margin:auto;
+          height: 55%;
+          width: 2px;
+          background-color: lighten($brand-gray,40%);
+        }
+
+      }
+      // ##不用這麼寫
+      // &__item.&__item--active{
+      //   color: $brand-primary;
+      //   background-color: #fff;
+      // }
+    }
+
+    &__content{
+      padding: 20px;
+    }
+
+
+  }
+
+}
+
+.sideProductList{
+  &__title{
+
+  }
+
+  &__group{
+
+  }
+
+}
+
+.sidePrdItem{
+
+  &__infoBox{
+
+  }
+  
+  &__title{
+    font-size: 20px;
+  }
+
+  &__price{
+    font-size: 20px;
+  }
+
+  &__subClassTag{
+    font-size: 12px;
+  }
+
+  &__picBox{
+    flex-shrink: 0;
+    // 大的適合contain
+    // width:120px;
+    // height: 120px;
+    // 小的適合cover
+    width:72px;
+    height: 72px;
+    img{
+      // img方式1 ##
+      width: 100%;
+      height: 100%;
+      // object-fit:contain;
+      object-fit:cover;
+
+      // width: auto;
+      // height: auto;
+      // max-width: 100%;
+      // max-width: 100%;
+      // @@需要垂直居中
+      // vertical-align: middle
+    }
+  }
 }
