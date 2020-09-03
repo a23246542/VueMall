@@ -4,34 +4,39 @@
         v-if="product.imageUrl[0]"
         >
             <div class="row mb-45">
-                <div class="col-md-6 px-0 text-center">
+                <div class="col-md-7 text-center">
                     <img :src="product.imageUrl[selectedImgIndex]" alt=""
                       class="img-fluid mb-3 bg-white"
-                      style="height:500px;object-fit:contain;"
+                      style="weight:100%;height:500px;object-fit:cover;"
                     >
-                    <div class="overflow-x-auto productSingle__cusScroll">
-                      <ul class="d-flex productSingle__thumbImgs mb-0 list-unstyled"
-                      >
-                        <li class="thumbImgs__oneThumbImg flex-shrink-0 bg-cover"
-                          v-for="(item,index) in product.imageUrl" :key="item"
-                          @click="setThumbImgIndex(index)"
-                          :class="{
-                            'thumbImgs__oneThumbImg--selected':selectedImgIndex==index,
-                          }"
-                          :style="{
-                            backgroundImage:`url(${product.imageUrl[index]})`
-                          }"
+                    <div class="productSingle__cusScroll overflow-x-auto">
+                        <ul class="d-flex productSingle__thumbImgs thumbImgs mb-0 list-unstyled"
                         >
-                          <!-- @@li會爆掉須研究 -->
-                          <!-- <img :src="product.imageUrl[index+1]" alt=""
-                            class=""
-                            style="height:100%;object-fit:cover;"
+                          <!-- <div class="thumbImgs__oneThumbCol"
+                            v-for="(item,index) in product.imageUrl" :key="item"
                           > -->
-                        </li>
-                      </ul>
+                            <!-- <li class="thumbImgs__oneThumbImg flex-shrink-0 bg-cover" -->
+                            <li class="thumbImgs__oneThumbImg bg-cover"
+                              @click="setThumbImgIndex(index)"
+                              v-for="(item,index) in product.imageUrl" :key="item"
+                              :class="{
+                                'thumbImgs__oneThumbImg--selected':selectedImgIndex==index,
+                              }"
+                              :style="{
+                                backgroundImage:`url(${product.imageUrl[index]})`
+                              }"
+                            >
+                              <!-- @@li會爆掉須研究 -->
+                              <!-- <img :src="product.imageUrl[index+1]" alt=""
+                                class=""
+                                style="height:100%;object-fit:cover;"
+                              > -->
+                            </li>
+                          <!-- </div> -->
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-6 pl-4">
+                <div class="col-md-5">
                     <div class="mb-3">
                       <span class="d-inline-block px-1 text-primary border-bottom border-primary font-weight-bold"
                         v-if="product.category"
@@ -102,38 +107,70 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-7 px-0">
+                <div class="col-md-7">
                     <div class="productInfo">
                       <div class="productInfo__nav">
                         <ul class="d-flex mb-0">
-                          <li class="nav__item nav__item--active">商品內容</li>
-                          <li class="nav__item">商品規格</li>
-                          <li class="nav__item">運送規範</li>
+                          <li class="nav__item"
+                            :class="{'nav__item--active':selectedPrdInfoView==='feature'}"
+                            @click="setInfoView('feature')"
+                          >
+                            商品特色
+                          </li>
+                          <li class="nav__item"
+                            :class="{'nav__item--active':selectedPrdInfoView==='specification'}"
+                            @click="setInfoView('specification')"
+                          >
+                            商品規格
+                          </li>
+                          <li class="nav__item"
+                            :class="{'nav__item--active':selectedPrdInfoView==='shipmentRule'}"
+                            @click="setInfoView('shipmentRule')"
+                          >
+                            運送規範
+                          </li>
                         </ul>
                       </div>
-                      <div class="productInfo__content  bg-white text-secondary2">
-                          <p>{{product.description}}</p>
+                      <div class="productInfo__contentArea  bg-white text-secondary2">
+                          <!-- <div class="productInfo__view"> -->
+                            <div class="productInfo__featureView"
+                              :class="{'productInfo__featureView--show':selectedPrdInfoView==='feature'}"
+                            >
+                              <p>{{product.description}}</p>
+                            </div>
+                            <div class="productInfo__specificationView"
+                              :class="{'productInfo__specificationView--show':selectedPrdInfoView==='specification'}"
+                            >
+                              <p>商品規格</p>
+                            </div>
+                            <div class="productInfo__shipmentRuleView"
+                              :class="{'productInfo__shipmentRuleView--show':selectedPrdInfoView==='shipmentRule'}"
+                            >
+                              <p>運送規範</p>
+                            </div>
+                          <!-- </div> -->
                       </div>
                     </div>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-md-5">
                   <div class="sideProductList">
-                    <div class="sideProductList__title">
-                      <h4>相關產品列表</h4>
+                    <div class="sideProductList__title mb-3">
+                      <h4 class="mb-1">相關產品列表</h4>
                     </div>
                     <div class="sideProductList__group">
                         <ul>
                           <li class="sidePrdItem px-2 py-2 border bg-white">
-                            <div class="d-flex">
-                              <div class="sidePrdItem__infoBox">
+                            <div class="d-flex justify-content-between">
+                              <div class="sidePrdItem__infoBox p-3">
                                 <!-- @@?? -->
                                 <!-- 自創這個做法會有問題嗎 -->
                                 <!-- <div class="_infoBox__title"></div> -->
                                 <div class="sidePrdItem__title">TOUGH SCREEN 2-ROOM  LDX+</div>
                                 <div class="sidePrdItem__price">
-                                  NT$25900<small><del>NT$28500</del></small>
+                                  NT$25900
+                                  <!-- <small class="sidePrdItem__originPrice"><del>NT$28500</del></small> -->
                                 </div>
-                                <span class="sidePrdItem__subClassTag">帳篷</span>
+                                <!-- <span class="sidePrdItem__subClassTag">帳篷</span> -->
                               </div>
                               <!-- @@picBox 或boxPic -->
                               <div class="sidePrdItem__picBox">
@@ -162,7 +199,8 @@ export default {
         imageUrl: [], // @@會被蓋掉寫了有用嗎?
         qty: 1,
       },
-      selectedImgIndex:0
+      selectedImgIndex:0,
+      selectedPrdInfoView:'feature'
     };
   },
   created() {
@@ -185,6 +223,18 @@ export default {
     },
     setThumbImgIndex(index){
         this.selectedImgIndex = index;
+    },
+    setInfoView(selectedItem){
+        this.selectedPrdInfoView = selectedItem;
+      // switch (selectedItem) {
+      //   case 'feature':
+          
+          
+      //     break;
+      
+      //   default:
+      //     break;
+      // }
     }
   },
 };

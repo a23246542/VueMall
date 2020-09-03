@@ -13,7 +13,7 @@
               </ol>
             </nav>
             <div class="row">
-                <div class="col-sm-2 products__sidebar px-0">
+                <div class="col-xl-2 products__sidebar px-0">
                     <!-- <table class="table table-sm" v-if="cart.carts.length"> -->
                     <div class="mainClass list-group">
                         <!-- <a href="#" class="list-group-item list-group-item-action"
@@ -78,7 +78,7 @@
                 </div>
 
                 <!-- <div class="col-10 mx-auto"> -->
-                <div class="col-sm-10 products__content">
+                <div class="col-xl-10 products__content">
                 <!-- <div class="products__list"> -->
                     <!-- <div class="row"> -->
                           <!-- <ProductCard
@@ -330,7 +330,7 @@ export default {
         color:#3F3B00;
         align-self: start;
         padding-top:40px;
-        padding-bottom: 260px;
+        padding-bottom: 40px;
         .list-group{
           // margin:0 auto;
         }

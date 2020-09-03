@@ -21,13 +21,33 @@
   }
 
   .thumbImgs{
+    // overflow: hidden;
+    // margin: 0 -10px;//##!蝦皮 但會出現卷軸失敗
+    // &__oneThumbCol{//##蝦皮
+    //   display: inline-block;
+    //   width: 20%;
+    //   box-sizing: border-box;
+    //   padding: 0 10px;
+    // }
     &__oneThumbImg{
-        width: 86px;
+      position: relative;
+        width: 103px;
+        // width: 100%;
         height: 78px;
-        margin-right: 20px;
-        box-sizing: border-box;//@@無效縮框
+        &:not(:last-child){
+          margin-right: 20px;
+        }
+
+          
+        // padding: 10px;
+        // box-sizing: border-box;//@@無效縮框
         &--selected{
-          border:2px solid rgb(184, 182, 182);
+          // position: absolute;
+          // top: 0;
+          // left: 0;
+          // right: 0;
+          // bottom: 0;
+          border:2px solid $brand-primary;
         }
     }
   }
@@ -168,10 +188,32 @@
       // }
     }
 
-    &__content{
+    &__contentArea{
       padding: 20px;
     }
 
+    &__featureView{
+      display: none;
+
+      &--show{
+        display: block;
+      }
+    }
+
+    &__specificationView{
+      display: none;
+      &--show{
+        display: block;
+      }
+    }
+
+    &__shipmentRuleView{
+      display: none;
+      &--show{
+        display: block;
+      }
+    }
+    
 
   }
 
@@ -179,7 +221,11 @@
 
 .sideProductList{
   &__title{
-
+    h4{
+      font-size: 20px;
+    }
+    border-bottom: 1px solid $brand-secondary1-light;
+    color: $brand-secondary1-light;
   }
 
   &__group{
@@ -189,21 +235,34 @@
 }
 
 .sidePrdItem{
+  border: 1px solid $brand-gray;
+  &:not(:last-child){
+    margin-bottom: 20px;
+  }
 
   &__infoBox{
-
+     
   }
   
   &__title{
-    font-size: 20px;
+    font-size: 16px;
+    margin-bottom: 3px;
+    color: $brand-secondary1;
+    // color: #5E5A13;
   }
 
   &__price{
-    font-size: 20px;
+    font-size: 16px;
+    color: #A91604;
+  }
+
+  &__originPrice{
+    color: $brand-gray;
   }
 
   &__subClassTag{
     font-size: 12px;
+    // color:$brand-gray;
   }
 
   &__picBox{
@@ -212,8 +271,10 @@
     // width:120px;
     // height: 120px;
     // 小的適合cover
-    width:72px;
-    height: 72px;
+    // width:72px;
+    // height: 72px;
+    width: 80px;
+    height: 80px;
     img{
       // img方式1 ##
       width: 100%;
