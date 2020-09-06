@@ -3,7 +3,7 @@
         <transition-group name="list" tag="p">
             <div class="alert alert-dismissible"
             :class="'alert-' + item.status"
-            v-for="(item,index) in messages" :key="index+item.messages">
+            v-for="(item,index) in messages" :key="item.id">
             {{ item.message }}
                 <button type="button" class="close" @click="removeMessage(index)" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -45,6 +45,7 @@ export default {
   },
   methods: {
     updateMessage(message, status) {
+      //todo 如果有同樣的訊息則移除?
       const timeStamp = Math.floor(new Date() / 1000);
       this.messages.push({
         message,

@@ -19,7 +19,6 @@
       }
     }
   }
-
   .thumbImgs{
     // overflow: hidden;
     // margin: 0 -10px;//##!蝦皮 但會出現卷軸失敗
@@ -241,7 +240,10 @@
   }
 
   &__infoBox{
-     
+    //  flex-shrink: 1;
+     width: 78%;
+    // flex: 1;
+    // flex: 1 1 1px;
   }
   
   &__title{

@@ -133,7 +133,7 @@ export default {
   },
   created() {
     // this.debounceInputCart = debounce(this.updateCartQty('subtract1',item),'400')
-    this.$store.dispatch('delAllCart');
+    // this.$store.dispatch('delAllCart');
     // this.getCart();
   },
   methods: {

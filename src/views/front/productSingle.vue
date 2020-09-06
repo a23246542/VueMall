@@ -71,22 +71,30 @@
                       <!-- ##input-group -->
                       <div class="input-group w-auto">
                           <div class="input-group-prepend">
-                              <button class="btn btn-secondary">+</button>
+                              <button class="btn btn-secondary"
+                                @click="updateProductQty('add')"
+                              >+</button>
                           </div>
                           <input type="text" class="form-control text-center"
                               style="max-width:100px"
                               v-model.number="product.qty"
                           >
                           <div class="input-group-append mr-3">
-                              <button class="btn btn-secondary">-</button>
+                              <button class="btn btn-secondary"
+                                @click="updateProductQty('reduce')"
+                              >-</button>
                           </div>
                       </div>
                       <small class="text-success">尚有庫存</small>
                     </div>
                     <!-- <div class="productSingle__buyArea d-flex justify-content-end pr-4"> -->
                     <div class="productSingle__buyArea">
-                        <button class="btn productSingle__nowBuy btn-primary mr-3">直接購買</button>
-                        <button class="btn productSingle__addCar btn-primary">加入購物車</button>
+                        <button class="btn productSingle__nowBuy btn-primary mr-3"
+                        @click="buyProduct('directBuy')"
+                        >直接購買</button>
+                        <button class="btn productSingle__addCar btn-primary"
+                        @click="buyProduct()"
+                        >加入購物車</button>
                     </div>
                     <p class="pl-2 mb-5"><small class="text-muted"> 付款後，從備貨到寄出商品為 2 個工作天。（不包含假日）</small></p>
                     <!-- <div>
@@ -158,23 +166,27 @@
                       <h4 class="mb-1">相關產品列表</h4>
                     </div>
                     <div class="sideProductList__group">
-                        <ul>
-                          <li class="sidePrdItem px-2 py-2 border bg-white">
-                            <div class="d-flex justify-content-between">
+                        <ul v-if="relatedProducts">
+                          <li class="sidePrdItem px-2 py-2 border bg-white"
+                            v-for="item in relatedProducts" :key="item.id"
+                          >
+                            <div class="d-flex justify-content-between align-items-center">
                               <div class="sidePrdItem__infoBox p-3">
                                 <!-- @@?? -->
                                 <!-- 自創這個做法會有問題嗎 -->
                                 <!-- <div class="_infoBox__title"></div> -->
-                                <div class="sidePrdItem__title">TOUGH SCREEN 2-ROOM  LDX+</div>
+                              
+                                  <div class="sidePrdItem__title text-truncate">{{item.title}}</div>
+
                                 <div class="sidePrdItem__price">
-                                  NT$25900
+                                  NT${{item.price}}
                                   <!-- <small class="sidePrdItem__originPrice"><del>NT$28500</del></small> -->
                                 </div>
                                 <!-- <span class="sidePrdItem__subClassTag">帳篷</span> -->
                               </div>
                               <!-- @@picBox 或boxPic -->
                               <div class="sidePrdItem__picBox">
-                                <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/ElMZQRdRo6pphFa3yXexkWRj9TyIbGJRUcMyxwFYn344qaMlWIeSK3PhSGTWN9iZQcGUaSD3EDhn05jOmmGzxnEckuiXJKZUPqPkNEwvMEg8gWkUj92wYDuxRxYFIe6Z.png" alt="">
+                                <img :src="item.imageUrl[0]" alt="">
                               </div>
                             </div>
                           </li>
@@ -191,6 +203,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 export default {
   data() {
     return {
@@ -203,8 +216,47 @@ export default {
       selectedPrdInfoView:'feature'
     };
   },
-  created() {
+  created(){
     this.getSingleProduct();
+  },
+  computed:{
+    ...mapState({
+      allProducts:(state)=> state.CusProducts.products,
+      carts:(state) => state.Cart.cart.carts
+    }),
+    relatedProducts(){
+      const wantNum = 4;//設定想要呈現的隨機產品數量
+      let relatedProducts = [];
+      
+      // 得到1~x之間的隨機整數
+      function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min; 
+      //不含最大值，含最小值
+      }
+
+      // for (let i = 0; i<=wantNum; i++){
+        
+      //   randomIndex.push(getRandomInt(1,this.allProducts.length))
+      // }
+      let randomSet = new Set();
+      while (randomSet.size!==wantNum&&this.allProducts.length){//%%避免getRandomInt取不到無限迴圈
+          // randomSet.push(getRandomInt(1,this.allProducts.length))%%
+          randomSet.add(getRandomInt(1,this.allProducts.length))
+          // console.log(randomSet.size);//1迴圈
+          // console.log(typeof(randomSet.size));//number迴圈
+      }
+      let randomIndexs= Array.from(randomSet)
+      console.log(randomIndexs);
+
+      relatedProducts = randomIndexs.map((item) => {
+          return this.allProducts[item];
+      })
+
+      return relatedProducts;
+      // return 1;
+    }
   },
   methods: {
     getSingleProduct() {
@@ -235,6 +287,66 @@ export default {
       //   default:
       //     break;
       // }
+    },
+    updateProductQty(type) {
+      const productId = this.product.id;
+      // let qty = this.product.qty;
+      // let num = qty;
+      switch (type) {
+        case 'add':
+          if(this.product.qty === this.product.options.stock){
+            // ~@@[Vue warn]: Duplicate keys detected: 'NaN'. This may cause an update error.
+            this.$bus.$emit('message:push','商品庫存不足');
+          }else{
+            this.product.qty += 1;
+          }
+          break;
+        case 'reduce':
+          
+          if(this.product.qty == 1){
+              this.$bus.$emit('message:push','購買數量不能少於1');
+          }else{
+              this.product.qty -= 1;
+          }
+          break;
+                // case 'input':
+                //     break;
+      }
+    },
+    buyProduct(isDirectBuy){
+      this.$store.commit('LOADING', true);
+      const api = 'ec/shopping';
+      const cartItem = { product: this.product.id, quantity: this.product.qty };
+      const hasInCartItem = this.carts.find((cartItem) => cartItem.product.id === this.product.id);
+
+
+      if (!hasInCartItem) {
+        this.$instanceCus.post(api, cartItem)
+          .then((res) => {
+            this.$store.commit('LOADING', false);
+            this.$bus.$emit('message:push', `${this.product.title}已加入購物車`, 'success');
+            // this.$refs.cartModal.getCart();
+            this.$store.dispatch('getCart');
+            if(isDirectBuy){
+              this.$router.push({name:'購物清單'})
+            }
+            
+          });
+      } else {
+        const data = {
+          productId: hasInCartItem.product.id,
+          newQty: hasInCartItem.quantity + this.product.qty,
+        };
+        this.$store.dispatch('editCart', data)
+          .then(() => {
+            this.$store.commit('LOADING', false);
+            this.$bus.$emit('message:push', `${this.product.title}已加入購物車`, 'success');
+            if(isDirectBuy){
+              this.$router.push({name:'購物清單'})
+            }
+          });
+      }
+
     }
   },
 };

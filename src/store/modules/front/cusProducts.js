@@ -35,10 +35,11 @@ export default {
     }
   },
   actions: {
-    getProducts(context, page = 1, paged = 25, orderBy = 'created_at', sort = 'desc') {
+    getProducts(context, page, paged = 25, orderBy = 'created_at', sort = 'desc') {
       context.commit('LOADING', true);
       // const api =`ec/products/page=${page}`;%%
-      const api = `ec/products?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}`;
+      console.log(`vuex getProducts的page:${page}`);
+      const api = `ec/products?paged=${paged}&orderBy=${orderBy}&sort=${sort}`;
       instanceCus.get(api)
         .then((res) => {
           // this.products = res.data.data;
