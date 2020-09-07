@@ -32,8 +32,12 @@
     "@vue/cli-service": "~4.4.0",
     "@vue/eslint-config-airbnb": "^5.0.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-import": "^2.20.2",
+    "eslint": "^7.8.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^6.2.2",
     "mockjs": "^1.1.0",
     "node-sass": "^4.12.0",
@@ -46,23 +50,32 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/recommanded",
+      "plugin:vue/recommended",
+      "eslint:recommended",
       "@vue/airbnb"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "lintOnSave": false,
     "rules": {
+      "indent":[
+        "error",
+        2
+      ],
       "max-len": "off",
       "no-console": "off",
       "no-unused-vars": "off",
-      "no-shadow": "off"
+      "no-shadow": "off",
+      "vue/max-attributes-per-line": "off",
+      "vue/html-indent": "off"
     }
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "globals":{
+    "bootstrap":"readonly"
+  }
 }

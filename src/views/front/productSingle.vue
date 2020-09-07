@@ -1,7 +1,8 @@
 <template>
     <!-- <div> -->
-        <div class="container productSingle"
-        v-if="product.imageUrl[0]"
+        <div 
+          v-if="product.imageUrl[0]"
+          class="container productSingle"
         >
             <div class="row mb-45">
                 <div class="col-md-7 text-center">

@@ -2,21 +2,22 @@
   <div id="dashStorage" class="dashStorage pt-4">
     <div class="form-inline justify-content-end mb-4">
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile"
-                ref="storage"
+                <input id="customFile" ref="storage" type="file"
+                class="custom-file-input"
                 @change="postStorage"
                 >
                 <label class="custom-file-label" for="customFile">選擇圖片檔案</label>
             </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-lg-4 mb-4"
-          v-for="(item,index) in storages" :key="item.id"
+        <div v-for="(item,index) in storages"
+          :key="item.id" class="col-md-6 col-lg-4 mb-4"
         >
           <div class="card">
               <div class="card-body">
                   <img class="img-fluid"
-                  :src="item.path">
+                  :src="item.path"
+>
               </div>
               <div class="card-footer text-right">
                   <button class="btn btn-outline-info btn-sm mr-3" @click="openModal('read',item,index)">
@@ -32,12 +33,12 @@
     <pagination
       :pages="pagination"
       @change-page="getStorages"
-    ></pagination>
+    />
     <DashModal
-    ref="dashStorageModal"
     id="dashStorageModal"
+    ref="dashStorageModal"
     :title="title"
-    :modalUse="modalUse"
+    :modal-use="modalUse"
     @delete="destoryStorage"
     >
       <template v-slot:delete>
@@ -47,10 +48,18 @@
       </template>
       <template v-slot:read>
           <div class="p-3">
-              <p class="mb-1">圖片編號:</p>
-              <p class="pl-3">{{checkedItem.id}}</p>
-              <p class="mb-1">圖片地址:</p>
-              <p class="pl-3">{{checkedItem.path}}</p>
+              <p class="mb-1">
+                圖片編號:
+              </p>
+              <p class="pl-3">
+                {{ checkedItem.id }}
+              </p>
+              <p class="mb-1">
+圖片地址:
+</p>
+              <p class="pl-3">
+{{ checkedItem.path }}
+</p>
           </div>
       </template>
     </DashModal>
