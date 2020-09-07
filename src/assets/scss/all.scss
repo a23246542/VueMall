@@ -6,7 +6,6 @@
 
 //中文字體,"Microsoft JhengHei"
 //數字字體 "Yu Gothic"
-@import "./helpers/reset";
 @import "./helpers/base";
 @import "./helpers/util";
 @import "./helpers/mixin";
@@ -15,7 +14,16 @@
 @import "./components/pagination";
 @import "./components/switch";
 @import "./components/productCard";
+@import "./components/customerForm";
+
+// ##模組
+@import "./module/shopping";
 
 // @import "./pages/dashboard";
 @import "./pages/product-list";
 @import "./pages/product-single";
+
+// 購物結帳
+@import "./pages/shopping/shopping";
+@import "./pages/shopping/orderPreview";
+@import "./pages/shopping/orderInfo";

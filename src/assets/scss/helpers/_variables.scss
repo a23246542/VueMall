@@ -10,6 +10,7 @@ $brand-secondary-coffee:#4E3111;
 $brand-secondary2:#4E3111;
 $brand-background:#F2F2F2;
 $brand-gray:#707070;
+$brand-red:#A91604;
 // Color system
 
 $white:    #fff !default;
@@ -99,6 +100,7 @@ $theme-colors: map-merge(
     "light":      $light,
     "dark":       $dark,
     "gray":       #707070,
+    "red":        $brand-red,
   ),
   $theme-colors
 );

@@ -1,0 +1,35 @@
+.orderPreview{
+  
+  
+  .cart{
+    // padding-top:77px;
+    margin-top: 77px;
+
+    &__header{
+      font-size: 23px;
+      color: #fff;
+      background-color: $brand-secondary1-light;
+    }
+  }
+
+  .cartSummary{
+    margin-top: 77px;
+    overflow: hidden;
+    color: $brand-secondary1-light;
+    border-radius: 20px;
+    &__header{
+      text-align: center;
+      font-size: 23px;
+      background-color: #fff;
+      
+      // color: ;
+    }
+
+    &__body{
+      font-size: 17px;
+    }
+  }
+}
+
+
+

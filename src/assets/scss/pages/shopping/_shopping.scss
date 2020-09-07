@@ -1,0 +1,31 @@
+.shopping{
+
+  .processStep{
+    padding-top: 63px;
+    &__item{
+      width: 33.33%;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      font-size: 23px;
+      color: $brand-secondary1;
+      text-align: center;
+      
+    }
+    &__number{
+      width: 31px;
+      height: 31px;
+      margin-bottom: 10px;
+      font-size: 23px;
+      line-height: 27px;//@@line-height還是vetical align
+      color: #fff;
+      background-color: $brand-secondary1;
+      border-radius: 50%;
+    }
+    &__progress{
+        .progress-bar{
+          background-color: $brand-secondary1;
+        }
+    }
+  }
+}

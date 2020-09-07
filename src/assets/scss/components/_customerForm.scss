@@ -1,0 +1,11 @@
+.customerForm{
+
+  &__label{
+    font-size: 17px;
+    color: darken($brand-secondary1,30%);
+  }
+
+  &__input{
+    border-radius: 10px;
+  }
+}

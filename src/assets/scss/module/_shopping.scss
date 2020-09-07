@@ -1,0 +1,17 @@
+.shoppingBlock{
+  &__header{
+    padding: 1rem;
+    font-size: 23px;
+    color: #fff;
+    background-color: $brand-secondary1-light;
+
+    &--center{
+      text-align: center;
+    }
+  }
+
+  &__body{
+    background-color: #fff;
+    padding: 1.5rem;
+  }
+}
