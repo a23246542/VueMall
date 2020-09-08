@@ -10,7 +10,7 @@
   <ValidationObserver
     v-slot="{ invalid,handleSubmit}"
     tag="div"
-    class="customerForm p-4"
+    class="customerForm"
   >
     <div class="shoppingBlock__header">
       <h4 class="mb-0">
@@ -117,7 +117,7 @@
         ></textarea>
       </div>
       <div class="text-right">
-        <button type="submit" class="btn btn-block btn-lg py-3 btn-danger"
+        <button type="submit" class="btn btn-block btn-lg py-1 btn-danger bg-primary"
                 :disabled="invalid"
                 @click.prevent="createOrder"
         >

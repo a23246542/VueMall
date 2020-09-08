@@ -2,14 +2,14 @@
   <div class="orderInfo">
     <div class="container mb-5">
       <div class="row">
-        <div class="col-lg-8">
+        <div class="orderInfo__content col-lg-8">
           <CustomerForm
-            class="orderInfo__customerForm"
+            class=""
           />
         </div>
-        <div class="col-lg-4 d-none d-lg-block">
-          <div class="card mb-4 mt-5">
-            <div class="card-header">
+        <div class="orderInfo__aside col-lg-4 d-none d-lg-block">
+          <div class="cartSummary card mb-45">
+            <div class="cartSummary__header card-header">
               購物清單
             </div>
             <div class="card-body">
@@ -28,7 +28,7 @@
                 </td>
                 <!-- <td class="flex-1 align-middle text-right">x{{ item.quantity }}</td> -->
                 <!-- <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td> -->
-                <td class="flex-1 p-2">
+                <td class="flex-2 p-2 pl-3">
                   <div>
                     {{ item.product.title }}
                   </div>
@@ -43,22 +43,26 @@
               </tr>
             </div>
           </div>
-          <div class="card">
-            <div class="card-header">
+          <div class="cartSummary card">
+            <div class="cartSummary__header card-header">
               訂單摘要
             </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
+            <div class="cartSummary__body card-body">
+              <div class="d-flex justify-content-between mb-2">
                 <span>小計</span>
-                <span>{{ cartTotal }}</span>
+                <span>NT{{ cartTotal | dollars }}</span>
               </div>
-              <div class="d-flex justify-content-between">
+              <div class="d-flex justify-content-between mb-3 text-red">
+                <span>折扣金額</span>
+                <span>-NT{{ 100 | dollars }}</span>
+              </div>
+              <div class="d-flex justify-content-between mb-3">
                 <span>運費</span>
-                <span>0</span>
+                <span>NT{{ 0 | dollars }}</span>
               </div>
-              <div class="d-flex justify-content-between" style="font-size:18px">
+              <div class="d-flex justify-content-between mb-3" style="font-size:18px">
                 <span>總計</span>
-                <span>{{ cartTotal }}</span>
+                <span>NT{{ cartTotal | dollars }}</span>
               </div>
             </div>
           </div>

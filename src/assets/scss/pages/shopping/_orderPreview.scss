@@ -14,20 +14,6 @@
 
   .cartSummary{
     margin-top: 77px;
-    overflow: hidden;
-    color: $brand-secondary1-light;
-    border-radius: 20px;
-    &__header{
-      text-align: center;
-      font-size: 23px;
-      background-color: #fff;
-      
-      // color: ;
-    }
-
-    &__body{
-      font-size: 17px;
-    }
   }
 }
 
