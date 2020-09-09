@@ -6,6 +6,9 @@
 html,body{ //@@html bg被蓋掉
   background-color: $brand-background;
 }
+h1, h2, h3, h4, h5, h6{//##title下h才能繼承
+  font-size: inherit;
+}
 
 // 在一些共用的區塊上，
 // 連結的顏色的複用性會比較高，

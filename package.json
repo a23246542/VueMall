@@ -58,7 +58,7 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "indent":[
+      "indent": [
         "error",
         2
       ],
@@ -67,7 +67,7 @@
       "no-unused-vars": "off",
       "no-shadow": "off",
       "vue/max-attributes-per-line": "off",
-      "vue/html-self-closing":"off"
+      "vue/html-self-closing": "off"
     }
   },
   "browserslist": [
@@ -75,7 +75,7 @@
     "last 2 versions",
     "not dead"
   ],
-  "globals":{
-    "bootstrap":"readonly"
+  "globals": {
+    "bootstrap": "readonly"
   }
 }

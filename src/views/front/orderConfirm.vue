@@ -1,10 +1,10 @@
 <template>
   <div class="orderConfirm">
     <div class="container">
-      <div class="orderConfirm__title text-center">
+      <div class="orderConfirm__title mb-3 text-center">
         <h3>訂單確認</h3>
       </div>
-      <p class="text-center">
+      <p class="mb-3 text-center">
         運送時間為5~7個工作天內宅配到貨或是通知指定門市取貨
       </p>
       <div class="row">
@@ -18,7 +18,7 @@
             <div class="shoppingBlock__body">
               <div class="prdList">
                 <div class="prdList__header d-flex">
-                  <div class="prdList__headerItem flex-2 text-left">
+                  <div class="prdList__headerItem flex-2 align-items-center text-left">
                     商品資料
                   </div>
                   <div class="prdList__headerItem flex-1">
@@ -34,26 +34,70 @@
                     小計
                   </div>
                 </div>
-                <div>
-                  <ul>
-                    <li class="prdList__row d-flex">
-                      <div class="prdList__rowItem flex-2 text-left">
-                        商品資料
+                <ul class="prdList__content">
+                  <li class="prdList__row d-flex">
+                    <div class="prdList__Item flex-2 text-left">
+                      <img src="" alt="">
+                      商品資料
+                    </div>
+                    <div class="prdList__Item flex-1">
+                      組
+                    </div>
+                    <div class="prdList__Item flex-1">
+                      2565
+                    </div>
+                    <div class="prdList__Item flex-1">
+                      1
+                    </div>
+                    <div class="prdList__Item flex-1">
+                      26585
+                    </div>
+                  </li>
+                  <li class="prdList__row d-flex">
+                    <div class="prdList__Item flex-2 text-left">
+                      <img src="" alt="">
+                      商品資料
+                    </div>
+                    <div class="prdList__Item flex-1">
+                      組
+                    </div>
+                    <div class="prdList__Item flex-1">
+                      2565
+                    </div>
+                    <div class="prdList__Item flex-1">
+                      1
+                    </div>
+                    <div class="prdList__Item flex-1">
+                      26585
+                    </div>
+                  </li>
+                </ul>
+                <div class="orderCount d-flex justify-content-between">
+                  <div class="orderCount__num">
+                    共計3件
+                  </div>
+                  <div class="orderCount__box">
+                    <div class="orderCount__list p-2">
+                      <div class="d-flex justify-content-between mb-1">
+                        <span>折扣金額</span>
+                        <span>-NT$100</span>
                       </div>
-                      <div class="prdList__Item flex-1">
-                        組
+                      <div class="d-flex justify-content-between mb-1">
+                        <span>運費</span>
+                        <span>NT$0</span>
                       </div>
-                      <div class="prdList__Item flex-1">
-                        2565
-                      </div>
-                      <div class="prdList__Item flex-1">
-                        1
-                      </div>
-                      <div class="prdList__Item flex-1">
-                        26585
-                      </div>
-                    </li>
-                  </ul>
+                    </div>
+                    <span class="orderCount__border"></span>
+                    <div class="orderCount__total d-flex justify-content-between text-red">
+                      <span>總計</span>
+                      <span>NT{{ 44230 | dollars }}</span>
+                    </div>
+                    <p class="orderCount__tip mb-0 text-right pr-2">
+                      <small class="text-muted">
+                        皆以TWD付款
+                      </small>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -69,7 +113,14 @@
               </h4>
             </div>
             <div class="shoppingBlock__body">
-              xxx
+              <div class="m-orderInfoList">
+                <ul>
+                  <li>
+                    <span class="m-orderInfoList__itemTitle">收件人</span>
+                    <span class="m-orderInfoList__itemTxt">王曉明</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -81,7 +132,17 @@
               </h4>
             </div>
             <div class="shoppingBlock__body">
-              xxx
+              <div class="m-orderInfoList">
+                <ul>
+                  <li>
+                    <span class="m-orderInfoList__itemTitle">運送方式</span>
+                    <span class="m-orderInfoList__itemTxt">宅配到府</span>
+                  </li>
+                </ul>
+                <button class="btn btn-primary btn-block py-1">
+                  確認付款
+                </button>
+              </div>
             </div>
           </div>
         </div>

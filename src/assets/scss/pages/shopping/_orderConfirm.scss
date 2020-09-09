@@ -1,10 +1,103 @@
+.orderConfirm{
+
+  &__title{
+    font-size: 30px;
+    padding-top: 37px;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid $brand-gray;
+    color: $brand-secondary1;
+    font-weight: bold;
+    >h3,h4{
+      font-weight: inherit;
+    }
+  }
+
+  .shoppingBlock__header{
+    font-size: 19px;
+  }
+}
+
 .prdList{
+
+  color: $brand-secondary1-light;
+
+  &__header{
+    padding-bottom: 6px;
+    // border-bottom: 1px solid $brand-secondary1-light;
+  }
 
   &__headerItem{
     text-align: center;
   }
 
+  &__content{
+    margin-bottom: 1rem;
+    border-bottom: 1px dotted $brand-gray;
+  }
+
+
+  &__row{
+    padding-top: 20px;
+    border-top: 1px solid $brand-secondary1-light;
+    padding-bottom: 20px;
+  }
   &__Item {
     text-align: center;
   }
+
+
+  &__border{
+    display: block;
+    border-top: 1px solid $brand-gray;
+  }
 }
+
+.orderCount{
+  color: $brand-secondary1-light;
+  &__num{
+    font-size: 23px;
+    // flex: 4;
+  }
+
+  &__box{
+    min-width: 300px;
+    // flex:2;
+    font-size: 15px;
+  }
+
+  &__list{
+    padding-bottom: 10px;
+  }
+
+  &__border{
+    display: block;
+    border-top: 1px solid $brand-gray;
+  }
+
+  &__total{
+    padding: .5rem .5rem 0;
+    font-size: 20px;
+    // margin-top: -.5rem;
+  }
+
+  &__tip{
+    position: relative;
+    top: -.3rem;
+  }
+}
+
+.m-orderInfoList{
+  font-size: 17px;
+  color:$brand-secondary1-light;
+  &__itemTitle{
+    display: inline-block;
+    width: 30%;
+  }
+
+  &__itemTxt{
+    display: inline-block;
+    font-weight: bold;
+  }
+}
+
