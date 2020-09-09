@@ -14,98 +14,103 @@
       </div>
       <div class="row">
         <div class="col">
-          <div class="orderConfirm__detail">
+          <div class="orderConfirm__detail orderConfirm__detail--orderSuc">
             <div class="shoppingBlock">
               <div class="shoppingBlock__header text-center">
                 <h4 class="mb-0">
                   訂單明細
                 </h4>
-                <p class="orderSuc__numId">
+                <p class="orderSuc__numId mb-0">
                   訂單編號:S451421444111
                 </p>
               </div>
-              <div class="shoppingBlock__body">
-                <div class="prdList">
-                  <div class="prdList__header d-flex">
-                    <div class="prdList__headerItem flex-2 align-items-center text-left">
-                      商品資料
-                    </div>
-                    <div class="prdList__headerItem flex-1">
-                      單位
-                    </div>
-                    <div class="prdList__headerItem flex-1">
-                      單鍵售價
-                    </div>
-                    <div class="prdList__headerItem flex-1">
-                      數量
-                    </div>
-                    <div class="prdList__headerItem flex-1">
-                      小計
-                    </div>
-                  </div>
-                  <ul class="prdList__content">
-                    <li class="prdList__row d-flex">
-                      <div class="prdList__Item flex-2 text-left">
-                        <img src="" alt="">
+              <button class="orderConfirm__collapseBtn btn btn-block" type="button" data-toggle="collapse" data-target="#collapseOrder" aria-expanded="false">
+                <i class="orderConfirm__collapseIcon fas fa-chevron-down"></i>
+              </button>
+              <div id="collapseOrder" class="collapse collapse--Order">
+                <div class="shoppingBlock__body">
+                  <div class="prdList">
+                    <div class="prdList__header d-flex">
+                      <div class="prdList__headerItem flex-2 align-items-center text-left">
                         商品資料
                       </div>
-                      <div class="prdList__Item flex-1">
-                        組
+                      <div class="prdList__headerItem flex-1">
+                        單位
                       </div>
-                      <div class="prdList__Item flex-1">
-                        2565
+                      <div class="prdList__headerItem flex-1">
+                        單鍵售價
                       </div>
-                      <div class="prdList__Item flex-1">
-                        1
+                      <div class="prdList__headerItem flex-1">
+                        數量
                       </div>
-                      <div class="prdList__Item flex-1">
-                        26585
+                      <div class="prdList__headerItem flex-1">
+                        小計
                       </div>
-                    </li>
-                    <li class="prdList__row d-flex">
-                      <div class="prdList__Item flex-2 text-left">
-                        <img src="" alt="">
-                        商品資料
-                      </div>
-                      <div class="prdList__Item flex-1">
-                        組
-                      </div>
-                      <div class="prdList__Item flex-1">
-                        2565
-                      </div>
-                      <div class="prdList__Item flex-1">
-                        1
-                      </div>
-                      <div class="prdList__Item flex-1">
-                        26585
-                      </div>
-                    </li>
-                  </ul>
-                  <div class="orderCount d-flex justify-content-between">
-                    <div class="orderCount__num">
-                      共計3件
                     </div>
-                    <div class="orderCount__box">
-                      <div class="orderCount__list p-2">
-                        <div class="d-flex justify-content-between mb-1">
-                          <span>折扣金額</span>
-                          <span>-NT$100</span>
+                    <ul class="prdList__content">
+                      <li class="prdList__row d-flex">
+                        <div class="prdList__Item flex-2 text-left">
+                          <img src="" alt="">
+                          商品資料
                         </div>
-                        <div class="d-flex justify-content-between mb-1">
-                          <span>運費</span>
-                          <span>NT$0</span>
+                        <div class="prdList__Item flex-1">
+                          組
                         </div>
+                        <div class="prdList__Item flex-1">
+                          2565
+                        </div>
+                        <div class="prdList__Item flex-1">
+                          1
+                        </div>
+                        <div class="prdList__Item flex-1">
+                          26585
+                        </div>
+                      </li>
+                      <li class="prdList__row d-flex">
+                        <div class="prdList__Item flex-2 text-left">
+                          <img src="" alt="">
+                          商品資料
+                        </div>
+                        <div class="prdList__Item flex-1">
+                          組
+                        </div>
+                        <div class="prdList__Item flex-1">
+                          2565
+                        </div>
+                        <div class="prdList__Item flex-1">
+                          1
+                        </div>
+                        <div class="prdList__Item flex-1">
+                          26585
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="orderCount d-flex justify-content-between">
+                      <div class="orderCount__num">
+                        共計3件
                       </div>
-                      <span class="orderCount__border"></span>
-                      <div class="orderCount__total d-flex justify-content-between text-red">
-                        <span>總計</span>
-                        <span>NT{{ 44230 | dollars }}</span>
+                      <div class="orderCount__box">
+                        <div class="orderCount__list p-2">
+                          <div class="d-flex justify-content-between mb-1">
+                            <span>折扣金額</span>
+                            <span>-NT$100</span>
+                          </div>
+                          <div class="d-flex justify-content-between mb-1">
+                            <span>運費</span>
+                            <span>NT$0</span>
+                          </div>
+                        </div>
+                        <span class="orderCount__border"></span>
+                        <div class="orderCount__total d-flex justify-content-between text-red">
+                          <span>總計</span>
+                          <span>NT{{ 44230 | dollars }}</span>
+                        </div>
+                        <p class="orderCount__tip mb-0 text-right pr-2">
+                          <small class="text-muted">
+                            皆以TWD付款
+                          </small>
+                        </p>
                       </div>
-                      <p class="orderCount__tip mb-0 text-right pr-2">
-                        <small class="text-muted">
-                          皆以TWD付款
-                        </small>
-                      </p>
                     </div>
                   </div>
                 </div>

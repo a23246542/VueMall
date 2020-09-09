@@ -1,6 +1,9 @@
 module.exports = { // 可先移除eslint偵測報錯
   publicPath: './', //  GitHub上打開
   lintOnSave: false,
+  devServer: {
+    port: 8080,
+  },
   chainWebpack: (config) => {
     // config.module.rules.delete('eslint');
     // const oneOfsMap = config.module.rule('scss').oneOfs.store

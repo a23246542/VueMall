@@ -5,11 +5,41 @@
     width: 100%;
     height: 551px;
     // margin: 0 auto;
+    margin-bottom: 41px;
     border:1px solid $brand-secondary1;
   }
 
   &__numId{
     margin-top: 10px;
     font-size: 15px;
+  }
+}
+
+
+.orderConfirm{
+
+  &__collapseBtn{
+    background-color: #fff;
+    outline: 0;
+    color: $brand-secondary1-light;
+
+    
+    &:hover{
+      color: $brand-secondary1;
+      box-shadow: none;
+    }
+    &:focus{
+      box-shadow: none;
+    }
+    &:visited{
+      box-shadow: none;
+    }
+  }
+
+  &__collapseIcon{
+  }
+
+  &__detail--orderSuc{
+    margin-bottom: 31px;
   }
 }

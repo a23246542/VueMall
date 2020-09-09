@@ -125,8 +125,12 @@
                   <span class="mr-4 text-nowrap">折價券</span>
                   <!-- 折價券## -->
                   <span class="input-group">
-                    <input type="text" class="form-control rounded-0" placeholder="輸入優惠碼">
-                    <div class="input-group-append">
+                    <input v-model="couponCode" type="text"class="form-control rounded-0" placeholder="輸入優惠碼"
+                           @keyup.enter="applyCoupon"
+                    >
+                    <div class="input-group-append"
+                         @click="applyCoupon"
+                    >
                       <span class="input-group-text rounded-0 bg-secondary1 text-white">套用</span>
                     </div>
                   </span>
@@ -142,7 +146,7 @@
                 <div class="d-flex justify-content-between mb-4">
                   <span>總計</span>
                   <div>
-                    <span class="d-block">NT{{ 44230 | dollars }}</span>
+                    <span class="d-block">NT{{ cartTotal | dollars }}</span>
                     <small class="d-block text-muted">皆以TWD付款</small>
                   </div>
                 </div>
@@ -172,6 +176,8 @@ export default {
   data() {
     return {
       // cart:this.cart
+      coupon: {},
+      couponCode: '',
     };
   },
   computed: {
@@ -200,15 +206,13 @@ export default {
       // let num = qty;
       switch (type) {
       case 'add1':
-
         qty += 1;
         break;
       case 'subtract1':
-
         qty -= 1;
         break;
-                // case 'input':
-                //     break;
+                  // case 'input':
+                  //     break;
       }
       console.log('更新购物车', productId, qty);
       // this.$store.dispatch('editCart',{id,qty});//@@
@@ -240,6 +244,36 @@ export default {
     removeCart(item) {
       const productId = item.product.id;
       this.$store.dispatch('delCart', productId);
+    },
+    applyCoupon() {
+      const vm = this;
+      const coupon = {
+        code: vm.couponCode,
+      };
+      const api = 'ec/coupon/search';
+      vm.$store.commit('LOADING', true);
+      vm.$instanceCus.post(api, coupon).then((res) => {
+        // vm.getCart();
+        // vm.$store.commit('LOADING', false);
+        // if (!response.data.success) {
+        //   const { message } = response.data;
+        //   const status = 'danger';
+        //   vm.$store.dispatch('updateMessage', { message, status });
+        // }
+        this.coupon = res.data.data;
+        this.$store.commit('LOADING', false);
+        // this.$swal.fire({
+        //   position: 'top-end',
+        //   icon: 'success',
+        //   title: '恭喜成功拿到折扣',
+        //   showConfirmButton: false,
+        //   timer: 1500,
+        // });
+        this.getCart();
+      }).catch((err) => {
+        this.$store.commit('LOADING', false);
+        alert('該 Coupon 不存在');
+      });
     },
   },
   // watch:{
