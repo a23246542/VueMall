@@ -7,11 +7,13 @@ import actions from './actions';
 
 import Cart from './modules/front/cart';
 import CusProducts from './modules/front/cusProducts';
+import CusOrders from './modules/front/cusOrders';
 
 Vue.use(Vuex);// @也可加在main.js
 
 const state = {
   isLoading: false,
+  nowPage:'',
 
 };
 const getters = {
@@ -27,5 +29,6 @@ export default new Vuex.Store({
   modules: {
     Cart,
     CusProducts,
+    CusOrders
   },
 });

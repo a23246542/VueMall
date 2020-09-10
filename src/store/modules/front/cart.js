@@ -41,6 +41,7 @@ export default {
             // this.$emit('emitCart',this.carts)
             // @@是否會傳參考
             context.commit('LOADING', false);
+            // context.commit('ORDER_TOTAL');
             resolve();
           });
       });

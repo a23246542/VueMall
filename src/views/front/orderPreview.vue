@@ -146,7 +146,7 @@
                 <div class="d-flex justify-content-between mb-4">
                   <span>總計</span>
                   <div>
-                    <span class="d-block">NT{{ cartTotal | dollars }}</span>
+                    <span class="d-block">NT{{ payTotal | dollars }}</span>
                     <small class="d-block text-muted">皆以TWD付款</small>
                   </div>
                 </div>
@@ -156,6 +156,7 @@
               >
                 下一步
               </router-link>
+              <p>这边{{orderTotal}}</p>
             </div>
           </div>
         </div>
@@ -190,11 +191,35 @@ export default {
     // carts(){
     //     return this.$store.state.Cart.cart.carts;
     // }
+    payTotal() {
+      const total = this.cart.carts.reduce((prev, item) => {
+        return (prev += item.product.price * item.quantity);
+      }, 0);
+      // total = total*
+      return total;
+    },
+    orderTotal(){
+      // return this.$store.state.CusOrders.orderTotal;
+
+      // return this.$store.getters.orderTotal;
+      return this.$store.state.CusOrders.orderTotal;
+    },
+    //  ...mapGetters({
+    //   products: 'shopcart/shopcartItems',
+    //   loading: 'loading',
+    // }),
   },
   created() {
     // this.debounceInputCart = debounce(this.updateCartQty('subtract1',item),'400')
     // this.$store.dispatch('delAllCart');
+
     this.getCart();
+    //在頁面重新整理時將vuex裡的資訊儲存到localStorage裡 window.addEventListener("beforeunload",()=>{ localStorage.setItem("messageStore",JSON.stringify(this.$store.state)) }) //在頁面載入時讀取localStorage裡的狀態資訊 localStorage.getItem("messageStore") && this.$store.replaceState(Object.assign(this.$store.state,JSON.parse(localStorage.getItem("messageStore")))); 原文網址：https://itw01.com/UA4CZEY.html
+ 
+  },
+  mounted(){
+    this.$store.dispatch('changePage','order_preview');
+
   },
   methods: {
     getCart() {
@@ -261,7 +286,9 @@ export default {
         //   vm.$store.dispatch('updateMessage', { message, status });
         // }
         this.coupon = res.data.data;
+        this.$store.commit('COUPON',this.coupon);
         this.$store.commit('LOADING', false);
+
         // this.$swal.fire({
         //   position: 'top-end',
         //   icon: 'success',
@@ -269,25 +296,38 @@ export default {
         //   showConfirmButton: false,
         //   timer: 1500,
         // });
-        this.getCart();
+
+        // this.getCart();
+        const { percent, title } = res.data.data
+
       }).catch((err) => {
         this.$store.commit('LOADING', false);
-        alert('該 Coupon 不存在');
+        const { message } = err.response.data;
+        alert(message);
       });
     },
   },
-  // watch:{
-  //     ['cart.carts']:{
-  //     // carts:{
-  //         handler:function(newVal,oldVal){
-  //             // console.log(newVal);
-  //             // console.log(oldVal);
-  //             console.log('觸發watch');
-  //             // this.stayUpCart();
-  //         },
-  //         deep:true
-  //     }
-  // }
+  watch:{
+      // ['cart.carts']:{
+      // // carts:{
+      //     handler:function(newVal,oldVal){
+      //         // console.log(newVal);
+      //         // console.log(oldVal);
+      //         console.log('觸發watch');
+      //         // this.stayUpCart();
+      //     },
+      //     deep:true
+      // }
+      cartTotal(newVal,oldVal){
+        this.$store.dispatch('getCartTotal');
+
+        this.$store.dispatch('getOrderTotal')
+      },
+      ['$store.state.CusOrders.coupon.percent'](){
+        console.log('取得coupon');
+        
+      }
+  }
 };
 </script>
 

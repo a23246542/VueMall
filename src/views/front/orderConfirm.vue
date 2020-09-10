@@ -160,6 +160,30 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      orderId:'',
+      message:'',
+      user:{},
+      coupon:{},
+      amount:0,
+      products:[],
+      payment:'',
+      paid:false,
+      ['created_at']:'',
 
+    }
+  },
+  mounted(){
+      this.$store.dispatch('changePage','order_confirm');
+  },
+  created() {
+
+  },
+  methods: {
+    getOrders(){
+      
+    }
+  }
 };
 </script>

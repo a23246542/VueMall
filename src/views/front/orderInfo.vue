@@ -92,6 +92,16 @@ export default {
   },
   created() {
     this.$store.dispatch('getCart');// %%
+    // this.$emit('changPage','orderInfo');
+    this.$store.dispatch('changePage','order_info')
+  },
+  mounted(){
+    setTimeout(() =>{
+
+      this.$emit('changPage',1);
+    },1000)
+//     Router-view渲染的子组件向父组件传递信息$emit不工作 - 中文 - Vue Forum
+// https://forum.vuejs.org/t/router-view-emit/20927
   },
   methods: {
 

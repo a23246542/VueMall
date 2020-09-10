@@ -143,14 +143,32 @@ export default {
         tel: '',
         address: '',
         payment: '',
+        coupon: '',
         message: '',
       },
     };
   },
   methods: {
     createOrder() {
-      console.log('送出訂單');
-      this.$router.push({ name: '訂單完成' });
+      // console.log('送出訂單');
+      // this.$router.push({ name: '訂單完成' });
+
+      // ##
+      // this.form.coupon = this.$store.state.CusOrders.coupon.code ? this.$store.state.CusOrders.coupon.code :''
+      if(this.$store.state.CusOrders.coupon.code){
+        this.form.coupon = this.$store.state.CusOrders.coupon.code;
+      }
+      const api = 'ec/orders';
+      this.$instanceCus.post(api,this.form)
+      .then((res) => {
+        const orderId = this.res.data.data.id;
+        this.$router.push({
+          name:'訂單完成',
+          query:orderId,
+        })
+      }).catch((err) =>{
+
+      })
     },
   },
 };

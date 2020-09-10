@@ -67,7 +67,10 @@
       "no-unused-vars": "off",
       "no-shadow": "off",
       "vue/max-attributes-per-line": "off",
-      "vue/html-self-closing": "off"
+      "vue/html-self-closing": "off",
+      "arrow-body-style":["off"],
+      "no-return-assign":["except-parens"]
+
     }
   },
   "browserslist": [

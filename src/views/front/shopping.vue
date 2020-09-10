@@ -51,17 +51,69 @@
         <!-- @@bem -->
         <!-- <div class="progress progress--processStep"> -->
         <div class="processStep__progress progress">
-          <div class="progress-bar" role="progressbar" style="width: 33%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar" role="progressbar"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"
+            :style="{width:barWidth}"
+          >
+            <!-- style="width: 33%;" -->
           </div>
         </div>
       </div>
     </div>
-    <router-view></router-view>
+    <router-view
+    @changePage="changeBar"
+    ></router-view>
     <p>shopping-footer</p>
   </div>
 </template>
 <script>
 export default {
-
+  data() {
+    return {
+      barWidth:'0%'
+    }
+  },
+  // created() {
+  mounted() {
+    // this.initBar();
+  },
+  methods:{
+    changeBar(nowPage){
+      console.log('換頁');
+      
+    },
+    // initBar() {
+    //   const { path } = this.$route;
+    //   console.log(this.$route);//%% 會是shopping/order_preview
+      
+    //   switch(path){
+    //     case 'order_preview':
+    //       this.barWidth = '33%';
+    //     case 'order_info':
+    //       this.barWidth = '66%';
+    //   }
+    // }
+  },
+  computed: {
+    nowPage(){
+      return this.$store.state.nowPage;
+    }
+  },
+  watch: {
+    nowPage(newVal,val){
+      console.log('改變頁數',newVal);
+      
+      switch(newVal){
+        case 'order_preview':
+          this.barWidth = '33%';
+          break;//%%難怪一直跑出66%
+        case 'order_info':
+          this.barWidth = '66%';
+          break;
+        case 'order_confirm':
+          this.barWidth = '100%';
+          break;
+      }
+    }
+  }
 };
 </script>
