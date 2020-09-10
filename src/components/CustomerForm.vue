@@ -119,7 +119,7 @@
       <div class="text-right">
         <button type="submit" class="btn btn-block btn-lg py-1 btn-danger bg-primary"
                 :disabled="invalid"
-                @click.prevent="createOrder"
+                @click.prevent="submit"
         >
           送出訂單
         </button>
@@ -143,33 +143,14 @@ export default {
         tel: '',
         address: '',
         payment: '',
-        coupon: '',
         message: '',
       },
     };
   },
   methods: {
-    createOrder() {
-      // console.log('送出訂單');
-      // this.$router.push({ name: '訂單完成' });
-
-      // ##
-      // this.form.coupon = this.$store.state.CusOrders.coupon.code ? this.$store.state.CusOrders.coupon.code :''
-      if(this.$store.state.CusOrders.coupon.code){
-        this.form.coupon = this.$store.state.CusOrders.coupon.code;
-      }
-      const api = 'ec/orders';
-      this.$instanceCus.post(api,this.form)
-      .then((res) => {
-        const orderId = this.res.data.data.id;
-        this.$router.push({
-          name:'訂單完成',
-          query:orderId,
-        })
-      }).catch((err) =>{
-
-      })
-    },
+    submit(){
+        this.$emit('emitForm',this.form);
+    }
   },
 };
 </script>

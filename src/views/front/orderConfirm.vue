@@ -117,7 +117,19 @@
                 <ul>
                   <li>
                     <span class="m-orderInfoList__itemTitle">收件人</span>
-                    <span class="m-orderInfoList__itemTxt">王曉明</span>
+                    <span class="m-orderInfoList__itemTxt">{{user.name}}</span>
+                  </li>
+                  <li>
+                    <span class="m-orderInfoList__itemTitle">連絡電話</span>
+                    <span class="m-orderInfoList__itemTxt">{{user.tel}}</span>
+                  </li>
+                  <li>
+                    <span class="m-orderInfoList__itemTitle">E-mail</span>
+                    <span class="m-orderInfoList__itemTxt">{{user.email}}</span>
+                  </li>
+                  <li>
+                    <span class="m-orderInfoList__itemTitle">收貨地址</span>
+                    <span class="m-orderInfoList__itemTxt">{{user.address}}</span>
                   </li>
                 </ul>
               </div>
@@ -137,6 +149,19 @@
                   <li>
                     <span class="m-orderInfoList__itemTitle">運送方式</span>
                     <span class="m-orderInfoList__itemTxt">宅配到府</span>
+                  </li>
+                  <li>
+                    <span class="m-orderInfoList__itemTitle">付款金額</span>
+                    <span class="m-orderInfoList__itemTxt">宅配到府</span>
+                  </li>
+                  <li>
+                    <span class="m-orderInfoList__itemTitle">付款方式</span>
+                    <span class="m-orderInfoList__itemTxt">宅配到府</span>
+                  </li>
+                  <li>
+                    <span class="m-orderInfoList__itemTitle">付款狀態</span>
+                    <span class="m-orderInfoList__itemTxt">尚未付款</span>
+                    <span class="m-orderInfoList__itemTxt">尚未付款</span>
                   </li>
                 </ul>
                 <button class="btn btn-primary btn-block py-1">
@@ -171,18 +196,36 @@ export default {
       payment:'',
       paid:false,
       ['created_at']:'',
+      orderData:{}
 
     }
   },
+    created() {
+      const orderId = this.$route.query.orderId;
+      this.getOrders(orderId);
+    },
   mounted(){
       this.$store.dispatch('changePage','order_confirm');
   },
-  created() {
-
-  },
   methods: {
-    getOrders(){
-      
+    getOrders(orderId){
+      const api = `ec/orders/${orderId}`;
+
+      this.$instanceCus.get(api)
+      .then(res => {
+        this.orderData = res.data.data;
+        const {message,user,coupon,amount,products,payment,paid,created_at } = res.data.data;
+        this.message = message;
+        this.user = user;
+        this.coupon = coupon;
+        this.amount = amount;
+        this.products = products;
+        this.payment = payment;
+        this.paid = paid;
+        this['created_at'] = created_at;
+      }).catch(err=>{
+        
+      })
     }
   }
 };

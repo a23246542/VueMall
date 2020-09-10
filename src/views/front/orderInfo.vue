@@ -5,6 +5,7 @@
         <div class="orderInfo__content col-lg-8">
           <CustomerForm
             class=""
+            @emitForm="createOrder"
           />
         </div>
         <div class="orderInfo__aside col-lg-4 d-none d-lg-block">
@@ -68,6 +69,9 @@
           </div>
         </div>
       </div>
+      <button class="btn btn-primary"
+      @click="$router.go(-1)"
+      >上一頁</button>
     </div>
   </div>
 </template>
@@ -80,13 +84,16 @@ export default {
     CustomerForm,
   },
   data() {
-    return {};
+    return {
+      form:{}
+    };
   },
   computed: {
     // ...mapState(['cart.carts'])
     ...mapState({
       carts: (state) => state.Cart.cart.carts,
       pagination: (state) => state.Cart.cart.pagination,
+      coupon:(state) => state.CusOrders.coupon
     }),
     ...mapGetters(['cartTotal','discountAmount','amountAll']),
   },
@@ -94,7 +101,10 @@ export default {
     this.$store.dispatch('getCart');// %%
     // this.$emit('changPage','orderInfo');
     this.$store.dispatch('changePage','order_info');
-
+    this.$router.push({
+          name:'最後確認',
+          query:{orderId:'1mYdzl2jc9H7XWS1BstRu9ymOFkBvHfze43yqRfL0wV94Alzlb19Z09o6IGHPY3R'}
+    })
     // this.$store.dispatch('setOrderCartTotal');//##來不及改先監聽cartTotal
   },
   mounted(){
@@ -105,7 +115,33 @@ export default {
 // https://forum.vuejs.org/t/router-view-emit/20927
   },
   methods: {
+    createOrder(customerForm){
+      // console.log(customerForm);
+      this.$stote.commit('LOADING',false)
+      this.form = customerForm;
+      if(this.coupon.code){
+        this.$set(this.form,'coupon',this.coupon.code);
+      }
 
+      // ##
+      // this.form.coupon = this.$store.state.CusOrders.coupon.code ? this.$store.state.CusOrders.coupon.code :''
+      // if(this.$store.state.CusOrders.coupon.code){
+      //   this.form.coupon = this.$store.state.CusOrders.coupon.code;
+      // }
+      const api = 'ec/orders';
+      this.$instanceCus.post(api,this.form)
+      .then((res) => {
+        this.$store.commit('LOADING', false);
+        const orderId = this.res.data.data.id;
+        this.$router.push({
+          name:'最後確認',
+          query:{orderId:orderId}
+          // query:orderId %%一開始打錯router query打錯 下一頁打網址也讀取不到
+        })
+      }).catch((err) =>{
+
+      })
+    }
   },
   watch: {
     ['$store.getters.cartTotal'](){//@@監聽不到 改方法
