@@ -52,9 +52,9 @@
                 <span>小計</span>
                 <span>NT{{ cartTotal | dollars }}</span>
               </div>
-              <div class="d-flex justify-content-between mb-3 text-red">
+              <div v-if="discountAmount" class="d-flex justify-content-between mb-3 text-red">
                 <span>折扣金額</span>
-                <span>-NT{{ 100 | dollars }}</span>
+                <span>-NT{{ discountAmount | dollars }}</span>
               </div>
               <div class="d-flex justify-content-between mb-3">
                 <span>運費</span>
@@ -62,7 +62,7 @@
               </div>
               <div class="d-flex justify-content-between mb-3" style="font-size:18px">
                 <span>總計</span>
-                <span>NT{{ cartTotal | dollars }}</span>
+                <span>NT{{ amountAll | dollars }}</span>
               </div>
             </div>
           </div>
@@ -88,16 +88,17 @@ export default {
       carts: (state) => state.Cart.cart.carts,
       pagination: (state) => state.Cart.cart.pagination,
     }),
-    ...mapGetters(['cartTotal']),
+    ...mapGetters(['cartTotal','discountAmount','amountAll']),
   },
   created() {
     this.$store.dispatch('getCart');// %%
     // this.$emit('changPage','orderInfo');
-    this.$store.dispatch('changePage','order_info')
+    this.$store.dispatch('changePage','order_info');
+
+    // this.$store.dispatch('setOrderCartTotal');//##來不及改先監聽cartTotal
   },
   mounted(){
     setTimeout(() =>{
-
       this.$emit('changPage',1);
     },1000)
 //     Router-view渲染的子组件向父组件传递信息$emit不工作 - 中文 - Vue Forum
@@ -106,6 +107,16 @@ export default {
   methods: {
 
   },
+  watch: {
+    ['$store.getters.cartTotal'](){//@@監聽不到 改方法
+      console.log('監聽cartTotal');
+      this.$store.dispatch('setOrderCartTotal');
+    },
+    cartTotal(newVal,val){//##用computed監聽vuex 但存檔重整有時會無效可能要加熱重載?
+      console.log('監聽cartTotal');
+      this.$store.dispatch('setOrderCartTotal');
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
