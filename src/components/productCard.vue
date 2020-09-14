@@ -1,6 +1,10 @@
 <template>
   <!-- <div> -->
-  <div class="col-xl-4 col-sm-6 mb-5 productCardCol">
+  <!-- <div class=`col-xl-4 col-sm-6 mb-${mb} productCardCol`
+  > //@@代參數-->
+  <div class="col-xl-4 col-sm-6 productCardCol"
+       :class="[mb]"
+  >
     <div class="productCard card rounded-0">
       <!-- <img :src="thisProduct.imageUrl[0]" class="productCard__img card-img-top img-fluid" alt="..."
                     @click="openSingleProudct(thisProduct.id)"
@@ -79,6 +83,11 @@ export default {
     thisProduct: {
       type: Object,
       required: true,
+    },
+    mb: {
+      // type: [String, Number],
+      type: String,
+      default: 'mb-5',
     },
   },
   computed: {

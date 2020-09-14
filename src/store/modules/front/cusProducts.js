@@ -9,6 +9,13 @@ export default {
     categories: [],
     searchText: 'all',
   },
+  getters: { // ##代參數
+    getProductsByNum: (state) => {
+      return (num) => { // ##閉包
+        return state.products.slice(0, num); // %%直接代參數
+      };
+    },
+  },
   mutations: {
     PRODUCTS(state, payload) {
       state.products = payload;

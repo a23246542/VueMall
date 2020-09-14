@@ -2,8 +2,16 @@
     background-size: cover;
     background-position: 50% 50%;
 }
-
+.outline{
+  outline: 1px solid red;
+}
 // -[]forEach
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .flex-1{
     flex: 1;

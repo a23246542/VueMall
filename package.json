@@ -67,7 +67,7 @@
       "no-unused-vars": "warn",
       "no-shadow": "warn",
       "vue/max-attributes-per-line": "off",
-      "vue/html-self-closing": "warn",
+      "vue/html-self-closing": "off",
       "arrow-body-style":["off"],
       "no-return-assign":["warn"]
 

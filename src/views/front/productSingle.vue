@@ -248,9 +248,9 @@ export default {
 
       // 得到1~x之間的隨機整數
       function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min)) + min;
+        const min1 = Math.ceil(min);
+        const max1 = Math.floor(max);
+        return Math.floor(Math.random() * (max1 - min1)) + min1;
       // 不含最大值，含最小值
       }
 
