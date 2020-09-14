@@ -1,64 +1,64 @@
 <template>
-    <div
-      class="modal fade"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
+  <div
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document"
+         :class="{
+           'modal-lg':modalUse==='update',
+           'modal-md':(modalUse==='delete'||modalUse==='read')
+         }"
     >
-      <div class="modal-dialog" role="document"
-      :class="{
-          'modal-lg':modalUse==='update',
-          'modal-md':(modalUse==='delete'||modalUse==='read')
-      }"
-      >
-        <div class="modal-content border-0">
-          <div class="modal-header bg-dark text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <span>{{title}}</span>
-            </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-                <template v-if="modalUse==='update'">
-                    <slot name="update"></slot>
-                </template>
-                <template v-if="modalUse==='delete'">
-                    <slot name="delete"></slot>
-                </template>
-                <template v-if="modalUse==='read'">
-                    <slot name="read"></slot>
-                </template>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              data-dismiss="modal"
-            >
-              {{modalUse==='read'?'關閉':'取消'}}
-            </button>
-            <button type="button" class="btn"
-                v-if="modalUse!=='read'"
-                :class="{
+      <div class="modal-content border-0">
+        <div class="modal-header bg-dark text-white">
+          <h5 id="exampleModalLabel" class="modal-title">
+            <span>{{ title }}</span>
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <template v-if="modalUse==='update'">
+            <slot name="update" />
+          </template>
+          <template v-if="modalUse==='delete'">
+            <slot name="delete" />
+          </template>
+          <template v-if="modalUse==='read'">
+            <slot name="read" />
+          </template>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            data-dismiss="modal"
+          >
+            {{ modalUse==='read'?'關閉':'取消' }}
+          </button>
+          <button v-if="modalUse!=='read'" type="button"
+                  class="btn"
+                  :class="{
                     'btn-primary':modalUse==='update',
                     'btn-danger':modalUse==='delete'
-                }"
-                @click="sureBtn"
-            >
-            {{modalUse==='update'? '確認':'確認刪除'}}
-            </button>
-          </div>
+                  }"
+                  @click="sureBtn"
+          >
+            {{ modalUse==='update'? '確認':'確認刪除' }}
+          </button>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>

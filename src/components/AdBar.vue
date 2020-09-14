@@ -1,7 +1,7 @@
 <template>
-    <div>
-        AdBar
-    </div>
+  <div>
+    AdBar
+  </div>
 </template>
 <script>
 export default {

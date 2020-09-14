@@ -5,7 +5,7 @@ import VueAxios from 'vue-axios';
 import $ from 'jquery';
 // @@全域效能問題
 import 'jquery';
-import 'bootstrap';//js模組
+import 'bootstrap';// js模組
 // @@不寫.css會是載入js
 // import {
 //     ValidationObserver,

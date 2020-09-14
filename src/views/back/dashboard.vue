@@ -1,13 +1,13 @@
 <template>
-    <div class="dashboard" id="dashboard">
-        <DashNavbar/>
-        <DashSidebar/>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-            <keep-alive>
-                <router-view></router-view>
-            </keep-alive>
-        </main>
-    </div>
+  <div id="dashboard" class="dashboard">
+    <DashNavbar />
+    <DashSidebar />
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <keep-alive>
+        <router-view />
+      </keep-alive>
+    </main>
+  </div>
 </template>
 <script>
 import DashNavbar from '@/components/DashNavbar';

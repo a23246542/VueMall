@@ -8,8 +8,8 @@ export default {
   updateLoading(context, isLoading) {
     context.commit('LOADING', isLoading);
   },
-  changePage(context,nowPage){
-    context.commit('SET_PAGE',nowPage);
-  }
+  changePage(context, nowPage) {
+    context.commit('SET_PAGE', nowPage);
+  },
 
 };

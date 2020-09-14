@@ -25,7 +25,7 @@
                          minWidth:'80px',
                          height:'80px',
                        }"
-                  ></div>
+                  />
                 </td>
                 <!-- <td class="flex-1 align-middle text-right">x{{ item.quantity }}</td> -->
                 <!-- <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td> -->
@@ -70,8 +70,10 @@
         </div>
       </div>
       <button class="btn btn-primary"
-      @click="$router.go(-1)"
-      >上一頁</button>
+              @click="$router.go(-1)"
+      >
+        上一頁
+      </button>
     </div>
   </div>
 </template>
@@ -85,7 +87,7 @@ export default {
   },
   data() {
     return {
-      form:{}
+      form: {},
     };
   },
   computed: {
@@ -93,34 +95,44 @@ export default {
     ...mapState({
       carts: (state) => state.Cart.cart.carts,
       pagination: (state) => state.Cart.cart.pagination,
-      coupon:(state) => state.CusOrders.coupon
+      coupon: (state) => state.CusOrders.coupon,
     }),
-    ...mapGetters(['cartTotal','discountAmount','amountAll']),
+    ...mapGetters(['cartTotal', 'discountAmount', 'amountAll']),
+  },
+  watch: {
+    '$store.getters.cartTotal': function () { // @@監聽不到 改方法
+      console.log('監聽cartTotal');
+      this.$store.dispatch('setOrderCartTotal');
+    },
+    cartTotal(newVal, val) { // ##用computed監聽vuex 但存檔重整有時會無效可能要加熱重載?
+      console.log('監聽cartTotal');
+      this.$store.dispatch('setOrderCartTotal');
+    },
   },
   created() {
     this.$store.dispatch('getCart');// %%
     // this.$emit('changPage','orderInfo');
-    this.$store.dispatch('changePage','order_info');
+    this.$store.dispatch('changePage', 'order_info');
     this.$router.push({
-          name:'最後確認',
-          query:{orderId:'1mYdzl2jc9H7XWS1BstRu9ymOFkBvHfze43yqRfL0wV94Alzlb19Z09o6IGHPY3R'}
-    })
+      name: '最後確認',
+      query: { orderId: '1mYdzl2jc9H7XWS1BstRu9ymOFkBvHfze43yqRfL0wV94Alzlb19Z09o6IGHPY3R' },
+    });
     // this.$store.dispatch('setOrderCartTotal');//##來不及改先監聽cartTotal
   },
-  mounted(){
-    setTimeout(() =>{
-      this.$emit('changPage',1);
-    },1000)
-//     Router-view渲染的子组件向父组件传递信息$emit不工作 - 中文 - Vue Forum
-// https://forum.vuejs.org/t/router-view-emit/20927
+  mounted() {
+    setTimeout(() => {
+      this.$emit('changPage', 1);
+    }, 1000);
+    //     Router-view渲染的子组件向父组件传递信息$emit不工作 - 中文 - Vue Forum
+    // https://forum.vuejs.org/t/router-view-emit/20927
   },
   methods: {
-    createOrder(customerForm){
+    createOrder(customerForm) {
       // console.log(customerForm);
-      this.$stote.commit('LOADING',false)
+      this.$stote.commit('LOADING', false);
       this.form = customerForm;
-      if(this.coupon.code){
-        this.$set(this.form,'coupon',this.coupon.code);
+      if (this.coupon.code) {
+        this.$set(this.form, 'coupon', this.coupon.code);
       }
 
       // ##
@@ -129,30 +141,20 @@ export default {
       //   this.form.coupon = this.$store.state.CusOrders.coupon.code;
       // }
       const api = 'ec/orders';
-      this.$instanceCus.post(api,this.form)
-      .then((res) => {
-        this.$store.commit('LOADING', false);
-        const orderId = this.res.data.data.id;
-        this.$router.push({
-          name:'最後確認',
-          query:{orderId:orderId}
+      this.$instanceCus.post(api, this.form)
+        .then((res) => {
+          this.$store.commit('LOADING', false);
+          const orderId = this.res.data.data.id;
+          this.$router.push({
+            name: '最後確認',
+            query: { orderId },
           // query:orderId %%一開始打錯router query打錯 下一頁打網址也讀取不到
-        })
-      }).catch((err) =>{
+          });
+        }).catch((err) => {
 
-      })
-    }
-  },
-  watch: {
-    ['$store.getters.cartTotal'](){//@@監聽不到 改方法
-      console.log('監聽cartTotal');
-      this.$store.dispatch('setOrderCartTotal');
+        });
     },
-    cartTotal(newVal,val){//##用computed監聽vuex 但存檔重整有時會無效可能要加熱重載?
-      console.log('監聽cartTotal');
-      this.$store.dispatch('setOrderCartTotal');
-    }
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

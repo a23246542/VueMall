@@ -1,31 +1,32 @@
 <template>
   <div class="row productList">
     <ProductCard
-        v-for="(item) in filterProducts"
-        :key="item.id"
-        :thisProduct="item"
+      v-for="(item) in filterProducts"
+      :key="item.id"
+      :this-product="item"
     />
   </div>
 </template>
 <script>
 import ProductCard from '@/components/ProductCard';
 import { mapState } from 'vuex';
+
 export default {
   components: {
-    ProductCard
-  },
-  created(){
-    console.log(this.searchText);
+    ProductCard,
   },
   data() {
-    return{
+    return {
       // searchText:this.searchText,
-    }
+    };
+  },
+  created() {
+    console.log(this.searchText);
   },
   computed: {
     ...mapState({
-      products:(state) => state.CusProducts.products,
-      searchText:(state) => state.CusProducts.searchText,//%%Cus大寫
+      products: (state) => state.CusProducts.products,
+      searchText: (state) => state.CusProducts.searchText, // %%Cus大寫
     }),
 
     filterProducts() {
@@ -38,6 +39,6 @@ export default {
           .includes(this.searchText.toLowerCase()), // %%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false
       );
     },
-  }
-}
+  },
+};
 </script>

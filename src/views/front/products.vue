@@ -1,36 +1,42 @@
 <template>
-    <div id="products" class="products">
-        <div class="container pt-5">
-            <Alert></Alert>
-            <!-- <div class="row flex-row-reverse"> -->
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb bg-transparent">
-                <li class="breadcrumb-item">
-                  <router-link :to="{name:'home'}">首頁</router-link>            
-                </li>
-                <li class="breadcrumb-item"><a href="#">Library</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Data</li>
-              </ol>
-            </nav>
-            <div class="row">
-                <div class="col-xl-2 products__sidebar px-0">
-                    <!-- <table class="table table-sm" v-if="cart.carts.length"> -->
-                    <div class="mainClass list-group">
-                        <!-- <a href="#" class="list-group-item list-group-item-action"
+  <div id="products" class="products">
+    <div class="container pt-5">
+      <Alert />
+      <!-- <div class="row flex-row-reverse"> -->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-transparent">
+          <li class="breadcrumb-item">
+            <router-link :to="{name:'home'}">
+              首頁
+            </router-link>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="#">Library</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Data
+          </li>
+        </ol>
+      </nav>
+      <div class="row">
+        <div class="col-xl-2 products__sidebar px-0">
+          <!-- <table class="table table-sm" v-if="cart.carts.length"> -->
+          <div class="mainClass list-group">
+            <!-- <a href="#" class="list-group-item list-group-item-action"
                         @click.prevent="searchText='all'"
                         > -->
-                        <!-- <a href="#" class="list-group-item list-group-item-action rounded-0"
+            <!-- <a href="#" class="list-group-item list-group-item-action rounded-0"
                         @click.prevent="setSearchText('all')"
                         >
                             <span>
                               所有商品
                             </span>
                         </a> -->
-                        <!-- <a href="#" class="list-group-item list-group-item-action"
+            <!-- <a href="#" class="list-group-item list-group-item-action"
                         v-for="item in categories" :key="item"
                         @click.prevent="searchText=item"
                         > -->
-                        <!-- <a href="#" class="list-group-item list-group-item-action rounded-0"
+            <!-- <a href="#" class="list-group-item list-group-item-action rounded-0"
                         v-for="item in categories" :key="item"
                         @click.prevent="setSearchText(item)"
                         >
@@ -38,67 +44,66 @@
                               {{firstFloor(item)}}系列
                             </span>
                         </a> -->
-                        <!-- ========================= -->
-                        <a href="#" class="list-group-item list-group-item-action rounded-0"
-                          @click.prevent="setSearchText('all')"
-                        >
-                            <span>
-                              所有商品
-                            </span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action rounded-0"
-                        v-for="item in classObj.sort" :key="item"
-                        >
-                            <span class="mainClass__title"
-                              @click.stop="setSearchText(item)"
-                            >
-                              {{item}}系列
-                            </span>
-                            <span class="mainClass__arrow"
-                              @click="showSubClass(item,$event)"
-                              v-if="classObj.map[item].sort[0]"
-                            ></span>
+            <!-- ========================= -->
+            <a href="#" class="list-group-item list-group-item-action rounded-0"
+               @click.prevent="setSearchText('all')"
+            >
+              <span>
+                所有商品
+              </span>
+            </a>
+            <a v-for="item in classObj.sort" :key="item"
+               href="#" class="list-group-item list-group-item-action rounded-0"
+            >
+              <span class="mainClass__title"
+                    @click.stop="setSearchText(item)"
+              >
+                {{ item }}系列
+              </span>
+              <span v-if="classObj.map[item].sort[0]"
+                    class="mainClass__arrow"
+                    @click="showSubClass(item,$event)"
+              />
 
-                            <ul class="subClass list-group"
-                              v-if="classObj.map[item].sort[0]"
-                              v-show="!classObj.map[item].hidden"
-                            >
-                              <li class="subClass__title list-group-item border-0" 
-                                v-for="item in classObj.map[item].sort" :key="item"
-                                @click.prevent="setSearchText(item)"
-                              >
-                                {{item}}
-                              </li>
-                            </ul>
-                        </a>
-                    </div>
-                    <!-- <Category
-                    
+              <ul v-if="classObj.map[item].sort[0]"
+                  v-show="!classObj.map[item].hidden"
+                  class="subClass list-group"
+              >
+                <li v-for="item in classObj.map[item].sort"
+                    :key="item" class="subClass__title list-group-item border-0"
+                    @click.prevent="setSearchText(item)"
+                >
+                  {{ item }}
+                </li>
+              </ul>
+            </a>
+          </div>
+          <!-- <Category
+
                     ></Category> -->
-                </div>
+        </div>
 
-                <!-- <div class="col-10 mx-auto"> -->
-                <div class="col-xl-10 products__content">
-                <!-- <div class="products__list"> -->
-                    <!-- <div class="row"> -->
-                          <!-- <ProductCard
+        <!-- <div class="col-10 mx-auto"> -->
+        <div class="col-xl-10 products__content">
+          <!-- <div class="products__list"> -->
+          <!-- <div class="row"> -->
+          <!-- <ProductCard
                               v-for="(item) in filterProducts"
                               :key="item.id"
                               :thisProduct="item"
                           /> -->
-                          <router-view></router-view>
-                    <!-- </div> -->
-                    <!-- 分頁 開始 -->
-                    <pagination
-                    :pages="pagination"
-                    @change-page="getProducts"
-                    />
-                    <!-- 分頁 結束 -->
-                </div>
-
-            </div>
+          <router-view />
+          <!-- </div> -->
+          <!-- 分頁 開始 -->
+          <pagination
+            :pages="pagination"
+            @change-page="getProducts"
+          />
+          <!-- 分頁 結束 -->
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -116,7 +121,7 @@ export default {
     CartModal,
     Alert,
     pagination,
-    Category
+    Category,
   },
   data() {
     return {
@@ -128,10 +133,10 @@ export default {
       // categories:[],
       // searchText: 'all',
       // carts:[]//子組件購物車的
-      classObj:{
-        sort:[],
-        map:{}
-      }
+      classObj: {
+        sort: [],
+        map: {},
+      },
     };
   },
   computed: {
@@ -167,11 +172,11 @@ export default {
     //   // };
     //   // const category = new Set();
     //   // this.categories.forEach(item => {
-    //   //     category.add(item.split('>')[0]); 
+    //   //     category.add(item.split('>')[0]);
     //   // });
 
     //   // obj.sort=[...category];
-      
+
     //   // obj.sort.forEach(title => {
     //   //   obj.map[title]
     //   // })
@@ -182,7 +187,7 @@ export default {
 
     //   this.categories.forEach(item => {
     //     const firstCalss = item.split('>')[0]
-        
+
     //     if(!obj.map[firstCalss]){
     //       obj.sort.push(firstCalss);
     //       obj.map[firstCalss] = {
@@ -196,22 +201,28 @@ export default {
     //   return obj
     // },
   },
+  watch: {
+    categories(val, oldVal) {
+      console.log(val);
+      this.setClassObj();
+    },
+  },
   created() {
     this.getProducts()
-    .then(() => {
-      console.log('執行getProduct.then');
+      .then(() => {
+        console.log('執行getProduct.then');
       // this.setClassObj();//@@改用watch做
-    });
+      });
   },
-  mounted(){
+  mounted() {
     // this.setClassObj();
     // console.log('56uv');
-    
+
   },
   methods: {
     // getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
     async getProducts(page = 1) {
-      await this.$store.dispatch('getProducts', page);//@@無效
+      await this.$store.dispatch('getProducts', page);// @@無效
     },
     // getProducts(page=1,paged=25,orderBy="created_at",sort="desc"){
     //     this.$store.commit('LOADING',true);
@@ -251,49 +262,42 @@ export default {
       // console.log(item);
     },
     setClassObj() {
-        console.log('執行setClassObj');
-        this.categories.forEach(item => {
+      console.log('執行setClassObj');
+      this.categories.forEach((item) => {
         const firstClass = item.split('>')[0];
-        
+
         console.log(firstClass);
-        if(!this.classObj.map[firstClass]){
+        if (!this.classObj.map[firstClass]) {
           this.classObj.sort.push(firstClass);
           // this.$set
           // this.classObj.map[firstCalss] = {
           //   sort:[],
           //   hidden:true
           // };
-          this.$set(this.classObj.map,firstClass,{});
-          this.$set(this.classObj.map[firstClass],'sort',[]);
-          this.$set(this.classObj.map[firstClass],'hidden',true);
+          this.$set(this.classObj.map, firstClass, {});
+          this.$set(this.classObj.map[firstClass], 'sort', []);
+          this.$set(this.classObj.map[firstClass], 'hidden', true);
         }
         this.classObj.map[firstClass].sort.push(item.split('>')[1]);
-      })
+      });
       // console.log(obj);
       // return obj
     },
     setSearchText(text) {
       // this.searchText = text;
-      this.$store.commit('SEARCH_TEXT',text);
+      this.$store.commit('SEARCH_TEXT', text);
       console.log(text);
     },
-    showSubClass(mainClass,event) {
+    showSubClass(mainClass, event) {
       // this.classObj.map[mainClass].hidden === true? false : true;//@#簡化
       // !this.classObj.map[mainClass].hidden=;//#失敗
       console.log(event);
       event.target.classList.toggle('show');
-      setTimeout(()=>{
+      setTimeout(() => {
         this.classObj.map[mainClass].hidden = !this.classObj.map[mainClass].hidden;
-      },350)
-      
+      }, 350);
     },
-    
-  },
-  watch: {
-      categories(val,oldVal){
-        console.log(val);
-        this.setClassObj();
-      }
+
   },
 };
 </script>
@@ -343,11 +347,11 @@ export default {
           border:0;
           // border:1px solid red;
           // transition: all .05s;
-          
+
           &>span{
-           
+
             &>.arrow{
-             
+
             }
           }
         }
@@ -400,11 +404,11 @@ export default {
         }
         .subClass{
           // display:none;
-          
+
           // &.show{
           //   display: block;
           // }
-          
+
           .list-group-item{
             padding: 3px 30px 6px;
           }
@@ -414,8 +418,6 @@ export default {
       &__content{
         // flex: 1;
       }
-
-     
 
     }
 </style>

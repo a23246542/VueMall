@@ -13,7 +13,7 @@ Vue.use(Vuex);// @也可加在main.js
 
 const state = {
   isLoading: false,
-  nowPage:'',
+  nowPage: '',
 
 };
 const getters = {
@@ -29,6 +29,6 @@ export default new Vuex.Store({
   modules: {
     Cart,
     CusProducts,
-    CusOrders
+    CusOrders,
   },
 });

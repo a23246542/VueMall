@@ -34,8 +34,29 @@
                     小計
                   </div>
                 </div>
-                <ul class="prdList__content">
-                  <li class="prdList__row d-flex">
+                <!-- <ul v-if="amount" class="prdList__content"> -->
+                <ul v-if="payment" class="prdList__content">
+                  <li v-for="prdObj in products"
+                      :key="prdObj.product.id" class="prdList__row d-flex"
+                  >
+                    <div class="prdList__Item flex-2 text-left">
+                      <img src="" alt="">
+                      {{ prdObj.product.title }}
+                    </div>
+                    <div class="prdList__Item flex-1">
+                      {{ prdObj.product.unit }}
+                    </div>
+                    <div class="prdList__Item flex-1">
+                      {{ prdObj.product.price }}
+                    </div>
+                    <div class="prdList__Item flex-1">
+                      {{ prdObj.quantity }}
+                    </div>
+                    <div class="prdList__Item flex-1">
+                      {{ prdObj.quantity * prdObj.product.price }}
+                    </div>
+                  </li>
+                  <!-- <li class="prdList__row d-flex">
                     <div class="prdList__Item flex-2 text-left">
                       <img src="" alt="">
                       商品資料
@@ -52,25 +73,7 @@
                     <div class="prdList__Item flex-1">
                       26585
                     </div>
-                  </li>
-                  <li class="prdList__row d-flex">
-                    <div class="prdList__Item flex-2 text-left">
-                      <img src="" alt="">
-                      商品資料
-                    </div>
-                    <div class="prdList__Item flex-1">
-                      組
-                    </div>
-                    <div class="prdList__Item flex-1">
-                      2565
-                    </div>
-                    <div class="prdList__Item flex-1">
-                      1
-                    </div>
-                    <div class="prdList__Item flex-1">
-                      26585
-                    </div>
-                  </li>
+                  </li> -->
                 </ul>
                 <div class="orderCount d-flex justify-content-between">
                   <div class="orderCount__num">
@@ -80,17 +83,17 @@
                     <div class="orderCount__list p-2">
                       <div class="d-flex justify-content-between mb-1">
                         <span>折扣金額</span>
-                        <span>-NT$100</span>
+                        <span>-NT${{ orderDiscountAmount }}</span>
                       </div>
                       <div class="d-flex justify-content-between mb-1">
                         <span>運費</span>
                         <span>NT$0</span>
                       </div>
                     </div>
-                    <span class="orderCount__border"></span>
+                    <span class="orderCount__border" />
                     <div class="orderCount__total d-flex justify-content-between text-red">
                       <span>總計</span>
-                      <span>NT{{ 44230 | dollars }}</span>
+                      <span>NT{{ amount | dollars }}</span>
                     </div>
                     <p class="orderCount__tip mb-0 text-right pr-2">
                       <small class="text-muted">
@@ -117,19 +120,19 @@
                 <ul>
                   <li>
                     <span class="m-orderInfoList__itemTitle">收件人</span>
-                    <span class="m-orderInfoList__itemTxt">{{user.name}}</span>
+                    <span class="m-orderInfoList__itemTxt">{{ user.name }}</span>
                   </li>
                   <li>
                     <span class="m-orderInfoList__itemTitle">連絡電話</span>
-                    <span class="m-orderInfoList__itemTxt">{{user.tel}}</span>
+                    <span class="m-orderInfoList__itemTxt">{{ user.tel }}</span>
                   </li>
                   <li>
                     <span class="m-orderInfoList__itemTitle">E-mail</span>
-                    <span class="m-orderInfoList__itemTxt">{{user.email}}</span>
+                    <span class="m-orderInfoList__itemTxt">{{ user.email }}</span>
                   </li>
                   <li>
                     <span class="m-orderInfoList__itemTitle">收貨地址</span>
-                    <span class="m-orderInfoList__itemTxt">{{user.address}}</span>
+                    <span class="m-orderInfoList__itemTxt">{{ user.address }}</span>
                   </li>
                 </ul>
               </div>
@@ -152,19 +155,21 @@
                   </li>
                   <li>
                     <span class="m-orderInfoList__itemTitle">付款金額</span>
-                    <span class="m-orderInfoList__itemTxt">宅配到府</span>
+                    <span class="m-orderInfoList__itemTxt">{{ amount | dollars }}</span>
                   </li>
                   <li>
                     <span class="m-orderInfoList__itemTitle">付款方式</span>
-                    <span class="m-orderInfoList__itemTxt">宅配到府</span>
+                    <span class="m-orderInfoList__itemTxt">{{ payment }}</span>
                   </li>
                   <li>
                     <span class="m-orderInfoList__itemTitle">付款狀態</span>
-                    <span class="m-orderInfoList__itemTxt">尚未付款</span>
-                    <span class="m-orderInfoList__itemTxt">尚未付款</span>
+                    <span v-if="paid" class="m-orderInfoList__itemTxt text-success">已經付款</span>
+                    <span v-else class="m-orderInfoList__itemTxt text-danger">尚未付款</span>
                   </li>
                 </ul>
-                <button class="btn btn-primary btn-block py-1">
+                <button class="btn btn-primary btn-block py-1"
+                        @click="paySubmit"
+                >
                   確認付款
                 </button>
               </div>
@@ -187,46 +192,79 @@
 export default {
   data() {
     return {
-      orderId:'',
-      message:'',
-      user:{},
-      coupon:{},
-      amount:0,
-      products:[],
-      payment:'',
-      paid:false,
-      ['created_at']:'',
-      orderData:{}
+      orderId: '',
+      message: '',
+      user: {},
+      coupon: {},
+      amount: 0,
+      products: [],
+      payment: '',
+      paid: false,
+      created_at: '',
+      orderData: {},
 
-    }
+    };
   },
-    created() {
-      const orderId = this.$route.query.orderId;
-      this.getOrders(orderId);
+  computed: {
+    orderDiscountAmount() {
+      const amountAll = (this.amount * 100) / this.coupon.percent;
+      return (amountAll - this.amount);
     },
-  mounted(){
-      this.$store.dispatch('changePage','order_confirm');
+    thisOrder() {
+      return this.$store.state.CusOrders.thisOrder;
+    },
+  },
+  created() {
+    const { orderId } = this.$route.query;
+    this.getOrders(orderId);
+  },
+  mounted() {
+    this.$store.dispatch('changePage', 'order_confirm');
   },
   methods: {
-    getOrders(orderId){
-      const api = `ec/orders/${orderId}`;
+    getOrders(orderId) {
+      this.$store.dispatch('getSingleOrder', orderId)
+        .then(() => {
+          const {
+            id, message, user, coupon, amount, products, payment, paid, createdAt,
+          } = this.thisOrder;
+          this.orderId = id;
+          this.message = message;
+          this.user = user;
+          this.coupon = coupon;
+          this.amount = amount;
+          this.products = products;
+          this.payment = payment;
+          this.paid = paid;
+          this.created_at = createdAt;
+        });
+      // const api = `ec/orders/${orderId}`;
 
-      this.$instanceCus.get(api)
-      .then(res => {
-        this.orderData = res.data.data;
-        const {message,user,coupon,amount,products,payment,paid,created_at } = res.data.data;
-        this.message = message;
-        this.user = user;
-        this.coupon = coupon;
-        this.amount = amount;
-        this.products = products;
-        this.payment = payment;
-        this.paid = paid;
-        this['created_at'] = created_at;
-      }).catch(err=>{
-        
-      })
-    }
-  }
+      // this.$instanceCus.get(api)
+      //   .then((res) => {
+      //     this.orderData = res.data.data;
+      //     // ##改成小大寫createAt
+      //     const {
+      //       message, user, coupon, amount, products, payment, paid, createdAt,
+      //     } = res.data.data;
+      //     this.message = message;
+      //     this.user = user;
+      //     this.coupon = coupon;
+      //     this.amount = amount;
+      //     this.products = products;
+      //     this.payment = payment;
+      //     this.paid = paid;
+      //     this.created_at = createdAt;
+      //   }).catch((err) => {
+
+      //   });
+    },
+    paySubmit() {
+      this.$router.push({
+        name: '訂單完成',
+        query: { orderId: this.orderId },
+      });
+    },
+  },
 };
 </script>

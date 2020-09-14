@@ -114,7 +114,7 @@
         </label>
         <textarea id="message" v-model="form.message" class="form-control" cols="30"
                   rows="3"
-        ></textarea>
+        />
       </div>
       <div class="text-right">
         <button type="submit" class="btn btn-block btn-lg py-1 btn-danger bg-primary"
@@ -148,9 +148,9 @@ export default {
     };
   },
   methods: {
-    submit(){
-        this.$emit('emitForm',this.form);
-    }
+    submit() {
+      this.$emit('emitForm', this.form);
+    },
   },
 };
 </script>

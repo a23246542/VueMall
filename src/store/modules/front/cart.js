@@ -57,7 +57,8 @@ export default {
       const api = 'ec/shopping';
       const cartItem = { product: productId, quantity: qty };
 
-      this.$instanceCus.post(api, cartItem)
+      // this.$instanceCus.post(api, cartItem)@@this有效嗎
+      instanceCus.post(api, cartItem)
         .then((res) => {
           this.$bus.$emit('message:push', `${item.title}已加入購物車`, 'success');
           this.$refs.cart.getCart();

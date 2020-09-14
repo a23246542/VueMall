@@ -2,31 +2,43 @@
   <div id="dashProducts">
     <!-- <BaseLoading :active.sync="isLoading"/> -->
     <div class="mt-4 text-right">
-        <button class="newBtn btn btn-primary"
-            @click="openModal('new')">新增產品
-        </button>
+      <button class="newBtn btn btn-primary"
+              @click="openModal('new')"
+      >
+        新增產品
+      </button>
     </div>
     <div class="table-responsive">
       <table class="table mt-4">
         <thead>
           <tr>
-            <th width="120">分類</th>
+            <th width="120">
+              分類
+            </th>
             <th>產品名稱</th>
-            <th width="120">原價</th>
-            <th width="120">售價</th>
-            <th width="100">是否啟用</th>
-            <th width="120">編輯</th>
+            <th width="120">
+              原價
+            </th>
+            <th width="120">
+              售價
+            </th>
+            <th width="100">
+              是否啟用
+            </th>
+            <th width="120">
+              編輯
+            </th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item) in products" :key=item.id>
-            <td>{{item.category.split(">")[0]}}</td>
-            <td>{{item.title}}</td>
+          <tr v-for="(item) in products" :key="item.id">
+            <td>{{ item.category.split(">")[0] }}</td>
+            <td>{{ item.title }}</td>
             <td class="text-right">
-              {{item.origin_price}}
+              {{ item.origin_price }}
             </td>
             <td class="text-right">
-              {{item.price}}
+              {{ item.price }}
             </td>
             <td style="vertical-align: middle">
               <!-- <span v-if="item.enabled">啟用</span>
@@ -34,10 +46,10 @@
               <label class="toggle-control">
                 <!-- <input type="checkbox"> -->
                 <!-- <input type="checkbox" :checked="item.enabled"> -->
-                <input type="checkbox" v-model="item.enabled"
-                @change="enabledProduct(item)"
+                <input v-model="item.enabled" type="checkbox"
+                       @change="enabledProduct(item)"
                 >
-                <span class="control"></span>
+                <span class="control" />
               </label>
             </td>
             <td>
@@ -50,46 +62,45 @@
                 </button>
               </div>
             </td>
-
           </tr>
         </tbody>
-
       </table>
     </div>
     <div class="text-right">
       <button class="btn btn-danger mr-5"
-      @click="openDelAllProducts"
-      >刪除本頁產品</button>
+              @click="openDelAllProducts"
+      >
+        刪除本頁產品
+      </button>
     </div>
     <BasePagination
-    :pages="pagination"
-    @change-page="getProducts"
+      :pages="pagination"
+      @change-page="getProducts"
     />
     <!---------- Modal ---------------------->
     <DashProductModal
-    ref="dashProductModal"
-    :is-new="isNew"
-    @update="getProducts"
-    @cancel="clearModal"
+      ref="dashProductModal"
+      :is-new="isNew"
+      @update="getProducts"
+      @cancel="clearModal"
     />
     <DashDelProductModal
-    ref="dashDelProductModal"
-    :temp-product.sync="tempProduct"
-    @update="getProducts"
+      ref="dashDelProductModal"
+      :temp-product.sync="tempProduct"
+      @update="getProducts"
     />
     <DashOtherModal id="delAll"
-      :title="'刪除此頁商品'"
-      :modalUse="'delete'"
-      @delete="delAllProducts"
+                    :title="'刪除此頁商品'"
+                    :modal-use="'delete'"
+                    @delete="delAllProducts"
     >
       <template v-slot:delete>
         <div class="p-3 fz-35">
-            確認刪除此頁所有商品
+          確認刪除此頁所有商品
         </div>
       </template>
     </DashOtherModal>
-
- </div>
+  </div>
 </template>
 <script>
 import $ from 'jquery';
@@ -120,14 +131,19 @@ export default {
       isNew: true,
       tempProduct: {
         imageUrl: [],
-        options : {
+        options: {
           stock: 0,
           delivery: '',
           specification: '',
-        }
+        },
       },
       currentPage: '0',
     };
+  },
+  computed: {
+    // isLoading(){//已註冊為全域
+    //     return this.$store.state.isLoading;
+    // }
   },
   created() {
     // console.log(this.$route.query.page);
@@ -138,11 +154,6 @@ export default {
     this.getProducts(this.currentPage);// @@#如是undefined的話 參數會用預設值page=1
     // }else{
     //   this.getProducts();
-    // }
-  },
-  computed: {
-    // isLoading(){//已註冊為全域
-    //     return this.$store.state.isLoading;
     // }
   },
   methods: {
@@ -172,23 +183,23 @@ export default {
       console.log(action, item);
       // this.$store.commit('LOADING',true);//@@非同步沒效果
       switch (action) {
-        case 'new':
-          this.isNew = true;
-          this.$refs.dashProductModal.openNewModal();
-          break;// %%往下執行
-        case 'edit':
-          this.tempProduct = JSON.parse(JSON.stringify(item));
-          this.isNew = false;
-          this.$refs.dashProductModal.openEditModal(this.tempProduct.id);
-          // this.$store.commit('LOADING',false);//非同步問題
-          break;
-        case 'delete':
-          this.tempProduct = JSON.parse(JSON.stringify(item));
-          this.$refs.dashDelProductModal.openDelModal();
-          // $('#delProductModal').modal('show');##可以取到組件內dom
-          break;
-        default:
-          break;
+      case 'new':
+        this.isNew = true;
+        this.$refs.dashProductModal.openNewModal();
+        break;// %%往下執行
+      case 'edit':
+        this.tempProduct = JSON.parse(JSON.stringify(item));
+        this.isNew = false;
+        this.$refs.dashProductModal.openEditModal(this.tempProduct.id);
+        // this.$store.commit('LOADING',false);//非同步問題
+        break;
+      case 'delete':
+        this.tempProduct = JSON.parse(JSON.stringify(item));
+        this.$refs.dashDelProductModal.openDelModal();
+        // $('#delProductModal').modal('show');##可以取到組件內dom
+        break;
+      default:
+        break;
       }
       // this.$store.commit('LOADING',false);
     },
@@ -244,7 +255,6 @@ export default {
     .newBtn{
       // background-color: $brand-secondary-green;//SassError: Undefined variable
     }
-
 
     // &__table{//## bem dashProducts為class才用
     //   min-width: 800px;

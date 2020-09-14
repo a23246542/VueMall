@@ -1,7 +1,7 @@
 <template>
-    <div>
-        banner
-    </div>
+  <div>
+    banner
+  </div>
 </template>
 <script>
 export default {

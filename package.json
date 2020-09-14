@@ -64,12 +64,12 @@
       ],
       "max-len": "off",
       "no-console": "off",
-      "no-unused-vars": "off",
-      "no-shadow": "off",
+      "no-unused-vars": "warn",
+      "no-shadow": "warn",
       "vue/max-attributes-per-line": "off",
-      "vue/html-self-closing": "off",
+      "vue/html-self-closing": "warn",
       "arrow-body-style":["off"],
-      "no-return-assign":["except-parens"]
+      "no-return-assign":["warn"]
 
     }
   },

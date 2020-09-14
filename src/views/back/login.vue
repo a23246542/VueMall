@@ -1,35 +1,40 @@
 <template>
-    <div class="form-page text-center">
-        <form class="form-signin"
-        @submit.prevent ="signIn"
-        >
-            <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
-            <label for="inputEmail" class="sr-only">電子信箱</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required
-            autofocus
-            v-model="user.email"
-            >
-            <label for="inputPassword" class="sr-only">密碼</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required
-            v-model="user.password"
-            >
-            <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
-        </form>
-    </div>
-
+  <div class="form-page text-center">
+    <form class="form-signin"
+          @submit.prevent="signIn"
+    >
+      <h1 class="h3 mb-3 font-weight-normal">
+        請先登入
+      </h1>
+      <label for="inputEmail" class="sr-only">電子信箱</label>
+      <input id="inputEmail" v-model="user.email" type="email" class="form-control" placeholder="Email address"
+             required
+             autofocus
+      >
+      <label for="inputPassword" class="sr-only">密碼</label>
+      <input id="inputPassword" v-model="user.password" type="password" class="form-control" placeholder="Password"
+             required
+      >
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">
+        登入
+      </button>
+      <p class="mt-5 mb-3 text-muted">
+        &copy; 2017-2020
+      </p>
+    </form>
+  </div>
 </template>
 
 <script>
 import { instanceLogin } from '@/api/https';// %%
 // import {instanceLogin} from "../../api/https";
 export default {
-  name: 'login',
+  name: 'Login',
   data() {
     return {
       user: {

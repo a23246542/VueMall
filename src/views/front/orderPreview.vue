@@ -158,7 +158,6 @@
               >
                 下一步
               </router-link>
-
             </div>
           </div>
         </div>
@@ -198,7 +197,7 @@ export default {
     //   products: 'shopcart/shopcartItems',
     //   loading: 'loading',
     // }),
-    ...mapGetters(['amountAll','discountAmount'])
+    ...mapGetters(['amountAll', 'discountAmount']),
     // ...mapGetters({
     //   orderTotal:'/amountAll'//@@amountAll吃不到，無法重命名
     // })
@@ -206,17 +205,37 @@ export default {
     //   return this.$store.getters.amountAll;
     // }
   },
+  watch: {
+    // ['cart.carts']:{
+    // // carts:{
+    //     handler:function(newVal,oldVal){
+    //         // console.log(newVal);
+    //         // console.log(oldVal);
+    //         console.log('觸發watch');
+    //         // this.stayUpCart();
+    //     },
+    //     deep:true
+    // }
+    cartTotal(newVal, oldVal) {
+      this.$store.dispatch('setOrderCartTotal');
+
+      // this.$store.dispatch('getOrderTotal')
+      // this.$store.commit('ORDER')
+    },
+    // ['$store.state.CusOrders.coupon.percent'](){
+    //   console.log('取得coupon');
+
+    // }
+  },
   created() {
     // this.debounceInputCart = debounce(this.updateCartQty('subtract1',item),'400')
     // this.$store.dispatch('delAllCart');
 
     this.getCart();
-    //在頁面重新整理時將vuex裡的資訊儲存到localStorage裡 window.addEventListener("beforeunload",()=>{ localStorage.setItem("messageStore",JSON.stringify(this.$store.state)) }) //在頁面載入時讀取localStorage裡的狀態資訊 localStorage.getItem("messageStore") && this.$store.replaceState(Object.assign(this.$store.state,JSON.parse(localStorage.getItem("messageStore")))); 原文網址：https://itw01.com/UA4CZEY.html
- 
+    // 在頁面重新整理時將vuex裡的資訊儲存到localStorage裡 window.addEventListener("beforeunload",()=>{ localStorage.setItem("messageStore",JSON.stringify(this.$store.state)) }) //在頁面載入時讀取localStorage裡的狀態資訊 localStorage.getItem("messageStore") && this.$store.replaceState(Object.assign(this.$store.state,JSON.parse(localStorage.getItem("messageStore")))); 原文網址：https://itw01.com/UA4CZEY.html
   },
-  mounted(){
-    this.$store.dispatch('changePage','order_preview');
-
+  mounted() {
+    this.$store.dispatch('changePage', 'order_preview');
   },
   methods: {
     getCart() {
@@ -283,7 +302,7 @@ export default {
         //   vm.$store.dispatch('updateMessage', { message, status });
         // }
         this.coupon = res.data.data;
-        this.$store.commit('COUPON',this.coupon);
+        this.$store.commit('COUPON', this.coupon);
         this.$store.commit('LOADING', false);
 
         // this.$swal.fire({
@@ -295,38 +314,14 @@ export default {
         // });
 
         // this.getCart();
-
-
       }).catch((err) => {
-        this.$store.commit('COUPON',{});//##這樣重新套用無效的優惠券才會重來
+        this.$store.commit('COUPON', {});// ##這樣重新套用無效的優惠券才會重來
         this.$store.commit('LOADING', false);
         const { message } = err.response.data;
         alert(message);
       });
     },
   },
-  watch:{
-      // ['cart.carts']:{
-      // // carts:{
-      //     handler:function(newVal,oldVal){
-      //         // console.log(newVal);
-      //         // console.log(oldVal);
-      //         console.log('觸發watch');
-      //         // this.stayUpCart();
-      //     },
-      //     deep:true
-      // }
-      cartTotal(newVal,oldVal){
-        this.$store.dispatch('setOrderCartTotal');
-
-        // this.$store.dispatch('getOrderTotal')
-        // this.$store.commit('ORDER')
-      },
-      // ['$store.state.CusOrders.coupon.percent'](){
-      //   console.log('取得coupon');
-        
-      // }
-  }
 };
 </script>
 

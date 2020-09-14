@@ -2,7 +2,7 @@
   <div>
     <div class="dropdown">
       <button id="dropdownMenuButton" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-shopping-cart" />
         <span class="badge badge-pill badge-danger">{{ carts.length }}</span>
         <!-- <span class="badge badge-pill badge-danger">3</span> -->
       </button>
@@ -49,7 +49,7 @@
                     class="btn"
                     @click.prevent="delCart(item)"
                   >
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    <i class="fa fa-trash" aria-hidden="true" />
                   </button>
                 </td>
               </tr>

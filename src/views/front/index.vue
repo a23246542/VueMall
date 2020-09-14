@@ -1,10 +1,10 @@
 <template>
-    <div>
-        首頁
-    </div>
+  <div>
+    首頁
+  </div>
 </template>
 <script>
 export default {
-  name: 'index',
+  name: 'Index',
 };
 </script>

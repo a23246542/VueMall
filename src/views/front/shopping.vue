@@ -5,7 +5,7 @@
         首頁
       </router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon" />
       </button>
       <div id="navbarSupportedContent" class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
@@ -51,8 +51,8 @@
         <!-- @@bem -->
         <!-- <div class="progress progress--processStep"> -->
         <div class="processStep__progress progress">
-          <div class="progress-bar" role="progressbar"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"
-            :style="{width:barWidth}"
+          <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"
+               :style="{width:barWidth}"
           >
             <!-- style="width: 33%;" -->
           </div>
@@ -60,8 +60,8 @@
       </div>
     </div>
     <router-view
-    @changePage="changeBar"
-    ></router-view>
+      @changePage="changeBar"
+    />
     <p>shopping-footer</p>
   </div>
 </template>
@@ -69,22 +69,43 @@
 export default {
   data() {
     return {
-      barWidth:'0%'
-    }
+      barWidth: '0%',
+    };
+  },
+  computed: {
+    nowPage() {
+      return this.$store.state.nowPage;
+    },
+  },
+  watch: {
+    nowPage(newVal, val) {
+      console.log('改變頁數', newVal);
+
+      switch (newVal) {
+      case 'order_preview':
+        this.barWidth = '33%';
+        break;// %%難怪一直跑出66%
+      case 'order_info':
+        this.barWidth = '66%';
+        break;
+      case 'order_confirm':
+        this.barWidth = '100%';
+        break;
+      }
+    },
   },
   // created() {
   mounted() {
     // this.initBar();
   },
-  methods:{
-    changeBar(nowPage){
+  methods: {
+    changeBar(nowPage) {
       console.log('換頁');
-      
     },
     // initBar() {
     //   const { path } = this.$route;
     //   console.log(this.$route);//%% 會是shopping/order_preview
-      
+
     //   switch(path){
     //     case 'order_preview':
     //       this.barWidth = '33%';
@@ -93,27 +114,5 @@ export default {
     //   }
     // }
   },
-  computed: {
-    nowPage(){
-      return this.$store.state.nowPage;
-    }
-  },
-  watch: {
-    nowPage(newVal,val){
-      console.log('改變頁數',newVal);
-      
-      switch(newVal){
-        case 'order_preview':
-          this.barWidth = '33%';
-          break;//%%難怪一直跑出66%
-        case 'order_info':
-          this.barWidth = '66%';
-          break;
-        case 'order_confirm':
-          this.barWidth = '100%';
-          break;
-      }
-    }
-  }
 };
 </script>
