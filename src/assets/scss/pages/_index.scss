@@ -1,4 +1,35 @@
+
+body{
+  &::-webkit-scrollbar{
+    // width: 5px;
+    // height: 10px;
+    
+    // width: 10px;
+    // height: 30px;
+    // border-radius: 5px;
+    background-color: #ccc;//%%要跟thumb同時寫
+  }
+//"&"是必須與上一層同層級
+//-webkit-scrollbar : 整體的scrollbar樣式
+
+  &::-webkit-scrollbar-thumb{
+    width: 10px;
+    height: 20px;
+    border-radius: 15px;
+    background-color: $brand-secondary1-light;
+  }
+  //bar的樣式
+
+  &::-webkit-scrollbar-track{}
+  //軌道的樣式
+
+  ::-webkit-scrollbar-thumb:window-inactive{}
+  //頁面是在被啟用的情況下(非必要)
+
+}
+
 .meta{
+  
   height: 7000px;
   &__banner{
     background-image: url("/images/banner-bg.jpg");

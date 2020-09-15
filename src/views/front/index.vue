@@ -139,6 +139,19 @@
           <div class="col-12">
             <div class="newProductList outline">
               <h3>新品上市</h3>
+              <Swiper ref="newPrdSwiper" :options="swiperOptions">
+                <SwiperSlide
+                  v-for="item in newProductList" :key="item.id"
+                >
+                  <img :src="item.imageUrl[0]" alt="" style="width:100%">
+                  <!-- <ProductCard
+                    :this-product="item"
+                    :mb="'mb-0'"
+                  ></ProductCard> -->
+                </SwiperSlide>
+
+                <div slot="pagination" class="swiper-pagination"></div>
+              </Swiper>
             </div>
           </div>
         </div>
@@ -246,17 +259,51 @@
   </div>
 </template>
 <script>
-import ProductCard from '@/components/ProductCard';
+import ProductCard from '@/components/ProductCard.vue';// @@沒加.vue有紅線?
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
+// import 'swiper/css/swiper.css';
+import 'swiper/swiper-bundle.css';// ##github
 
 export default {
   name: 'Index',
   components: {
     ProductCard,
+    Swiper,
+    SwiperSlide,
   },
   data() {
     return {
       featurePrdList: [],
       num: 6,
+      swiperOptions: {
+        direction: 'horizontal',
+        speed: 2000,
+        loop: true,
+        // autoplay: {
+        //   delay: 2000,
+        //   disableOnInteraction: false,
+        // },
+        slidesPerView: 1,
+        spaceBetween: 5,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          // when window width is >= 896px
+          897: {
+            slidesPerView: 5,
+          },
+          // when window width is >= 668px
+          668: {
+            slidesPerView: 3,
+          },
+          // when window width is >= 569px
+          569: {
+            slidesPerView: 2,
+          },
+        },
+      },
     };
   },
   computed: {
@@ -266,6 +313,12 @@ export default {
     limitedProducts() {
       return this.$store.getters.getProductsByNum(this.num); // @@原理
     },
+    newProductList() {
+      return this.$store.getters.getProductsByNum(10);
+    },
+    swiper() {
+      return this.$refs.newPrdSwiper.$swiper;
+    },
   },
   watch: {
     products() {
@@ -274,6 +327,11 @@ export default {
   },
   created() {
     this.$store.dispatch('getProducts');
+  },
+  mounted() {
+    console.log('Current Swiper instance object', this.swiper);
+    // this.swiper.slideTo(1, 2000, true);// @@原理 資料已完成.啟動
+    this.swiper.slideTo(3, 1000, true);// 滑到第幾,時間,回彈禁止
   },
 };
 </script>

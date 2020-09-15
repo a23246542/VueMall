@@ -17,6 +17,7 @@
     "lodash": "^4.17.19",
     "popper": "^1.0.1",
     "popper.js": "^1.16.1",
+    "swiper": "^6.2.0",
     "vee-validate": "^3.3.9",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
@@ -24,6 +25,8 @@
     "vue-loading-overlay": "^3.3.2",
     "vue-router": "^3.3.4",
     "vue-sweetalert2": "^3.0.6",
+    "vue2-editor": "^2.10.2",
+    "vue-awesome-swiper": "^4.1.1",
     "vuex": "^3.5.1"
   },
   "devDependencies": {
@@ -68,9 +71,12 @@
       "no-shadow": "warn",
       "vue/max-attributes-per-line": "off",
       "vue/html-self-closing": "off",
-      "arrow-body-style":["off"],
-      "no-return-assign":["warn"]
-
+      "arrow-body-style": [
+        "off"
+      ],
+      "no-return-assign": [
+        "warn"
+      ]
     }
   },
   "browserslist": [
