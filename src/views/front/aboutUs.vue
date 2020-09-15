@@ -25,7 +25,129 @@
         <img class="brandStory__subPic" src="https://media.gq.com.tw/photos/5dbc1eacde83b50008974ef7/master/w_1280%2cc_limit/2019091354873721.jpg" alt="">
       </div>
     </section>
-  </div>
+    <section class="storeInfo">
+      <div class="container storeInfo__container">
+        <aside class="storeInfo__tab">
+          <ul>
+            <li class="_tabItem">
+              <h5>台北店</h5>
+            </li>
+            <li class="_tabItem">
+              <h5>新北店</h5>
+            </li>
+            <li class="_tabItem">
+              <h5>桃園店</h5>
+            </li>
+            <li class="_tabItem">
+              <h5>台中店</h5>
+            </li>
+            <li class="_tabItem">
+              <h5>台南店</h5>
+            </li>
+            <li class="_tabItem">
+              <h5>高雄店</h5>
+            </li>
+          </ul>
+        </aside>
+        <div class="storeInfo__content">
+          <ul>
+            <li>
+              <div class="storeInfo__contentTitle">
+                <h3>台北店</h3>
+              </div>
+              <div class="storeInfo__contentBox">
+                <div class="storeInfo__address">
+                  <h5>店面資訊</h5>
+                  <div class="storeInfo__infoTxt">
+                    <p>營業時間：09:00-21:00</p>
+                    <p>
+                      地址：台北市中正區延平南路66號
+                    </p>
+                    <p>
+                      電話：02-2371-9902
+                    </p>
+                  </div>
+                </div>
+                <div class="storeInfo__traffic">
+                  <h5>交通資訊</h5>
+                  <div class="storeInfo__infoTxt">
+                    <p>
+                      火車：搭乘區間/莒光/自強至台北火車站，步行約16分鐘
+                    </p>
+                    <p>
+                      捷運：西門捷運站步行約7分鐘
+                    </p>
+                    <p>
+                      公車：搭乘265至中華路北站，步行約2分鐘
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="storeInfo__sideMap">
+          <div class="sideMap">
+            <a href="#">
+              <img class="sideMap__pic" src="http://140.115.236.71/demo-personal/DD104/web/T1901156/images/map_taipei-02.png" alt="">
+            </a>
+            <div class="mt-3">
+              <a href="#">開啟google地圖</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="campInfo">
+      <div class="container">
+        <ul class="row campInfo__row">
+          <li class="col-12 col-md-3 camp1">
+            <div class="campInfo__itemBox">
+              <img class="campInfo__bgPic" src="http://140.115.236.71/demo-personal/DD103/web/T1900843/img/Hm_room1.png" alt="">
+              <a href="#" class="campInfo__itemMask">
+                <div class="campInfo__itemTxt">
+                  <h5>北部</h5>
+                  <p>North</p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="col-12 col-md-3 camp2">
+            <div class="campInfo__itemBox">
+              <img class="campInfo__bgPic" src="http://140.115.236.71/demo-personal/DD103/web/T1900843/img/Hm_room1.png" alt="">
+              <a href="#" class="campInfo__itemMask">
+                <div class="campInfo__itemTxt">
+                  <h5>中部</h5>
+                  <p>North</p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="col-12 col-md-3 camp3">
+            <div class="campInfo__itemBox">
+              <img class="campInfo__bgPic" src="http://140.115.236.71/demo-personal/DD103/web/T1900843/img/Hm_room1.png" alt="">
+              <a href="#" class="campInfo__itemMask">
+                <div class="campInfo__itemTxt">
+                  <h5>南部</h5>
+                  <p>North</p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="col-12 col-md-3 camp4">
+            <div class="campInfo__itemBox">
+              <img class="campInfo__bgPic" src="http://140.115.236.71/demo-personal/DD103/web/T1900843/img/Hm_room1.png" alt="">
+              <a href="#" class="campInfo__itemMask">
+                <div class="campInfo__itemTxt">
+                  <h5>東部</h5>
+                  <p>North</p>
+                </div>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
   </div>
 </template>
 

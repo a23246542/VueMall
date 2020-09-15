@@ -7,7 +7,8 @@
 
 .brandStory{
   // margin-bottom: 100px;//@@可讓超出的position不被截掉
-  padding: 100px 0;
+  padding: 100px 0 150px;
+  margin-bottom: 150px;
   &__title{
     font-size: 36px;
     text-align: center;
@@ -57,3 +58,184 @@
     width: 320px;
   }
 }
+
+// ================================================
+.storeInfo{
+  overflow: hidden; //##沒float clearboth
+  margin-bottom: 150px;
+  &__container{
+    padding: 0 60px;
+  }
+  &__tab{
+    float: left;
+    width: 20%;
+    position: relative;
+    z-index: 5;
+    padding: 30px;
+    background-color: $brand-secondary1;
+    color:#fff;
+  }
+
+  &__content{
+    float: left;
+    width: 90%;
+    margin-left: -10%;
+    
+  }
+
+  &__contentBox{//##!
+    width: 80%;//##!調寬度代替margin-right
+    background-color: $brand-secondary1-light;
+  }
+
+  &__sideMap{
+    float: right;
+    width: 28%;
+    margin-left: -28%;
+    // min-height: 300px;
+    position: relative;
+    right: 5%;//##
+    z-index: 5;//##保險
+    transform:translateY(30%);//@@卡卡
+    // margin-top: 12%;
+    // background-color: #f8e18d;
+    a{
+      display: block;
+    }
+    img{
+      width: 100%;
+    }
+  }
+}
+
+// @@1 過長拆分問題
+.storeInfo__tab{
+
+  ._tabItem{
+    padding: 10px;//##padding間距取代習慣margin
+    text-align: center;
+    >h5{
+      // outline: 1px solid red;
+      display: inline-block;//##這地方可用!
+      font-size: 20px;
+      line-height: 1.5;
+      border-bottom:1px dotted #fff;
+    }
+  }
+}
+
+// @@2 過長拆分問題
+.storeInfo{
+
+  &__contentTitle{
+    h3{
+      display:inline-block;
+      // position: relative;//@@百分比參照
+      // right: 10%;
+      margin-right: 30%;
+    }
+    margin-bottom: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    color:$brand-secondary1;
+
+  }
+  &__contentBox{
+    padding: 60px 0 60px 15%;
+    h5{
+      margin-bottom: 17px;
+      font-size: 24px;
+      font-weight: bold;
+      color: $brand-secondary1;
+    }
+    p{
+      font-size: 18px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__address{
+    margin-bottom: 50px;
+  }
+}
+
+// @@3 過長拆分問題
+.sideMap{
+  padding: 10%;//@@ 上下百分比mike
+  a{
+    display: block;
+    text-align: center;
+  }
+  &__pic{
+    width: 100%;
+  }
+}
+
+// ===============================================
+.campInfo{
+  margin-bottom: 100px;
+
+  &__row{ //@@匹配選取器
+    div[class^="col"]{
+      padding: 0 20px;
+    }
+  }
+
+  &__itemBox{
+    position: relative;
+    
+  }
+
+  &__bgPic{ //##img高度好處
+    width: 100%; 
+  }
+
+  &__itemMask{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, .5);
+    &:hover{
+      background-color: rgba(0, 0, 0, .2);
+      .campInfo__itemTxt{
+        // transform: scale(1.2, 1.2);
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+  }
+
+  &__itemTxt{
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    top: 0;//##寬高可吃到
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    opacity: .9;
+    color:#fff;
+    border:2px solid #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition:all 1s cubic-bezier(.11, .79, .25, .93);
+    >h5{
+      margin-bottom: 0px;
+      font-size: 26px;
+      // margin-top: 26%;//##想因正方形 但伸縮不符合比例
+    }
+    >P{
+      margin-bottom: 0;
+      font-size: 21px;
+    }
+  }
+}
+
+
