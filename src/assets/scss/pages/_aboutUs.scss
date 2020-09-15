@@ -1,0 +1,59 @@
+.wrapper{
+  max-width: 1920px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+
+.brandStory{
+  // margin-bottom: 100px;//@@可讓超出的position不被截掉
+  padding: 100px 0;
+  &__title{
+    font-size: 36px;
+    text-align: center;
+    // font-weight: bold;
+    color: $brand-primary;
+
+    &.subTitle{
+      color:$brand-secondary1;
+    }
+  }
+
+  &__content{
+    position: relative;
+    font-size: 18px;
+    line-height: 1.8;
+
+    &::after{
+      display: block;
+      content: '';
+      pointer-events: none;
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 125%;
+      height: 100%;
+      border: 2px solid orange;
+    }
+  }
+
+
+
+  &__mainPic{
+    padding-top: 80px;
+    >img{
+      position: relative;
+      z-index: 5;
+      width: 100%;
+    }
+  }
+
+  &__subPic{
+    position: absolute;
+    z-index: 15;
+    left: 36%;
+    bottom: -132px;
+    width: 320px;
+  }
+}
