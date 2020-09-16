@@ -143,11 +143,11 @@
                 <SwiperSlide
                   v-for="item in newProductList" :key="item.id"
                 >
-                  <img :src="item.imageUrl[0]" alt="" style="width:100%">
-                  <!-- <ProductCard
+                  <!-- <img :src="item.imageUrl[0]" alt="" style="width:100%"> -->
+                  <ProductCard
                     :this-product="item"
                     :mb="'mb-0'"
-                  ></ProductCard> -->
+                  ></ProductCard>
                 </SwiperSlide>
 
                 <div slot="pagination" class="swiper-pagination"></div>
@@ -170,11 +170,13 @@
             <div class="featureProduct__listBox">
               <div class="container">
                 <div class="row">
-                  <ProductCard
-                    v-for="(item) in limitedProducts" :key="item.id"
-                    :this-product="item"
-                    :mb="'mb-2'"
-                  ></ProductCard>
+                  <div class="col-xl-4 col-sm-6 productCardCol">
+                    <ProductCard
+                      v-for="(item) in limitedProducts" :key="item.id"
+                      :this-product="item"
+                      :mb="'mb-2'"
+                    ></ProductCard>
+                  </div>
                 </div>
               </div>
             </div>

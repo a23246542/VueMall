@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import ProductCard from '@/components/ProductCard';
+// import ProductCard from '@/components/ProductCard';
 import CartModal from '@/components/CartModal';
 import pagination from '@/components/BasePagination';
 import Alert from '@/components/BaseAlertMessage';
@@ -117,7 +117,7 @@ import { instanceCus } from '../../api/https';
 
 export default {
   components: {
-    ProductCard,
+    // ProductCard,
     CartModal,
     Alert,
     pagination,

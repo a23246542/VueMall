@@ -1,14 +1,16 @@
 <template>
   <div class="row productList">
-    <ProductCard
-      v-for="(item) in filterProducts"
-      :key="item.id"
-      :this-product="item"
-    />
+    <div class="col-xl-4 col-sm-6 productCardCol">
+      <ProductCard
+        v-for="(item) in filterProducts"
+        :key="item.id"
+        :this-product="item"
+      />
+    </div>
   </div>
 </template>
 <script>
-import ProductCard from '@/components/ProductCard';
+import ProductCard from '@/components/ProductCard.vue';
 import { mapState } from 'vuex';
 
 export default {
