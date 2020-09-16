@@ -137,19 +137,51 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <div class="newProductList outline">
+            <div class="newProductList">
               <h3>新品上市</h3>
               <Swiper ref="newPrdSwiper" :options="swiperOptions">
                 <SwiperSlide
                   v-for="item in newProductList" :key="item.id"
                 >
                   <!-- <img :src="item.imageUrl[0]" alt="" style="width:100%"> -->
-                  <ProductCard
+                  <!-- <ProductCard
                     :this-product="item"
                     :mb="'mb-0'"
-                  ></ProductCard>
-                </SwiperSlide>
+                  ></ProductCard> -->
+                  <div class="prdNewCard border-0">
+                    <!-- <div class="prdNewCard__imgBox"> -->
+                    <div class="prdNewCard__imgWrap bg-cover"
+                         :style="{
+                           backgroundImage:`url(${item.imageUrl[0]})`
+                         }"
+                    >
+                      <!-- <img :src="item.imageUrl[0]" class="prdNewCard__img bg-cover" alt="..."> -->
 
+                      <span v-if="true" class="prdNewCard__favoriteBadge prdNewCard__favoriteBadge--far">
+                        <i class="far fa-heart"></i>
+                      </span>
+                      <span v-if="false" class="prdNewCard__favoriteBadge prdNewCard__favoriteBadge--fas">
+                        <i class="fas fa-heart"></i>
+                      </span>
+                    </div>
+                    <div class="prdNewCard__body card-body">
+                      <h5 class="prdNewCard__title">
+                        {{ item.title }}
+                      </h5>
+                      <p class="prdNewCard__price card-text">
+                        NT${{ item.price }}
+                      </p>
+                      <p class="prdNewCard__originPrice">
+                        <i>
+                          NT${{ item.origin_price }}
+                        </i>
+                      </p>
+                      <a href="#" class="prdNewCard__cart">
+                        <i class="fas fa-shopping-cart"></i>
+                      </a>
+                    </div>
+                  </div>
+                </SwiperSlide>
                 <div slot="pagination" class="swiper-pagination"></div>
               </Swiper>
             </div>
@@ -163,7 +195,7 @@
         <div class="featureProduct">
           <h3>精選產品</h3>
           <div class="featureProduct__wrapper">
-            <div class="featureProduct__classBanner outline flex-shrink-0">
+            <div class="featureProduct__classBanner flex-shrink-0">
               <!-- <img src="/images/tent_bg.jpg" alt=""> -->
               帳篷TENT+box-shadow
             </div>

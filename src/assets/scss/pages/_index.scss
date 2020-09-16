@@ -305,8 +305,81 @@ body{
 }
 
 .newProductList{
-  height: 300px;
+  margin-bottom: 150px;
+}
 
+.prdNewCard{
+  // &__imgBox{
+  //   position: relative;
+  //   margin-bottom: 15px;
+  //   width: 100%;//%%難依照高調整固定高
+  // }
+  &__imgWrap{
+    position: relative;
+    width: 100%;
+    padding-bottom: 94%;
+    margin-bottom: 10px;
+  }
+
+
+  &__img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+  }
+  &__favoriteBadge{
+    position: absolute;
+    bottom: 4px;
+    right: 10px;
+    font-size: 18px;
+    color: #fff;
+
+    &--far{}
+
+    &--fas{}
+  }
+
+
+  &__body{
+    position: relative;
+    padding: 5px 0;
+    text-align: center;
+    margin-bottom: 10px;
+    border-top: 1.5px solid $brand-secondary1-light;
+    border-bottom: 1.5px solid $brand-secondary1-light;
+  }
+
+  &__title{
+    // margin-bottom: 6px;
+    overflow: hidden;
+    line-clamp: 1;//@@
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: bold;
+    color:$brand-secondary1;
+  }
+
+  &__price{
+    margin-bottom: 3px;
+    font-size: 20px;
+    font-weight: bold;
+    color:$brand-primary;
+  }
+
+  &__originPrice{
+    margin-bottom: 0;
+    font-size: 14px;
+    text-decoration: line-through;
+    // text-decoration: wavy;
+    // text-decoration: overline;
+    // text-decoration: double;
+  }
+
+  &__cart{
+    position: absolute;
+    right: 5px;
+    bottom: 3px;
+  }
 }
 
 .adBar{
@@ -327,7 +400,7 @@ body{
     // height: 700px;
     background-image: url("/images/tent_bg.jpg");
     background-size:cover;
-    background-position: 50% 50%;
+    background-position: 58% 50%;
     // >img{
     //   max-width: 100%;
     //   height: auto;
