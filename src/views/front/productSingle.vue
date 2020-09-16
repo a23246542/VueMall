@@ -157,7 +157,10 @@
             <div class="productInfo__featureView"
                  :class="{'productInfo__featureView--show':selectedPrdInfoView==='feature'}"
             >
-              <p>{{ product.description }}</p>
+              <!-- <p>{{ product.description }}</p> -->
+              <!-- eslint-disable -->
+              <p v-html="product.description"/>
+              <!-- eslint-enable -->
             </div>
             <div class="productInfo__specificationView"
                  :class="{'productInfo__specificationView--show':selectedPrdInfoView==='specification'}"

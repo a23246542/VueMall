@@ -114,10 +114,17 @@
               </div>
               <div class="form-group">
                 <label for="description">產品描述</label>
-                <textarea id="description" v-model="tempProduct.description" type="text"
+                <!-- <textarea id="description" v-model="tempProduct.description" type="text"
                           class="form-control" placeholder="請輸入產品描述"
                           style="height:140px"
-                />
+                /> -->
+                <VueEditor
+                  id="description"
+                  v-model="tempProduct.description"
+                  class="form-control"
+                  placeholder="請輸入產品描述" style="height:140px"
+                  @image-added="uploadEditerImg"
+                ></VueEditor>
               </div>
               <div class="form-group">
                 <label for="specification">產品規格</label>
@@ -158,6 +165,7 @@
 
 <script>
 import $ from 'jquery';
+import { VueEditor } from 'vue2-editor';
 import { instanceAdmin } from '../api/https';
 
 export default {
@@ -169,6 +177,9 @@ export default {
    * @param status 用於切換上傳圖片時的小 icon，主要是增加使用者體驗。-[]還未新增
    */
   // @@props的型別檢查用法
+  components: {
+    VueEditor,
+  },
   props: {
     isNew: true,
   },
@@ -281,6 +292,21 @@ export default {
           this.$store.commit('LOADING', false);
           this.filePath = res.data.data.path;
           this.tempProduct.imageUrl.push(this.filePath);
+        });
+    },
+    uploadEditerImg(file, Editor, cursorLocation, resetUploader) {
+      this.$store.commit('LOADING', true);
+
+      const formData = new FormData();
+      formData.append('descImg', file);
+
+      const api = 'storage';
+      instanceAdmin.post(api, formData)
+        .then((res) => {
+          this.$store.commit('LOADING', false);
+          const filePath = res.data.data.path;
+          Editor.insertEmbed(cursorLocation, 'descImg', filePath);
+          resetUploader();
         });
     },
     updateProduct() {
