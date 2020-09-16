@@ -170,9 +170,10 @@
             <div class="featureProduct__listBox">
               <div class="container">
                 <div class="row">
-                  <div class="col-xl-4 col-sm-6 productCardCol">
+                  <div v-for="(item) in limitedProducts"
+                       :key="item.id" class="col-xl-4 col-sm-6 productCardCol"
+                  >
                     <ProductCard
-                      v-for="(item) in limitedProducts" :key="item.id"
                       :this-product="item"
                       :mb="'mb-2'"
                     ></ProductCard>
@@ -331,14 +332,29 @@ export default {
     this.$store.dispatch('getProducts');
   },
   mounted() {
-    this.$swal.fire({
+    const vm = this;
+    console.log('Current Swiper instance object', this.swiper);
+    this.swiper.slideTo(1, 2000, true);// @@原理 資料已完成.啟動
+
+    // vm.$nextTick(() => {
+    vm.$swal({
       icon: 'info',
       title: '振興購物節',
       text: '輸入序號享全館八折',
     });
-    console.log('Current Swiper instance object', this.swiper);
-    // this.swiper.slideTo(1, 2000, true);// @@原理 資料已完成.啟動
-    this.swiper.slideTo(3, 1000, true);// 滑到第幾,時間,回彈禁止
+    // });
+
+    // window.setTimeout(function () {
+    //   console.log(this.$swal);
+    //   // vm.$swal.fire({//@@文檔不同
+    //   vm.$swal({
+    //     icon: 'info',
+    //     title: '振興購物節',
+    //     text: '輸入序號享全館八折',
+    //   });
+    //   // this.$swal('Hello Vue world!!!');//%%this跑掉
+    //   // vm.$swal('Hello Vue world!!!');
+    // }, 1500);
   },
 };
 </script>

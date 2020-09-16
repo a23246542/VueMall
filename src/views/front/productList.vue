@@ -1,9 +1,9 @@
 <template>
   <div class="row productList">
-    <div class="col-xl-4 col-sm-6 productCardCol">
+    <div v-for="(item) in filterProducts"
+         :key="item.id" class="col-xl-4 col-sm-6 productCardCol"
+    >
       <ProductCard
-        v-for="(item) in filterProducts"
-        :key="item.id"
         :this-product="item"
       />
     </div>
