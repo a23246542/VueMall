@@ -81,8 +81,8 @@ Vue.use(vueDebounce, {
   listenTo: 'input',
 });
 const options = {
-  toast: true, // @@@
-  timer: 1500,
+  toast: false, // @@@會消失
+  // timer: 1500,
   // padding: '1em',
   padding: '1rem',
   position: 'center',

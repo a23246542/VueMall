@@ -260,10 +260,61 @@ export default {
       //   });
     },
     paySubmit() {
-      this.$router.push({
-        name: '訂單完成',
-        query: { orderId: this.orderId },
+      const vm = this;
+      // const swalWithBootstrapButtons = Swal.mixin({
+      //   customClass: {
+      //     confirmButton: 'btn btn-success',
+      //     cancelButton: 'btn btn-danger',
+      //   },
+      //   buttonsStyling: false,
+      // });
+      vm.$swal({
+        title: '確認付款?',
+        text: '你將支付這筆費用',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: '付款',
+        cancelButtonText: '取消',
+        reverseButtons: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          vm.$store.commit('LOADING', true);
+          const api = `ec/orders/${this.orderId}/paying`;
+          vm.$instanceCus.post(api)
+            .then((res) => {
+              vm.$store.commit('LOADING', false);
+              vm.$swal(
+                '付款成功!',
+                '',
+                'success',
+              ).then((result2) => {
+                if (result2.isConfirmed) {
+                  vm.$router.push({
+                    name: '訂單完成',
+                    query: { orderId: this.orderId },
+                  });
+                }
+              });
+            })
+            .catch((err) => {
+
+            });
+        }
+        // else if (
+        // /* Read more about handling dismissals below */
+        //   result.dismiss === Swal.DismissReason.cancel
+        // ) {
+        //     vm.$swal.fire(
+        //     'Cancelled',
+        //     'Your imaginary file is safe :)',
+        //     'error',
+        //   );
+        // }
       });
+      // this.$router.push({
+      //   name: '訂單完成',
+      //   query: { orderId: this.orderId },
+      // });
     },
   },
 };
