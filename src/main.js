@@ -19,9 +19,12 @@ import * as rules from 'vee-validate/dist/rules';
 import zh_TW from 'vee-validate/dist/locale/zh_TW.json';
 import Loading from 'vue-loading-overlay';
 import vueDebounce from 'vue-debounce';
+import VueSweetalert2 from 'vue-sweetalert2';
 
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
+// If you don't need the styles, do not connect
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 // import 'bootstrap/scss/bootstrap.scss';//all.scss import了
 // import 'bootstrap';
@@ -72,7 +75,14 @@ Vue.component('ValidationObserver', VeeValidate.ValidationObserver);
 Vue.use(vueDebounce, {
   listenTo: 'input',
 });
-
+const options = {
+  toast: true, // @@@
+  timer: 1500,
+  // padding: '1em',
+  padding: '1rem',
+  position: 'center',
+};
+Vue.use(VueSweetalert2, options);
 // Vue.filter('currency',currencyFilter);
 Vue.filter('date', dateFilter);
 Vue.filter('dollars', dollarsFilter);

@@ -331,6 +331,11 @@ export default {
     this.$store.dispatch('getProducts');
   },
   mounted() {
+    this.$swal.fire({
+      icon: 'info',
+      title: '振興購物節',
+      text: '輸入序號享全館八折',
+    });
     console.log('Current Swiper instance object', this.swiper);
     // this.swiper.slideTo(1, 2000, true);// @@原理 資料已完成.啟動
     this.swiper.slideTo(3, 1000, true);// 滑到第幾,時間,回彈禁止
