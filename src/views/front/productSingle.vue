@@ -154,7 +154,7 @@
           </div>
           <div class="productInfo__contentArea  bg-white text-secondary2">
             <!-- <div class="productInfo__view"> -->
-            <div class="productInfo__featureView"
+            <div class="productInfo__featureView ql-editor"
                  :class="{'productInfo__featureView--show':selectedPrdInfoView==='feature'}"
             >
               <!-- <p>{{ product.description }}</p> -->
@@ -369,6 +369,27 @@ export default {
 };
 </script>
 
-<style>
+<style lang="css" scoped>
+/* @import "~vue2-editor/dist/vue2-editor.css"; */
+/* %%沒效看css少父class */
 
+/* Import the Quill styles you want */
+/* @import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css'; */
+
+/* h1,h2,h3,h4,h5,h6{
+  font-size:unset;
+} */
+
+.ql-editor{
+  overflow-x:hidden;
+  /* font-size: 12px; */
+}
+
+/* %%組件 */
+/deep/.ql-editor img{
+  max-width: 100% !important;
+  height: auto;
+}
 </style>

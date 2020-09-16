@@ -319,7 +319,7 @@ export default {
         //   disableOnInteraction: false,
         // },
         slidesPerView: 1,
-        spaceBetween: 5,
+        spaceBetween: 15,
         pagination: {
           el: '.swiper-pagination',
           clickable: true,

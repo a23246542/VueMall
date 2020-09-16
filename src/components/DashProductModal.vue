@@ -121,8 +121,8 @@
                 <VueEditor
                   id="description"
                   v-model="tempProduct.description"
-                  class="form-control"
-                  placeholder="請輸入產品描述" style="height:140px"
+                  class="" style=""
+                  :placeholder="請輸入產品描述"
                   @image-added="uploadEditerImg"
                 ></VueEditor>
               </div>
@@ -165,7 +165,7 @@
 
 <script>
 import $ from 'jquery';
-import { VueEditor } from 'vue2-editor';
+import { VueEditor, Quill } from 'vue2-editor';
 import { instanceAdmin } from '../api/https';
 
 export default {

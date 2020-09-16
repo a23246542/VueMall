@@ -25,6 +25,11 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import 'vue-loading-overlay/dist/vue-loading.css';
 // If you don't need the styles, do not connect
 import 'sweetalert2/dist/sweetalert2.min.css';
+import 'vue2-editor/dist/vue2-editor.css';// ##eslint可幫檢查-S保存
+/* Import the Quill styles you want */
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.bubble.css';
+import 'quill/dist/quill.snow.css';
 
 // import 'bootstrap/scss/bootstrap.scss';//all.scss import了
 // import 'bootstrap';
