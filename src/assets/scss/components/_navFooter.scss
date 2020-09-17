@@ -1,0 +1,46 @@
+.navFooter{
+  
+  &__container{
+    overflow: hidden;
+    padding: 0 15%;
+  }
+  &__logo{
+    float: left;
+    // margin-left: 20%;
+    width: 140px;
+    height: 145px;
+    >img{
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__links{
+    float: left;
+    margin-left: 15%;
+    >ul{
+      display: flex;
+    }
+  }
+}
+
+.footerLink{
+  color:$brand-secondary1;
+  &__title{
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  &__iconBlock{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__icon{
+    width: 30px;
+    // height: 30px;
+    >img{
+      width: 100%;
+      height: auto;
+    }
+  }
+}
