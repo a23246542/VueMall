@@ -17,6 +17,9 @@ export default {
       return this.$store.state.isLoading;
     },
   },
+  created() {
+    this.$store.dispatch('initWisht');
+  },
 };
 </script>
 

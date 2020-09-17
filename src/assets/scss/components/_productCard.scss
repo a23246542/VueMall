@@ -19,6 +19,17 @@
     }
   }
 
+  &__favoriteBadge{
+    position: absolute;
+    z-index: 10;//%%竟然因沒加z-index vue click不到
+    bottom: 4px;
+    right: 13px;
+    font-size: 22px;
+    color: #fff;
+    cursor: pointer;
+
+  }
+
   &__body{
 
   }

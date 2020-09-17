@@ -8,6 +8,7 @@ import actions from './actions';
 import Cart from './modules/front/cart';
 import CusProducts from './modules/front/cusProducts';
 import CusOrders from './modules/front/cusOrders';
+import WishList from './modules/front/wishList';
 
 Vue.use(Vuex);// @也可加在main.js
 
@@ -30,5 +31,6 @@ export default new Vuex.Store({
     Cart,
     CusProducts,
     CusOrders,
+    WishList,
   },
 });

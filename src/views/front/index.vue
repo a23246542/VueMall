@@ -156,12 +156,10 @@
                          }"
                     >
                       <!-- <img :src="item.imageUrl[0]" class="prdNewCard__img bg-cover" alt="..."> -->
-
-                      <span v-if="true" class="prdNewCard__favoriteBadge prdNewCard__favoriteBadge--far">
-                        <i class="far fa-heart"></i>
-                      </span>
-                      <span v-if="false" class="prdNewCard__favoriteBadge prdNewCard__favoriteBadge--fas">
-                        <i class="fas fa-heart"></i>
+                      <span class="prdNewCard__favoriteBadge"
+                            @click="clickHeart(item.id)"
+                      >
+                        <i :class="heartStyle(item.id)"></i>
                       </span>
                     </div>
                     <div class="prdNewCard__body card-body">
@@ -296,6 +294,7 @@
 <script>
 import ProductCard from '@/components/ProductCard.vue';// @@沒加.vue有紅線?
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
+import Wish from '@/mixin/Wish';
 // import 'swiper/css/swiper.css';
 import 'swiper/swiper-bundle.css';// ##github
 
@@ -306,6 +305,7 @@ export default {
     Swiper,
     SwiperSlide,
   },
+  mixins: [Wish],
   data() {
     return {
       featurePrdList: [],
@@ -369,11 +369,11 @@ export default {
     this.swiper.slideTo(1, 2000, true);// @@原理 資料已完成.啟動
 
     // vm.$nextTick(() => {
-    vm.$swal({
-      icon: 'info',
-      title: '振興購物節',
-      text: '輸入序號享全館八折',
-    });
+    // vm.$swal({
+    //   icon: 'info',
+    //   title: '振興購物節',
+    //   text: '輸入序號享全館八折',
+    // });
     // });
 
     // window.setTimeout(function () {

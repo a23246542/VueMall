@@ -14,6 +14,11 @@
            }"
       >
         <span class="productCard__imgWrap__badge badge badge-primary">{{ productTag }}</span>
+        <span class="productCard__favoriteBadge"
+              @click="clickHeart"
+        >
+          <i :class="heartStyle"></i>
+        </span>
       </div>
     </div>
     <div class="productCard__body card-body pt-1">
@@ -98,6 +103,15 @@ export default {
       }
       return this.thisProduct.category;
     },
+    heartStyle() { // ##
+      return this.wishItemIdList.indexOf(this.thisProduct.id) === -1
+        ? 'far fa-heart'
+        : 'fas fa-heart text-primary';
+    },
+    // ...mapState(['wishItemIdList']),//%%模組的難怪失敗要用物件
+    wishItemIdList() {
+      return this.$store.state.WishList.wishItemIdList;// @@放在各別組件是否更耗效能
+    },
   },
   methods: {
     addToCart(item, qty = 1) {
@@ -152,6 +166,14 @@ export default {
       // })
       // this.$store.dispatch('addToCart',{productId,qty})
       // this.$store.dispatch('getCart');//%%
+    },
+    clickHeart() {
+      const posi = this.wishItemIdList.indexOf(this.thisProduct.id);
+      if (posi === -1) {
+        this.$store.commit('ADD_WISH', this.thisProduct.id);
+      } else {
+        this.$store.commit('REMOVE_WISH', posi);
+      }
     },
     openSingleProudct() {
       console.log(this.thisProduct.id);
