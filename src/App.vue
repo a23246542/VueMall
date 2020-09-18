@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <BaseLoading
+    <!-- <BaseLoading
       :active.sync="isLoading"
       :loader="'dots'"
       :color="'#3F3B00'"
       :opacity="1"
-    />
+    /> -->
     <router-view />
   </div>
 </template>
@@ -29,6 +29,7 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "assets/scss/all";
+  // @import "assets/scss/all";//%%圖片報錯
+  @import "~@/assets/scss/all";
   // @import "assets/scss/helpers/_helpers";
 </style>

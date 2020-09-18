@@ -1,12 +1,15 @@
 .navFooter{
-  
-  &__container{
+  padding-top: 40px;
+  padding-bottom: 20px;
+
+  &__infoWrap{
     overflow: hidden;
     padding: 0 15%;
+    border-bottom: 2px solid lighten($brand-gray,40%);
   }
   &__logo{
     float: left;
-    // margin-left: 20%;
+    margin-left: 10%;
     width: 140px;
     height: 145px;
     >img{
@@ -16,31 +19,61 @@
   }
 
   &__links{
-    float: left;
-    margin-left: 15%;
+    float: right;
     >ul{
       display: flex;
     }
+  }
+
+  &__link{
+    margin-right: 30px;
   }
 }
 
 .footerLink{
   color:$brand-secondary1;
+
   &__title{
-    font-size: 25px;
+    font-size: 20px;
+    margin-bottom: 10px;
     font-weight: bold;
   }
 
+  &__txt{
+    // text-align: center;
+    padding-left: 5px;
+  }
+
   &__iconBlock{
+    width: 80px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
   }
+
   &__icon{
     width: 30px;
     // height: 30px;
+    &:nth-child(odd){
+      margin-right: 5px;
+    }
     >img{
       width: 100%;
       height: auto;
+    }
+  }
+}
+
+.navFooter{
+  color: $brand-secondary1;
+  &__copyRight{
+    padding-top: 15px;
+    text-align: center;
+  }
+
+  &__copyBox{
+    &>p{
+      margin-bottom: 0;
     }
   }
 }

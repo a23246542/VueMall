@@ -32,7 +32,7 @@ export default {
         Vue.set(item, 'num', 1);
       });
     },
-    NEWPRODUCT(state, payload) {
+    NEWPRODUCTS(state, payload) {
       state.newProducts = payload;
     },
     PAGINATION(state, payload) {

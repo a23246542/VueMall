@@ -185,8 +185,16 @@
           </div>
           <div class="sideProductList__group">
             <ul v-if="relatedProducts">
+              <!-- //%%沒報錯 但網頁無限迴圈當掉 id重複
               <li v-for="item in relatedProducts"
                   :key="item.id" class="sidePrdItem px-2 py-2 border bg-white"
+              > -->
+              <!-- ## %%發現是索引會跑掉 -->
+              <!-- <li v-for="(item,index) in relatedProducts"
+                  :key="index+item.id" class="sidePrdItem px-2 py-2 border bg-white"
+              > -->
+              <li v-for="(item,index) in sameCategoryProducts"
+                  :key="index+item.id" class="sidePrdItem px-2 py-2 border bg-white"
               >
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="sidePrdItem__infoBox p-3">
@@ -235,7 +243,7 @@ export default {
       },
       selectedImgIndex: 0,
       selectedPrdInfoView: 'feature',
-      relatedProductsNum: 4,
+      relatedProductsNum: 2,
     };
   },
   created() {
@@ -268,9 +276,10 @@ export default {
       //   randomIndex.push(getRandomInt(1,this.allProducts.length))
       // }
       const randomSet = new Set();
-      while (randomSet.size !== wantNum && this.sameCategoryProducts.length) { // %%避免getRandomInt取不到無限迴圈
+      while (randomSet.size !== wantNum && this.allProducts.length) { // %%避免getRandomInt取不到無限迴圈
         // randomSet.push(getRandomInt(1,this.allProducts.length))%%
-        randomSet.add(getRandomInt(1, this.sameCategoryProducts.length));
+        console.log('randomSet');
+        randomSet.add(getRandomInt(1, this.allProducts.length));
         // console.log(randomSet.size);//1迴圈
         // console.log(typeof(randomSet.size));//number迴圈
       }
@@ -278,7 +287,7 @@ export default {
       console.log(randomIndexs);
 
       relatedProducts = randomIndexs.map((item) => {
-        return this.sameCategoryProducts[item];
+        return this.allProducts[item];
       });
 
       return relatedProducts;

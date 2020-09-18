@@ -503,8 +503,11 @@ body{
 
   &__logo{
     width: 120px;
-    height: 120px;
-    margin: 0 auto 10px;
+    // height: 120px;
+    margin: 0 auto;
+    >img{
+      width: 100%;
+    }
   }
 
   &__title{

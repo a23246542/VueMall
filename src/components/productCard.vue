@@ -178,10 +178,13 @@ export default {
     openSingleProudct() {
       console.log(this.thisProduct.id);
       this.$router.push({
-        // path: `/products/${id}`,
-        path: `${this.thisProduct.id}`,
+        path: `/products/${this.thisProduct.id}`,
+        // path: `products/${this.thisProduct.id}`,
+        // path: `${this.thisProduct.id}`,
         // path:`/coupon`
-      });
+        // name: 'productSingle',
+        // params: { prdId: this.thisProduct.id },
+      }).catch(() => {});
       console.log('跳頁');
     },
   },

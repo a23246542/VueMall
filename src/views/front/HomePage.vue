@@ -163,7 +163,9 @@
                       </span>
                     </div>
                     <div class="prdNewCard__body card-body">
-                      <h5 class="prdNewCard__title">
+                      <h5 class="prdNewCard__title"
+                          @click="goNewPrd(item.id)"
+                      >
                         {{ item.title }}
                       </h5>
                       <p class="prdNewCard__price card-text">
@@ -274,8 +276,8 @@
       <div class="container-fluid px-0">
         <div class="metaContactUs bg-cover">
           <div>
-            <div class="metaContactUs__logo outline">
-              Meta
+            <div class="metaContactUs__logo">
+              <img src="@/assets/images/Meta-logo-white.png" alt="">
             </div>
             <p class="metaContactUs__title">
               聯絡我們
@@ -388,6 +390,13 @@ export default {
     //   // this.$swal('Hello Vue world!!!');//%%this跑掉
     //   // vm.$swal('Hello Vue world!!!');
     // }, 1500);
+  },
+  methods: {
+    goNewPrd(itemId) {
+      this.$router.push({
+        path: `/products/${itemId}`,
+      });
+    },
   },
 };
 </script>
