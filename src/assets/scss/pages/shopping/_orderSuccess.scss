@@ -8,6 +8,9 @@
     margin-bottom: 41px;
     border:1px solid $brand-secondary1;
     position: relative;
+    background: url('../../../images/orderSuc-bg.png');
+    background-size: cover;
+    background-position: center;
   }
 
   &__box{

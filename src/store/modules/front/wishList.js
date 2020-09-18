@@ -1,4 +1,5 @@
-import storage from '@/assets/js/storage';
+// import storage from '@/assets/js/storage';
+import storage from '@/utils/storageUtil';
 
 export default {
   state: {

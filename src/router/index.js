@@ -14,12 +14,12 @@ const routes = [
   {
     path: '/',
     // name: 'home',
-    component: () => import('../views/front/home.vue'),
+    component: () => import('../views/front/Home.vue'),
     children: [
       {
         path: '',
         name: 'home', // -[]首頁改index
-        component: () => import('../views/front/index.vue'),
+        component: () => import('../views/front/HomePage.vue'),
         // component:() => import('../views/front/products.vue')
       },
       {
