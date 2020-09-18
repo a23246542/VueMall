@@ -1,10 +1,15 @@
-// npm套件
 import Vue from 'vue';
+// npm套件
+import './plugins/loading';
+import './plugins/vee-validate';
+import './plugins/vue-debounce';
+import './plugins/vue-sweetalert2';
+import './filters';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import $ from 'jquery';
+// import 'jquery';//@@跟上面差別
 // @@全域效能問題
-import 'jquery';
 import 'bootstrap';// js模組
 // @@不寫.css會是載入js
 // import {
@@ -14,22 +19,6 @@ import 'bootstrap';// js模組
 //     localize,
 // configure
 // } from 'vee-validate';
-import * as VeeValidate from 'vee-validate';
-import * as rules from 'vee-validate/dist/rules';
-import zh_TW from 'vee-validate/dist/locale/zh_TW.json';
-import Loading from 'vue-loading-overlay';
-import vueDebounce from 'vue-debounce';
-import VueSweetalert2 from 'vue-sweetalert2';
-
-// Import stylesheet
-import 'vue-loading-overlay/dist/vue-loading.css';
-// If you don't need the styles, do not connect
-import 'sweetalert2/dist/sweetalert2.min.css';
-import 'vue2-editor/dist/vue2-editor.css';// ##eslint可幫檢查-S保存
-/* Import the Quill styles you want */
-import 'quill/dist/quill.core.css';
-import 'quill/dist/quill.bubble.css';
-import 'quill/dist/quill.snow.css';
 
 // import 'bootstrap/scss/bootstrap.scss';//all.scss import了
 // import 'bootstrap';
@@ -38,14 +27,10 @@ import 'quill/dist/quill.snow.css';
 // ##自定義
 // import {uuid,token,apiPath} from './api/index';
 import App from './App.vue';
-import { instanceLogin, instanceAdmin, instanceCus } from './api/https';
 import router from './router';
 import store from './store';
+import { instanceLogin, instanceAdmin, instanceCus } from './api/https';
 import './bus';
-
-// import currencyFilter from './filters/currencyFilter';
-import dateFilter from './filters/dateFilter';
-import dollarsFilter from './filters/dollarsFilter';
 
 window.$ = $;
 // import filters from './filters';
@@ -54,47 +39,8 @@ window.$ = $;
 // Vue.prototype.$instanceAdmin = instanceAdmin;
 // Vue.prototype.$instanceCus = instanceCus;
 
-VeeValidate.localize('tw', zh_TW);
-// 自定義設定檔案，錯誤的 className
-
-Object.keys(rules).forEach((rule) => {
-  VeeValidate.extend(rule, { // 依序添加
-    ...rules[rule], // 展開規則
-    message: zh_TW[rule], // 對應中文訊息
-  });
-});
-
-VeeValidate.configure({
-  classes: {
-    valid: 'is-valid',
-    invalid: 'is-invalid',
-  },
-});
-
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);// ##原本的是可以this.axios.get()調用
-Vue.component('BaseLoading', Loading);
-Vue.component('ValidationProvider', VeeValidate.ValidationProvider);
-Vue.component('ValidationObserver', VeeValidate.ValidationObserver);
-
-Vue.use(vueDebounce, {
-  listenTo: 'input',
-});
-const options = {
-  toast: false, // @@@會消失
-  // timer: 1500,
-  // padding: '1em',
-  padding: '1rem',
-  position: 'center',
-};
-Vue.use(VueSweetalert2, options);
-// Vue.filter('currency',currencyFilter);
-Vue.filter('date', dateFilter);
-Vue.filter('dollars', dollarsFilter);
-// 過濾器統一處理加載
-// Object.keys(filters).forEach(key => {
-//     Vue.filter(key, filters[key])
-// })
 
 // mock開關
 const mock = true;
