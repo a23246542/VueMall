@@ -309,7 +309,7 @@ export default {
   data() {
     return {
       featurePrdList: [],
-      num: 6,
+      featurePrdListNum: 6,
       swiperOptions: {
         direction: 'horizontal',
         speed: 2000,
@@ -342,14 +342,14 @@ export default {
     };
   },
   computed: {
-    products() {
-      return this.$store.state.CusProducts.products;
-    },
+    // products() {
+    //   return this.$store.state.CusProducts.products;
+    // },
     limitedProducts() {
-      return this.$store.getters.getProductsByNum(this.num); // @@原理
+      return this.$store.getters.getProductsByNum(this.featurePrdListNum); // @@原理
     },
     newProductList() {
-      return this.$store.getters.getProductsByNum(10);
+      return this.$store.getters.getNewProductsByNum(10);
     },
     swiper() {
       return this.$refs.newPrdSwiper.$swiper;
@@ -362,6 +362,7 @@ export default {
   },
   created() {
     this.$store.dispatch('getProducts');
+    this.$store.dispatch('getNewProducts');
   },
   mounted() {
     const vm = this;

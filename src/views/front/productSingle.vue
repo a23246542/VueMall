@@ -235,6 +235,7 @@ export default {
       },
       selectedImgIndex: 0,
       selectedPrdInfoView: 'feature',
+      relatedProductsNum: 4,
     };
   },
   created() {
@@ -245,8 +246,13 @@ export default {
       allProducts: (state) => state.CusProducts.products,
       carts: (state) => state.Cart.cart.carts,
     }),
+    sameCategoryProducts() {
+      return this.allProducts.filter((item) => {
+        return item.category === this.product.category;
+      });
+    },
     relatedProducts() {
-      const wantNum = 4;// 設定想要呈現的隨機產品數量
+      const wantNum = this.relatedProductsNum;// 設定想要呈現的隨機產品數量
       let relatedProducts = [];
 
       // 得到1~x之間的隨機整數
@@ -262,9 +268,9 @@ export default {
       //   randomIndex.push(getRandomInt(1,this.allProducts.length))
       // }
       const randomSet = new Set();
-      while (randomSet.size !== wantNum && this.allProducts.length) { // %%避免getRandomInt取不到無限迴圈
+      while (randomSet.size !== wantNum && this.sameCategoryProducts.length) { // %%避免getRandomInt取不到無限迴圈
         // randomSet.push(getRandomInt(1,this.allProducts.length))%%
-        randomSet.add(getRandomInt(1, this.allProducts.length));
+        randomSet.add(getRandomInt(1, this.sameCategoryProducts.length));
         // console.log(randomSet.size);//1迴圈
         // console.log(typeof(randomSet.size));//number迴圈
       }
@@ -272,7 +278,7 @@ export default {
       console.log(randomIndexs);
 
       relatedProducts = randomIndexs.map((item) => {
-        return this.allProducts[item];
+        return this.sameCategoryProducts[item];
       });
 
       return relatedProducts;
