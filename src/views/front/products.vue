@@ -3,31 +3,7 @@
     <div class="container pt-5">
       <Alert />
       <!-- <div class="row flex-row-reverse"> -->
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb bg-transparent">
-          <li class="breadcrumb-item">
-            <router-link :to="{name:'home'}">
-              首頁
-            </router-link>
-          </li>
-          <li class="breadcrumb-item">
-            <router-link :to="{name:'products'}">
-              商品一覽
-            </router-link>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">
-            <template v-if="true">
-              <router-link :to="{name:'products'}">
-                所有商品
-              </router-link>
-            </template>
-            <template v-if="false">
-              <router-link :to="{name:'productSingle'}">
-              </router-link>
-            </template>
-          </li>
-        </ol>
-      </nav>
+      <Breadcrumb></Breadcrumb>
       <div class="row">
         <div class="col-xl-2 products__sidebar px-0">
           <!-- <table class="table table-sm" v-if="cart.carts.length"> -->
@@ -105,6 +81,8 @@
           <!-- <router-view
             :change-page="nowProductPage" //%%改橫線跟mounted
           > -->
+
+          <router-view></router-view>
           <!-- </div> -->
           <!-- 分頁 開始 -->
           <!-- <pagination
@@ -112,7 +90,6 @@
             @change-page="getProducts"
           /> -->
           <!-- 分頁 結束 -->
-          </router-view>
         </div>
       </div>
     </div>
@@ -125,6 +102,7 @@ import CartModal from '@/components/CartModal';
 // import pagination from '@/components/BasePagination';
 import Alert from '@/components/BaseAlertMessage';
 import Category from '@/components/Category';
+import Breadcrumb from '@/components/Breadcrumb.vue';
 import { mapState } from 'vuex';
 import { instanceCus } from '../../api/https';
 
@@ -133,6 +111,7 @@ export default {
     // ProductCard,
     CartModal,
     Alert,
+    Breadcrumb,
     // pagination,
     Category,
   },
@@ -227,6 +206,7 @@ export default {
         console.log('執行getProduct.then');
       // this.setClassObj();//@@改用watch做
       });
+    this.$store.dispatch('setBreadcrumbList', ['home', 'products']);
   },
   mounted() {
     // this.setClassObj();

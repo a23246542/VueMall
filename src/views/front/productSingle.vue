@@ -269,7 +269,8 @@ export default {
   },
   created() {
     this.getSingleProduct();
-    console.log('產品內頁的route', this.$route);
+    // console.log('產品內頁的route', this.$route);
+    this.$store.dispatch('setBreadcrumbList', ['home', 'products', 'productSingle']);
   },
   computed: {
     ...mapState({

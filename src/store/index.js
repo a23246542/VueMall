@@ -15,6 +15,7 @@ Vue.use(Vuex);// @也可加在main.js
 const state = {
   isLoading: false,
   nowPage: '',
+  breadcrumbList: [],
 
 };
 const getters = {

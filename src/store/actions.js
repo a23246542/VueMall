@@ -11,5 +11,8 @@ export default {
   changePage(context, nowPage) {
     context.commit('SET_PAGE', nowPage);
   },
+  setBreadcrumbList(context, payload) {
+    context.commit('SET_BREADCRUMB_LIST', payload);
+  },
 
 };

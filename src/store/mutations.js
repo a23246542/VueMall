@@ -5,5 +5,8 @@ export default {
   SET_PAGE(state, payload) {
     state.nowPage = payload;
   },
+  SET_BREADCRUMB_LIST(state, payload) {
+    state.breadcrumbList = payload;
+  },
 
 };
