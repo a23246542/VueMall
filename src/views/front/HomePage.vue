@@ -1,6 +1,20 @@
 <template>
   <div class="meta index">
-    <div class="meta__banner bg-cover"></div>
+    <div class="meta__banner bg-cover">
+      <div class="meta__bannerFont">
+        <div class="meta__bannerTitle">
+          <p class="bannerTitle__p1">
+            大自然
+          </p>
+          <p class="bannerTitle__p2">
+            偶爾一下吧
+          </p>
+        </div>
+        <p class="bannerTitle__subP">
+          Camping with Your Life
+        </p>
+      </div>
+    </div>
     <div class="meta__container container">
       <section class="metaSlogan">
         <h2>戶外露營 X 風格時尚 X 品味生活</h2>
@@ -9,10 +23,10 @@
           偶爾來場大自然，遠眺綠景為自己停下腳步，欣賞這無盡的美，準備好自己的旅程吧！
         </p>
       </section>
-      <section class="metaPrdtab__Container">
-        <ul class="d-flex">
+      <section class="metaPrdTab">
+        <ul class="d-flex justify-content-center mb-0">
           <li class="metaPrdTab__item flex-center">
-            <div class="metaPrdTab__itemBox">
+            <div class="metaPrdTab__itemBox metaPrdTab__itemBox--tent">
               <div>
                 <div class="metaPrdTab__title">
                   <h3>帳篷</h3>
@@ -25,40 +39,40 @@
             </div>
           </li>
           <li class="metaPrdTab__item flex-center">
-            <div class="metaPrdTab__itemBox">
+            <div class="metaPrdTab__itemBox metaPrdTab__itemBox--bedding">
               <div>
                 <div class="metaPrdTab__title">
-                  <h3>帳篷</h3>
-                  <div>TENT</div>
+                  <h3>野外寢具</h3>
+                  <div>BEDDING</div>
                 </div>
                 <div class="metaPrdTab__txt">
-                  各式款式<br>選擇風格露營
+                  一覺好眠<br>放鬆就寢用品
                 </div>
               </div>
             </div>
           </li>
           <li class="metaPrdTab__item flex-center">
-            <div class="metaPrdTab__itemBox">
+            <div class="metaPrdTab__itemBox metaPrdTab__itemBox--funiture">
               <div>
                 <div class="metaPrdTab__title">
-                  <h3>帳篷</h3>
+                  <h3>戶外家俱</h3>
                   <div>TENT</div>
                 </div>
                 <div class="metaPrdTab__txt">
-                  各式款式<br>選擇風格露營
+                  不可或缺<br>感受家裡溫度
                 </div>
               </div>
             </div>
           </li>
           <li class="metaPrdTab__item flex-center">
-            <div class="metaPrdTab__itemBox">
+            <div class="metaPrdTab__itemBox metaPrdTab__itemBox--picnic">
               <div>
                 <div class="metaPrdTab__title">
-                  <h3>帳篷</h3>
+                  <h3>野餐系列</h3>
                   <div>TENT</div>
                 </div>
                 <div class="metaPrdTab__txt">
-                  各式款式<br>選擇風格露營
+                  享受佈置<br>打造戶外氛圍
                 </div>
               </div>
             </div>
@@ -74,11 +88,11 @@
                   露營趣
                 </div>
                 <div class="metaCopyPart1__pTxt">
-                  露營的美好 活出生活中的美學
+                  露營的美好<br>活出生活中的美學
                 </div>
               </div>
               <div class="metaCopyPart1__pic">
-                <div class="col-6 col-md-4">
+                <div class="col-6 col-md-4 ml-3">
                   <img src="/images/content_pic1.jpg" alt="">
                 </div>
                 <div class="col-6 col-md-4">
@@ -111,7 +125,7 @@
       </section>
       <section class="metaCopyPart3">
         <div class="metaCopyPart3__contentBlock">
-          <div class="metaCopyPart3__txtBox outline d-flex align-items-center">
+          <div class="metaCopyPart3__txtBox d-flex align-items-center">
             <div class="metaCopyPart3__txt">
               <h4 class="metaCopyPart3__titleTxt">
                 #戶外找生活
@@ -122,7 +136,7 @@
               </div>
             </div>
           </div>
-          <div class="metaCopyPart3__pic outline">
+          <div class="metaCopyPart3__pic">
             <div class="metaCopyPart3__picItem pic1">
               <img src="/images/content_pic4.jpg" alt="">
             </div>
@@ -138,7 +152,9 @@
         <div class="row">
           <div class="col-12">
             <div class="newProductList">
-              <h3>新品上市</h3>
+              <h3 class="meta__sectionTitle">
+                新品上市
+              </h3>
               <Swiper ref="newPrdSwiper" :options="swiperOptions">
                 <SwiperSlide
                   v-for="item in newProductList" :key="item.id"
@@ -193,11 +209,18 @@
     <section>
       <div class="container">
         <div class="featureProduct">
-          <h3>精選產品</h3>
+          <h3 class="meta__sectionTitle">
+            精選商品
+          </h3>
           <div class="featureProduct__wrapper">
             <div class="featureProduct__classBanner flex-shrink-0">
               <!-- <img src="/images/tent_bg.jpg" alt=""> -->
-              帳篷TENT+box-shadow
+              <div class="featureProduct__bannerTitle">
+                <!-- <div class="featureProduct__bannerTitleBox"> -->
+                <h4>帳篷</h4>
+                <p>TENT</p>
+                <!-- </div> -->
+              </div>
             </div>
             <div class="featureProduct__listBox">
               <div class="container">
@@ -221,7 +244,9 @@
       <div class="container">
         <div class="metaNews">
           <div class="metaNews__title">
-            <h3>最新消息</h3>
+            <h3 class="meta__sectionTitle metaNews__sectionTitle">
+              META報報
+            </h3>
           </div>
           <div class="metaNews__wrapper">
             <div class="metaNews__item">
@@ -229,20 +254,20 @@
                 <img src="/images/meta_act1.jpg" alt="">
               </div>
               <div class="metaNews__itemTxt">
-                <h4>夏季踏青趣 /</h4>
+                <h4>怎麼露營才好玩 /</h4>
                 <p class="mb-0">
-                  全台十大親子露營區特搜
+                  10種露營生活提案
                 </p>
               </div>
             </div>
             <div class="metaNews__item">
               <div class="metaNews__itemPic">
-                <img src="/images/meta_act2.jpg" alt="">
+                <img src="@/assets/images/meta_act5.jpg" alt="">
               </div>
               <div class="metaNews__itemTxt">
                 <h4>夏季踏青趣 /</h4>
                 <p class="mb-0">
-                  全台十大親子露營區特搜
+                  小家庭也能搞定的露營料理
                 </p>
               </div>
             </div>
@@ -259,12 +284,12 @@
             </div>
             <div class="metaNews__item">
               <div class="metaNews__itemPic">
-                <img src="/images/meta_act4.jpg" alt="">
+                <img src="@/assets/images/meta_act6.jpg" alt="">
               </div>
               <div class="metaNews__itemTxt">
-                <h4>夏季踏青趣 /</h4>
+                <h4>樂哈山賞櫻團 /</h4>
                 <p class="mb-0">
-                  全台十大親子露營區特搜
+                  距上次出團已經有半年多了
                 </p>
               </div>
             </div>

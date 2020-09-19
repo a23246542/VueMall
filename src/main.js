@@ -51,6 +51,10 @@ if (mock) {
 }
 // axios.defaults.timeout = 8000;
 
+if (module.hot) {
+  module.hot.accept();
+}
+
 const app = new Vue({
   // router: routers//填入屬性值
   router,

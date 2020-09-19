@@ -2,7 +2,7 @@
   <div>
     <div class="dropdown">
       <button id="dropdownMenuButton" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-shopping-cart" />
+        <i class="fas fa-shopping-cart text-white" />
         <span class="badge badge-pill badge-danger">{{ carts.length }}</span>
         <!-- <span class="badge badge-pill badge-danger">3</span> -->
       </button>
@@ -169,5 +169,9 @@ export default {
     .badge-pill{
         padding-right:.4em;
         padding-left:.4em;
+    }
+
+    .dropdown-toggle::after{
+      border-top:.3em solid #fff;
     }
 </style>

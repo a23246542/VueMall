@@ -1,5 +1,5 @@
 .productSingle{
-
+  margin-bottom: 100px;
   // &.container{
   //   width: 1200px;
   // }
@@ -190,6 +190,13 @@
     &__contentArea{
       padding: 20px;
     }
+
+    &__p{ //%%
+      line-height: 1.8;
+    }
+
+    // %%%這邊應該改用js-來用
+    // 三個不同的類別...要換很麻煩
 
     &__featureView{
       display: none;

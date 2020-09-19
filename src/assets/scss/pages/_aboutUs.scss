@@ -5,17 +5,31 @@
 }
 
 
+.meta__sectionTitle{//##這種方法
+
+  &.store__sectionTitle{
+    // margin-left: 0;
+  }
+
+  &.campInfo__sectionTitle{
+    margin-left: 0;
+    margin-bottom: 70px;
+  }
+}
+
 .brandStory{
   // margin-bottom: 100px;//@@可讓超出的position不被截掉
   padding: 100px 0 150px;
   margin-bottom: 150px;
   &__title{
-    font-size: 36px;
-    text-align: center;
+    font-size: 40px;
+    // text-align: center;
+    text-align: left;
     // font-weight: bold;
     color: $brand-primary;
 
     &.subTitle{
+      font-size: 33px;
       color:$brand-secondary1;
     }
   }
@@ -37,6 +51,15 @@
       height: 100%;
       border: 2px solid orange;
     }
+
+    &__contentP:nth-child(1){
+      margin-bottom: 30px;
+    }
+    &__contentP:nth-child(2){
+
+    }
+
+
   }
 
 
@@ -84,19 +107,20 @@
   }
 
   &__contentBox{//##!
-    width: 80%;//##!調寬度代替margin-right
-    background-color: $brand-secondary1-light;
+    width: 88%;//##!調寬度代替margin-right
+    // background-color: $brand-secondary1-light;
+    background-color:#e3c688;
   }
 
   &__sideMap{
     float: right;
-    width: 28%;
-    margin-left: -28%;
+    width: 51%;
+    margin-left: -51%;
     // min-height: 300px;
     position: relative;
-    right: 5%;//##
+    right: -15%;//##
     z-index: 5;//##保險
-    transform:translateY(30%);//@@卡卡
+    transform:translateY(20%);//@@伸縮卡卡
     // margin-top: 12%;
     // background-color: #f8e18d;
     a{
@@ -128,11 +152,16 @@
 .storeInfo{
 
   &__contentTitle{
-    h3{
+    padding-left: 30px;
+    >h3{
       display:inline-block;
       // position: relative;//@@百分比參照
       // right: 10%;
       margin-right: 30%;
+      margin-bottom: 0;
+    }
+    >img{
+      display: inline-block;
     }
     margin-bottom: 15px;
     font-size: 40px;
@@ -142,7 +171,7 @@
 
   }
   &__contentBox{
-    padding: 60px 0 60px 15%;
+    padding: 60px 0 60px 18%;
     h5{
       margin-bottom: 17px;
       font-size: 24px;
@@ -155,9 +184,17 @@
     }
   }
 
-  &__address{
-    margin-bottom: 50px;
+  &__infoTxt{
+
+    &--service{
+      margin-bottom: 40px;
+    }
+
+    &--address{
+      margin-bottom: 40px;
+    }
   }
+
 }
 
 // @@3 過長拆分問題
@@ -168,7 +205,10 @@
     text-align: center;
   }
   &__pic{
-    width: 100%;
+    display: block;
+    >img{
+      width: 100%;
+    }
   }
 }
 
@@ -184,11 +224,14 @@
 
   &__itemBox{
     position: relative;
+    height: 100%;//##!可配合d-flex
     
   }
 
   &__bgPic{ //##img高度好處
-    width: 100%; 
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
   }
 
   &__itemMask{

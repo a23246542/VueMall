@@ -1,0 +1,36 @@
+.navHeader{
+  background-color: $brand-secondary1;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  &__logo{
+    width: 70px;
+    >img{
+      width: 100%;
+    }
+  }
+  &__navbar{
+    @media screen and (min-width:1200px){
+      width: 100%;
+    }
+    justify-content:space-between;
+    flex-wrap: nowrap;
+
+  }
+
+  &__navItem{
+    padding: 0 15px;
+    &.p-sm{
+      padding: 0 7px;
+    }
+  }
+  
+  &__navLink{
+    color:rgb(241, 235, 235);
+
+    &--icon{
+      font-size: 18px;
+    }
+
+  }
+}

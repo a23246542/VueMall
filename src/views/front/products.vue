@@ -11,10 +11,20 @@
             </router-link>
           </li>
           <li class="breadcrumb-item">
-            <a href="#">Library</a>
+            <router-link :to="{name:'products'}">
+              商品一覽
+            </router-link>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
-            Data
+            <template v-if="true">
+              <router-link :to="{name:'products'}">
+                所有商品
+              </router-link>
+            </template>
+            <template v-if="false">
+              <router-link :to="{name:'productSingle'}">
+              </router-link>
+            </template>
           </li>
         </ol>
       </nav>
@@ -92,14 +102,17 @@
                               :key="item.id"
                               :thisProduct="item"
                           /> -->
-          <router-view />
+          <!-- <router-view
+            :change-page="nowProductPage" //%%改橫線跟mounted
+          > -->
           <!-- </div> -->
           <!-- 分頁 開始 -->
-          <pagination
+          <!-- <pagination
             :pages="pagination"
             @change-page="getProducts"
-          />
+          /> -->
           <!-- 分頁 結束 -->
+          </router-view>
         </div>
       </div>
     </div>
@@ -109,7 +122,7 @@
 <script>
 // import ProductCard from '@/components/ProductCard';
 import CartModal from '@/components/CartModal';
-import pagination from '@/components/BasePagination';
+// import pagination from '@/components/BasePagination';
 import Alert from '@/components/BaseAlertMessage';
 import Category from '@/components/Category';
 import { mapState } from 'vuex';
@@ -120,7 +133,7 @@ export default {
     // ProductCard,
     CartModal,
     Alert,
-    pagination,
+    // pagination,
     Category,
   },
   data() {
@@ -137,6 +150,7 @@ export default {
         sort: [],
         map: {},
       },
+      thisPage: 'products',
     };
   },
   computed: {
@@ -154,7 +168,7 @@ export default {
     ...mapState({
       products: (state) => state.CusProducts.products,
       categories: (state) => state.CusProducts.categories,
-      pagination: (state) => state.CusProducts.pagination,
+      // pagination: (state) => state.CusProducts.pagination,
     }),
     // products() {
     //     return this.$store.state.CusProducts.products;
@@ -297,6 +311,9 @@ export default {
         this.classObj.map[mainClass].hidden = !this.classObj.map[mainClass].hidden;
       }, 350);
     },
+    // nowProductPage(pageName) { // %%差點失敗
+    //   console.log('輸入pageName', pageName);
+    // },
 
   },
 };

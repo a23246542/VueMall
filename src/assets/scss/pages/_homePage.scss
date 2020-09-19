@@ -30,16 +30,78 @@ body{
 
 .meta{
   &__banner{
-    background-image: url("/images/banner-bg.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/images/banner-bg2.jpg");
     width: 100%;
     height: 540px;
+    background-size: 100%;
+  }
+
+  &__bannerFont{
+    color:#fff;
+    
+  }
+
+  &__bannerTitle{
+    font-weight: bold;
+    line-height: 1;
+    >p{
+      margin-bottom: 0;
+    }
+  }
+
+  .bannerTitle{
+    // letter-spacing: 3px;//@@沒繼承
+    &__p1{
+      margin-right: 120px;
+      font-size: 50px;
+      letter-spacing:3px
+    }
+
+    &__p2{
+      // position: relative;
+      // top: -100%;//@@無效
+      margin-top: -8px;
+      margin-left: 170px;
+      font-size: 30px;
+      letter-spacing: 2px;
+    }
+
+    &__subP{
+      margin-top: 20px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+  }
+
+  &__sectionTitle{
+    display: inline-block;
+    padding-right: 80px;
+    padding-bottom: 15px;
+    margin-left: 10%;
+    margin-bottom: 50px;
+    font-size: 40px;
+    letter-spacing: 1px;
+    color: $brand-secondary1;
+    background: url("./assets/images/titleIcon_main.png") no-repeat;
+    background-position: bottom right;
+    background-size: 80%;
+
+    // &--metaNews{
+
+    // }
   }
 
   &__sectionBg{
     position: relative;;
     background-image:url("/images/section_bg.jpg");
     height: 900px;
-    margin-bottom: 150px;
+    margin-bottom: 120px;
     &::after{
       content: '';
       position: absolute;
@@ -53,6 +115,7 @@ body{
   }
 
 }
+
 
 .metaSlogan{
   padding-top: 44px;
@@ -86,21 +149,26 @@ body{
 }
 
 .metaPrdTab{
+  // margin-bottom: 100px;
   &__item{
     // position: relative;
     width: 25%;
+
+    @media screen and (min-width:1200px){
+      // width: 20%;
+    }
   }
   &__itemBox{
     position: relative;
     width: 100%;
     padding-bottom: 100%;//@@自身or寬度? 
-    background-image: url("/images/prdthumb_tent.jpg");
     background-size: cover;
     background-position: 50% 50%;
     text-align: center;
     color: #fff;
     >div{
       position: absolute;
+      z-index: 10;
       // top: 0;
       // left: 0;
       // right: 0;
@@ -110,12 +178,44 @@ body{
       left: 50%;
       transform:translate(-50%,-50%);
     }
+    &--tent{
+      background-image: url("./assets/images/prdthumb_tent.png");
+    }
+
+    &--bedding{
+      background-image: url("./assets/images/prdthumb_bedding.png");
+    }
+
+    &--funiture{
+      background-image: url("./assets/images/prdthumb_funiture.png");
+    }
+
+    &--picnic{
+      background-image: url("./assets/images/prdthumb_picnic.png");
+    }
+
+    &::after{
+      content: '';
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+      background-color: rgba(63,59,0,.3);
+    }
   }
 
   &__title{
+    // position: relative;
+    // z-index: 100;//%%還是會被遮罩遮住 改在父層才有效
     margin-bottom: 8px;
     >h3{
-      font-size: 50px;
+      // position: relative;
+      // z-index: 100;
+      font-size: 30px;
+      line-height: 1;
       margin-bottom: 5px;
     }
   }
@@ -128,10 +228,12 @@ body{
 
 
 .metaCopyPart1{
-  margin-bottom: 150px;
+  position: relative;
+  margin-bottom: 200px;
   &__box{
     position: relative;
-    width: 90%;
+    // width: 90%;
+    width: 100%;
     height: 480px;
     background-color: $brand-secondary1;
 
@@ -143,26 +245,51 @@ body{
     top: 0;
     right: 0;
     box-sizing: border-box;
-    padding-top: 20px;
+    padding-top: 190px;
     padding-right: 40px;
     margin-left: 10%;
+    text-align: center;
     color:#fff;
   }
 
   &__titleTxt{
-    font-size: 38px;
-    margin-bottom: 10%;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 45px;
+    letter-spacing:3px;
+    border-bottom: 3px solid $brand-primary;
+  }
+
+  &__pTxt{
+    font-size: 33px;
+    white-space: nowrap;
   }
 
   &__pic{
+    position: relative;
+    z-index: 5;
     display: flex;
-    padding-top: 10%;
+    padding-top: 50px;
 
     img{
       width: 100%;
       height: 100%;
       object-fit:cover;//##因為圖片沒裁切
     }
+  }
+
+  &::after{
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 200px 200px 0 0;
+    border-color: $brand-primary transparent transparent transparent;
   }
 }
 
@@ -193,10 +320,23 @@ body{
   }
 
   &__titleTxt{
-    margin-bottom: 15px;
+    position: relative;
+    margin-bottom: 13px;
+    padding-bottom: 10px;
     font-size: 42px;
     font-weight: bold;
     white-space: nowrap;
+    &::after{
+      content: '';
+      position: absolute;
+      z-index: 1;
+      bottom: 0;
+      left: 30%;
+      margin: auto;
+      width: 140%;
+      height: 2px;
+      background-color: $brand-primary;
+    }
   }
 
   &__pTxt{
@@ -204,6 +344,8 @@ body{
   }
 
   &__pic{
+    position: relative;
+    z-index: 5;
     margin-right: -20%;
     width: 400px;
     // max-height: 80%;// ##無效
@@ -247,10 +389,23 @@ body{
   }
 
   &__titleTxt{
+    position: relative;
     // margin-bottom: 15px;
+    padding-bottom: 10px;
     font-size: 42px;
     font-weight: bold;
     white-space: nowrap;
+    &::after{
+      content: '';
+      position: absolute;
+      z-index: 1;
+      bottom: 0;
+      right: 30%;
+      margin: auto;
+      width: 140%;
+      height: 2px;
+      background-color: $brand-primary;
+    }
   }
 
   &__pTxt{
@@ -260,6 +415,7 @@ body{
   &__pic{
     // position: relative;
     position: absolute;
+    z-index: 5;
     top: 0;
     left: 0;
     padding-top: 35%;// ##高度
@@ -303,7 +459,8 @@ body{
 }
 
 .newProductList{
-  margin-bottom: 150px;
+  margin-bottom: 120px;
+
 }
 
 .prdNewCard{
@@ -356,6 +513,7 @@ body{
     font-size: 18px;
     font-weight: bold;
     color:$brand-secondary1;
+    cursor: pointer;
   }
 
   &__price{
@@ -383,6 +541,7 @@ body{
 
 .adBar{
   height: 220px;
+  margin-bottom: 100px;
   background-image: url("/images/adbar1.png");
   background-size: cover;
   background-position: 50% 40%;
@@ -393,7 +552,11 @@ body{
   &__wrapper{
     display: flex;
   }
+
   &__classBanner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 250px;
     margin-bottom: .5rem;//##!原來這樣縮高度就可跟卡片mb-2一樣了
     // height: 700px;
@@ -408,6 +571,33 @@ body{
       width: 100%;
     }
   }
+
+  &__bannerTitle{
+    margin-bottom:300px;
+    color: #fff;
+    // background-color: $brand-secondary1-light;
+    border:1px solid #fff;
+    text-align: center;
+    // padding-right: 10px;
+    // padding-bottom: 10px;
+    padding: 13px;
+    // box-shadow: 10px 10px 0px 0px $brand-primary;
+    box-shadow: 10px 10px 0px 0px $brand-secondary1-light;
+    
+    >h4{
+      margin-bottom: 0;
+      font-size: 42px;
+    }
+
+    >P{
+      margin-bottom: 0;
+      font-size: 28px;
+    }
+  }
+
+  &__bannerTitleBox{
+    
+  }
 }
 
 .metaNews{
@@ -421,15 +611,24 @@ body{
   }
   &__title{
     width: 30%;
-    text-align: center;
+    // text-align: center;
     >h3{
       font-family: Huakang;// @@內建
-      font-size: 30px;
+      // font-size: 30px;
     }
     @media screen and (max-width:1199px){
       // width: 100%;
     }
   }
+
+  &__sectionTitle.meta__sectionTitle{
+    font-size: 40px;
+    // margin-top: -20px;//##mb40 mt-20 高度60極限
+    position: relative;
+    top: -40px;
+    margin-left: 3%;
+  }
+
   &__wrapper{
     width: 70%;
     display: flex;

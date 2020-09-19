@@ -142,19 +142,19 @@
                   :class="{'nav__item--active':selectedPrdInfoView==='specification'}"
                   @click="setInfoView('specification')"
               >
-                商品規格
+                運送規範
               </li>
               <li class="nav__item"
                   :class="{'nav__item--active':selectedPrdInfoView==='shipmentRule'}"
                   @click="setInfoView('shipmentRule')"
               >
-                運送規範
+                注意事項
               </li>
             </ul>
           </div>
           <div class="productInfo__contentArea  bg-white text-secondary2">
             <!-- <div class="productInfo__view"> -->
-            <div class="productInfo__featureView ql-editor"
+            <div class="productInfo__featureView productInfo__p ql-editor"
                  :class="{'productInfo__featureView--show':selectedPrdInfoView==='feature'}"
             >
               <!-- <p>{{ product.description }}</p> -->
@@ -162,15 +162,36 @@
               <p v-html="product.description"/>
               <!-- eslint-enable -->
             </div>
-            <div class="productInfo__specificationView"
+            <div class="productInfo__specificationView productInfo__p"
                  :class="{'productInfo__specificationView--show':selectedPrdInfoView==='specification'}"
             >
-              <p>商品規格</p>
+              <p>/運送規範</p>
+              <p>
+                商品以黑貓宅急便或新竹貨運寄送，出貨時間為週一至週六。<br>
+                大型商品(如:帳篷、桌椅等)以貨運公司配送。台灣本島地區，<br>
+                下午四點完成訂單，隔日送達(偏遠山區、離島例外)。
+              </p>
             </div>
-            <div class="productInfo__shipmentRuleView"
+            <div class="productInfo__shipmentRuleView productInfo__p"
                  :class="{'productInfo__shipmentRuleView--show':selectedPrdInfoView==='shipmentRule'}"
             >
-              <p>運送規範</p>
+              <!-- <p>/注意事項</p> -->
+              <div>
+                <p>
+                  /商品保固說明<br>
+                  META所售出商品均享有一年保固維修服務，人為損壞或不當使用不在保固範圍內。<br>
+                  ※出清品及部分特殊商品依說明公告為主。<br>
+                </p>
+                <p>
+                  ＊維修方式 ：
+                  一年內維修，寄費由客戶負擔，寄回由META負擔 。<br>
+                  一年後來回運費則由客戶負擔。<br>
+                </p>
+                <p>
+                  /商品退換貨<br>
+                  網路購物的消費者，都可以依照消費者保護法的規定，享有商品貨到日起七天猶豫期的權益。但猶豫期並非試用期，所以，您所退回的商品必須是全新的狀態、而且完整包裝；請注意保持商品本體、 配件、贈品、保證書、原廠包裝及所有附隨文件或資料的完整性，切勿缺漏任何配件或損毀原廠外盒。
+                </p>
+              </div>
             </div>
             <!-- </div> -->
           </div>
@@ -248,6 +269,7 @@ export default {
   },
   created() {
     this.getSingleProduct();
+    console.log('產品內頁的route', this.$route);
   },
   computed: {
     ...mapState({

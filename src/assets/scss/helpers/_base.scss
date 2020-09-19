@@ -5,9 +5,10 @@
 
 html,body{ //@@html bg被蓋掉
   background-color: $brand-background;
+  // font-family: Huakang;##中文字可 英數字要改
 }
 h1, h2, h3, h4, h5, h6{//##title下h才能繼承
-  font-size: inherit;
+  // font-size: inherit; //%%導致很多沒寫死px的縮小便16
 }
 
 // 在一些共用的區塊上，
