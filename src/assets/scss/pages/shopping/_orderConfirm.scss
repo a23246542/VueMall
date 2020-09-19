@@ -90,6 +90,10 @@
 .m-orderInfoList{
   font-size: 17px;
   color:$brand-secondary1-light;
+  li{ //todo
+    padding: 3px 0;
+  }
+
   &__itemTitle{
     display: inline-block;
     width: 30%;

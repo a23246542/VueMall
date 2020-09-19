@@ -69,7 +69,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-primary"
+      <button class="btn btn-secondary1-light mt-5"
               @click="$router.go(-1)"
       >
         上一頁
@@ -113,10 +113,10 @@ export default {
     this.$store.dispatch('getCart');// %%
     // this.$emit('changPage','orderInfo');
     this.$store.dispatch('changePage', 'order_info');
-    this.$router.push({
-      name: '最後確認',
-      query: { orderId: '1mYdzl2jc9H7XWS1BstRu9ymOFkBvHfze43yqRfL0wV94Alzlb19Z09o6IGHPY3R' },
-    });
+    // this.$router.push({
+    //   name: '最後確認',
+    //   query: { orderId: '1mYdzl2jc9H7XWS1BstRu9ymOFkBvHfze43yqRfL0wV94Alzlb19Z09o6IGHPY3R' },
+    // });
     // this.$store.dispatch('setOrderCartTotal');//##來不及改先監聽cartTotal
   },
   mounted() {
@@ -129,7 +129,7 @@ export default {
   methods: {
     createOrder(customerForm) {
       // console.log(customerForm);
-      this.$stote.commit('LOADING', false);
+      this.$store.commit('LOADING', false);
       this.form = customerForm;
       if (this.coupon.code) {
         this.$set(this.form, 'coupon', this.coupon.code);
@@ -141,11 +141,14 @@ export default {
       //   this.form.coupon = this.$store.state.CusOrders.coupon.code;
       // }
       const api = 'ec/orders';
+      const vm = this;
       this.$instanceCus.post(api, this.form)
         .then((res) => {
           this.$store.commit('LOADING', false);
           const orderId = this.res.data.data.id;
-          this.$router.push({
+          console.log('orderId', orderId, 'this', this);
+          // this.$router.push({
+          vm.$router.push({
             name: '最後確認',
             query: { orderId },
           // query:orderId %%一開始打錯router query打錯 下一頁打網址也讀取不到

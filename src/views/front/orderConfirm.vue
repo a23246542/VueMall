@@ -81,7 +81,9 @@
                   </div>
                   <div class="orderCount__box">
                     <div class="orderCount__list p-2">
-                      <div class="d-flex justify-content-between mb-1">
+                      <!-- %%coupon為null 不是物件這時候就也報錯了 -->
+                      <!-- <div v-if="coupon.percent" class="d-flex justify-content-between mb-1"> -->
+                      <div v-if="coupon && coupon.percent" class="d-flex justify-content-between mb-1">
                         <span>折扣金額</span>
                         <span>-NT${{ orderDiscountAmount }}</span>
                       </div>
@@ -207,8 +209,12 @@ export default {
   },
   computed: {
     orderDiscountAmount() {
+      // if (this.coupon.percent) {
       const amountAll = (this.amount * 100) / this.coupon.percent;
       return (amountAll - this.amount);
+      // } else {
+      //   return 0;//@@後面不能接return
+      // }
     },
     thisOrder() {
       return this.$store.state.CusOrders.thisOrder;

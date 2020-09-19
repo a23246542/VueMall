@@ -32,7 +32,8 @@
         </ul>
       </div>
     </nav>
-    <div class="processStep row">
+    <!-- <div class="processStep row"> 如何付款完成頁消失 -->
+    <div v-if="nowPage" class="processStep row">
       <div class="col-md-8 mx-auto">
         <ul class="d-flex">
           <li class="processStep__item">
@@ -59,14 +60,19 @@
         </div>
       </div>
     </div>
-    <router-view
-      @changePage="changeBar"
+    <router-view style="margin-bottom:80px"
+                 @change-page="changeBar"
     />
-    <p>shopping-footer</p>
+    <NavFooter></NavFooter>
   </div>
 </template>
 <script>
+import NavFooter from '@/components/NavFooter';
+
 export default {
+  components: {
+    NavFooter,
+  },
   data() {
     return {
       barWidth: '0%',
@@ -94,7 +100,9 @@ export default {
       }
     },
   },
-  // created() {
+  activated() {
+    console.log(this.$route.name);// @@無效
+  },
   mounted() {
     // this.initBar();
   },

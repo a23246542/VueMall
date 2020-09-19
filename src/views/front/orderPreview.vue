@@ -14,13 +14,13 @@
                 </h4>
               </div>
               <div class="cart__body p-4 bg-light">
-                <div class="d-flex">
+                <!-- <div class="d-flex">
                   <span>商品資料</span>
                   <span>單位</span>
                   <span>單件售價</span>
                   <span>數量</span>
                   <span>小計</span>
-                </div>
+                </div> -->
                 <div v-for="(item) in cart.carts"
                      :key="item.product.id"
                      class="cart__item row mb-3"
