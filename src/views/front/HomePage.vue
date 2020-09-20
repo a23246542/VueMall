@@ -93,10 +93,10 @@
               </div>
               <div class="metaCopyPart1__pic">
                 <div class="col-6 col-md-4 ml-3">
-                  <img src="/images/content_pic1.jpg" alt="">
+                  <img src="@/assets/images/content_pic1.jpg" alt="">
                 </div>
                 <div class="col-6 col-md-4">
-                  <img src="/images/content_pic2.jpg" alt="">
+                  <img src="@/assets/images/content_pic2.jpg" alt="">
                 </div>
               </div>
             </div>
@@ -119,7 +119,7 @@
             </div>
           </div>
           <div class="metaCopyPart2__pic">
-            <img src="/images/content_pic3.jpg" alt="">
+            <img src="@/assets/images/content_pic3.jpg" alt="">
           </div>
         </div>
       </section>
@@ -138,10 +138,10 @@
           </div>
           <div class="metaCopyPart3__pic">
             <div class="metaCopyPart3__picItem pic1">
-              <img src="/images/content_pic4.jpg" alt="">
+              <img src="@/assets/images/content_pic4.jpg" alt="">
             </div>
             <div class="metaCopyPart3__picItem pic2">
-              <img src="/images/content_pic5.jpg" alt="">
+              <img src="@/assets/images/content_pic5.jpg" alt="">
             </div>
           </div>
         </div>
@@ -251,7 +251,7 @@
           <div class="metaNews__wrapper">
             <div class="metaNews__item">
               <div class="metaNews__itemPic">
-                <img src="/images/meta_act1.jpg" alt="">
+                <img src="@/assets/images/meta_act1.jpg" alt="">
               </div>
               <div class="metaNews__itemTxt">
                 <h4>怎麼露營才好玩 /</h4>
@@ -273,7 +273,7 @@
             </div>
             <div class="metaNews__item">
               <div class="metaNews__itemPic">
-                <img src="/images/meta_act3.jpg" alt="">
+                <img src="@/assets/images/meta_act3.jpg" alt="">
               </div>
               <div class="metaNews__itemTxt">
                 <h4>夏季踏青趣 /</h4>

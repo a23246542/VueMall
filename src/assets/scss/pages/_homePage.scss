@@ -33,7 +33,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("/images/banner-bg2.jpg");
+    background-image: url("@/assets/images/banner-bg2.jpg");
     width: 100%;
     height: 540px;
     background-size: 100%;
@@ -88,7 +88,7 @@ body{
     font-size: 40px;
     letter-spacing: 1px;
     color: $brand-secondary1;
-    background: url("./assets/images/titleIcon_main.png") no-repeat;
+    background: url("@/assets/images/titleIcon_main.png") no-repeat;
     background-position: bottom right;
     background-size: 80%;
 
@@ -99,7 +99,7 @@ body{
 
   &__sectionBg{
     position: relative;;
-    background-image:url("/images/section_bg.jpg");
+    background-image:url("@/assets/images/section_bg.jpg");
     height: 900px;
     margin-bottom: 120px;
     &::after{
@@ -179,19 +179,19 @@ body{
       transform:translate(-50%,-50%);
     }
     &--tent{
-      background-image: url("./assets/images/prdthumb_tent.png");
+      background-image: url("@/assets/images/prdthumb_tent.png");
     }
 
     &--bedding{
-      background-image: url("./assets/images/prdthumb_bedding.png");
+      background-image: url("@/assets/images/prdthumb_bedding.png");
     }
 
     &--funiture{
-      background-image: url("./assets/images/prdthumb_funiture.png");
+      background-image: url("@/assets/images/prdthumb_funiture.png");
     }
 
     &--picnic{
-      background-image: url("./assets/images/prdthumb_picnic.png");
+      background-image: url("@/assets/images/prdthumb_picnic.png");
     }
 
     &::after{
@@ -542,7 +542,7 @@ body{
 .adBar{
   height: 220px;
   margin-bottom: 100px;
-  background-image: url("/images/adbar1.png");
+  background-image: url("@/assets/images/adbar1.png");
   background-size: cover;
   background-position: 50% 40%;
 }
@@ -560,7 +560,7 @@ body{
     width: 250px;
     margin-bottom: .5rem;//##!原來這樣縮高度就可跟卡片mb-2一樣了
     // height: 700px;
-    background-image: url("/images/tent_bg.jpg");
+    background-image: url("@/assets/images/tent_bg.jpg");
     background-size:cover;
     background-position: 58% 50%;
     // >img{
@@ -698,7 +698,7 @@ body{
   justify-content: center;
   align-items: center;
   color:#fff;
-  background-image: url("/images/footer_bg.png");
+  background-image: url("@/assets/images/footer_bg.png");
 
   &__logo{
     width: 120px;
