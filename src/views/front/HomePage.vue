@@ -93,10 +93,10 @@
               </div>
               <div class="metaCopyPart1__pic">
                 <div class="col-6 col-md-4 ml-3">
-                  <img src="@/assets/images/content_pic1.jpg" alt="">
+                  <img src="../../assets/images/content_pic1.jpg" alt="">
                 </div>
                 <div class="col-6 col-md-4">
-                  <img src="@/assets/images/content_pic2.jpg" alt="">
+                  <img src="../../assets/images/content_pic2.jpg" alt="">
                 </div>
               </div>
             </div>
@@ -119,7 +119,7 @@
             </div>
           </div>
           <div class="metaCopyPart2__pic">
-            <img src="@/assets/images/content_pic3.jpg" alt="">
+            <img src="../../assets/images/content_pic3.jpg" alt="">
           </div>
         </div>
       </section>
@@ -138,10 +138,10 @@
           </div>
           <div class="metaCopyPart3__pic">
             <div class="metaCopyPart3__picItem pic1">
-              <img src="@/assets/images/content_pic4.jpg" alt="">
+              <img src="../../assets/images/content_pic4.jpg" alt="">
             </div>
             <div class="metaCopyPart3__picItem pic2">
-              <img src="@/assets/images/content_pic5.jpg" alt="">
+              <img src="../../assets/images/content_pic5.jpg" alt="">
             </div>
           </div>
         </div>
@@ -214,7 +214,6 @@
           </h3>
           <div class="featureProduct__wrapper">
             <div class="featureProduct__classBanner flex-shrink-0">
-              <!-- <img src="/images/tent_bg.jpg" alt=""> -->
               <div class="featureProduct__bannerTitle">
                 <!-- <div class="featureProduct__bannerTitleBox"> -->
                 <h4>帳篷</h4>
@@ -251,7 +250,7 @@
           <div class="metaNews__wrapper">
             <div class="metaNews__item">
               <div class="metaNews__itemPic">
-                <img src="@/assets/images/meta_act1.jpg" alt="">
+                <img src="../../assets/images/meta_act1.jpg" alt="">
               </div>
               <div class="metaNews__itemTxt">
                 <h4>怎麼露營才好玩 /</h4>
@@ -262,7 +261,7 @@
             </div>
             <div class="metaNews__item">
               <div class="metaNews__itemPic">
-                <img src="@/assets/images/meta_act5.jpg" alt="">
+                <img src="../../assets/images/meta_act5.jpg" alt="">
               </div>
               <div class="metaNews__itemTxt">
                 <h4>夏季踏青趣 /</h4>
@@ -273,7 +272,7 @@
             </div>
             <div class="metaNews__item">
               <div class="metaNews__itemPic">
-                <img src="@/assets/images/meta_act3.jpg" alt="">
+                <img src="../../assets/images/meta_act3.jpg" alt="">
               </div>
               <div class="metaNews__itemTxt">
                 <h4>夏季踏青趣 /</h4>
@@ -284,7 +283,7 @@
             </div>
             <div class="metaNews__item">
               <div class="metaNews__itemPic">
-                <img src="@/assets/images/meta_act6.jpg" alt="">
+                <img src="../../assets/images/meta_act6.jpg" alt="">
               </div>
               <div class="metaNews__itemTxt">
                 <h4>樂哈山賞櫻團 /</h4>
@@ -302,7 +301,7 @@
         <div class="metaContactUs bg-cover">
           <div>
             <div class="metaContactUs__logo">
-              <img src="@/assets/images/Meta-logo-white.png" alt="">
+              <img src="../../assets/images/Meta-logo-white.png" alt="">
             </div>
             <p class="metaContactUs__title">
               聯絡我們
