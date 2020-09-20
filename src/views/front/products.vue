@@ -59,7 +59,7 @@
                     :key="subItem" class="subClass__title list-group-item border-0"
                     @click.prevent="setSearchText(subItem)"
                 >
-                  {{ item }}
+                  {{ subItem }}
                 </li>
               </ul>
             </a>
