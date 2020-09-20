@@ -37,12 +37,12 @@ instanceLogin.interceptors.request.use((config) => config, (err) => {
 });
 
 instanceLogin.interceptors.response.use((res) => {
-  if (process.env.NODE_ENV == 'development') {
+  if (process.env.NODE_ENV === 'development') {
     // console.log(res);
   }
   return res;
 }, (err) => {
-  if (process.env.NODE_ENV == 'development') {
+  if (process.env.NODE_ENV === 'development') {
     // console.log('響應錯誤');
     // console.dir(err);
   }
@@ -85,14 +85,14 @@ instanceCus.interceptors.request.use((config) => config, (err) => {
 });
 
 instanceCus.interceptors.response.use((res) => {
-  if (process.env.NODE_ENV == 'development') {
-    console.log(res);
+  if (process.env.NODE_ENV === 'development') {
+    // console.log(res);
   }
   return res;
 }, (err) => {
-  if (process.env.NODE_ENV == 'development') {
-    console.log('響應錯誤');
-    console.dir(err);// ##
+  if (process.env.NODE_ENV === 'development') {
+    // console.log('響應錯誤');
+    // console.dir(err);// ##
   }
   return Promise.reject(err);
 });

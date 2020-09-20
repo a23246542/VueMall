@@ -29,7 +29,8 @@
     "vue-router": "^3.3.4",
     "vue-sweetalert2": "^3.0.6",
     "vue2-editor": "^2.10.2",
-    "vuex": "^3.5.1"
+    "vuex": "^3.5.1",
+    "mockjs": "^1.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",
@@ -44,7 +45,6 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^6.2.2",
-    "mockjs": "^1.1.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
@@ -62,19 +62,23 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
+    "globals": {
+      "$":true,
+      "jquery":true
+    },
     "rules": {
       "indent": [
         "error",
         2
       ],
       "max-len": "off",
-      "no-console": "off",
+      "no-console": "warn",
       "no-unused-vars": "warn",
       "no-shadow": "warn",
       "vue/max-attributes-per-line": "off",
       "vue/html-self-closing": "off",
       "arrow-body-style": [
-        "off"
+        "warn"
       ],
       "no-return-assign": [
         "warn"

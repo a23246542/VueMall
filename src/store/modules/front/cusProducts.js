@@ -11,16 +11,10 @@ export default {
     categories: [],
     searchText: 'all',
   },
-  getters: { // ##代參數
-    getProductsByNum: (state) => {
-      return (num) => { // ##閉包
-        return state.products.slice(0, num); // %%直接代參數
-      };
-    },
+  getters: { // ##代參數  ##閉包
+    getProductsByNum: (state) => (num) => state.products.slice(0, num), // %%直接代參數
     getNewProductsByNum(state) {
-      return (num) => {
-        return state.newProducts.slice(0, num);
-      };
+      return (num) => state.newProducts.slice(0, num);
     },
   },
   mutations: {

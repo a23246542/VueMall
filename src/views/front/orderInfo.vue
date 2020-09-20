@@ -78,7 +78,7 @@
   </div>
 </template>
 <script>
-import CustomerForm from '@/components/CustomerForm';
+import CustomerForm from '@/components/CustomerForm.vue';
 import { mapGetters, mapState } from 'vuex';
 
 export default {
@@ -100,12 +100,12 @@ export default {
     ...mapGetters(['cartTotal', 'discountAmount', 'amountAll']),
   },
   watch: {
-    '$store.getters.cartTotal': function () { // @@監聽不到 改方法
-      console.log('監聽cartTotal');
-      this.$store.dispatch('setOrderCartTotal');
-    },
-    cartTotal(newVal, val) { // ##用computed監聽vuex 但存檔重整有時會無效可能要加熱重載?
-      console.log('監聽cartTotal');
+    // '$store.getters.cartTotal': function () { // @@監聽不到 改方法
+    //   console.log('監聽cartTotal');
+    //   this.$store.dispatch('setOrderCartTotal');
+    // },
+    cartTotal() { // ##用computed監聽vuex 但存檔重整有時會無效可能要加熱重載?
+      // console.log('監聽cartTotal');
       this.$store.dispatch('setOrderCartTotal');
     },
   },
@@ -145,15 +145,16 @@ export default {
       this.$instanceCus.post(api, this.form)
         .then((res) => {
           this.$store.commit('LOADING', false);
-          const orderId = this.res.data.data.id;
-          console.log('orderId', orderId, 'this', this);
+          // const orderId = this.res.data.data.id;//%%導致沒跳一頁但也沒報錯
+          const orderId = res.data.data.id;
+          // console.log('orderId', orderId, 'this', this);
           // this.$router.push({
           vm.$router.push({
             name: '最後確認',
             query: { orderId },
           // query:orderId %%一開始打錯router query打錯 下一頁打網址也讀取不到
           });
-        }).catch((err) => {
+        }).catch(() => {
 
         });
     },

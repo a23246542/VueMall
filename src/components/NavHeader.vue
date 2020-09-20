@@ -26,19 +26,21 @@
               </router-link>
             </li>
           </div>
-          <a class="navHeader__logo navbar-brand" href="#">
+          <router-link :to="{name:'home'}" class="navHeader__logo navbar-brand" tag="a">
             <img src="@/assets/images/Meta-logo-white.png" alt="">
-            <h1 class="text-hide mb-0">meta</h1>
-          </a>
+            <h1 class="text-hide mb-0">
+              meta
+            </h1>
+          </router-link>
           <div class="d-flex align-items-center">
             <li class="navHeader__navItem nav-item">
               <!-- <span class="badge badge-pill badge-danger">3</span> -->
-              <router-link :to="{name:'我的訂單'}" class="navHeader__navLink nav-link">
+              <router-link :to="{name:'home'}" class="navHeader__navLink nav-link">
                 我的訂單<span class="sr-only">(current)</span>
               </router-link>
             </li>
             <li class="navHeader__navItem p-sm nav-item">
-              <router-link :to="{name:'我的訂單'}" tag="a" class="navHeader__navLink navHeader__navLink--icon nav-link">
+              <router-link :to="{name:'home'}" tag="a" class="navHeader__navLink navHeader__navLink--icon nav-link">
                 <i class="fas fa-heart text-white"></i>
               </router-link>
             </li>
@@ -66,7 +68,7 @@
   </nav>
 </template>
 <script>
-import CartModal from '@/components/CartModal';
+import CartModal from '@/components/CartModal.vue';
 
 export default {
   name: 'NavHeader',

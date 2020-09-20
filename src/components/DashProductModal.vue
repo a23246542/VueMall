@@ -181,7 +181,8 @@ export default {
     VueEditor,
   },
   props: {
-    isNew: true,
+    // isNew: true,//@@報錯 The "isNew" property should be a constructor
+    isNew: Boolean,
   },
   data() {
     return {

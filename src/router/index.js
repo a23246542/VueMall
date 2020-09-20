@@ -105,12 +105,12 @@ const routes = [
         name: '訂單完成',
         component: () => import('../views/front/orderSuccess'),
       },
-      {
-        // path:'payment/:orderId',
-        path: 'payment',
-        name: '付款頁',
-        component: () => import('../views/front/payment.vue'),
-      },
+      // {
+      //   // path:'payment/:orderId',
+      //   path: 'payment',
+      //   name: '付款頁',
+      //   component: () => import('../views/front/payment.vue'),
+      // },
       // {
       //     path:'pay_success/:orderId',
       //     name:'付款完成',

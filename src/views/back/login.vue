@@ -1,5 +1,5 @@
 <template>
-  <div class="form-page text-center">
+  <div class="form-page text-center" style="height:100vh">
     <form class="form-signin"
           @submit.prevent="signIn"
     >
@@ -7,19 +7,19 @@
         請先登入
       </h1>
       <label for="inputEmail" class="sr-only">電子信箱</label>
-      <input id="inputEmail" v-model="user.email" type="email" class="form-control" placeholder="Email address"
+      <input id="inputEmail" v-model="user.email" type="email" class="form-control mb-3" placeholder="Email address"
              required
              autofocus
       >
       <label for="inputPassword" class="sr-only">密碼</label>
-      <input id="inputPassword" v-model="user.password" type="password" class="form-control" placeholder="Password"
+      <input id="inputPassword" v-model="user.password" type="password" class="form-control mb-4" placeholder="Password"
              required
       >
-      <div class="checkbox mb-3">
+      <!-- <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
         </label>
-      </div>
+      </div> -->
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         登入
       </button>

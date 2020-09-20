@@ -55,9 +55,9 @@
                   v-show="!classObj.map[item].hidden"
                   class="subClass list-group"
               >
-                <li v-for="item in classObj.map[item].sort"
-                    :key="item" class="subClass__title list-group-item border-0"
-                    @click.prevent="setSearchText(item)"
+                <li v-for="subItem in classObj.map[item].sort"
+                    :key="subItem" class="subClass__title list-group-item border-0"
+                    @click.prevent="setSearchText(subItem)"
                 >
                   {{ item }}
                 </li>
@@ -98,22 +98,22 @@
 
 <script>
 // import ProductCard from '@/components/ProductCard';
-import CartModal from '@/components/CartModal';
+// import CartModal from '@/components/CartModal.vue';
 // import pagination from '@/components/BasePagination';
-import Alert from '@/components/BaseAlertMessage';
-import Category from '@/components/Category';
+import Alert from '@/components/BaseAlertMessage.vue';
+// import Category from '@/components/Category.vue';
 import Breadcrumb from '@/components/Breadcrumb.vue';
 import { mapState } from 'vuex';
-import { instanceCus } from '../../api/https';
+// import { instanceCus } from '../../api/https';
 
 export default {
   components: {
     // ProductCard,
-    CartModal,
+    // CartModal,
     Alert,
     Breadcrumb,
     // pagination,
-    Category,
+    // Category,
   },
   data() {
     return {
@@ -195,15 +195,15 @@ export default {
     // },
   },
   watch: {
-    categories(val, oldVal) {
-      console.log(val);
+    categories() {
+      // console.log(val);
       this.setClassObj();
     },
   },
   created() {
     this.getProducts()
       .then(() => {
-        console.log('執行getProduct.then');
+        // console.log('執行getProduct.then');
       // this.setClassObj();//@@改用watch做
       });
     this.$store.dispatch('setBreadcrumbList', ['home', 'products']);
@@ -256,11 +256,11 @@ export default {
       // console.log(item);
     },
     setClassObj() {
-      console.log('執行setClassObj');
+      // console.log('執行setClassObj');
       this.categories.forEach((item) => {
         const firstClass = item.split('>')[0];
 
-        console.log(firstClass);
+        // console.log(firstClass);
         if (!this.classObj.map[firstClass]) {
           this.classObj.sort.push(firstClass);
           // this.$set
@@ -280,12 +280,12 @@ export default {
     setSearchText(text) {
       // this.searchText = text;
       this.$store.commit('SEARCH_TEXT', text);
-      console.log(text);
+      // console.log(text);
     },
     showSubClass(mainClass, event) {
       // this.classObj.map[mainClass].hidden === true? false : true;//@#簡化
       // !this.classObj.map[mainClass].hidden=;//#失敗
-      console.log(event);
+      // console.log(event);
       event.target.classList.toggle('show');
       setTimeout(() => {
         this.classObj.map[mainClass].hidden = !this.classObj.map[mainClass].hidden;
@@ -332,9 +332,9 @@ export default {
         align-self: start;
         padding-top:40px;
         padding-bottom: 40px;
-        .list-group{
-          // margin:0 auto;
-        }
+        // .list-group{
+        //   // margin:0 auto;
+        // }
         .list-group-item{
           background-color: transparent;
           color:inherit;
@@ -345,12 +345,12 @@ export default {
           // border:1px solid red;
           // transition: all .05s;
 
-          &>span{
+          // &>span{
 
-            &>.arrow{
+          //   &>.arrow{
 
-            }
-          }
+          //   }
+          // }
         }
 
         .mainClass{
@@ -412,9 +412,9 @@ export default {
         }
       }
 
-      &__content{
-        // flex: 1;
-      }
+      // &__content{
+      //   // flex: 1;
+      // }
 
     }
 </style>

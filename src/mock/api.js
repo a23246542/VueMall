@@ -1,5 +1,5 @@
 import Mock from 'mockjs';
-import dashProducts from './data/dashProducts';
+// import dashProducts from './data/dashProducts';
 import dashSingleOrder from './data/dashSingleOrder';
 import dashOrders from './data/dashOrders';
 
@@ -14,7 +14,8 @@ Mock.setup({
 // Mock.mock(new RegExp(`${http}/admin/ec/orders?page`+'.*'),'get',dashOrders);
 Mock.mock(`${http}/admin/ec/orders?page=1`, 'get', dashOrders);
 // Mock.mock(`${http}/admin/ec/orders/id`,'get',dashSingleOrder);
-Mock.mock(new RegExp(`${http}/admin/ec/orders` + '.*'), 'get', dashSingleOrder);
+// Mock.mock(new RegExp(`${http}/admin/ec/orders` + '.*'), 'get', dashSingleOrder);// @@eslint 報錯
+Mock.mock(new RegExp(`${http}/admin/ec/orders.*`), 'get', dashSingleOrder);
 // ##https://github.com/nuysoft/Mock/wiki/Mock.mock()
 // @@為何不需要module.exports =
 // ApiPaths.chat.getRecords + ".*"

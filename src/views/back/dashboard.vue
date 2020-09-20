@@ -10,15 +10,15 @@
   </div>
 </template>
 <script>
-import DashNavbar from '@/components/DashNavbar';
-import DashSidebar from '@/components/DashSidebar';
-import dashProducts from '@/views/back/dashProducts';
+import DashNavbar from '@/components/DashNavbar.vue';
+import DashSidebar from '@/components/DashSidebar.vue';
+// import dashProducts from '@/views/back/dashProducts.vue';
 
 export default {
   components: {
     DashNavbar,
     DashSidebar,
-    dashProducts,
+    // dashProducts,
   },
   mounted() {
     // this.$router.push({name:'dashProducts'});
@@ -126,7 +126,7 @@ export default {
         }
     }
 </style>
-<style lang="scss"scoped>
+<style lang="scss" scoped>
 // // /deep/ .dashboard {
 //     // .dashboard >>> { //@@域處理器無法解析
 // .dashboar /deep/ {//%%deep位置

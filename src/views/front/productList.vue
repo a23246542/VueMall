@@ -30,35 +30,37 @@ export default {
       // searchText:this.searchText,
     };
   },
-  created() {
-    console.log(this.searchText);
-    // this.$emit('change-page', 'products');//%%會失敗
-  },
-  // mounted() {
-  //   this.$emit('change-page', 'products');
-  // },
   computed: {
     ...mapState({
       products: (state) => state.CusProducts.products,
       pagination: (state) => state.CusProducts.pagination,
       searchText: (state) => state.CusProducts.searchText, // %%Cus大寫
     }),
-
     filterProducts() {
       if (this.searchText === 'all') {
         return this.products;
       }
-      return this.products.filter((item) =>
-      // return item.category == this.searchText;
-        item.category.toLowerCase()
-          .includes(this.searchText.toLowerCase()), // %%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false
-      );
+      // }else{ //@@eslint 報錯 todo
+      //   return this.products.filter((item) => {
+      //   // return item.category == this.searchText;
+      //     item.category.toLowerCase().includes(this.searchText.toLowerCase()); // %%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false
+      //   });
+      // }
+      return this.products.filter((item) => item.category.toLowerCase().includes(this.searchText.toLowerCase())); // %%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false);
     },
   },
+  created() {
+    // console.log(this.searchText);
+    // this.$emit('change-page', 'products');//%%會失敗
+  },
+  // mounted() {
+  //   this.$emit('change-page', 'products');
+  // },
   methods: {
     async getProducts(page = 1) {
       await this.$store.dispatch('getProducts', page);// @@無效
     },
   },
+
 };
 </script>

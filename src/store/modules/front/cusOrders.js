@@ -17,13 +17,11 @@ export default {
     // amountAll(){
     amountAll(state) { // %%參數要代state
       if (state.coupon.percent) {
-        return state.cartTotal * state.coupon.percent / 100;
+        return (state.cartTotal * state.coupon.percent) / 100;
       }
       return state.cartTotal;
     },
-    discountAmount: (state, getters) => { // ##
-      return getters.amountAll - state.cartTotal;
-    },
+    discountAmount: (state, getters) => getters.amountAll - state.cartTotal, // ##
   },
   mutations: {
     CART_TOTAL(state, payload) {

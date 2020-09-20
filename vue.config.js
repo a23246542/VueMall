@@ -1,6 +1,6 @@
 module.exports = { // 可先移除eslint偵測報錯
   publicPath: './', //  GitHub上打開
-  lintOnSave: false,
+  lintOnSave: false, // ##可開關vue的eslint 存檔會給你改
   devServer: {
     port: 8080,
     headers: {

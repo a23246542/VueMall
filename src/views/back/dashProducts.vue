@@ -104,7 +104,7 @@
 </template>
 <script>
 import $ from 'jquery';
-import DashOtherModal from '@/components/admin/DashOtherModal';
+import DashOtherModal from '@/components/admin/DashOtherModal.vue';
 import DashProductModal from '../../components/DashProductModal.vue';
 import DashDelProductModal from '../../components/DashDelProductModal.vue';
 import BasePagination from '../../components/BasePagination.vue';
@@ -150,7 +150,7 @@ export default {
 
     // if(this.$route.query.page){
     this.currentPage = this.$route.query.page;
-    console.log('page', this.currentPage);
+    // console.log('page', this.currentPage);
     this.getProducts(this.currentPage);// @@#如是undefined的話 參數會用預設值page=1
     // }else{
     //   this.getProducts();
@@ -168,7 +168,7 @@ export default {
       // vm.$store.state.isLoading = true;
       // vm.$store.dispatch('updateLoading',true);
       vm.$store.commit('LOADING', true);
-      console.log('執行getProducts');
+      // console.log('執行getProducts');
       this.tempProduct = {
         imageUrl: [],
       };
@@ -180,7 +180,7 @@ export default {
         });
     },
     openModal(action, item) {
-      console.log(action, item);
+      // console.log(action, item);
       // this.$store.commit('LOADING',true);//@@非同步沒效果
       switch (action) {
       case 'new':
@@ -227,11 +227,11 @@ export default {
       // @@是否this.$instanceAdmin.delete()會讀取不到
       this.$http.all(productIds.map((id) => {
         const api = `ec/product/${id}`;
-        console.log(this);
+        // console.log(this);
         return this.$instanceAdmin.delete(api);
       }))
         .then((res) => {
-          console.log(res);// ##回傳陣列裝每一個api的res
+          // console.log(res);// ##回傳陣列裝每一個api的res
           this.$store.commit('LOADING', false);
           this.getProducts();
         });
@@ -252,9 +252,9 @@ export default {
       min-width: 800px;
       // @include shadow();//SassError: no mixin named shadow
     }
-    .newBtn{
-      // background-color: $brand-secondary-green;//SassError: Undefined variable
-    }
+    // .newBtn{
+    //   // background-color: $brand-secondary-green;//SassError: Undefined variable
+    // }
 
     // &__table{//## bem dashProducts為class才用
     //   min-width: 800px;

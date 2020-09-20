@@ -40,15 +40,15 @@ export default {
     };
   },
   computed: {
-    typeList() {
-      const obj = {
-        sort: [],
-        map: {},
-      };
-      this.category.forEach((item, index) => {
-        // if(obj.map[item])
-      });
-    },
+    // typeList() {
+    //   const obj = {
+    //     sort: [],
+    //     map: {},
+    //   };
+    //   this.category.forEach((item, index) => {
+    //     // if(obj.map[item])
+    //   });
+    // },
   },
 };
 </script>

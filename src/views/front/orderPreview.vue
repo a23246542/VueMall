@@ -125,7 +125,7 @@
                   <span class="mr-4 text-nowrap">折價券</span>
                   <!-- 折價券## -->
                   <span class="input-group">
-                    <input v-model="couponCode" type="text"class="form-control rounded-0" placeholder="輸入優惠碼"
+                    <input v-model="couponCode" type="text" class="form-control rounded-0" placeholder="輸入優惠碼"
                            @keyup.enter="searchCoupon"
                     >
                     <div class="input-group-append"
@@ -169,8 +169,8 @@
 <script>
 // import Cart from "@/components/Cart";
 import { mapGetters } from 'vuex';
-import { debounce } from 'vue-debounce';
-import _ from 'lodash';
+// import { debounce } from 'vue-debounce';
+// import _ from 'lodash';
 
 export default {
   components: {
@@ -216,7 +216,7 @@ export default {
     //     },
     //     deep:true
     // }
-    cartTotal(newVal, oldVal) {
+    cartTotal() {
       this.$store.dispatch('setOrderCartTotal');
 
       // this.$store.dispatch('getOrderTotal')
@@ -252,10 +252,12 @@ export default {
       case 'subtract1':
         qty -= 1;
         break;
+      default:
+        break;
                   // case 'input':
                   //     break;
       }
-      console.log('更新购物车', productId, qty);
+      // console.log('更新购物车', productId, qty);
       // this.$store.dispatch('editCart',{id,qty});//@@
       const data = {
         productId,
@@ -272,9 +274,9 @@ export default {
     //     },10000)();
     // },
     stayUpdateCart(val, e) {
-      console.log(val);
-      console.dir(e);
-      console.dir(e.target.dataset.itemId);
+      // console.log(val);
+      // console.dir(e);
+      // console.dir(e.target.dataset.itemId);
 
       const data = {
         productId: e.target.dataset.itemId, // 產品id
@@ -314,11 +316,11 @@ export default {
         // });
 
         // this.getCart();
-      }).catch((err) => {
+      }).catch(() => {
         this.$store.commit('COUPON', {});// ##這樣重新套用無效的優惠券才會重來
         this.$store.commit('LOADING', false);
-        const { message } = err.response.data;
-        alert(message);
+        // const { message } = err.response.data;
+        // alert(message);
       });
     },
   },

@@ -18,9 +18,7 @@ export default {
       // });
       // return total;
 
-      const total = state.cart.carts.reduce((prev, item) => {
-        return (prev += item.product.price * item.quantity);
-      }, 0);
+      const total = state.cart.carts.reduce((prev, item) => (prev += item.product.price * item.quantity), 0);
       // total = total*
       return total;
     },
@@ -33,14 +31,14 @@ export default {
     },
   },
   actions: {
-    getCart(context, cb) {
+    getCart(context) {
       return new Promise((resolve, reject) => {
         context.commit('LOADING', true);
         const api = 'ec/shopping';
         // Vue.$instanceCus.get(api)//@@
         instanceCus.get(api)
           .then((res) => {
-            console.log('上面是取得購物車');
+            // console.log('上面是取得購物車');
             // this.carts = res.data.data.reverse();
             // this.cartPagination = res.data.meta.pagination;
             context.commit('CART', res.data);
@@ -59,8 +57,8 @@ export default {
 
       // this.$instanceCus.post(api, cartItem)@@this有效嗎
       instanceCus.post(api, cartItem)
-        .then((res) => {
-          this.$bus.$emit('message:push', `${item.title}已加入購物車`, 'success');
+        .then(() => {
+          // this.$bus.$emit('message:push', `${item.title}已加入購物車`, 'success');//todo item讀取不到
           this.$refs.cart.getCart();
         });
       // ##這邊判斷post patch會跑兩次api
@@ -72,14 +70,14 @@ export default {
       // })
     },
     editCart(context, { productId, newQty }) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         context.commit('LOADING', true);
-        console.log(productId, newQty);
+        // console.log(productId, newQty);
 
         const api = 'ec/shopping';
         const cartItem = { product: productId, quantity: newQty };
         instanceCus.patch(api, cartItem)
-          .then((res) => {
+          .then(() => {
             // this.getCart();
             // this.$store.dispatch('getCart');//%%
             // context.dispatch('getCart');
@@ -96,11 +94,11 @@ export default {
     },
     delCart(context, productId) {
       // this.$store.commit('LOADING',true);
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         context.commit('LOADING', true);
         const api = `ec/shopping/${productId}`;
         instanceCus.delete(api)
-          .then((res) => {
+          .then(() => {
             // this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
             // app.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
             // this.getCart();
@@ -113,7 +111,7 @@ export default {
       context.commit('LOADING', true);
       const api = 'ec/shopping/all/product';
       instanceCus.delete(api)
-        .then((res) => {
+        .then(() => {
           // this.$bus.$emit('message:push','全部商品已刪除','success')
           context.dispatch('getCart');
         });

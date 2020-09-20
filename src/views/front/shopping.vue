@@ -1,6 +1,7 @@
 <template>
   <div class="shopping">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <NavHeader></NavHeader>
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <router-link :to="{name:'home'}" tag="a" class="navbar-brand">
         首頁
       </router-link>
@@ -31,7 +32,7 @@
           </li>
         </ul>
       </div>
-    </nav>
+    </nav> -->
     <!-- <div class="processStep row"> 如何付款完成頁消失 -->
     <div v-if="nowPage" class="processStep row">
       <div class="col-md-8 mx-auto">
@@ -67,10 +68,12 @@
   </div>
 </template>
 <script>
-import NavFooter from '@/components/NavFooter';
+import NavHeader from '@/components/NavHeader.vue';
+import NavFooter from '@/components/NavFooter.vue';
 
 export default {
   components: {
+    NavHeader,
     NavFooter,
   },
   data() {
@@ -84,8 +87,8 @@ export default {
     },
   },
   watch: {
-    nowPage(newVal, val) {
-      console.log('改變頁數', newVal);
+    nowPage(newVal) {
+      // console.log('改變頁數', newVal);
 
       switch (newVal) {
       case 'order_preview':
@@ -96,6 +99,8 @@ export default {
         break;
       case 'order_confirm':
         this.barWidth = '100%';
+        break;
+      default:
         break;
       }
     },
@@ -108,7 +113,7 @@ export default {
   },
   methods: {
     changeBar(nowPage) {
-      console.log('換頁');
+      // console.log('換頁');
     },
     // initBar() {
     //   const { path } = this.$route;

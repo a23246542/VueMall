@@ -180,8 +180,8 @@
   </div>
 </template>
 <script>
-import Pagination from '@/components/BasePagination';
-import DashModal from '@/components/admin/DashOtherModal';
+import Pagination from '@/components/BasePagination.vue';
+import DashModal from '@/components/admin/DashOtherModal.vue';
 import Vue from 'vue';
 
 export default {
@@ -207,7 +207,7 @@ export default {
       this.orderId = orderItem.id;
       this.getSingleOrder()
         .then(() => {
-          console.dir($('#dashOrderModal'));
+          // console.dir($('#dashOrderModal'));
           Vue.nextTick(() => {
             $('#dashOrderModal').modal('show');
           });
@@ -252,7 +252,7 @@ export default {
         api = `ec/orders/${tempOrderId}/unpaid`;
       }
       this.$instanceAdmin.patch(api)
-        .then((res) => {
+        .then(() => {
           this.getOrders();
         });
     },

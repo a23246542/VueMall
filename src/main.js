@@ -29,7 +29,7 @@ import 'bootstrap';// js模組
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import { instanceLogin, instanceAdmin, instanceCus } from './api/https';
+import { instanceLogin } from './api/https';
 import './bus';
 
 window.$ = $;

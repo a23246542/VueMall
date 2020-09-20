@@ -267,20 +267,13 @@ export default {
       relatedProductsNum: 2,
     };
   },
-  created() {
-    this.getSingleProduct();
-    // console.log('產品內頁的route', this.$route);
-    this.$store.dispatch('setBreadcrumbList', ['home', 'products', 'productSingle']);
-  },
   computed: {
     ...mapState({
       allProducts: (state) => state.CusProducts.products,
       carts: (state) => state.Cart.cart.carts,
     }),
     sameCategoryProducts() {
-      return this.allProducts.filter((item) => {
-        return item.category === this.product.category;
-      });
+      return this.allProducts.filter((item) => item.category === this.product.category);
     },
     relatedProducts() {
       const wantNum = this.relatedProductsNum;// 設定想要呈現的隨機產品數量
@@ -291,7 +284,7 @@ export default {
         const min1 = Math.ceil(min);
         const max1 = Math.floor(max);
         return Math.floor(Math.random() * (max1 - min1)) + min1;
-      // 不含最大值，含最小值
+        // 不含最大值，含最小值
       }
 
       // for (let i = 0; i<=wantNum; i++){
@@ -301,21 +294,24 @@ export default {
       const randomSet = new Set();
       while (randomSet.size !== wantNum && this.allProducts.length) { // %%避免getRandomInt取不到無限迴圈
         // randomSet.push(getRandomInt(1,this.allProducts.length))%%
-        console.log('randomSet');
+        // console.log('randomSet');
         randomSet.add(getRandomInt(1, this.allProducts.length));
         // console.log(randomSet.size);//1迴圈
         // console.log(typeof(randomSet.size));//number迴圈
       }
       const randomIndexs = Array.from(randomSet);
-      console.log(randomIndexs);
+      // console.log(randomIndexs);
 
-      relatedProducts = randomIndexs.map((item) => {
-        return this.allProducts[item];
-      });
+      relatedProducts = randomIndexs.map((item) => this.allProducts[item]);
 
       return relatedProducts;
       // return 1;
     },
+  },
+  created() {
+    this.getSingleProduct();
+    // console.log('產品內頁的route', this.$route);
+    this.$store.dispatch('setBreadcrumbList', ['home', 'products', 'productSingle']);
   },
   methods: {
     getSingleProduct() {
@@ -347,7 +343,7 @@ export default {
       // }
     },
     updateProductQty(type) {
-      const productId = this.product.id;
+      // const productId = this.product.id;
       // let qty = this.product.qty;
       // let num = qty;
       switch (type) {
@@ -361,14 +357,16 @@ export default {
         break;
       case 'reduce':
 
-        if (this.product.qty == 1) {
+        if (this.product.qty === 1) {
           this.$bus.$emit('message:push', '購買數量不能少於1');
         } else {
           this.product.qty -= 1;
         }
         break;
-                // case 'input':
-                //     break;
+        // case 'input':
+        //     break;
+      default:
+        break;
       }
     },
     buyProduct(isDirectBuy) {

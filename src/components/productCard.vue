@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+// import { mapState } from 'vuex';
 
 export default {
 
@@ -124,7 +124,8 @@ export default {
       // })
 
       // 會是undefine 或{...}
-      const hasInCartItem = this.carts.find((cartItem) => cartItem.product.id === item.id);
+      // @@todo不知道為什麼改掉就錯了 變成同個產品數量重複加
+      const hasInCartItem = this.carts.find((cartItem) => cartItem.product.id === cartItem.id);
       // console.log(hasInCartItem,!hasInCartItem);
 
       if (!hasInCartItem) {
@@ -176,7 +177,7 @@ export default {
       }
     },
     openSingleProudct() {
-      console.log(this.thisProduct.id);
+      // console.log(this.thisProduct.id);
       this.$router.push({
         path: `/products/${this.thisProduct.id}`,
         // path: `products/${this.thisProduct.id}`,
@@ -185,7 +186,7 @@ export default {
         // name: 'productSingle',
         // params: { prdId: this.thisProduct.id },
       }).catch(() => {});
-      console.log('跳頁');
+      // console.log('跳頁');
     },
   },
 };

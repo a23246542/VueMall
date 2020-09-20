@@ -66,8 +66,8 @@
   </div>
 </template>
 <script>
-import pagination from '@/components/BasePagination';
-import DashModal from '@/components/admin/DashOtherModal';
+import pagination from '@/components/BasePagination.vue';
+import DashModal from '@/components/admin/DashOtherModal.vue';
 
 export default {
   components: {
@@ -140,7 +140,7 @@ export default {
       this.$store.commit('LOADING', true);
       const api = `storage/${checkedItem.id}`;
       this.$instanceAdmin.delete(api)
-        .then((res) => {
+        .then(() => {
           this.storages.splice(checkedindex, 1);
           // this.$refs.dashStorageModal.modal('hide');//##jquery無效
           $('#dashStorageModal').modal('hide');

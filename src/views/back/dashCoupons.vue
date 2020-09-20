@@ -163,8 +163,8 @@
   </div>
 </template>
 <script>
-import BasePagination from '@/components/BasePagination';
-import DashModal from '@/components/admin/DashOtherModal';
+import BasePagination from '@/components/BasePagination.vue';
+import DashModal from '@/components/admin/DashOtherModal.vue';
 
 export default {
   components: {
