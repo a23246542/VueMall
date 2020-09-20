@@ -1,4 +1,5 @@
 <template>
+  <!-- ##還未使用 -->
   <div>
     <ul>
       <li v-for="item in obj.sort" :key="item">
@@ -40,15 +41,15 @@ export default {
     };
   },
   computed: {
-    // typeList() {
-    //   const obj = {
-    //     sort: [],
-    //     map: {},
-    //   };
-    //   this.category.forEach((item, index) => {
-    //     // if(obj.map[item])
-    //   });
-    // },
+  //   typeList() {
+  //     const obj = {
+  //       sort: [],
+  //       map: {},
+  //     };
+  //     this.category.forEach((item, index) => {
+  //       // if(obj.map[item])
+  //     });
+  //   },
   },
 };
 </script>
