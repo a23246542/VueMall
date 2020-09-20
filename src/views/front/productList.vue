@@ -1,8 +1,9 @@
 <template>
   <div class="productList">
     <div class="row">
-      <div v-for="(item) in filterProducts"
-           :key="item.id" class="col-xl-4 col-sm-6 productCardCol"
+      <div
+        v-for="(item) in filterProducts"
+        :key="item.id" class="col-xl-4 col-sm-6 productCardCol"
       >
         <ProductCard
           :this-product="item"
@@ -40,7 +41,7 @@ export default {
       if (this.searchText === 'all') {
         return this.products;
       }
-      // }else{ //@@eslint 報錯 todo
+      // }else{ //@@eslint?
       //   return this.products.filter((item) => {
       //   // return item.category == this.searchText;
       //     item.category.toLowerCase().includes(this.searchText.toLowerCase()); // %%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false
@@ -49,13 +50,6 @@ export default {
       return this.products.filter((item) => item.category.toLowerCase().includes(this.searchText.toLowerCase())); // %%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false);
     },
   },
-  created() {
-    // console.log(this.searchText);
-    // this.$emit('change-page', 'products');//%%會失敗
-  },
-  // mounted() {
-  //   this.$emit('change-page', 'products');
-  // },
   methods: {
     async getProducts(page = 1) {
       await this.$store.dispatch('getProducts', page);// @@無效

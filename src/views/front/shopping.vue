@@ -1,39 +1,6 @@
 <template>
   <div class="shopping">
     <NavHeader></NavHeader>
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <router-link :to="{name:'home'}" tag="a" class="navbar-brand">
-        首頁
-      </router-link>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon" />
-      </button>
-      <div id="navbarSupportedContent" class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <router-link :to="{name:'購物清單'}" tag="a" class="nav-link">
-              購物清單
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link :to="{name:'收件資訊'}" class="nav-link">
-              收件資訊
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link :to="{name:'最後確認'}" class="nav-link">
-              最後確認
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link :to="{name:'訂單完成'}" class="nav-link">
-              訂單完成
-            </router-link>
-          </li>
-        </ul>
-      </div>
-    </nav> -->
-    <!-- <div class="processStep row"> 如何付款完成頁消失 -->
     <div v-if="nowPage" class="processStep row">
       <div class="col-md-8 mx-auto">
         <ul class="d-flex">
@@ -89,11 +56,10 @@ export default {
   watch: {
     nowPage(newVal) {
       // console.log('改變頁數', newVal);
-
       switch (newVal) {
       case 'order_preview':
         this.barWidth = '33%';
-        break;// %%難怪一直跑出66%
+        break;
       case 'order_info':
         this.barWidth = '66%';
         break;
@@ -105,9 +71,9 @@ export default {
       }
     },
   },
-  activated() {
-    console.log(this.$route.name);// @@無效
-  },
+  // activated() {
+  //   console.log(this.$route.name);// @@activated無效
+  // },
   mounted() {
     // this.initBar();
   },
@@ -115,17 +81,6 @@ export default {
     changeBar(nowPage) {
       // console.log('換頁');
     },
-    // initBar() {
-    //   const { path } = this.$route;
-    //   console.log(this.$route);//%% 會是shopping/order_preview
-
-    //   switch(path){
-    //     case 'order_preview':
-    //       this.barWidth = '33%';
-    //     case 'order_info':
-    //       this.barWidth = '66%';
-    //   }
-    // }
   },
 };
 </script>

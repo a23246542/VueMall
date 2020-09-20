@@ -26,11 +26,6 @@
                 }"
                 @click="setThumbImgIndex(index)"
             >
-              <!-- @@li會爆掉須研究 -->
-              <!-- <img :src="product.imageUrl[index+1]" alt=""
-                                class=""
-                                style="height:100%;object-fit:cover;"
-                              > -->
             </li>
             <!-- </div> -->
           </ul>
@@ -154,16 +149,18 @@
           </div>
           <div class="productInfo__contentArea  bg-white text-secondary2">
             <!-- <div class="productInfo__view"> -->
-            <div class="productInfo__featureView productInfo__p ql-editor"
-                 :class="{'productInfo__featureView--show':selectedPrdInfoView==='feature'}"
+            <div
+              class="productInfo__featureView productInfo__p ql-editor"
+              :class="{'productInfo__featureView--show':selectedPrdInfoView==='feature'}"
             >
               <!-- <p>{{ product.description }}</p> -->
               <!-- eslint-disable -->
               <p v-html="product.description"/>
               <!-- eslint-enable -->
             </div>
-            <div class="productInfo__specificationView productInfo__p"
-                 :class="{'productInfo__specificationView--show':selectedPrdInfoView==='specification'}"
+            <div
+              class="productInfo__specificationView productInfo__p"
+              :class="{'productInfo__specificationView--show':selectedPrdInfoView==='specification'}"
             >
               <p>/運送規範</p>
               <p>
@@ -172,8 +169,9 @@
                 下午四點完成訂單，隔日送達(偏遠山區、離島例外)。
               </p>
             </div>
-            <div class="productInfo__shipmentRuleView productInfo__p"
-                 :class="{'productInfo__shipmentRuleView--show':selectedPrdInfoView==='shipmentRule'}"
+            <div
+              class="productInfo__shipmentRuleView productInfo__p"
+              :class="{'productInfo__shipmentRuleView--show':selectedPrdInfoView==='shipmentRule'}"
             >
               <!-- <p>/注意事項</p> -->
               <div>
@@ -206,23 +204,11 @@
           </div>
           <div class="sideProductList__group">
             <ul v-if="relatedProducts">
-              <!-- //%%沒報錯 但網頁無限迴圈當掉 id重複
-              <li v-for="item in relatedProducts"
-                  :key="item.id" class="sidePrdItem px-2 py-2 border bg-white"
-              > -->
-              <!-- ## %%發現是索引會跑掉 -->
-              <!-- <li v-for="(item,index) in relatedProducts"
-                  :key="index+item.id" class="sidePrdItem px-2 py-2 border bg-white"
-              > -->
               <li v-for="(item,index) in sameCategoryProducts"
                   :key="index+item.id" class="sidePrdItem px-2 py-2 border bg-white"
               >
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="sidePrdItem__infoBox p-3">
-                    <!-- @@?? -->
-                    <!-- 自創這個做法會有問題嗎 -->
-                    <!-- <div class="_infoBox__title"></div> -->
-
                     <div class="sidePrdItem__title text-truncate">
                       {{ item.title }}
                     </div>
@@ -245,10 +231,6 @@
       </div>
     </div>
   </div>
-  <!-- <h2>
-
-        </h2>
-    </div> -->
 </template>
 
 <script>
@@ -259,7 +241,7 @@ export default {
     return {
       id: '',
       product: {
-        imageUrl: [], // @@會被蓋掉寫了有用嗎?
+        imageUrl: [],
         qty: 1,
       },
       selectedImgIndex: 0,
@@ -287,17 +269,9 @@ export default {
         // 不含最大值，含最小值
       }
 
-      // for (let i = 0; i<=wantNum; i++){
-
-      //   randomIndex.push(getRandomInt(1,this.allProducts.length))
-      // }
       const randomSet = new Set();
-      while (randomSet.size !== wantNum && this.allProducts.length) { // %%避免getRandomInt取不到無限迴圈
-        // randomSet.push(getRandomInt(1,this.allProducts.length))%%
-        // console.log('randomSet');
+      while (randomSet.size !== wantNum && this.allProducts.length) {
         randomSet.add(getRandomInt(1, this.allProducts.length));
-        // console.log(randomSet.size);//1迴圈
-        // console.log(typeof(randomSet.size));//number迴圈
       }
       const randomIndexs = Array.from(randomSet);
       // console.log(randomIndexs);
@@ -333,19 +307,8 @@ export default {
     },
     setInfoView(selectedItem) {
       this.selectedPrdInfoView = selectedItem;
-      // switch (selectedItem) {
-      //   case 'feature':
-
-      //     break;
-
-      //   default:
-      //     break;
-      // }
     },
     updateProductQty(type) {
-      // const productId = this.product.id;
-      // let qty = this.product.qty;
-      // let num = qty;
       switch (type) {
       case 'add':
         if (this.product.qty === this.product.options.stock) {
@@ -363,8 +326,6 @@ export default {
           this.product.qty -= 1;
         }
         break;
-        // case 'input':
-        //     break;
       default:
         break;
       }
@@ -406,26 +367,20 @@ export default {
 </script>
 
 <style lang="css" scoped>
-/* @import "~vue2-editor/dist/vue2-editor.css"; */
-/* %%沒效看css少父class */
-
 /* Import the Quill styles you want */
 /* @import '~quill/dist/quill.core.css';
 @import '~quill/dist/quill.bubble.css';
 @import '~quill/dist/quill.snow.css'; */
-
-/* h1,h2,h3,h4,h5,h6{
-  font-size:unset;
-} */
-
 .ql-editor{
   overflow-x:hidden;
   /* font-size: 12px; */
 }
 
 /* %%組件 */
+/* eslint-disable */
 /deep/.ql-editor img{
   max-width: 100% !important;
   height: auto;
 }
+/* eslint-enable */
 </style>

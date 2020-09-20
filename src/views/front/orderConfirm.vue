@@ -56,24 +56,6 @@
                       {{ prdObj.quantity * prdObj.product.price }}
                     </div>
                   </li>
-                  <!-- <li class="prdList__row d-flex">
-                    <div class="prdList__Item flex-2 text-left">
-                      <img src="" alt="">
-                      商品資料
-                    </div>
-                    <div class="prdList__Item flex-1">
-                      組
-                    </div>
-                    <div class="prdList__Item flex-1">
-                      2565
-                    </div>
-                    <div class="prdList__Item flex-1">
-                      1
-                    </div>
-                    <div class="prdList__Item flex-1">
-                      26585
-                    </div>
-                  </li> -->
                 </ul>
                 <div class="orderCount d-flex justify-content-between">
                   <div class="orderCount__num">
@@ -81,8 +63,6 @@
                   </div>
                   <div class="orderCount__box">
                     <div class="orderCount__list p-2">
-                      <!-- %%coupon為null 不是物件這時候就也報錯了 -->
-                      <!-- <div v-if="coupon.percent" class="d-flex justify-content-between mb-1"> -->
                       <div v-if="coupon && coupon.percent" class="d-flex justify-content-between mb-1">
                         <span>折扣金額</span>
                         <span>-NT${{ orderDiscountAmount }}</span>
@@ -180,14 +160,6 @@
         </div>
       </div>
     </div>
-    <!-- 步驟1 或改純購物明細
-        1.訂單摘要(蝦)
-            1.品項數量
-            2.付款方式
-            3.留言
-            4.訂單金額(x件商品) 總計
-        1.顧客資訊
-        3.購物明細.清單 -->
   </div>
 </template>
 <script>
@@ -213,7 +185,7 @@ export default {
       const amountAll = (this.amount * 100) / this.coupon.percent;
       return (amountAll - this.amount);
       // } else {
-      //   return 0;//@@後面不能接return
+      //   return 0;//@@不能接return?
       // }
     },
     thisOrder() {
@@ -244,26 +216,6 @@ export default {
           this.paid = paid;
           this.created_at = createdAt;
         });
-      // const api = `ec/orders/${orderId}`;
-
-      // this.$instanceCus.get(api)
-      //   .then((res) => {
-      //     this.orderData = res.data.data;
-      //     // ##改成小大寫createAt
-      //     const {
-      //       message, user, coupon, amount, products, payment, paid, createdAt,
-      //     } = res.data.data;
-      //     this.message = message;
-      //     this.user = user;
-      //     this.coupon = coupon;
-      //     this.amount = amount;
-      //     this.products = products;
-      //     this.payment = payment;
-      //     this.paid = paid;
-      //     this.created_at = createdAt;
-      //   }).catch((err) => {
-
-      //   });
     },
     paySubmit() {
       const vm = this;
@@ -306,16 +258,6 @@ export default {
 
             });
         }
-        // else if (
-        // /* Read more about handling dismissals below */
-        //   result.dismiss === Swal.DismissReason.cancel
-        // ) {
-        //     vm.$swal.fire(
-        //     'Cancelled',
-        //     'Your imaginary file is safe :)',
-        //     'error',
-        //   );
-        // }
       });
       // this.$router.push({
       //   name: '訂單完成',

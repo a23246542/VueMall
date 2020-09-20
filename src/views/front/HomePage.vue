@@ -318,7 +318,7 @@
   </div>
 </template>
 <script>
-import ProductCard from '@/components/ProductCard.vue';// @@沒加.vue有紅線?
+import ProductCard from '@/components/ProductCard.vue';
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
 import Wish from '@/mixin/Wish';
 // import 'swiper/css/swiper.css';
@@ -351,15 +351,12 @@ export default {
           clickable: true,
         },
         breakpoints: {
-          // when window width is >= 896px
           897: {
             slidesPerView: 5,
           },
-          // when window width is >= 668px
           668: {
             slidesPerView: 3,
           },
-          // when window width is >= 569px
           569: {
             slidesPerView: 2,
           },
@@ -391,29 +388,9 @@ export default {
     this.$store.dispatch('getNewProducts');
   },
   mounted() {
-    const vm = this;
-    console.log('Current Swiper instance object', this.swiper);
-    this.swiper.slideTo(1, 2000, true);// @@原理 資料已完成.啟動
-
-    // vm.$nextTick(() => {
-    // vm.$swal({
-    //   icon: 'info',
-    //   title: '振興購物節',
-    //   text: '輸入序號享全館八折',
-    // });
-    // });
-
-    // window.setTimeout(function () {
-    //   console.log(this.$swal);
-    //   // vm.$swal.fire({//@@文檔不同
-    //   vm.$swal({
-    //     icon: 'info',
-    //     title: '振興購物節',
-    //     text: '輸入序號享全館八折',
-    //   });
-    //   // this.$swal('Hello Vue world!!!');//%%this跑掉
-    //   // vm.$swal('Hello Vue world!!!');
-    // }, 1500);
+    // const vm = this;
+    // console.log('Current Swiper instance object', this.swiper);
+    this.swiper.slideTo(1, 2000, true);// @@資料已完成.啟動
   },
   methods: {
     goNewPrd(itemId) {

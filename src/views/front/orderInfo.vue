@@ -100,12 +100,11 @@ export default {
     ...mapGetters(['cartTotal', 'discountAmount', 'amountAll']),
   },
   watch: {
-    // '$store.getters.cartTotal': function () { // @@監聽不到 改方法
+    // '$store.getters.cartTotal': function () { // @@監聽不到
     //   console.log('監聽cartTotal');
     //   this.$store.dispatch('setOrderCartTotal');
     // },
-    cartTotal() { // ##用computed監聽vuex 但存檔重整有時會無效可能要加熱重載?
-      // console.log('監聽cartTotal');
+    cartTotal() {
       this.$store.dispatch('setOrderCartTotal');
     },
   },
@@ -113,18 +112,11 @@ export default {
     this.$store.dispatch('getCart');// %%
     // this.$emit('changPage','orderInfo');
     this.$store.dispatch('changePage', 'order_info');
-    // this.$router.push({
-    //   name: '最後確認',
-    //   query: { orderId: '1mYdzl2jc9H7XWS1BstRu9ymOFkBvHfze43yqRfL0wV94Alzlb19Z09o6IGHPY3R' },
-    // });
-    // this.$store.dispatch('setOrderCartTotal');//##來不及改先監聽cartTotal
   },
   mounted() {
-    setTimeout(() => {
-      this.$emit('changPage', 1);
-    }, 1000);
-    //     Router-view渲染的子组件向父组件传递信息$emit不工作 - 中文 - Vue Forum
-    // https://forum.vuejs.org/t/router-view-emit/20927
+    // setTimeout(() => {
+    //   this.$emit('changPage', 1);
+    // }, 1000);
   },
   methods: {
     createOrder(customerForm) {
@@ -135,24 +127,15 @@ export default {
         this.$set(this.form, 'coupon', this.coupon.code);
       }
 
-      // ##
-      // this.form.coupon = this.$store.state.CusOrders.coupon.code ? this.$store.state.CusOrders.coupon.code :''
-      // if(this.$store.state.CusOrders.coupon.code){
-      //   this.form.coupon = this.$store.state.CusOrders.coupon.code;
-      // }
       const api = 'ec/orders';
       const vm = this;
       this.$instanceCus.post(api, this.form)
         .then((res) => {
           this.$store.commit('LOADING', false);
-          // const orderId = this.res.data.data.id;//%%導致沒跳一頁但也沒報錯
           const orderId = res.data.data.id;
-          // console.log('orderId', orderId, 'this', this);
-          // this.$router.push({
           vm.$router.push({
             name: '最後確認',
             query: { orderId },
-          // query:orderId %%一開始打錯router query打錯 下一頁打網址也讀取不到
           });
         }).catch(() => {
 

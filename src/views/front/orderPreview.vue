@@ -1,8 +1,6 @@
 <template>
   <div class="orderPreview">
     <div class="container">
-      <!-- 獲取渲染進來的组件name值 -->
-      <!-- <p>{{ $route.name }}</p> -->
       <div class="row">
         <!-- 購物車 開始 -->
         <div class="col-md-8">
@@ -14,22 +12,17 @@
                 </h4>
               </div>
               <div class="cart__body p-4 bg-light">
-                <!-- <div class="d-flex">
-                  <span>商品資料</span>
-                  <span>單位</span>
-                  <span>單件售價</span>
-                  <span>數量</span>
-                  <span>小計</span>
-                </div> -->
-                <div v-for="(item) in cart.carts"
-                     :key="item.product.id"
-                     class="cart__item row mb-3"
+                <div
+                  v-for="(item) in cart.carts"
+                  :key="item.product.id"
+                  class="cart__item row mb-3"
                 >
                   <div class="col-3 col-md-3">
                     <!-- <div class="flex-1"> -->
                     <!-- 圖片 -->
-                    <img class="img-fluid"
-                         :src="item.product.imageUrl[0]" alt=""
+                    <img
+                      class="img-fluid"
+                      :src="item.product.imageUrl[0]" alt=""
                     >
                   </div>
                   <div class="col-9 col-md-9">
@@ -58,23 +51,14 @@
                                       @click.prevent="updateCartQty('add1',item)"
                               >+</button>
                             </span>
-
-                            <!-- <input type="text" class="text-center form-control"
-                                                        style="width:30px"
-                                                        v-model.number="item.quantity"
-                                                         @input.prevent="updateCartQty('input',item)"
-                                                        > -->
-                            <!-- <input type="text" class="text-center form-control"
-                                                        style="width:30px"
-                                                        v-model.number="item.quantity"
-                                                         @input.prevent="stayUpCart"
-                                                        > -->
-                            <input v-model.number="item.quantity" v-debounce:1s.lock="stayUpdateCart"
-                                   type="text"
-                                   class="text-center form-control"
-                                   style="width:30px"
-                                   :debounce-events="'input'"
-                                   :data-item-id="item.product.id"
+                            <input
+                              v-model.number="item.quantity"
+                              v-debounce:1s.lock="stayUpdateCart"
+                              type="text"
+                              class="text-center form-control"
+                              style="width:30px"
+                              :debounce-events="'input'"
+                              :data-item-id="item.product.id"
                             >
                             <span class="input-group-append">
                               <button class="btn btn-primary"
@@ -125,17 +109,18 @@
                   <span class="mr-4 text-nowrap">折價券</span>
                   <!-- 折價券## -->
                   <span class="input-group">
-                    <input v-model="couponCode" type="text" class="form-control rounded-0" placeholder="輸入優惠碼"
-                           @keyup.enter="searchCoupon"
+                    <input
+                      v-model="couponCode" type="text" class="form-control rounded-0" placeholder="輸入優惠碼"
+                      @keyup.enter="searchCoupon"
                     >
-                    <div class="input-group-append"
-                         @click="searchCoupon"
+                    <div
+                      class="input-group-append"
+                      @click="searchCoupon"
                     >
                       <span class="input-group-text rounded-0 bg-secondary1 text-white">套用</span>
                     </div>
                   </span>
                 </div>
-                <!-- @@為何會有出現 -->
                 <!-- <p v-show="discountAmount" class="d-flex justify-content-between pb-3 text-red border-bottom"> -->
                 <p v-if="discountAmount" class="d-flex justify-content-between pb-3 text-red border-bottom">
                   <span>折扣金額</span>
@@ -153,8 +138,9 @@
                   </div>
                 </div>
               </div>
-              <router-link tag="a" href="#" class="btn btn-primary btn-block"
-                           :to="{name:'收件資訊'}"
+              <router-link
+                tag="a" href="#" class="btn btn-primary btn-block"
+                :to="{name:'收件資訊'}"
               >
                 下一步
               </router-link>
@@ -190,49 +176,21 @@ export default {
     cartTotal() {
       return this.$store.getters.cartTotal;
     },
-    // carts(){
-    //     return this.$store.state.Cart.cart.carts;
-    // }
-    //  ...mapGetters({ //##範例
-    //   products: 'shopcart/shopcartItems',
-    //   loading: 'loading',
-    // }),
     ...mapGetters(['amountAll', 'discountAmount']),
     // ...mapGetters({
-    //   orderTotal:'/amountAll'//@@amountAll吃不到，無法重命名
+    //   orderTotal:'/amountAll'//@@重命名
     // })
-    // amountAll(){
-    //   return this.$store.getters.amountAll;
-    // }
   },
   watch: {
-    // ['cart.carts']:{
-    // // carts:{
-    //     handler:function(newVal,oldVal){
-    //         // console.log(newVal);
-    //         // console.log(oldVal);
-    //         console.log('觸發watch');
-    //         // this.stayUpCart();
-    //     },
-    //     deep:true
-    // }
     cartTotal() {
       this.$store.dispatch('setOrderCartTotal');
-
-      // this.$store.dispatch('getOrderTotal')
-      // this.$store.commit('ORDER')
     },
     // ['$store.state.CusOrders.coupon.percent'](){
     //   console.log('取得coupon');
-
     // }
   },
   created() {
-    // this.debounceInputCart = debounce(this.updateCartQty('subtract1',item),'400')
-    // this.$store.dispatch('delAllCart');
-
     this.getCart();
-    // 在頁面重新整理時將vuex裡的資訊儲存到localStorage裡 window.addEventListener("beforeunload",()=>{ localStorage.setItem("messageStore",JSON.stringify(this.$store.state)) }) //在頁面載入時讀取localStorage裡的狀態資訊 localStorage.getItem("messageStore") && this.$store.replaceState(Object.assign(this.$store.state,JSON.parse(localStorage.getItem("messageStore")))); 原文網址：https://itw01.com/UA4CZEY.html
   },
   mounted() {
     this.$store.dispatch('changePage', 'order_preview');
@@ -254,8 +212,6 @@ export default {
         break;
       default:
         break;
-                  // case 'input':
-                  //     break;
       }
       // console.log('更新购物车', productId, qty);
       // this.$store.dispatch('editCart',{id,qty});//@@
@@ -266,13 +222,6 @@ export default {
 
       this.$store.dispatch('editCart', data);
     },
-    // stayUpCart(){
-    //     // _.debounce(this.updateCartQty(type,item),1000)
-    //     console.log('執行stayUpCart');
-
-    //     _.debounce(()=>{console.log('現在才打api');
-    //     },10000)();
-    // },
     stayUpdateCart(val, e) {
       // console.log(val);
       // console.dir(e);
@@ -317,7 +266,7 @@ export default {
 
         // this.getCart();
       }).catch(() => {
-        this.$store.commit('COUPON', {});// ##這樣重新套用無效的優惠券才會重來
+        this.$store.commit('COUPON', {});// ##無效的優惠券
         this.$store.commit('LOADING', false);
         // const { message } = err.response.data;
         // alert(message);

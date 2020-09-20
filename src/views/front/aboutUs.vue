@@ -12,7 +12,6 @@
             </h3>
             <h3 class="brandStory__title subTitle">
               風格露營x裝備選物
-              <!-- 風格美食xGQ肉食節x潮流二手x裝備選物 -->
             </h3>
             <div class="brandStory__content mt-4 py-lg-5 pl-lg-5 pr-lg-4 pl-md-3 pr-md-3 py-3 px-3">
               <p class="brandStory__contentP">
