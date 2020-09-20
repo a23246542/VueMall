@@ -68,16 +68,16 @@
                 </div>
                 <ul class="footerLink__iconBlock">
                   <li class="footerLink__icon">
-                    <img src="/icons/facebook.png" alt="">
+                    <img src="@/assets/icons/facebook.png" alt="">
                   </li>
                   <li class="footerLink__icon" style="padding-top:1px">
-                    <img src="/icons/line.png" alt="">
+                    <img src="@/assets/imagesicons/line.png" alt="">
                   </li>
                   <li class="footerLink__icon">
-                    <img src="/icons/instagram.png" alt="">
+                    <img src="@/assets/icons/instagram.png" alt="">
                   </li>
                   <li class="footerLink__icon">
-                    <img src="/icons/youtube.png" alt="">
+                    <img src="@/assets/icons/youtube.png" alt="">
                   </li>
                 </ul>
               </div>
