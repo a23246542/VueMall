@@ -71,7 +71,7 @@
                     <img src="@/assets/icons/facebook.png" alt="">
                   </li>
                   <li class="footerLink__icon" style="padding-top:1px">
-                    <img src="@/assets/imagesicons/line.png" alt="">
+                    <img src="@/assets/icons/line.png" alt="">
                   </li>
                   <li class="footerLink__icon">
                     <img src="@/assets/icons/instagram.png" alt="">
