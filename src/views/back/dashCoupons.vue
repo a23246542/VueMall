@@ -292,7 +292,7 @@ export default {
             $('#couponModal').modal('hide');
           });
         });
-      // .then(() =>{//##只適合上面用promiseFn包的時候
+      // .then(() =>{//##只適合用promiseFn的時候
       //     $("#couponModal").modal("hide");
       // })
     },

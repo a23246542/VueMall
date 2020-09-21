@@ -3,11 +3,8 @@ body{
   &::-webkit-scrollbar{
     // width: 5px;
     // height: 10px;
-    
-    // width: 10px;
-    // height: 30px;
     // border-radius: 5px;
-    background-color: #ccc;//%%要跟thumb同時寫
+    background-color: #ccc; // %%要跟thumb同時寫
   }
 //"&"是必須與上一層同層級
 //-webkit-scrollbar : 整體的scrollbar樣式

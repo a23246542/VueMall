@@ -6,7 +6,7 @@
         <span class="badge badge-pill badge-danger">{{ carts.length }}</span>
         <!-- <span class="badge badge-pill badge-danger">3</span> -->
       </button>
-      <div class="dropdown-menu" style="min-width: 300px;" aria-labelledby="dropdownMenuButton">
+      <div class="dropdown-menu" style="min-width: 350px;" aria-labelledby="dropdownMenuButton">
         <!-- <a class="dropdown-item" href="#">Action</a> -->
         <div class="px-4 py-3">
           <table class="table table-sm mb-0">
@@ -96,15 +96,6 @@ export default {
     };
   },
   computed: {
-    // cartTotal(){
-    //     let total =0;
-    //     this.carts.forEach((item) => {
-    //         let subtotal = 0;
-    //         subtotal = item.quantity*item.product.price;
-    //         total+=subtotal;
-    //     })
-    //     return total;
-    // },
     carts() {
       return this.$store.state.Cart.cart.carts;
     },
@@ -132,25 +123,9 @@ export default {
         .then(() => {
           this.$bus.$emit('message:push', `${item.product.title} 已刪除`, 'success');
         });
-
-      // this.$store.commit('LOADING',true);
-      // const api =`ec/shopping/${item.product.id}`;
-      // this.$instanceCus.delete(api)
-      // .then((res) => {
-      //     this.$bus.$emit('message:push',`${item.product.title} 已刪除`,'success');
-      //     this.getCart();
-      // })
     },
     delAllCart() {
       this.$store.dispatch('delAllCart');
-
-      // this.$store.commit('LOADING',true);
-      // const api ="ec/shopping/all/product";
-      // this.$instanceCus.delete(api)
-      // .then((res) => {
-      //     this.$bus.$emit('message:push','全部商品已刪除','success')
-      //     this.getCart();
-      // })
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <!-- ##還未使用 -->
+  <!-- ##還未使用的組件 -->
   <div>
     <ul>
       <li v-for="item in obj.sort" :key="item">

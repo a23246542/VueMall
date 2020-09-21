@@ -19,22 +19,25 @@
             <div class="col-sm-4">
               <div class="form-group">
                 <label for="imageUrl">輸入圖片網址(enter)</label>
-                <input id="imageUrl" v-model="tempImgUrl" type="text" class="form-control"
-                       placeholder="請輸入圖片連結"
-                       @keyup.enter="addImg"
+                <input
+                  id="imageUrl" v-model="tempImgUrl" type="text" class="form-control"
+                  placeholder="請輸入圖片連結"
+                  @keyup.enter="addImg"
                 >
               </div>
               <div class="form-group">
                 <label for="fileImg">或上傳圖片</label>
-                <input id="fileImg" ref="file"
-                       type="file"
-                       class="form-control"
-                       @change="uploadImg"
+                <input
+                  id="fileImg" ref="file"
+                  type="file"
+                  class="form-control"
+                  @change="uploadImg"
                 >
               </div>
               <hr>
-              <div class="d-flex w-100 flex-column overflow-x-hidden overflow-y-auto"
-                   style="height:500px"
+              <div
+                class="d-flex w-100 flex-column overflow-x-hidden overflow-y-auto"
+                style="height:500px"
               >
                 <div v-for="(url,index) in tempProduct.imageUrl" :key="'img'+index" class="w-100 flex-shrink-0 px-2 text-center">
                   <div class="form-group">
@@ -45,12 +48,14 @@
                             :readonly="isReadonly(url)"
                             v-model="tempProduct.imageUrl[index]"
                             > -->
-                    <input :id="'img'+index" v-model="tempProduct.imageUrl[index]" type="text" class="form-control"
-                           placeholder="請輸入圖片連結"
+                    <input
+                      :id="'img'+index" v-model="tempProduct.imageUrl[index]" type="text" class="form-control"
+                      placeholder="請輸入圖片連結"
                     >
                   </div>
-                  <img class="img-fluid" alt=""
-                       :src="tempProduct.imageUrl[index]"
+                  <img
+                    class="img-fluid" alt=""
+                    :src="tempProduct.imageUrl[index]"
                   >
                 </div>
               </div>
@@ -58,28 +63,32 @@
             <div class="col-sm-8">
               <div class="form-group">
                 <label for="title">標題</label>
-                <input id="title" v-model="tempProduct.title" type="text" class="form-control"
-                       placeholder="請輸入標題"
+                <input
+                  id="title" v-model="tempProduct.title" type="text" class="form-control"
+                  placeholder="請輸入標題"
                 >
               </div>
 
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="category">分類</label>
-                  <input id="category" v-model="tempProduct.category" type="text"
-                         class="form-control" placeholder="請輸入分類"
+                  <input
+                    id="category" v-model="tempProduct.category" type="text"
+                    class="form-control" placeholder="請輸入分類"
                   >
                 </div>
                 <div class="form-group col-md-4">
                   <label for="price">單位</label>
-                  <input id="unit" v-model="tempProduct.unit" type="text" class="form-control"
-                         placeholder="請輸入單位"
+                  <input
+                    id="unit" v-model="tempProduct.unit" type="text" class="form-control"
+                    placeholder="請輸入單位"
                   >
                 </div>
                 <div class="form-group col-md-4">
                   <label for="stock">庫存</label>
-                  <input id="stock" v-model.number="tempProduct.options.stock" type="number" class="form-control"
-                         placeholder="請輸入庫存"
+                  <input
+                    id="stock" v-model.number="tempProduct.options.stock" type="number" class="form-control"
+                    placeholder="請輸入庫存"
                   >
                 </div>
               </div>
@@ -87,22 +96,25 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="origin_price">原價</label>
-                  <input id="origin_price" v-model="tempProduct.origin_price" type="number"
-                         class="form-control" placeholder="請輸入原價"
+                  <input
+                    id="origin_price" v-model="tempProduct.origin_price" type="number"
+                    class="form-control" placeholder="請輸入原價"
                   >
                 </div>
                 <div class="form-group col-md-6">
                   <label for="price">售價</label>
-                  <input id="price" v-model="tempProduct.price" type="number" class="form-control"
-                         placeholder="請輸入售價"
+                  <input
+                    id="price" v-model="tempProduct.price" type="number" class="form-control"
+                    placeholder="請輸入售價"
                   >
                 </div>
               </div>
               <hr>
               <div class="form-group">
                 <label for="hashtag">產品標籤</label>
-                <input id="hashtag" v-model="tempProduct.options.hashtag" type="text" class="form-control"
-                       placeholder="請輸入產品標籤"
+                <input
+                  id="hashtag" v-model="tempProduct.options.hashtag" type="text" class="form-control"
+                  placeholder="請輸入產品標籤"
                 >
               </div>
               <div class="form-group">
@@ -139,8 +151,9 @@
                   <!-- <input id="is_enabled" v-model="tempProduct.enabled" class="form-check-input"
                     type="checkbox" :true-value="1" :false-value="0"> -->
                   <!-- %%這次api不需要更改true-value -->
-                  <input id="is_enabled" v-model="tempProduct.enabled" class="form-check-input"
-                         type="checkbox"
+                  <input
+                    id="is_enabled" v-model="tempProduct.enabled" class="form-check-input"
+                    type="checkbox"
                   >
                   <label class="form-check-label" for="is_enabled">是否啟用</label>
                 </div>
@@ -200,7 +213,7 @@ export default {
     };
   },
   computed: {
-    // isReadonly(){ //如果是上傳六角的圖片就不可編輯??
+    // isReadonly(){ // @@如果是上傳六角的圖片就不可編輯
     //     return function(url){
     //         if(url.indexOf("hexschool")!==-1){
     //             return true;

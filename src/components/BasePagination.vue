@@ -4,8 +4,9 @@
       <li class="page-item"
           :class="{'disabled':pages.current_page===1}"
       >
-        <a class="page-link" href="#" aria-label="Previous"
-           @click.prevent="emitPage(pages.current_page-1)"
+        <a
+          class="page-link" href="#" aria-label="Previous"
+          @click.prevent="emitPage(pages.current_page-1)"
         >
           <span aria-hidden="true">&laquo;</span>
         </a>
@@ -14,15 +15,17 @@
           :key="index" class="page-item"
           :class="{'active':item === pages.current_page}"
       >
-        <a class="page-link" href="#"
-           @click.prevent="emitPage(item)"
+        <a
+          class="page-link" href="#"
+          @click.prevent="emitPage(item)"
         >{{ item }}</a>
       </li>
       <li class="page-item"
           :class="{'disabled':pages.current_page === pages.total_pages}"
       >
-        <a class="page-link" href="#" aria-label="Next"
-           @click.prevent="emitPage(pages.current_page+1)"
+        <a
+          class="page-link" href="#" aria-label="Next"
+          @click.prevent="emitPage(pages.current_page+1)"
         >
           <span aria-hidden="true">&raquo;</span>
         </a>
@@ -36,7 +39,8 @@ export default {
   props: {
     pages: {
       type: Object,
-      // default:"1"
+      // default: {},// @@lint要有預設值且function?
+      default: () => {},
     },
   },
   data() {

@@ -1,8 +1,6 @@
 <template>
-  <!-- <div> -->
   <!-- <div class=`col-xl-4 col-sm-6 mb-${mb} productCardCol`
   > //@@代參數-->
-  <!-- <div class="col-xl-4 col-sm-6 productCardCol"> -->
   <div class="productCard card rounded-0" :class="[mb]">
     <!-- <img :src="thisProduct.imageUrl[0]" class="productCard__img card-img-top img-fluid" alt="..."
                     @click="openSingleProudct(thisProduct.id)"
@@ -43,7 +41,6 @@
       <div class="d-flex align-items-center">
         <div class="form-inline mr-2">
           <!-- ###寫入只能用v-model了 -->
-
           <!-- <select class="form-control"
                             v-model="product.num"
                             >
@@ -71,8 +68,6 @@
       </div>
     </div>
   </div>
-  <!-- </div> -->
-  <!-- </div> -->
 </template>
 
 <script>
@@ -81,7 +76,7 @@
 export default {
 
   props: {
-    // item:Object,//@@奇怪的right-hand-side報錯後來又正常
+    // item:Object, // @@奇怪的right-hand-side報錯後來又正常
     // item:{},
     thisProduct: {
       type: Object,
@@ -108,9 +103,9 @@ export default {
         ? 'far fa-heart'
         : 'fas fa-heart text-primary';
     },
-    // ...mapState(['wishItemIdList']),//%%模組的難怪失敗要用物件
+    // ...mapState(['wishItemIdList']), // %%
     wishItemIdList() {
-      return this.$store.state.WishList.wishItemIdList;// @@放在各別組件是否更耗效能
+      return this.$store.state.WishList.wishItemIdList; // @@放在各別卡片是否更耗效能
     },
   },
   methods: {
@@ -124,7 +119,7 @@ export default {
       // })
 
       // 會是undefine 或{...}
-      // @@todo不知道為什麼改掉就錯了 變成同個產品數量重複加
+      // @@ todo改掉就錯了 變成同個產品數量重複加
       const hasInCartItem = this.carts.find((cartItem) => cartItem.product.id === cartItem.id);
       // console.log(hasInCartItem,!hasInCartItem);
 

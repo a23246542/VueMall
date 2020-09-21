@@ -1,11 +1,4 @@
 <template>
-  <!-- 購物清單 開始 -->
-  <!-- @@這樣排版是可以的嗎 -->
-  <!-- <Cart
-        class="col-md-8"
-        ></Cart> -->
-  <!-- 購物清單 結束 -->
-
   <!-- 收件表單 開始     -->
   <ValidationObserver
     v-slot="{ invalid,handleSubmit}"
@@ -26,9 +19,10 @@
           <label for="name" class="customerForm__label">
             收件人姓名
           </label>
-          <input id="name" v-model="form.name" type="text" class="customerForm__input form-control"
-                 placeholder="輸入姓名"
-                 :class="classes"
+          <input
+            id="name" v-model="form.name" type="text" class="customerForm__input form-control"
+            placeholder="輸入姓名"
+            :class="classes"
           >
           <!-- <span v-if="errors[0]" class="text-danger">{{errors[0]}}</span> -->
           <span v-if="errors[0]" class="invalid-feedback">{{ errors[0] }}</span>
@@ -41,9 +35,10 @@
           <label for="email" class="customerForm__label">
             Email
           </label>
-          <input id="email" v-model="form.email" type="email" class="customerForm__input form-control"
-                 placeholder="請輸入 Email"
-                 :class="classes"
+          <input
+            id="email" v-model="form.email" type="email" class="customerForm__input form-control"
+            placeholder="請輸入 Email"
+            :class="classes"
           >
           <span v-if="errors[0]" class="invalid-feedback">{{ errors[0] }}</span>
           <span v-if="passed" class="invalid-feedback">已填</span>
@@ -55,9 +50,10 @@
           <label for="usertel" class="customerForm__label">
             收件人電話
           </label>
-          <input id="usertel" v-model="form.tel" type="tel" class="customerForm__input form-control"
-                 placeholder="請輸入電話"
-                 :class="classes"
+          <input
+            id="usertel" v-model="form.tel" type="tel" class="customerForm__input form-control"
+            placeholder="請輸入電話"
+            :class="classes"
           >
           <span v-if="errors[0]" class="invalid-feedback">{{ errors[0] }}</span>
           <span v-if="passed" class="invalid-feedback">已填</span>
@@ -69,9 +65,10 @@
           <label for="useraddress" class="customerForm__label">
             收件人地址
           </label>
-          <input id="useraddress" v-model="form.address" type="text" class="customerForm__input form-control"
-                 placeholder="請輸入地址"
-                 :class="classes"
+          <input
+            id="useraddress" v-model="form.address" type="text" class="customerForm__input form-control"
+            placeholder="請輸入地址"
+            :class="classes"
           >
           <span v-if="errors[0]" class="invalid-feedback">{{ errors[0] }}</span>
           <span v-if="passed" class="invalid-feedback">已填</span>

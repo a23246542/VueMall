@@ -6,9 +6,6 @@
       </h5>
       <ul class="nav flex-column p-2">
         <li class="nav-item">
-          <!-- <router-link tag="a" class="nav-link" href="#"> -->
-
-          <!-- </router-link> -->
           <router-link :to="{name:'dashProducts'}" tag="a" class="nav-link fz-35" href="#">
             <!-- <span data-feather="home"></span> -->
             <i class="fas fa-box-open" /> 產品列表

@@ -11,19 +11,11 @@ import $ from 'jquery';
 // import 'jquery';//@@跟上面差別
 // @@全域效能問題
 import 'bootstrap';// js模組
-// @@不寫.css會是載入js
-// import {
-//     ValidationObserver,
-//     ValidationProvider,
-//     extend,
-//     localize,
-// configure
-// } from 'vee-validate';
-
+// @@不寫.css載入js
 // import 'bootstrap/scss/bootstrap.scss';//all.scss import了
 // import 'bootstrap';
 // import './assets/scss/helpers/_helpers.scss';//@@
-
+// =================================================
 // ##自定義
 // import {uuid,token,apiPath} from './api/index';
 import App from './App.vue';
@@ -35,6 +27,7 @@ import './bus';
 window.$ = $;
 // import filters from './filters';
 
+// @@ 改在import掛載
 // Vue.prototype.$instanceLogin = instanceLogin;
 // Vue.prototype.$instanceAdmin = instanceAdmin;
 // Vue.prototype.$instanceCus = instanceCus;
