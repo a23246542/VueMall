@@ -97,7 +97,7 @@ export default {
         // console.log('執行getProduct.then');
       // this.setClassObj();//@@改watch
       });
-    this.$store.dispatch('setBreadcrumbList', ['home', 'products']);
+    // this.$store.dispatch('setBreadcrumbList', ['home', 'products']);//##內頁點出來bug
   },
   mounted() {
     // this.setClassObj();
@@ -137,6 +137,9 @@ export default {
     },
     setSearchText(text) {
       // this.searchText = text;
+      this.$router.push({ // ##
+        name: 'products',
+      });
       this.$store.commit('SEARCH_TEXT', text);
       // console.log(text);
     },

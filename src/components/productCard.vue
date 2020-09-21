@@ -113,16 +113,13 @@ export default {
       this.$store.commit('LOADING', true);
       const api = 'ec/shopping';
       const cartItem = { product: item.id, quantity: qty };
-
       // const ifInCart = this.carts.some((cartItem)=>{
       //         return cartItem.product.id === item.id;
       // })
-
       // 會是undefine 或{...}
       // @@ todo改掉就錯了 變成同個產品數量重複加
       const hasInCartItem = this.carts.find((cartItem) => cartItem.product.id === cartItem.id);
       // console.log(hasInCartItem,!hasInCartItem);
-
       if (!hasInCartItem) {
         this.$instanceCus.post(api, cartItem)
           .then((res) => {

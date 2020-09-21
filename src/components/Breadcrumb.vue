@@ -5,7 +5,7 @@
         v-for="(routerName, index) in breadcrumbList" :key="index+routerName"
         class="breadcrumb-item"
       >
-        <router-link :to="{name:routerName}">
+        <router-link :to="{name:routerName,params:productSingleId}">
           {{ BreadcrumbItemName(routerName) }}
         </router-link>
       </li>
@@ -17,7 +17,7 @@
 export default {
   data() {
     return {
-
+      productSingleId: '',
     };
   },
   computed: {
@@ -38,6 +38,8 @@ export default {
         break;
       case 'productSingle':
         BreadcrumbItemName = '商品資訊';
+        this.productSingleId = this.$route.params;
+
         break;
       default:
         BreadcrumbItemName = '首頁';

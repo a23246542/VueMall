@@ -192,9 +192,15 @@
                           NT${{ item.origin_price }}
                         </i>
                       </p>
-                      <a href="#" class="prdNewCard__cart">
-                        <i class="fas fa-shopping-cart"></i>
-                      </a>
+                      <!-- <a href="#" class="prdNewCard__cart"
+                         @click.prevent="addToCart(item)"
+                      > @@ prevent失敗 -->
+                      <!-- // @@ 有時可以有時不行 卡住 -->
+                      <div href="" class="prdNewCard__cart">
+                        <i class="fas fa-shopping-cart"
+                           @click.prevent="addToCart(item)"
+                        ></i>
+                      </div>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -321,6 +327,7 @@
 import ProductCard from '@/components/ProductCard.vue';
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
 import Wish from '@/mixin/Wish';
+import Cart from '@/mixin/Cart';
 // import 'swiper/css/swiper.css';
 import 'swiper/swiper-bundle.css';// ##github
 
@@ -331,7 +338,7 @@ export default {
     Swiper,
     SwiperSlide,
   },
-  mixins: [Wish],
+  mixins: [Wish, Cart],
   data() {
     return {
       featurePrdList: [],

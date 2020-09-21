@@ -50,6 +50,9 @@ export default {
       return this.products.filter((item) => item.category.toLowerCase().includes(this.searchText.toLowerCase())); // %%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false);
     },
   },
+  created() {
+    this.$store.dispatch('setBreadcrumbList', ['home', 'products']);
+  },
   methods: {
     async getProducts(page = 1) {
       await this.$store.dispatch('getProducts', page);// @@無效

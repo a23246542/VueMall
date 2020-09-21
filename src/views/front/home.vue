@@ -1,7 +1,10 @@
 <template>
   <div>
     <NavHeader />
-    <router-view />
+    <router-view
+      class="header-pt"
+    />
+    <!-- </div> -->
     <NavFooter />
   </div>
 </template>
@@ -17,3 +20,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.header-pt{
+  padding-top: 80px;
+}
+</style>
