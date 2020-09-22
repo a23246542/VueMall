@@ -1,12 +1,12 @@
 <template>
-  <nav aria-label="breadcrumb">
+  <nav v-if="breadcrumbList[0].title" aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent">
       <li
-        v-for="(routerName, index) in breadcrumbList" :key="index+routerName"
+        v-for="(routerObj, index) in breadcrumbList" :key="index+routerObj.title"
         class="breadcrumb-item"
       >
-        <router-link :to="{name:routerName,params:productSingleId}">
-          {{ BreadcrumbItemName(routerName) }}
+        <router-link :to="{name:routerObj.routerName,params:routerObj.params?routerObj.params:''}">
+          {{ routerObj.title }}
         </router-link>
       </li>
     </ol>
@@ -26,27 +26,6 @@ export default {
     },
   },
   methods: {
-    BreadcrumbItemName(routerName) {
-      let BreadcrumbItemName = '';
-
-      switch (routerName) {
-      case 'home':
-        BreadcrumbItemName = '首頁';
-        break;
-      case 'products':
-        BreadcrumbItemName = '商品一覽';
-        break;
-      case 'productSingle':
-        BreadcrumbItemName = '商品資訊';
-        this.productSingleId = this.$route.params;
-
-        break;
-      default:
-        BreadcrumbItemName = '首頁';
-        break;
-      }
-      return BreadcrumbItemName;
-    },
   },
 };
 </script>

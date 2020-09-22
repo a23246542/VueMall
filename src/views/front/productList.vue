@@ -51,7 +51,17 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('setBreadcrumbList', ['home', 'products']);
+    const breadcrumbList = [
+      {
+        routerName: 'home',
+        title: '首頁',
+      },
+      {
+        routerName: 'products',
+        title: '商品一覽',
+      },
+    ];
+    this.$store.dispatch('setBreadcrumbList', breadcrumbList);
   },
   methods: {
     async getProducts(page = 1) {
