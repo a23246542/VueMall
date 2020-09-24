@@ -324,7 +324,7 @@
   </div>
 </template>
 <script>
-import ProductCard from '@/components/productCard.vue';
+import ProductCard from '@/components/ProductCard.vue';
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
 import Wish from '@/mixin/Wish';
 import Cart from '@/mixin/Cart';
