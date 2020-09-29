@@ -31,9 +31,9 @@ export default {
   methods: {
     signOut() {
       const api = 'auth/logout';
-      const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+      const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1');// eslint(no-useless-escape)
       this.$instanceLogin.post(api, { api_token: token })
-        .then((res) => {
+        .then(() => {
           this.$router.push('/');
           // 清除token加快速度
           document.cookie = "token='';expires='';path=/";

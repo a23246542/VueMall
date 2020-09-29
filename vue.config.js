@@ -1,6 +1,6 @@
 module.exports = { // 可先移除eslint偵測報錯
   publicPath: './', //  GitHub上打開
-  lintOnSave: false, // ##可開關vue的eslint 存檔會給你改
+  lintOnSave: true, // ##可開關vue的eslint 存檔會給你改
   devServer: {
     port: 8080,
     headers: {
@@ -9,7 +9,7 @@ module.exports = { // 可先移除eslint偵測報錯
     hotOnly: false,
     disableHostCheck: true,
   },
-  chainWebpack: (config) => {
+  chainWebpack: (config) => { // eslint-disable-line
     // config.module.rules.delete('eslint');
     // const oneOfsMap = config.module.rule('scss').oneOfs.store
     // oneOfsMap.forEach(item => {

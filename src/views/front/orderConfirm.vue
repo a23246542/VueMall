@@ -239,7 +239,7 @@ export default {
           vm.$store.commit('LOADING', true);
           const api = `ec/orders/${this.orderId}/paying`;
           vm.$instanceCus.post(api)
-            .then((res) => {
+            .then(() => {
               vm.$store.commit('LOADING', false);
               vm.$swal(
                 '付款成功!',
@@ -255,7 +255,7 @@ export default {
               });
             })
             .catch((err) => {
-
+              console.log(err);
             });
         }
       });

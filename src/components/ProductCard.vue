@@ -118,11 +118,11 @@ export default {
       // })
       // 會是undefine 或{...}
       // @@ todo改掉就錯了 變成同個產品數量重複加
-      const hasInCartItem = this.carts.find((cartItem) => cartItem.product.id === cartItem.id);
+      const hasInCartItem = this.carts.find((cart) => cart.product.id === cartItem.id);
       // console.log(hasInCartItem,!hasInCartItem);
       if (!hasInCartItem) {
         this.$instanceCus.post(api, cartItem)
-          .then((res) => {
+          .then(() => {
             this.$store.commit('LOADING', false);
             this.$bus.$emit('message:push', `${item.title}已加入購物車`, 'success');
             // this.$refs.cartModal.getCart();

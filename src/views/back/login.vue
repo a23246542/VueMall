@@ -49,7 +49,7 @@ export default {
   methods: {
     signIn() {
       this.$store.commit('LOADING', true);
-      const vm = this;
+      // const vm = this;
       const api = 'auth/login';
       instanceLogin.post(api, this.user)
         .then((res) => {

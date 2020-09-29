@@ -236,8 +236,9 @@ export default {
     },
   },
   watch: {
-    'product.title': function () { // @@
-      // console.log('印出產品名稱', this.product.title);
+    // eslint disable
+    'product.title': function () { // eslint-disable-line
+    // ['product.title'] () { // @@eslint(func-names)
       const breadcrumbList = [
         {
           routerName: 'home',
@@ -312,11 +313,12 @@ export default {
         product: this.product.id,
         quantity: this.product.qty,
       };
-      const hasInCartItem = this.carts.find((cartItem) => cartItem.product.id === this.product.id);
+      // const hasInCartItem = this.carts.find((cartItem) => cartItem.product.id === this.product.id);// %%eslint no-shadow
+      const hasInCartItem = this.carts.find((cart) => cart.product.id === this.product.id);// %%eslint no-shadow
 
       if (!hasInCartItem) {
         this.$instanceCus.post(api, cartItem)
-          .then((res) => {
+          .then(() => {
             this.$store.commit('LOADING', false);
             this.$bus.$emit('message:push', `${this.product.title}已加入購物車`, 'success');
             // this.$refs.cartModal.getCart();

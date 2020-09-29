@@ -53,7 +53,7 @@ export default {
       }
     },
     getSingleOrder(context, orderId) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         const api = `ec/orders/${orderId}`;
 
         // this.$instanceCus.get(api)
@@ -62,7 +62,7 @@ export default {
             context.commit('GET_ORDER', res.data.data);
             // ##改成小大寫createAt
             resolve();
-          }).catch((err) => {
+          }).catch(() => {
           });
       });
     },

@@ -78,7 +78,7 @@ export default {
     // this.initBar();
   },
   methods: {
-    changeBar(nowPage) {
+    changeBar(nowPage) {// eslint-disable-line
       // console.log('換頁');
     },
   },

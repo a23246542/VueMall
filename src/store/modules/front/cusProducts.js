@@ -35,7 +35,7 @@ export default {
     NEWPRODUCTS_PAGINATION(state, payload) {
       state.newPrdPagination = payload;
     },
-    GET_CATEGORIES(state, payload) {
+    GET_CATEGORIES(state) { // @@mutation沒有payload
       const categories = new Set();
       state.products.forEach((item) => {
         // categories.push(item.category)//%%@@

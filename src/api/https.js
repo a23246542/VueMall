@@ -51,9 +51,9 @@ instanceLogin.interceptors.response.use((res) => {
 
 // ===================後台api=============================================
 instanceAdmin.interceptors.request.use(async (config) => {
-  const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+  const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1');
 
-  config.headers.Authorization = `Bearer ${token}`;
+  config.headers.Authorization = `Bearer ${token}`; // @@eslint出現no-param-reassign，要如何給設定
 
   return config;
 }, (err) => {

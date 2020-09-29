@@ -1,6 +1,5 @@
-import Vue from 'vue';// @@無法
-import { instanceCus } from '../api/https';
-// import {app} from '../main'
+// import Vue from 'vue';// @@無法
+// import { instanceCus } from '../api/https';
 
 // Vue.prototype.$instanceCus = instanceCus;
 

@@ -67,7 +67,8 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {
     app.$store.commit('LOADING', true);// ##app.$store
     const api = 'auth/check';
-    const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+    // const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, '$1'); // @@老師範例出現eslint(no-useless-escape)
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1');
     // console.log("xxxx",token);
     // if(token){//@@為何還執行
     if (token !== '') {

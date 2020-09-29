@@ -41,7 +41,12 @@ import { instanceAdmin } from '../api/https';
 
 export default {
   props: {
-    tempProduct: {},
+    tempProduct: {
+      type: Object,
+      default() {
+        return { };
+      },
+    },
   },
   methods: {
     openDelModal() {
@@ -52,7 +57,7 @@ export default {
       const api = `ec/product/${this.tempProduct.id}`;
       if (this.tempProduct.id) {
         instanceAdmin.delete(api)
-          .then((res) => {
+          .then(() => {
             this.$emit('update');
             $('#delProductModal').modal('hide');
           });

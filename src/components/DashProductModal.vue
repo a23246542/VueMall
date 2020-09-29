@@ -178,7 +178,8 @@
 
 <script>
 import $ from 'jquery';
-import { VueEditor, Quill } from 'vue2-editor';
+// import { VueEditor, Quill } from 'vue2-editor';
+import { VueEditor } from 'vue2-editor';
 import { instanceAdmin } from '../api/https';
 
 export default {
@@ -334,7 +335,7 @@ export default {
       }
       // 2 發送api
       instanceAdmin[httpMethod](api, this.tempProduct)
-        .then((res) => {
+        .then(() => {
           this.$store.commit('LOADING', false);
           // 3 emit更新產品列表
           this.$emit('update');

@@ -4,7 +4,7 @@ export default {
       this.$store.commit('LOADING', true);
       const api = 'ec/shopping';
       const cartItem = { product: item.id, quantity: qty };
-      const hasInCartItem = this.carts.find((cartItem) => cartItem.product.id === cartItem.id);
+      const hasInCartItem = this.carts.find((cart) => cart.product.id === cartItem.id);
       if (!hasInCartItem) { // 品項不存在購物車
         this.$instanceCus.post(api, cartItem)
           .then((res) => {

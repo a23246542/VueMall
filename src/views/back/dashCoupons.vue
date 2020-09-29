@@ -240,7 +240,7 @@ export default {
     async getCoupons(page = 1, cb) {
       // return new Promise((resolve, reject) =>{
       this.$store.commit('LOADING', true);
-      const api = 'ec/coupons';
+      const api = `ec/coupons?page=${page}`;
       await this.$instanceAdmin.get(api)
         .then((res) => {
           this.coupons = res.data.data;

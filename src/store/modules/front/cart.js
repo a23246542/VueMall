@@ -10,15 +10,7 @@ export default {
   },
   getters: {
     cartTotal: (state) => {
-      // let total = 0;
-      // state.cart.carts.forEach((item) => {
-      //   let subtotal = 0;
-      //   subtotal = item.quantity * item.product.price;
-      //   total += subtotal;
-      // });
-      // return total;
-
-      const total = state.cart.carts.reduce((prev, item) => (prev += item.product.price * item.quantity), 0);
+      const total = state.cart.carts.reduce((prev, item) => prev + (item.product.price * item.quantity), 0);
       // total = total*
       return total;
     },
@@ -32,7 +24,7 @@ export default {
   },
   actions: {
     getCart(context) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         context.commit('LOADING', true);
         const api = 'ec/shopping';
         // Vue.$instanceCus.get(api)//@@

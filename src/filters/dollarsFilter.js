@@ -1,6 +1,6 @@
-export default function (value) { // 千分號 & 錢字號
-  // const str = value.toString();
-  // return 'NT$' + str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  // return '$' + str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  return `$${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
-}
+export default (value) => { // 千分號 & 錢字號
+  // const str = value.toString;
+  // return '$' + str.replace(/\B(?=(\d{3})+(?!\d))/g, ',') // eslint(prefer-template)
+  // return `$ ${str.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
+  return `$ ${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`; // @@replace的)看似被字串化
+};

@@ -214,7 +214,7 @@ export default {
       this.$store.commit('LOADING', true);
       const api = `ec/product/${item.id}`;
       this.$instanceAdmin.patch(api, item)
-        .then((res) => {
+        .then(() => {
           // ##不需要再get 畫面跟api分開
           this.$store.commit('LOADING', false);
         });
@@ -230,7 +230,7 @@ export default {
         // console.log(this);
         return this.$instanceAdmin.delete(api);
       }))
-        .then((res) => {
+        .then(() => {
           // console.log(res);// ##回傳陣列裝每一個api的res
           this.$store.commit('LOADING', false);
           this.getProducts();
