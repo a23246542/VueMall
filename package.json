@@ -63,8 +63,8 @@
       "parser": "babel-eslint"
     },
     "globals": {
-      "$":true,
-      "jquery":true
+      "$": true,
+      "jquery": true
     },
     "rules": {
       "indent": [
