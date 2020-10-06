@@ -25,12 +25,12 @@ const routes = [
       {
         path: 'products',
         // name: 'products',
-        component: () => import('../views/front/products'),
+        component: () => import('../views/front/Products'),
         children: [
           {
             path: '',
             name: 'products',
-            component: () => import('../views/front/productList'),
+            component: () => import('../views/front/ProductList'),
             // children: [
             //   {
             //   path: ':productId',
@@ -42,7 +42,7 @@ const routes = [
           {
             path: ':productId',
             name: 'productSingle',
-            component: () => import('../views/front/productSingle'),
+            component: () => import('../views/front/ProductSingle'),
             // component: () => import('../views/front/productSingle/index'),
           },
 
@@ -56,7 +56,7 @@ const routes = [
       {
         path: 'aboutUs',
         name: '關於我們',
-        component: () => import('../views/front/aboutUs'),
+        component: () => import('../views/front/AboutUs'),
       },
       {
         path: 'order_list',
@@ -74,13 +74,13 @@ const routes = [
 
     path: '/shopping', // 專注購物頁
     name: '購物車',
-    component: () => import('../views/front/shopping'),
+    component: () => import('../views/front/Shopping'),
     redirect: '/shopping/order_preview',
     children: [
       {
         path: 'order_preview',
         name: '購物清單',
-        component: () => import('../views/front/orderPreview'),
+        component: () => import('../views/front/OrderPreview'),
         // -[]cart
         // -[]CustomerForm
         // components:{
@@ -91,19 +91,19 @@ const routes = [
       {
         path: 'order_info',
         name: '收件資訊',
-        component: () => import('../views/front/orderInfo'),
+        component: () => import('../views/front/OrderInfo'),
       },
       {
         path: 'order_confirm',
         name: '最後確認',
-        component: () => import('../views/front/orderConfirm'),
+        component: () => import('../views/front/OrderConfirm'),
         // -[]Cart購物明細
         // -[]orderInfo寄送資訊與付款方式
       },
       {
         path: 'order_success', // query ?orderId:orderId
         name: '訂單完成',
-        component: () => import('../views/front/orderSuccess'),
+        component: () => import('../views/front/OrderSuccess'),
       },
       // {
       //   // path:'payment/:orderId',
@@ -123,37 +123,37 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/back/login'),
+    component: () => import('../views/back/Login'),
   },
   {
     path: '/admin',
     name: 'Dashboard',
-    component: () => import('../views/back/dashboard.vue'),
+    component: () => import('../views/back/Dashboard.vue'),
     redirect: '/admin/products', // ##前台右鍵後台開新分頁會直接略過router.beforeEach
     // meta:{ requireAuth: true },//##有redirect沒用
     children: [
       {
         path: 'products',
         name: 'dashProducts',
-        component: () => import('../views/back/dashProducts.vue'),
+        component: () => import('../views/back/DashProducts.vue'),
         meta: { requireAuth: true },
       },
       {
         path: 'orders',
         name: '訂單列表',
-        component: () => import('../views/back/dashOrders'),
+        component: () => import('../views/back/DashOrders'),
         meta: { requireAuth: true },
       },
       {
         path: 'coupons',
         name: '優惠券列表',
-        component: () => import('../views/back/dashCoupons'),
+        component: () => import('../views/back/DashCoupons'),
         meta: { requireAuth: true },
       },
       {
         path: 'images',
         name: '圖片儲存列表',
-        component: () => import('../views/back/dashImages'),
+        component: () => import('../views/back/DashImages'),
         meta: { requireAuth: true },
       },
     ],
