@@ -77,7 +77,8 @@
         2,
         {
           "ignoreComments": true,
-          "ignoreUrls": true
+          "ignoreUrls": true,
+          "ignoreStrings": true
         }
       ],
       "no-console": "warn",

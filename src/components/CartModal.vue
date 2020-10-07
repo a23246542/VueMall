@@ -1,17 +1,31 @@
 <template>
   <div>
     <div class="dropdown">
-      <button id="dropdownMenuButton" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button
+        id="dropdownMenuButton"
+        class="btn dropdown-toggle"
+        type="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
         <i class="fas fa-shopping-cart text-white" />
         <span class="badge badge-pill badge-danger">{{ carts.length }}</span>
         <!-- <span class="badge badge-pill badge-danger">3</span> -->
       </button>
-      <div class="dropdown-menu" style="min-width: 350px;" aria-labelledby="dropdownMenuButton">
+      <div
+        class="dropdown-menu"
+        style="min-width: 350px;"
+        aria-labelledby="dropdownMenuButton"
+      >
         <!-- <a class="dropdown-item" href="#">Action</a> -->
         <div class="px-4 py-3">
           <table class="table table-sm mb-0">
             <thead>
-              <th colspan="4" class="h6 text-center">
+              <th
+                colspan="4"
+                class="h6 text-center"
+              >
                 已選購商品
               </th>
               <!-- <th></th>
@@ -21,15 +35,22 @@
             </thead>
             <tbody>
               <tr v-if="carts.length>0">
-                <td colspan="4" class="text-right">
-                  <button class="btn btn-outline-danger btn-sm"
-                          @click="delAllCart"
+                <td
+                  colspan="4"
+                  class="text-right"
+                >
+                  <button
+                    class="btn btn-outline-danger btn-sm"
+                    @click="delAllCart"
                   >
                     刪除全部品項
                   </button>
                 </td>
               </tr>
-              <tr v-for="item in carts" :key="item.product.id">
+              <tr
+                v-for="item in carts"
+                :key="item.product.id"
+              >
                 <td class="align-middle">
                   {{ item.product.title }}
                   <!-- <div class="text-success" v-if="item.coupon">
@@ -49,14 +70,20 @@
                     class="btn"
                     @click.prevent="delCart(item)"
                   >
-                    <i class="fa fa-trash" aria-hidden="true" />
+                    <i
+                      class="fa fa-trash"
+                      aria-hidden="true"
+                    />
                   </button>
                 </td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
-                <td colspan="3" class="text-right">
+                <td
+                  colspan="3"
+                  class="text-right"
+                >
                   總計
                 </td>
                 <td class="text-center">

@@ -17,7 +17,7 @@ export default {
       const exp = new Date();
       exp.setTime(exp.getTime() - 1);
       const cval = this.getCookie(name);
-      console.log(cval);
+      // console.log(cval);
       if (cval != null) { document.cookie = `${name}=${cval};expires=${exp.toGMTString()}`; }
     },
   },

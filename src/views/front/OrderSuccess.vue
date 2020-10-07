@@ -1,5 +1,8 @@
 <template>
-  <div v-if="orderId" class="orderSuc">
+  <div
+    v-if="orderId"
+    class="orderSuc"
+  >
     <div class="container">
       <div class="orderConfirm__title mb-3 text-center">
         <h3>付款成功!</h3>
@@ -36,10 +39,19 @@
                   訂單編號:{{ orderId }}
                 </p>
               </div>
-              <button class="orderConfirm__collapseBtn btn btn-block" type="button" data-toggle="collapse" data-target="#collapseOrder" aria-expanded="false">
+              <button
+                class="orderConfirm__collapseBtn btn btn-block"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapseOrder"
+                aria-expanded="false"
+              >
                 <i class="orderConfirm__collapseIcon fas fa-chevron-down" />
               </button>
-              <div id="collapseOrder" class="collapse collapse--Order">
+              <div
+                id="collapseOrder"
+                class="collapse collapse--Order"
+              >
                 <div class="shoppingBlock__body">
                   <div class="prdList">
                     <div class="prdList__header d-flex">
@@ -63,11 +75,16 @@
                       v-if="payment"
                       class="prdList__content"
                     >
-                      <li v-for="prdObj in products"
-                          :key="prdObj.product.id" class="prdList__row d-flex"
+                      <li
+                        v-for="prdObj in products"
+                        :key="prdObj.product.id"
+                        class="prdList__row d-flex"
                       >
                         <div class="prdList__Item flex-2 text-left">
-                          <img src="" alt="">
+                          <img
+                            src=""
+                            alt=""
+                          >
                           {{ prdObj.product.title }}
                         </div>
                         <div class="prdList__Item flex-1">
@@ -174,8 +191,14 @@
                   </li>
                   <li>
                     <span class="m-orderInfoList__itemTitle">付款狀態</span>
-                    <span v-if="paid" class="m-orderInfoList__itemTxt text-success">已經付款</span>
-                    <span v-else class="m-orderInfoList__itemTxt text-danger">尚未付款</span>
+                    <span
+                      v-if="paid"
+                      class="m-orderInfoList__itemTxt text-success"
+                    >已經付款</span>
+                    <span
+                      v-else
+                      class="m-orderInfoList__itemTxt text-danger"
+                    >尚未付款</span>
                   </li>
                 </ul>
               </div>

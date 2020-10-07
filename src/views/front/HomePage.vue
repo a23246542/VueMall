@@ -93,10 +93,16 @@
               </div>
               <div class="metaCopyPart1__pic">
                 <div class="col-6 col-md-4 ml-3">
-                  <img src="@/assets/images/content_pic1.jpg" alt="">
+                  <img
+                    src="@/assets/images/content_pic1.jpg"
+                    alt=""
+                  >
                 </div>
                 <div class="col-6 col-md-4">
-                  <img src="@/assets/images/content_pic2.jpg" alt="">
+                  <img
+                    src="@/assets/images/content_pic2.jpg"
+                    alt=""
+                  >
                 </div>
               </div>
             </div>
@@ -119,7 +125,10 @@
             </div>
           </div>
           <div class="metaCopyPart2__pic">
-            <img src="@/assets/images/content_pic3.jpg" alt="">
+            <img
+              src="@/assets/images/content_pic3.jpg"
+              alt=""
+            >
           </div>
         </div>
       </section>
@@ -138,10 +147,16 @@
           </div>
           <div class="metaCopyPart3__pic">
             <div class="metaCopyPart3__picItem pic1">
-              <img src="@/assets/images/content_pic4.jpg" alt="">
+              <img
+                src="@/assets/images/content_pic4.jpg"
+                alt=""
+              >
             </div>
             <div class="metaCopyPart3__picItem pic2">
-              <img src="@/assets/images/content_pic5.jpg" alt="">
+              <img
+                src="@/assets/images/content_pic5.jpg"
+                alt=""
+              >
             </div>
           </div>
         </div>
@@ -155,9 +170,13 @@
               <h3 class="meta__sectionTitle">
                 新品上市
               </h3>
-              <Swiper ref="newPrdSwiper" :options="swiperOptions">
+              <Swiper
+                ref="newPrdSwiper"
+                :options="swiperOptions"
+              >
                 <SwiperSlide
-                  v-for="item in newProductList" :key="item.id"
+                  v-for="item in newProductList"
+                  :key="item.id"
                 >
                   <!-- <img :src="item.imageUrl[0]" alt="" style="width:100%"> -->
                   <!-- <ProductCard
@@ -166,21 +185,25 @@
                   ></ProductCard> -->
                   <div class="prdNewCard border-0">
                     <!-- <div class="prdNewCard__imgBox"> -->
-                    <div class="prdNewCard__imgWrap bg-cover"
-                         :style="{
-                           backgroundImage:`url(${item.imageUrl[0]})`
-                         }"
+                    <div
+                      class="prdNewCard__imgWrap bg-cover"
+                      :style="{
+                        backgroundImage:`url(${item.imageUrl[0]})`
+                      }"
                     >
-                      <!-- <img :src="item.imageUrl[0]" class="prdNewCard__img bg-cover" alt="..."> -->
-                      <span class="prdNewCard__favoriteBadge"
-                            @click="clickHeart(item.id)"
+                      <!-- <img :src="item.imageUrl[0]"
+                      class="prdNewCard__img bg-cover" alt="..."> -->
+                      <span
+                        class="prdNewCard__favoriteBadge"
+                        @click="clickHeart(item.id)"
                       >
-                        <i :class="heartStyle(item.id)"></i>
+                        <i :class="heartStyle(item.id)" />
                       </span>
                     </div>
                     <div class="prdNewCard__body card-body">
-                      <h5 class="prdNewCard__title"
-                          @click="goNewPrd(item.id)"
+                      <h5
+                        class="prdNewCard__title"
+                        @click="goNewPrd(item.id)"
                       >
                         {{ item.title }}
                       </h5>
@@ -196,22 +219,29 @@
                          @click.prevent="addToCart(item)"
                       > @@ prevent失敗 -->
                       <!-- // @@ 有時可以有時不行 卡住 -->
-                      <div href="" class="prdNewCard__cart">
-                        <i class="fas fa-shopping-cart"
-                           @click.prevent="addToCart(item)"
-                        ></i>
+                      <div
+                        href=""
+                        class="prdNewCard__cart"
+                      >
+                        <i
+                          class="fas fa-shopping-cart"
+                          @click.prevent="addToCart(item)"
+                        />
                       </div>
                     </div>
                   </div>
                 </SwiperSlide>
-                <div slot="pagination" class="swiper-pagination"></div>
+                <div
+                  slot="pagination"
+                  class="swiper-pagination"
+                />
               </Swiper>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <div class="adBar"></div>
+    <div class="adBar" />
     <section>
       <div class="container">
         <div class="featureProduct">
@@ -230,13 +260,15 @@
             <div class="featureProduct__listBox">
               <div class="container">
                 <div class="row">
-                  <div v-for="(item) in limitedProducts"
-                       :key="item.id" class="col-xl-4 col-sm-6 productCardCol"
+                  <div
+                    v-for="(item) in limitedProducts"
+                    :key="item.id"
+                    class="col-xl-4 col-sm-6 productCardCol"
                   >
                     <ProductCard
                       :this-product="item"
                       :mb="'mb-2'"
-                    ></ProductCard>
+                    />
                   </div>
                 </div>
               </div>
@@ -256,7 +288,10 @@
           <div class="metaNews__wrapper">
             <div class="metaNews__item">
               <div class="metaNews__itemPic">
-                <img src="@/assets/images/meta_act1.jpg" alt="">
+                <img
+                  src="@/assets/images/meta_act1.jpg"
+                  alt=""
+                >
               </div>
               <div class="metaNews__itemTxt">
                 <h4>怎麼露營才好玩 /</h4>
@@ -267,7 +302,10 @@
             </div>
             <div class="metaNews__item">
               <div class="metaNews__itemPic">
-                <img src="@/assets/images/meta_act5.jpg" alt="">
+                <img
+                  src="@/assets/images/meta_act5.jpg"
+                  alt=""
+                >
               </div>
               <div class="metaNews__itemTxt">
                 <h4>夏季踏青趣 /</h4>
@@ -278,7 +316,10 @@
             </div>
             <div class="metaNews__item">
               <div class="metaNews__itemPic">
-                <img src="@/assets/images/meta_act3.jpg" alt="">
+                <img
+                  src="@/assets/images/meta_act3.jpg"
+                  alt=""
+                >
               </div>
               <div class="metaNews__itemTxt">
                 <h4>夏季踏青趣 /</h4>
@@ -289,7 +330,10 @@
             </div>
             <div class="metaNews__item">
               <div class="metaNews__itemPic">
-                <img src="@/assets/images/meta_act6.jpg" alt="">
+                <img
+                  src="@/assets/images/meta_act6.jpg"
+                  alt=""
+                >
               </div>
               <div class="metaNews__itemTxt">
                 <h4>樂哈山賞櫻團 /</h4>
@@ -307,7 +351,10 @@
         <div class="metaContactUs bg-cover">
           <div>
             <div class="metaContactUs__logo">
-              <img src="@/assets/images/Meta-logo-white.png" alt="">
+              <img
+                src="@/assets/images/Meta-logo-white.png"
+                alt=""
+              >
             </div>
             <p class="metaContactUs__title">
               聯絡我們

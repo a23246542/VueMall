@@ -3,7 +3,10 @@
     <div class="container">
       <div class="navFooter__infoWrap">
         <div class="navFooter__logo">
-          <img src="@/assets/images/Meta-logo.png" alt="">
+          <img
+            src="@/assets/images/Meta-logo.png"
+            alt=""
+          >
         </div>
         <div class="navFooter__links">
           <ul>
@@ -68,16 +71,31 @@
                 </div>
                 <ul class="footerLink__iconBlock">
                   <li class="footerLink__icon">
-                    <img src="@/assets/icons/facebook.png" alt="">
+                    <img
+                      src="@/assets/icons/facebook.png"
+                      alt=""
+                    >
                   </li>
-                  <li class="footerLink__icon" style="padding-top:1px">
-                    <img src="@/assets/icons/line.png" alt="">
+                  <li
+                    class="footerLink__icon"
+                    style="padding-top:1px"
+                  >
+                    <img
+                      src="@/assets/icons/line.png"
+                      alt=""
+                    >
                   </li>
                   <li class="footerLink__icon">
-                    <img src="@/assets/icons/instagram.png" alt="">
+                    <img
+                      src="@/assets/icons/instagram.png"
+                      alt=""
+                    >
                   </li>
                   <li class="footerLink__icon">
-                    <img src="@/assets/icons/youtube.png" alt="">
+                    <img
+                      src="@/assets/icons/youtube.png"
+                      alt=""
+                    >
                   </li>
                 </ul>
               </div>

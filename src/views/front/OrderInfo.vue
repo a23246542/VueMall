@@ -14,17 +14,21 @@
               購物清單
             </div>
             <div class="card-body">
-              <tr v-for="(item,index) in carts" :key="item.product.id" class="d-flex"
-                  :class="{'mb-2':index!==carts.length-1}"
+              <tr
+                v-for="(item,index) in carts"
+                :key="item.product.id"
+                class="d-flex"
+                :class="{'mb-2':index!==carts.length-1}"
               >
                 <!-- <td class="flex-1 align-middle">@@div垂直置中無用 -->
                 <td class="flex-1 d-flex align-items-center">
-                  <div class="bg-cover w-100"
-                       :style="{
-                         backgroundImage:`url(${item.product.imageUrl[0]})`,
-                         minWidth:'80px',
-                         height:'80px',
-                       }"
+                  <div
+                    class="bg-cover w-100"
+                    :style="{
+                      backgroundImage:`url(${item.product.imageUrl[0]})`,
+                      minWidth:'80px',
+                      height:'80px',
+                    }"
                   />
                 </td>
                 <!-- <td class="flex-1 align-middle text-right">x{{ item.quantity }}</td> -->
@@ -53,7 +57,10 @@
                 <span>小計</span>
                 <span>NT{{ cartTotal | dollars }}</span>
               </div>
-              <div v-if="discountAmount" class="d-flex justify-content-between mb-3 text-red">
+              <div
+                v-if="discountAmount"
+                class="d-flex justify-content-between mb-3 text-red"
+              >
                 <span>折扣金額</span>
                 <span>-NT{{ discountAmount | dollars }}</span>
               </div>
@@ -61,7 +68,10 @@
                 <span>運費</span>
                 <span>NT{{ 0 | dollars }}</span>
               </div>
-              <div class="d-flex justify-content-between mb-3" style="font-size:18px">
+              <div
+                class="d-flex justify-content-between mb-3"
+                style="font-size:18px"
+              >
                 <span>總計</span>
                 <span>NT{{ amountAll | dollars }}</span>
               </div>
@@ -69,8 +79,9 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-secondary1-light mt-5"
-              @click="$router.go(-1)"
+      <button
+        class="btn btn-secondary1-light mt-5"
+        @click="$router.go(-1)"
       >
         上一頁
       </button>

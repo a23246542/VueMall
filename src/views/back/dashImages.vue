@@ -1,19 +1,28 @@
 <template>
-  <div id="dashStorage" class="dashStorage pt-4">
+  <div
+    id="dashStorage"
+    class="dashStorage pt-4"
+  >
     <div class="form-inline justify-content-end mb-4">
       <div class="custom-file">
         <input
-          id="customFile" ref="storage" type="file"
+          id="customFile"
+          ref="storage"
+          type="file"
           class="custom-file-input"
           @change="postStorage"
         >
-        <label class="custom-file-label" for="customFile">選擇圖片檔案</label>
+        <label
+          class="custom-file-label"
+          for="customFile"
+        >選擇圖片檔案</label>
       </div>
     </div>
     <div class="row">
       <div
         v-for="(item,index) in storages"
-        :key="item.id" class="col-md-6 col-lg-4 mb-4"
+        :key="item.id"
+        class="col-md-6 col-lg-4 mb-4"
       >
         <div class="card">
           <div class="card-body">
@@ -23,10 +32,16 @@
             >
           </div>
           <div class="card-footer text-right">
-            <button class="btn btn-outline-info btn-sm mr-3" @click="openModal('read',item,index)">
+            <button
+              class="btn btn-outline-info btn-sm mr-3"
+              @click="openModal('read',item,index)"
+            >
               查看
             </button>
-            <button class="btn btn-outline-danger btn-sm" @click="openModal('delete',item,index)">
+            <button
+              class="btn btn-outline-danger btn-sm"
+              @click="openModal('delete',item,index)"
+            >
               刪除
             </button>
           </div>

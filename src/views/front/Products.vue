@@ -1,16 +1,20 @@
 <template>
-  <div id="products" class="products">
+  <div
+    id="products"
+    class="products"
+  >
     <div class="container pt-5">
       <Alert />
       <!-- <div class="row flex-row-reverse"> -->
-      <Breadcrumb></Breadcrumb>
+      <Breadcrumb />
       <div class="row">
         <div class="col-xl-2 products__sidebar px-0">
           <!-- <table class="table table-sm" v-if="cart.carts.length"> -->
           <div class="mainClass list-group">
             <!-- ========================= -->
             <a
-              href="#" class="list-group-item list-group-item-action rounded-0"
+              href="#"
+              class="list-group-item list-group-item-action rounded-0"
               @click.prevent="setSearchText('all')"
             >
               <span>
@@ -18,26 +22,33 @@
               </span>
             </a>
             <a
-              v-for="item in classObj.sort" :key="item"
-              href="#" class="list-group-item list-group-item-action rounded-0"
+              v-for="item in classObj.sort"
+              :key="item"
+              href="#"
+              class="list-group-item list-group-item-action rounded-0"
             >
-              <span class="mainClass__title"
-                    @click.stop="setSearchText(item)"
+              <span
+                class="mainClass__title"
+                @click.stop="setSearchText(item)"
               >
                 {{ item }}系列
               </span>
-              <span v-if="classObj.map[item].sort[0]"
-                    class="mainClass__arrow"
-                    @click="showSubClass(item,$event)"
+              <span
+                v-if="classObj.map[item].sort[0]"
+                class="mainClass__arrow"
+                @click="showSubClass(item,$event)"
               />
 
-              <ul v-if="classObj.map[item].sort[0]"
-                  v-show="!classObj.map[item].hidden"
-                  class="subClass list-group"
+              <ul
+                v-if="classObj.map[item].sort[0]"
+                v-show="!classObj.map[item].hidden"
+                class="subClass list-group"
               >
-                <li v-for="subItem in classObj.map[item].sort"
-                    :key="subItem" class="subClass__title list-group-item border-0"
-                    @click.prevent="setSearchText(subItem)"
+                <li
+                  v-for="subItem in classObj.map[item].sort"
+                  :key="subItem"
+                  class="subClass__title list-group-item border-0"
+                  @click.prevent="setSearchText(subItem)"
                 >
                   {{ subItem }}
                 </li>
@@ -48,7 +59,7 @@
                     ></Category> -->
         </div>
         <div class="col-xl-10 products__content">
-          <router-view></router-view>
+          <router-view />
         </div>
       </div>
     </div>
@@ -159,7 +170,9 @@ export default {
   // @import "../../assets/scss/helpers/_variables.scss";
     #products{
         // background-color: #FFFCE5;
-        font-family:'Microsoft JhengHei',-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-family:'Microsoft JhengHei',-apple-system, BlinkMacSystemFont, "Segoe UI",
+         Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
     }
     .products{
