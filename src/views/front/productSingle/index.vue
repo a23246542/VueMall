@@ -3,16 +3,19 @@
   <div class="container productSingle">
     <div class="row">
       <div class="col-md-6 px-0 text-center bg-white ">
-        <img :src="product.imageUrl[0]" alt=""
-             class="img-fluid"
-             style="height:500px;object-fit:contain;"
+        <img
+          :src="product.imageUrl[0]"
+          alt=""
+          class="img-fluid"
+          style="height:500px;object-fit:contain;"
         >
         <!-- <p>輪播v-if</p> -->
       </div>
       <div class="col-md-6 px-35">
         <div class="mb-3">
-          <span v-if="product.category"
-                class="d-inline-blockpx-1 text-primary border-bottom border-primary font-weight-bold"
+          <span
+            v-if="product.category"
+            class="d-inline-blockpx-1 text-primary border-bottom border-primary font-weight-bold"
           >{{ product.category.split('>')[1] }}系列</span>
         </div>
         <h2 class="text-secondary1 font-weight-bold">
@@ -22,19 +25,23 @@
           {{ product.content }}
         </p>
         <div class="d-flex justify-content-between border-bottom">
-          <small v-if="product.id"
-                 class="productSingle__id"
+          <small
+            v-if="product.id"
+            class="productSingle__id"
           >
             產品編號{{ product.id.slice(-5).toUpperCase() }}
           </small>
-          <!-- <span>{{product.origin_price | dollars}}</span>/<span>{{product.price | dollars}}</span> -->
-          <span v-if="true"
-                class="productSingle__favorite text-primary"
+          <!-- <span>{{product.origin_price | dollars}}</span>/<span>
+            {{product.price | dollars}}</span> -->
+          <span
+            v-if="true"
+            class="productSingle__favorite text-primary"
           >
             加入收藏 <i class="far fa-heart" />
           </span>
-          <span v-if="false"
-                class="productSingle__favorite text-primary"
+          <span
+            v-if="false"
+            class="productSingle__favorite text-primary"
           >
             加入收藏 <i class="fas fa-heart" />
           </span>
@@ -51,9 +58,11 @@
                 +
               </button>
             </div>
-            <input v-model.number="product.qty" type="text"
-                   class="form-control text-center"
-                   style="max-width:100px"
+            <input
+              v-model.number="product.qty"
+              type="text"
+              class="form-control text-center"
+              style="max-width:100px"
             >
             <div class="input-group-append mr-3">
               <button class="btn btn-secondary">

@@ -40,7 +40,7 @@ export default {
             title: 'Abysswalker',
             category: 'T-Shirts',
             content: 'Its wearer, like Artorias himself, can traverse the Abyss.',
-            description: 'This official Dark Souls shirt was designed by Nina Matsumoto and printed on soft 100% cotton shirts by Forward. Each one comes with a bonus sticker.',
+            description: 'This official Dark Souls shirt was designed by Nina Matsumoto and printed on soft 100% cotton shirts by Forward.Each one comes with a bonus sticker.',
             imageUrl: [
               'https://cdn.shopify.com/s/files/1/0014/1962/products/product_DS_abysswalker_shirt_main_1024x1024.png?v=1535059789',
               'https://cdn.shopify.com/s/files/1/0014/1962/products/product_DS_abysswalker_shirt_design_1024x1024.png?v=1535059789',

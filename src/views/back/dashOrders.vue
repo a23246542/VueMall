@@ -1,7 +1,13 @@
 <template>
-  <div id="dashOrders" class="table-responsive">
+  <div
+    id="dashOrders"
+    class="table-responsive"
+  >
     <!-- ## !因沒設data會報錯 -->
-    <table v-if="orders.length" class="table mt-4">
+    <table
+      v-if="orders.length"
+      class="table mt-4"
+    >
       <thead>
         <tr>
           <th width="120">
@@ -35,7 +41,11 @@
           <td>{{ item.id.slice(-16) }}</td>
           <td>
             <ul class="list-unstyled">
-              <li v-for="(product, i) in item.products" :key="i" class="d-flex">
+              <li
+                v-for="(product, i) in item.products"
+                :key="i"
+                class="d-flex"
+              >
                 <span class="flex-1 mr-2">
                   {{ product.product.title }}
                 </span>
@@ -51,11 +61,20 @@
           </td>
           <td>{{ item.payment }}</td>
           <td>
-            <strong v-if="item.paid" class="text-success">已付款</strong>
-            <span v-else class="text-danger">未付款</span>
+            <strong
+              v-if="item.paid"
+              class="text-success"
+            >已付款</strong>
+            <span
+              v-else
+              class="text-danger"
+            >未付款</span>
           </td>
           <td>
-            <button class="btn btn-outline-primary btn-sm" @click="openEditModal(item)">
+            <button
+              class="btn btn-outline-primary btn-sm"
+              @click="openEditModal(item)"
+            >
               編輯
             </button>
           </td>
@@ -64,15 +83,20 @@
     </table>
 
     <!--分頁開始-->
-    <Pagination :pages="pagination" @change-page="getOrders" />
+    <Pagination
+      :pages="pagination"
+      @change-page="getOrders"
+    />
     <!-- 分頁結束 -->
 
     <!-- 談窗開始 -->
     <!-- <DashModal id="dashOrderModal" -->
-    <DashModal v-if="tempOrder.id" id="dashOrderModal"
-               :title="modalTitle"
-               :modal-use="modalUse"
-               @submit="updateOrder"
+    <DashModal
+      v-if="tempOrder.id"
+      id="dashOrderModal"
+      :title="modalTitle"
+      :modal-use="modalUse"
+      @submit="updateOrder"
     >
       <template v-slot:update>
         <div class="row mb-2">
@@ -82,13 +106,16 @@
                 <!-- <span>訂單時間：</span><span>{{tempOrder.created.timestamp | date}}</span> -->
                 <span>訂單時間：</span><span>{{ tempOrder.created.datetime }}</span>
               </p>
-              <div class="d-flex overflow-y-auto"
-                   style="max-height:280px"
+              <div
+                class="d-flex overflow-y-auto"
+                style="max-height:280px"
               >
                 <p>產品品項：</p>
                 <ul class="list-unstyled flex-1">
-                  <li v-for="(prdData,i) in tempOrder.products"
-                      :key="i+prdData.product.title" class="d-flex"
+                  <li
+                    v-for="(prdData,i) in tempOrder.products"
+                    :key="i+prdData.product.title"
+                    class="d-flex"
                   >
                     <span class="flex-2 mr-3">
                       {{ prdData.product.title }}
@@ -116,11 +143,22 @@
               付款：
               <div class="custom-control custom-checkbox d-inline-block">
                 <!-- <span>付款：</span> %%-->
-                <input id="paidCheck" v-model="tempOrder.paid" type="checkbox"
-                       class="custom-control-input"
+                <input
+                  id="paidCheck"
+                  v-model="tempOrder.paid"
+                  type="checkbox"
+                  class="custom-control-input"
                 >
-                <label v-if="tempOrder.paid" class="custom-control-label text-success" for="paidCheck">已付款</label>
-                <label v-else class="custom-control-label text-danger" for="paidCheck">未付款</label>
+                <label
+                  v-if="tempOrder.paid"
+                  class="custom-control-label text-success"
+                  for="paidCheck"
+                >已付款</label>
+                <label
+                  v-else
+                  class="custom-control-label text-danger"
+                  for="paidCheck"
+                >未付款</label>
               </div>
             </div>
           </div>
@@ -130,34 +168,58 @@
           <div class="col-sm-6">
             <div class="pl-3">
               <div class="form-group form-row">
-                <label for="name" class="col-sm-2 col-form-label">姓名：</label>
+                <label
+                  for="name"
+                  class="col-sm-2 col-form-label"
+                >姓名：</label>
                 <div class="col-sm-10">
-                  <input id="name" v-model="tempOrder.user.name" type="text"
-                         class="form-control"
+                  <input
+                    id="name"
+                    v-model="tempOrder.user.name"
+                    type="text"
+                    class="form-control"
                   >
                 </div>
               </div>
               <div class="form-group form-row">
-                <label for="email" class="col-sm-2 col-form-label">信箱：</label>
+                <label
+                  for="email"
+                  class="col-sm-2 col-form-label"
+                >信箱：</label>
                 <div class="col-sm-10">
-                  <input id="email" v-model="tempOrder.user.email" type="text"
-                         class="form-control"
+                  <input
+                    id="email"
+                    v-model="tempOrder.user.email"
+                    type="text"
+                    class="form-control"
                   >
                 </div>
               </div>
               <div class="form-group form-row">
-                <label for="tel" class="col-sm-2 col-form-label">電話：</label>
+                <label
+                  for="tel"
+                  class="col-sm-2 col-form-label"
+                >電話：</label>
                 <div class="col-sm-10">
-                  <input id="tel" v-model="tempOrder.user.tel" type="text"
-                         class="form-control"
+                  <input
+                    id="tel"
+                    v-model="tempOrder.user.tel"
+                    type="text"
+                    class="form-control"
                   >
                 </div>
               </div>
               <div class="form-group form-row">
-                <label for="address" class="col-sm-2 col-form-label">地址：</label>
+                <label
+                  for="address"
+                  class="col-sm-2 col-form-label"
+                >地址：</label>
                 <div class="col-sm-10">
-                  <input id="address" v-model="tempOrder.user.address" type="text"
-                         class="form-control"
+                  <input
+                    id="address"
+                    v-model="tempOrder.user.address"
+                    type="text"
+                    class="form-control"
                   >
                 </div>
               </div>
@@ -167,10 +229,13 @@
             <p class="mb-2">
               訂單留言：
             </p>
-            <textarea id="" v-model="tempOrder.message" name=""
-                      cols="30"
-                      class="w-100 p-3 border-radius"
-                      style="height:140px;border-color:#ced4da"
+            <textarea
+              id=""
+              v-model="tempOrder.message"
+              name=""
+              cols="30"
+              class="w-100 p-3 border-radius"
+              style="height:140px;border-color:#ced4da"
             />
           </div>
         </div>

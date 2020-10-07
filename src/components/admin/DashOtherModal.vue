@@ -6,15 +6,20 @@
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog" role="document"
-         :class="{
-           'modal-lg':modalUse==='update',
-           'modal-md':(modalUse==='delete'||modalUse==='read')
-         }"
+    <div
+      class="modal-dialog"
+      role="document"
+      :class="{
+        'modal-lg':modalUse==='update',
+        'modal-md':(modalUse==='delete'||modalUse==='read')
+      }"
     >
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
-          <h5 id="exampleModalLabel" class="modal-title">
+          <h5
+            id="exampleModalLabel"
+            class="modal-title"
+          >
             <span>{{ title }}</span>
           </h5>
           <button
@@ -45,13 +50,15 @@
           >
             {{ modalUse==='read'?'關閉':'取消' }}
           </button>
-          <button v-if="modalUse!=='read'" type="button"
-                  class="btn"
-                  :class="{
-                    'btn-primary':modalUse==='update',
-                    'btn-danger':modalUse==='delete'
-                  }"
-                  @click="sureBtn"
+          <button
+            v-if="modalUse!=='read'"
+            type="button"
+            class="btn"
+            :class="{
+              'btn-primary':modalUse==='update',
+              'btn-danger':modalUse==='delete'
+            }"
+            @click="sureBtn"
           >
             {{ modalUse==='update'? '確認':'確認刪除' }}
           </button>

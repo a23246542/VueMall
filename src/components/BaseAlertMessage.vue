@@ -1,12 +1,25 @@
 <template>
-  <div id="message-alert" class="message-alert">
-    <transition-group name="list" tag="p">
-      <div v-for="(item,index) in messages"
-           :key="item.id"
-           class="alert alert-dismissible" :class="'alert-' + item.status"
+  <div
+    id="message-alert"
+    class="message-alert"
+  >
+    <transition-group
+      name="list"
+      tag="p"
+    >
+      <div
+        v-for="(item,index) in messages"
+        :key="item.id"
+        class="alert alert-dismissible"
+        :class="'alert-' + item.status"
       >
         {{ item.message }}
-        <button type="button" class="close" aria-label="Close" @click="removeMessage(index)">
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          @click="removeMessage(index)"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

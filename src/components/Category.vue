@@ -2,10 +2,16 @@
   <!-- ##還未使用的組件 -->
   <div>
     <ul>
-      <li v-for="item in obj.sort" :key="item">
+      <li
+        v-for="item in obj.sort"
+        :key="item"
+      >
         {{ item }}
         <ul v-if="obj.map[item].sort[0]">
-          <li v-for="item2 in obj.map[item].sort" :key="item2">
+          <li
+            v-for="item2 in obj.map[item].sort"
+            :key="item2"
+          >
             {{ item2 }}
           </li>
         </ul>

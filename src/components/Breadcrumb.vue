@@ -1,8 +1,12 @@
 <template>
-  <nav v-if="breadcrumbList[0].title" aria-label="breadcrumb">
+  <nav
+    v-if="breadcrumbList[0].title"
+    aria-label="breadcrumb"
+  >
     <ol class="breadcrumb bg-transparent">
       <li
-        v-for="(routerObj, index) in breadcrumbList" :key="index+routerObj.title"
+        v-for="(routerObj, index) in breadcrumbList"
+        :key="index+routerObj.title"
         class="breadcrumb-item"
       >
         <router-link :to="{name:routerObj.routerName,params:routerObj.params?routerObj.params:''}">

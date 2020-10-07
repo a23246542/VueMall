@@ -22,7 +22,8 @@
                     <!-- 圖片 -->
                     <img
                       class="img-fluid"
-                      :src="item.product.imageUrl[0]" alt=""
+                      :src="item.product.imageUrl[0]"
+                      alt=""
                     >
                   </div>
                   <div class="col-9 col-md-9">
@@ -47,8 +48,9 @@
                           <!-- 數量加減 -->
                           <div class="input-group input-group-sm d-inline-flex w-auto flex-nowrap">
                             <span class="input-group-prepend">
-                              <button class="btn btn-primary"
-                                      @click.prevent="updateCartQty('add1',item)"
+                              <button
+                                class="btn btn-primary"
+                                @click.prevent="updateCartQty('add1',item)"
                               >+</button>
                             </span>
                             <input
@@ -61,8 +63,9 @@
                               :data-item-id="item.product.id"
                             >
                             <span class="input-group-append">
-                              <button class="btn btn-primary"
-                                      @click.prevent="updateCartQty('subtract1',item)"
+                              <button
+                                class="btn btn-primary"
+                                @click.prevent="updateCartQty('subtract1',item)"
                               >-</button>
                             </span>
                           </div>
@@ -75,10 +78,15 @@
                             </p>
                             <!-- 操作 -->
                             <div class="d-flex flex-column px-2">
-                              <a href="" class="text-nowrap"
-                                 @click.prevent="removeCart(item)"
+                              <a
+                                href=""
+                                class="text-nowrap"
+                                @click.prevent="removeCart(item)"
                               >移除</a>
-                              <a href="" class="text-nowrap">收藏</a>
+                              <a
+                                href=""
+                                class="text-nowrap"
+                              >收藏</a>
                             </div>
                           </div>
                         </div>
@@ -110,7 +118,10 @@
                   <!-- 折價券## -->
                   <span class="input-group">
                     <input
-                      v-model="couponCode" type="text" class="form-control rounded-0" placeholder="輸入優惠碼"
+                      v-model="couponCode"
+                      type="text"
+                      class="form-control rounded-0"
+                      placeholder="輸入優惠碼"
                       @keyup.enter="searchCoupon"
                     >
                     <div
@@ -121,8 +132,12 @@
                     </div>
                   </span>
                 </div>
-                <!-- <p v-show="discountAmount" class="d-flex justify-content-between pb-3 text-red border-bottom"> -->
-                <p v-if="discountAmount" class="d-flex justify-content-between pb-3 text-red border-bottom">
+                <!-- <p v-show="discountAmount" class="d-flex justify-content-between
+                pb-3 text-red border-bottom"> -->
+                <p
+                  v-if="discountAmount"
+                  class="d-flex justify-content-between pb-3 text-red border-bottom"
+                >
                   <span>折扣金額</span>
                   <span>- NT{{ discountAmount | dollars }}</span>
                 </p>
@@ -139,7 +154,9 @@
                 </div>
               </div>
               <router-link
-                tag="a" href="#" class="btn btn-primary btn-block"
+                tag="a"
+                href="#"
+                class="btn btn-primary btn-block"
                 :to="{name:'收件資訊'}"
               >
                 下一步

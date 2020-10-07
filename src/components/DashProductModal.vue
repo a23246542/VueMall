@@ -1,15 +1,30 @@
 <template>
-  <div id="productModal" class="modal fade" tabindex="-1" role="dialog"
-       aria-labelledby="exampleModalLabel" aria-hidden="true"
+  <div
+    id="productModal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
   >
-    <div class="modal-dialog modal-xl" role="document">
+    <div
+      class="modal-dialog modal-xl"
+      role="document"
+    >
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
-          <h5 id="exampleModalLabel" class="modal-title">
+          <h5
+            id="exampleModalLabel"
+            class="modal-title"
+          >
             <span>新增產品</span>
           </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                  @click="cancelUpdateProduct"
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+            @click="cancelUpdateProduct"
           >
             <span aria-hidden="true">&times;</span>
           </button>
@@ -20,7 +35,10 @@
               <div class="form-group">
                 <label for="imageUrl">輸入圖片網址(enter)</label>
                 <input
-                  id="imageUrl" v-model="tempImgUrl" type="text" class="form-control"
+                  id="imageUrl"
+                  v-model="tempImgUrl"
+                  type="text"
+                  class="form-control"
                   placeholder="請輸入圖片連結"
                   @keyup.enter="addImg"
                 >
@@ -28,7 +46,8 @@
               <div class="form-group">
                 <label for="fileImg">或上傳圖片</label>
                 <input
-                  id="fileImg" ref="file"
+                  id="fileImg"
+                  ref="file"
                   type="file"
                   class="form-control"
                   @change="uploadImg"
@@ -46,19 +65,25 @@
                 >
                   <div class="form-group">
                     <!-- <label for="imageUrl">編輯圖片網址</label>要有id對應%% -->
-                    <!-- <label :for="'img'+index">圖片網址{{isReadonly(url)?"(不可編輯)":"(可編輯)"}}</label> -->
+                    <!-- <label :for="'img'+index">圖片網址{{isReadonly(url)?
+                      "(不可編輯)":"(可編輯)"}}</label> -->
                     <label :for="'img'+index">圖片網址</label>
-                    <!-- <input :id="'img'+index" type="text" class="form-control" placeholder="請輸入圖片連結"
+                    <!-- <input :id="'img'+index" type="text"
+                    class="form-control" placeholder="請輸入圖片連結"
                             :readonly="isReadonly(url)"
                             v-model="tempProduct.imageUrl[index]"
                             > -->
                     <input
-                      :id="'img'+index" v-model="tempProduct.imageUrl[index]" type="text" class="form-control"
+                      :id="'img'+index"
+                      v-model="tempProduct.imageUrl[index]"
+                      type="text"
+                      class="form-control"
                       placeholder="請輸入圖片連結"
                     >
                   </div>
                   <img
-                    class="img-fluid" alt=""
+                    class="img-fluid"
+                    alt=""
                     :src="tempProduct.imageUrl[index]"
                   >
                 </div>
@@ -68,7 +93,10 @@
               <div class="form-group">
                 <label for="title">標題</label>
                 <input
-                  id="title" v-model="tempProduct.title" type="text" class="form-control"
+                  id="title"
+                  v-model="tempProduct.title"
+                  type="text"
+                  class="form-control"
                   placeholder="請輸入標題"
                 >
               </div>
@@ -77,21 +105,30 @@
                 <div class="form-group col-md-4">
                   <label for="category">分類</label>
                   <input
-                    id="category" v-model="tempProduct.category" type="text"
-                    class="form-control" placeholder="請輸入分類"
+                    id="category"
+                    v-model="tempProduct.category"
+                    type="text"
+                    class="form-control"
+                    placeholder="請輸入分類"
                   >
                 </div>
                 <div class="form-group col-md-4">
                   <label for="price">單位</label>
                   <input
-                    id="unit" v-model="tempProduct.unit" type="text" class="form-control"
+                    id="unit"
+                    v-model="tempProduct.unit"
+                    type="text"
+                    class="form-control"
                     placeholder="請輸入單位"
                   >
                 </div>
                 <div class="form-group col-md-4">
                   <label for="stock">庫存</label>
                   <input
-                    id="stock" v-model.number="tempProduct.options.stock" type="number" class="form-control"
+                    id="stock"
+                    v-model.number="tempProduct.options.stock"
+                    type="number"
+                    class="form-control"
                     placeholder="請輸入庫存"
                   >
                 </div>
@@ -101,14 +138,20 @@
                 <div class="form-group col-md-6">
                   <label for="origin_price">原價</label>
                   <input
-                    id="origin_price" v-model="tempProduct.origin_price" type="number"
-                    class="form-control" placeholder="請輸入原價"
+                    id="origin_price"
+                    v-model="tempProduct.origin_price"
+                    type="number"
+                    class="form-control"
+                    placeholder="請輸入原價"
                   >
                 </div>
                 <div class="form-group col-md-6">
                   <label for="price">售價</label>
                   <input
-                    id="price" v-model="tempProduct.price" type="number" class="form-control"
+                    id="price"
+                    v-model="tempProduct.price"
+                    type="number"
+                    class="form-control"
                     placeholder="請輸入售價"
                   >
                 </div>
@@ -117,15 +160,22 @@
               <div class="form-group">
                 <label for="hashtag">產品標籤</label>
                 <input
-                  id="hashtag" v-model="tempProduct.options.hashtag" type="text" class="form-control"
+                  id="hashtag"
+                  v-model="tempProduct.options.hashtag"
+                  type="text"
+                  class="form-control"
                   placeholder="請輸入產品標籤"
                 >
               </div>
               <div class="form-group">
                 <label for="content">說明內容</label>
-                <textarea id="description" v-model="tempProduct.content" type="text"
-                          class="form-control" placeholder="請輸入說明內容"
-                          style="height:60px"
+                <textarea
+                  id="description"
+                  v-model="tempProduct.content"
+                  type="text"
+                  class="form-control"
+                  placeholder="請輸入說明內容"
+                  style="height:60px"
                 />
               </div>
               <div class="form-group">
@@ -137,17 +187,21 @@
                 <VueEditor
                   id="description"
                   v-model="tempProduct.description"
-                  class="" style=""
+                  class=""
+                  style=""
                   :placeholder="請輸入產品描述"
                   @image-added="uploadEditerImg"
-                ></VueEditor>
+                />
               </div>
               <div class="form-group">
                 <label for="specification">產品規格</label>
-                <textarea id="specification" v-model="tempProduct.options.specification"
-                          type="text" class="form-control"
-                          placeholder="請輸入產品規格、注意事項"
-                          style="height:120px"
+                <textarea
+                  id="specification"
+                  v-model="tempProduct.options.specification"
+                  type="text"
+                  class="form-control"
+                  placeholder="請輸入產品規格、注意事項"
+                  style="height:120px"
                 />
               </div>
               <div class="form-group">
@@ -156,22 +210,34 @@
                     type="checkbox" :true-value="1" :false-value="0"> -->
                   <!-- %%這次api不需要更改true-value -->
                   <input
-                    id="is_enabled" v-model="tempProduct.enabled" class="form-check-input"
+                    id="is_enabled"
+                    v-model="tempProduct.enabled"
+                    class="form-check-input"
                     type="checkbox"
                   >
-                  <label class="form-check-label" for="is_enabled">是否啟用</label>
+                  <label
+                    class="form-check-label"
+                    for="is_enabled"
+                  >是否啟用</label>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"
-                  @click="cancelUpdateProduct"
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            data-dismiss="modal"
+            @click="cancelUpdateProduct"
           >
             取消
           </button>
-          <button type="button" class="btn btn-primary" @click="updateProduct">
+          <button
+            type="button"
+            class="btn btn-primary"
+            @click="updateProduct"
+          >
             確認
           </button>
         </div>
