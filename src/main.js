@@ -23,6 +23,7 @@ import router from './router';
 import store from './store';
 import { instanceLogin } from './api/https';
 import './bus';
+import mockFn from './api/apis';
 
 window.$ = $;
 // import filters from './filters';
@@ -36,11 +37,12 @@ Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);// ##原本的是可以this.axios.get()調用
 
 // mock開關
-const mock = true;
+const mock = false;
 if (mock) {
-  require('./mock/api.js');
+  // require('./mock/api.js');
   // const mockData = require('./mock/api.js');
   // console.log(mockData);
+  mockFn();
 }
 // axios.defaults.timeout = 8000;
 
@@ -62,7 +64,7 @@ const app = new Vue({
 
 // ##直接物件方法調用
 router.beforeEach((to, from, next) => {
-  console.log('to', to, 'from', from, 'next', next);
+  // console.log('to', to, 'from', from, 'next', next);
 
   if (to.meta.requireAuth) {
     app.$store.commit('LOADING', true);// ##app.$store
@@ -76,12 +78,13 @@ router.beforeEach((to, from, next) => {
         .then((res) => {
           // console.log(res.message);%%
           app.$store.commit('LOADING', false);
-          console.log('導航守衛');
-          console.dir(res);
+          // console.log('導航守衛');
+          // console.dir(res);
           if (res.data.success) {
             next();
           } else { // res.success為false
             app.$store.commit('LOADING', false);
+            /* eslint-disable */
             console.log('響應驗證失敗');
             next({
               name: 'login',
@@ -96,7 +99,7 @@ router.beforeEach((to, from, next) => {
         });
     } else { // no access token
       app.$store.commit('LOADING', false);
-      console.log('未登入(token不存在)');
+      // console.log('未登入(token不存在)');
       next({
         name: 'login',
       });

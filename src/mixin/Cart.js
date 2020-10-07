@@ -7,14 +7,14 @@ export default {
       const hasInCartItem = this.carts.find((cart) => cart.product.id === cartItem.id);
       if (!hasInCartItem) { // 品項不存在購物車
         this.$instanceCus.post(api, cartItem)
-          .then((res) => {
-            console.log(res);
+          .then(() => {
+            // console.log(res);
             this.$store.commit('LOADING', false);
             this.$bus.$emit('message:push', `${item.title}已加入購物車`, 'success');
             this.$store.dispatch('getCart');
           })
-          .catch((err) => {
-            console.log(err);
+          .catch(() => {
+            // console.log(err);
           });
       } else { // 同品項已存在購物車
         const data = {

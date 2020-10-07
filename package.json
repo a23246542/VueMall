@@ -71,20 +71,19 @@
         "error",
         2
       ],
-      "max-len": "off",
-      "no-console": "off",
-      "no-unused-vars": "warn",
-      "no-shadow": "warn",
-      "vue/max-attributes-per-line": "off",
-      "vue/html-self-closing": "off",
+      "max-len": [1,100,2,{
+        "ignoreComments": true,
+        "ignoreUrls": true
+      }],
+      "no-console": "warn",
+      "vue/max-attributes-per-line": "warn",
+      "vue/html-self-closing": "warn",
       "arrow-body-style": [
         "off"
       ],
       "no-return-assign": [
         "error"
-      ],
-      "global-require": "off",
-      "no-param-reassign": "off"
+      ]
     }
   },
   "browserslist": [

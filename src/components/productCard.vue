@@ -1,27 +1,34 @@
 <template>
   <!-- <div class=`col-xl-4 col-sm-6 mb-${mb} productCardCol`
   > //@@代參數-->
-  <div class="productCard card rounded-0" :class="[mb]">
-    <!-- <img :src="thisProduct.imageUrl[0]" class="productCard__img card-img-top img-fluid" alt="..."
+  <div
+    class="productCard card rounded-0"
+    :class="[mb]"
+  >
+    <!-- <img :src="thisProduct.imageUrl[0]"
+    class="productCard__img card-img-top img-fluid" alt="..."
                     @click="openSingleProudct(thisProduct.id)"
                 > -->
     <div class="p-2">
-      <div class="productCard__imgWrap bg-cover"
-           :style="{
-             backgroundImage:`url(${thisProduct.imageUrl[0]})`
-           }"
+      <div
+        class="productCard__imgWrap bg-cover"
+        :style="{
+          backgroundImage:`url(${thisProduct.imageUrl[0]})`
+        }"
       >
         <span class="productCard__imgWrap__badge badge badge-primary">{{ productTag }}</span>
-        <span class="productCard__favoriteBadge"
-              @click="clickHeart"
+        <span
+          class="productCard__favoriteBadge"
+          @click="clickHeart"
         >
-          <i :class="heartStyle"></i>
+          <i :class="heartStyle" />
         </span>
       </div>
     </div>
     <div class="productCard__body card-body pt-1">
-      <h5 class="productCard__title mb-1 card-title font-weight-bold"
-          @click="openSingleProudct()"
+      <h5
+        class="productCard__title mb-1 card-title font-weight-bold"
+        @click="openSingleProudct()"
       >
         {{ thisProduct.title }}
       </h5>
@@ -49,21 +56,29 @@
                                 >{{i}}</option>
                             </select> -->
           <!-- ##v-model沒有值的話 option預設不會顯示 雙向綁定變空白 -->
-          <select v-model="thisProduct.num"
-                  class="productCard__num form-control form-control-sm"
+          <select
+            v-model="thisProduct.num"
+            class="productCard__num form-control form-control-sm"
           >
-            <option :value="1" selected>
+            <option
+              :value="1"
+              selected
+            >
               1
             </option>
-            <option v-for="i in 5" :key="'num'+i"
-                    :value="i+1"
+            <option
+              v-for="i in 5"
+              :key="'num'+i"
+              :value="i+1"
             >
               {{ i+1 }}
             </option>
           </select>
         </div>
-        <a href="#" class="productCard__cart flex-1 btn btn-secondary btn-sm py-1 ml-auto border-0"
-           @click.prevent="addToCart(thisProduct,thisProduct.num)"
+        <a
+          href="#"
+          class="productCard__cart flex-1 btn btn-secondary btn-sm py-1 ml-auto border-0"
+          @click.prevent="addToCart(thisProduct,thisProduct.num)"
         >加入購物車</a>
       </div>
     </div>

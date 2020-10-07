@@ -2,8 +2,9 @@
   <div id="dashProducts">
     <!-- <BaseLoading :active.sync="isLoading"/> -->
     <div class="mt-4 text-right">
-      <button class="newBtn btn btn-primary"
-              @click="openModal('new')"
+      <button
+        class="newBtn btn btn-primary"
+        @click="openModal('new')"
       >
         新增產品
       </button>
@@ -31,7 +32,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item) in products" :key="item.id">
+          <tr
+            v-for="(item) in products"
+            :key="item.id"
+          >
             <td>{{ item.category.split(">")[0] }}</td>
             <td>{{ item.title }}</td>
             <td class="text-right">
@@ -46,18 +50,26 @@
               <label class="toggle-control">
                 <!-- <input type="checkbox"> -->
                 <!-- <input type="checkbox" :checked="item.enabled"> -->
-                <input v-model="item.enabled" type="checkbox"
-                       @change="enabledProduct(item)"
+                <input
+                  v-model="item.enabled"
+                  type="checkbox"
+                  @change="enabledProduct(item)"
                 >
                 <span class="control" />
               </label>
             </td>
             <td>
               <div class="btn-group">
-                <button class="btn btn-outline-primary btn-sm" @click="openModal('edit',item)">
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  @click="openModal('edit',item)"
+                >
                   編輯
                 </button>
-                <button class="btn btn-outline-danger btn-sm" @click="openModal('delete',item)">
+                <button
+                  class="btn btn-outline-danger btn-sm"
+                  @click="openModal('delete',item)"
+                >
                   刪除
                 </button>
               </div>
@@ -67,8 +79,9 @@
       </table>
     </div>
     <div class="text-right">
-      <button class="btn btn-danger mr-5"
-              @click="openDelAllProducts"
+      <button
+        class="btn btn-danger mr-5"
+        @click="openDelAllProducts"
       >
         刪除本頁產品
       </button>
@@ -89,10 +102,11 @@
       :temp-product.sync="tempProduct"
       @update="getProducts"
     />
-    <DashOtherModal id="delAll"
-                    :title="'刪除此頁商品'"
-                    :modal-use="'delete'"
-                    @delete="delAllProducts"
+    <DashOtherModal
+      id="delAll"
+      :title="'刪除此頁商品'"
+      :modal-use="'delete'"
+      @delete="delAllProducts"
     >
       <template v-slot:delete>
         <div class="p-3 fz-35">

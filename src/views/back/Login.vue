@@ -1,26 +1,49 @@
 <template>
-  <div class="form-page text-center" style="height:100vh">
-    <form class="form-signin"
-          @submit.prevent="signIn"
+  <div
+    class="form-page text-center"
+    style="height:100vh"
+  >
+    <form
+      class="form-signin"
+      @submit.prevent="signIn"
     >
       <h1 class="h3 mb-3 font-weight-normal">
         請先登入
       </h1>
-      <label for="inputEmail" class="sr-only">電子信箱</label>
-      <input id="inputEmail" v-model="user.email" type="email" class="form-control mb-3" placeholder="Email address"
-             required
-             autofocus
+      <label
+        for="inputEmail"
+        class="sr-only"
+      >電子信箱</label>
+      <input
+        id="inputEmail"
+        v-model="user.email"
+        type="email"
+        class="form-control mb-3"
+        placeholder="Email address"
+        required
+        autofocus
       >
-      <label for="inputPassword" class="sr-only">密碼</label>
-      <input id="inputPassword" v-model="user.password" type="password" class="form-control mb-4" placeholder="Password"
-             required
+      <label
+        for="inputPassword"
+        class="sr-only"
+      >密碼</label>
+      <input
+        id="inputPassword"
+        v-model="user.password"
+        type="password"
+        class="form-control mb-4"
+        placeholder="Password"
+        required
       >
       <!-- <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
         </label>
       </div> -->
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <button
+        class="btn btn-lg btn-primary btn-block"
+        type="submit"
+      >
         登入
       </button>
       <p class="mt-5 mb-3 text-muted">
@@ -55,19 +78,20 @@ export default {
         .then((res) => {
           this.$store.commit('LOADING', false);
           // catch是请求失败的
-          console.log(res);
+          // console.log(res);
           if (res.data.success) {
             const { token } = res.data;// 跨页面cookeies
             const { expired } = res.data;
             const { uuid } = res.data;
 
-            document.cookie = `token=${token}; uuid=${uuid}; expires=${new Date(expired * 1000)}; path=/`;
+            document.cookie = `token=${token}; uuid=${uuid};
+            expires=${new Date(expired * 1000)}; path=/`;
             // router.push('/admin')不像main.js
             this.$router.push('/admin');// %%
           }
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          // console.log(err);
         });
     },
 

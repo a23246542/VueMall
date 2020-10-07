@@ -1,7 +1,10 @@
 <template>
   <div class="shopping">
-    <NavHeader></NavHeader>
-    <div v-if="nowPage" class="processStep row">
+    <NavHeader />
+    <div
+      v-if="nowPage"
+      class="processStep row"
+    >
       <div class="col-md-8 mx-auto">
         <ul class="d-flex">
           <li class="processStep__item">
@@ -20,18 +23,24 @@
         <!-- @@bem -->
         <!-- <div class="progress progress--processStep"> -->
         <div class="processStep__progress progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"
-               :style="{width:barWidth}"
+          <div
+            class="progress-bar"
+            role="progressbar"
+            aria-valuenow="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            :style="{width:barWidth}"
           >
             <!-- style="width: 33%;" -->
           </div>
         </div>
       </div>
     </div>
-    <router-view style="margin-bottom:80px"
-                 @change-page="changeBar"
+    <router-view
+      style="margin-bottom:80px"
+      @change-page="changeBar"
     />
-    <NavFooter></NavFooter>
+    <NavFooter />
   </div>
 </template>
 <script>

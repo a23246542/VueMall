@@ -1,29 +1,48 @@
 <template>
   <!-- <div> -->
-  <div v-if="product.imageUrl[0]" class="container productSingle">
+  <div
+    v-if="product.imageUrl[0]"
+    class="container productSingle"
+  >
     <div class="row mb-45">
       <div class="col-md-7 text-center">
-        <img :src="product.imageUrl[selectedImgIndex]" alt="" class="img-fluid mb-3 bg-white" style="weight:100%;height:500px;object-fit:cover;">
+        <img
+          :src="product.imageUrl[selectedImgIndex]"
+          alt=""
+          class="img-fluid mb-3 bg-white"
+          style="weight:100%;height:500px;object-fit:cover;"
+        >
         <div class="productSingle__cusScroll overflow-x-auto">
           <ul class="d-flex productSingle__thumbImgs thumbImgs mb-0 list-unstyled">
             <!-- <div class="thumbImgs__oneThumbCol"
                             v-for="(item,index) in product.imageUrl" :key="item"
                           > -->
             <!-- <li class="thumbImgs__oneThumbImg flex-shrink-0 bg-cover" -->
-            <li v-for="(item,index) in product.imageUrl" :key="item" class="thumbImgs__oneThumbImg bg-cover" :class="{
-              'thumbImgs__oneThumbImg--selected':selectedImgIndex==index,
-            }" :style="{
-              backgroundImage:`url(${product.imageUrl[index]})`
-            }" @click="setThumbImgIndex(index)"
-            >
-            </li>
+            <li
+              v-for="(item,index) in product.imageUrl"
+              :key="item"
+              class="thumbImgs__oneThumbImg bg-cover"
+              :class="{
+                'thumbImgs__oneThumbImg--selected':selectedImgIndex==index,
+              }"
+              :style="{
+                backgroundImage:`url(${product.imageUrl[index]})`
+              }"
+              @click="setThumbImgIndex(index)"
+            />
           <!-- </div> -->
           </ul>
         </div>
       </div>
       <div class="col-md-5">
         <div class="mb-3">
-          <span v-if="product.category" class="d-inline-block px-1 text-primary border-bottom border-primary font-weight-bold">{{ product.category.split('>')[1] }}系列</span>
+          <span
+            v-if="product.category"
+            class="d-inline-block px-1 text-primary border-bottom
+            border-primary font-weight-bold"
+          >
+            {{ product.category.split('>')[1] }}系列
+          </span>
         </div>
         <h2 class="text-secondary1 font-weight-bold">
           {{ product.title }}
@@ -32,14 +51,24 @@
           {{ product.content }}
         </p>
         <div class="d-flex justify-content-between mb-5 border-bottom">
-          <small v-if="product.id" class="productSingle__id">
+          <small
+            v-if="product.id"
+            class="productSingle__id"
+          >
             產品編號{{ product.id.slice(-5).toUpperCase() }}
           </small>
-          <!-- <span>{{product.origin_price | dollars}}</span>/<span>{{product.price | dollars}}</span> -->
-          <span v-if="true" class="productSingle__favorite text-primary">
+          <!-- <span>{{product.origin_price | dollars}}</span>/<span>
+          {{product.price | dollars}}</span> -->
+          <span
+            v-if="true"
+            class="productSingle__favorite text-primary"
+          >
             加入收藏 <i class="far fa-heart" />
           </span>
-          <span v-if="false" class="productSingle__favorite text-primary">
+          <span
+            v-if="false"
+            class="productSingle__favorite text-primary"
+          >
             加入收藏 <i class="fas fa-heart" />
           </span>
         </div>
@@ -51,13 +80,24 @@
           <!-- ##input-group -->
           <div class="input-group w-auto">
             <div class="input-group-prepend">
-              <button class="btn btn-secondary" @click="updateProductQty('add')">
+              <button
+                class="btn btn-secondary"
+                @click="updateProductQty('add')"
+              >
                 +
               </button>
             </div>
-            <input v-model.number="product.qty" type="text" class="form-control text-center" style="max-width:100px">
+            <input
+              v-model.number="product.qty"
+              type="text"
+              class="form-control text-center"
+              style="max-width:100px"
+            >
             <div class="input-group-append mr-3">
-              <button class="btn btn-secondary" @click="updateProductQty('reduce')">
+              <button
+                class="btn btn-secondary"
+                @click="updateProductQty('reduce')"
+              >
                 -
               </button>
             </div>
@@ -66,10 +106,16 @@
         </div>
         <!-- <div class="productSingle__buyArea d-flex justify-content-end pr-4"> -->
         <div class="productSingle__buyArea">
-          <button class="btn productSingle__nowBuy btn-primary mr-3" @click="buyProduct('directBuy')">
+          <button
+            class="btn productSingle__nowBuy btn-primary mr-3"
+            @click="buyProduct('directBuy')"
+          >
             直接購買
           </button>
-          <button class="btn productSingle__addCar btn-primary" @click="buyProduct()">
+          <button
+            class="btn productSingle__addCar btn-primary"
+            @click="buyProduct()"
+          >
             加入購物車
           </button>
         </div>
@@ -98,26 +144,46 @@
         <div class="productInfo">
           <div class="productInfo__nav">
             <ul class="d-flex mb-0">
-              <li class="nav__item" :class="{'nav__item--active':selectedPrdInfoView==='feature'}" @click="setInfoView('feature')">
+              <li
+                class="nav__item"
+                :class="{'nav__item--active':selectedPrdInfoView==='feature'}"
+                @click="setInfoView('feature')"
+              >
                 商品特色
               </li>
-              <li class="nav__item" :class="{'nav__item--active':selectedPrdInfoView==='specification'}" @click="setInfoView('specification')">
+              <li
+                class="nav__item"
+                :class="{'nav__item--active':selectedPrdInfoView==='specification'}"
+                @click="setInfoView('specification')"
+              >
                 運送規範
               </li>
-              <li class="nav__item" :class="{'nav__item--active':selectedPrdInfoView==='shipmentRule'}" @click="setInfoView('shipmentRule')">
+              <li
+                class="nav__item"
+                :class="{'nav__item--active':selectedPrdInfoView==='shipmentRule'}"
+                @click="setInfoView('shipmentRule')"
+              >
                 注意事項
               </li>
             </ul>
           </div>
           <div class="productInfo__contentArea  bg-white text-secondary2">
             <!-- <div class="productInfo__view"> -->
-            <div class="productInfo__featureView productInfo__p ql-editor" :class="{'productInfo__featureView--show':selectedPrdInfoView==='feature'}">
+            <div
+              class="productInfo__featureView productInfo__p ql-editor"
+              :class="{'productInfo__featureView--show'
+                :selectedPrdInfoView==='feature'}"
+            >
               <!-- <p>{{ product.description }}</p> -->
               <!-- eslint-disable -->
             <p v-html="product.description" />
             <!-- eslint-enable -->
             </div>
-            <div class="productInfo__specificationView productInfo__p" :class="{'productInfo__specificationView--show':selectedPrdInfoView==='specification'}">
+            <div
+              class="productInfo__specificationView productInfo__p"
+              :class="{'productInfo__specificationView--show'
+                :selectedPrdInfoView==='specification'}"
+            >
               <p>/運送規範</p>
               <p>
                 商品以黑貓宅急便或新竹貨運寄送，出貨時間為週一至週六。<br>
@@ -125,7 +191,11 @@
                 下午四點完成訂單，隔日送達(偏遠山區、離島例外)。
               </p>
             </div>
-            <div class="productInfo__shipmentRuleView productInfo__p" :class="{'productInfo__shipmentRuleView--show':selectedPrdInfoView==='shipmentRule'}">
+            <div
+              class="productInfo__shipmentRuleView productInfo__p"
+              :class="{'productInfo__shipmentRuleView--show'
+                :selectedPrdInfoView==='shipmentRule'}"
+            >
               <!-- <p>/注意事項</p> -->
               <div>
                 <p>
@@ -140,7 +210,10 @@
                 </p>
                 <p>
                   /商品退換貨<br>
-                  網路購物的消費者，都可以依照消費者保護法的規定，享有商品貨到日起七天猶豫期的權益。但猶豫期並非試用期，所以，您所退回的商品必須是全新的狀態、而且完整包裝；請注意保持商品本體、 配件、贈品、保證書、原廠包裝及所有附隨文件或資料的完整性，切勿缺漏任何配件或損毀原廠外盒。
+                  網路購物的消費者，都可以依照消費者保護法的規定，享有商品貨到日起七天猶豫期的權益。
+                  但猶豫期並非試用期，所以，您所退回的商品必須是全新的狀態、而且完整包裝；
+                  請注意保持商品本體、 配件、贈品、保證書、原廠包裝及所有附隨文件或資料的完整性，
+                  切勿缺漏任何配件或損毀原廠外盒。
                 </p>
               </div>
             </div>
@@ -157,7 +230,11 @@
           </div>
           <div class="sideProductList__group">
             <ul v-if="relatedProducts">
-              <li v-for="(item,index) in sameCategoryProducts" :key="index+item.id" class="sidePrdItem px-2 py-2 border bg-white">
+              <li
+                v-for="(item,index) in sameCategoryProducts"
+                :key="index+item.id"
+                class="sidePrdItem px-2 py-2 border bg-white"
+              >
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="sidePrdItem__infoBox p-3">
                     <div class="sidePrdItem__title text-truncate">
@@ -172,7 +249,10 @@
                   </div>
                   <!-- @@picBox 或boxPic -->
                   <div class="sidePrdItem__picBox">
-                    <img :src="item.imageUrl[0]" alt="">
+                    <img
+                      :src="item.imageUrl[0]"
+                      alt=""
+                    >
                   </div>
                 </div>
               </li>
@@ -350,7 +430,7 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 /* Import the Quill styles you want */
 /* @import '~quill/dist/quill.core.css';
 @import '~quill/dist/quill.bubble.css';

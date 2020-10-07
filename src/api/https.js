@@ -1,8 +1,10 @@
+/* eslint-disable */
 import Vue from 'vue';
 import axios from 'axios';
 import router from '../router';// @做router.push
 
 // ============后台admin==========================================
+/* eslint-disable */
 const http = {
   apiPath: '',
   uuid: '',
@@ -14,7 +16,7 @@ const http = {
 
 // @@是否會先執行到
 http.apiPath = process.env.VUE_APP_APIPATH;
-// http.uuid =  document.cookie.replace(/(?:(?:^|.*;\s*)uuid\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '82a32758-aadc-4405-b535-2f6a678989d8';
+
 http.uuid = process.env.VUE_APP_UUID;
 // http.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
@@ -29,6 +31,7 @@ const instanceCus = axios.create({ // @@沒登入也需要UUID
   baseURL: `${http.apiPath}api/${http.uuid}/`,
 });
 // ======================登入api============================================
+
 
 instanceLogin.interceptors.request.use((config) => config, (err) => {
   console.log('請求錯誤');
@@ -52,11 +55,12 @@ instanceLogin.interceptors.response.use((res) => {
 // ===================後台api=============================================
 instanceAdmin.interceptors.request.use(async (config) => {
   const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1');
-
+  /* eslint-disable */
   config.headers.Authorization = `Bearer ${token}`; // @@eslint出現no-param-reassign，要如何給設定
-
+  /* eslint-enable */
   return config;
 }, (err) => {
+  /* eslint-disable */
   console.log('請求錯誤');
   // console.log(err);
   // -[]錯誤訊息轉換

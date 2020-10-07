@@ -3,7 +3,8 @@
     <div class="row">
       <div
         v-for="(item) in filterProducts"
-        :key="item.id" class="col-xl-4 col-sm-6 productCardCol"
+        :key="item.id"
+        class="col-xl-4 col-sm-6 productCardCol"
       >
         <ProductCard
           :this-product="item"
@@ -47,7 +48,8 @@ export default {
       //     item.category.toLowerCase().includes(this.searchText.toLowerCase()); // %%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false
       //   });
       // }
-      return this.products.filter((item) => item.category.toLowerCase().includes(this.searchText.toLowerCase())); // %%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false);
+      return this.products.filter((item) => item.category.toLowerCase()
+        .includes(this.searchText.toLowerCase())); // %%includes判斷陣列或"字串"是否包含特定的元素，並以此來回傳 true 或 false);
     },
   },
   created() {

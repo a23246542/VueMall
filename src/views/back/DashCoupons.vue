@@ -1,9 +1,13 @@
 <template>
-  <div id="dashCoupon" class="table-responsive">
+  <div
+    id="dashCoupon"
+    class="table-responsive"
+  >
     <div>
       <div class="mt-4 text-right">
-        <button class="btn btn-primary"
-                @click="openModal('new')"
+        <button
+          class="btn btn-primary"
+          @click="openModal('new')"
         >
           新增產品
         </button>
@@ -32,7 +36,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item) in coupons" :key="item.id">
+          <tr
+            v-for="(item) in coupons"
+            :key="item.id"
+          >
             <td>{{ item.title }}</td>
             <td>{{ item.code }}</td>
             <td class="text-right">
@@ -52,10 +59,16 @@
             </td>
             <td>
               <div class="btn-group">
-                <button class="btn btn-outline-primary btn-sm" @click="openModal('edit',item)">
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  @click="openModal('edit',item)"
+                >
                   編輯
                 </button>
-                <button class="btn btn-outline-danger btn-sm" @click="openModal('delete',item)">
+                <button
+                  class="btn btn-outline-danger btn-sm"
+                  @click="openModal('delete',item)"
+                >
                   刪除
                 </button>
               </div>
@@ -82,20 +95,24 @@
         :temp-product.sync="tempProduct"
         @update="getProducts"
         /> -->
-    <DashModal id="couponModal"
-               :title="modalTitle"
-               :modal-use="modalUse"
-               @submit="updateCoupon"
-               @delete="removeCoupon"
+    <DashModal
+      id="couponModal"
+      :title="modalTitle"
+      :modal-use="modalUse"
+      @submit="updateCoupon"
+      @delete="removeCoupon"
     >
       <template v-slot:update>
         <div class="row">
           <div class="col-sm-4">
             <div class="form-group">
               <label for="title">優惠券名稱</label>
-              <input id="title" v-model="tempCoupon.title" type="text"
-                     class="form-control"
-                     placeholder="請輸入優惠券名稱"
+              <input
+                id="title"
+                v-model="tempCoupon.title"
+                type="text"
+                class="form-control"
+                placeholder="請輸入優惠券名稱"
               >
             </div>
           </div>
@@ -148,7 +165,10 @@
                   class="form-check-input"
                   type="checkbox"
                 >
-                <label class="form-check-label" for="is_enabled">是否啟用</label>
+                <label
+                  class="form-check-label"
+                  for="is_enabled"
+                >是否啟用</label>
               </div>
             </div>
           </div>

@@ -39,7 +39,11 @@
                 class="d-flex w-100 flex-column overflow-x-hidden overflow-y-auto"
                 style="height:500px"
               >
-                <div v-for="(url,index) in tempProduct.imageUrl" :key="'img'+index" class="w-100 flex-shrink-0 px-2 text-center">
+                <div
+                  v-for="(url,index) in tempProduct.imageUrl"
+                  :key="'img'+index"
+                  class="w-100 flex-shrink-0 px-2 text-center"
+                >
                   <div class="form-group">
                     <!-- <label for="imageUrl">編輯圖片網址</label>要有id對應%% -->
                     <!-- <label :for="'img'+index">圖片網址{{isReadonly(url)?"(不可編輯)":"(可編輯)"}}</label> -->

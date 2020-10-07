@@ -10,7 +10,8 @@ export default {
   },
   getters: {
     cartTotal: (state) => {
-      const total = state.cart.carts.reduce((prev, item) => prev + (item.product.price * item.quantity), 0);
+      const total = state.cart.carts
+        .reduce((prev, item) => prev + (item.product.price * item.quantity), 0);
       // total = total*
       return total;
     },

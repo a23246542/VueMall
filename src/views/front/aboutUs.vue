@@ -31,11 +31,18 @@
           </div>
           <div class="col-lg-7 col-md-12">
             <div class="brandStory__mainPic">
-              <img src="https://media.gq.com.tw/photos/5dbc1eac8569400008312f03/master/w_1280%2cc_limit/2019091354862129.jpg" alt="">
+              <img
+                src="https://media.gq.com.tw/photos/5dbc1eac8569400008312f03/master/w_1280%2cc_limit/2019091354862129.jpg"
+                alt=""
+              >
             </div>
           </div>
         </div>
-        <img class="brandStory__subPic" src="https://media.gq.com.tw/photos/5dbc1eacde83b50008974ef7/master/w_1280%2cc_limit/2019091354873721.jpg" alt="">
+        <img
+          class="brandStory__subPic"
+          src="https://media.gq.com.tw/photos/5dbc1eacde83b50008974ef7/master/w_1280%2cc_limit/2019091354873721.jpg"
+          alt=""
+        >
       </div>
     </section>
     <section class="storeInfo">
@@ -71,7 +78,10 @@
           <ul>
             <li>
               <div class="storeInfo__contentTitle">
-                <img src="@/assets/images/storeInfo_icon.png" alt=""><h3>台北店</h3>
+                <img
+                  src="@/assets/images/storeInfo_icon.png"
+                  alt=""
+                ><h3>台北店</h3>
               </div>
               <div class="storeInfo__contentBox">
                 <div class="storeInfo__infoTxt storeInfo__infoTxt--address">
@@ -118,8 +128,14 @@
         </div>
         <div class="storeInfo__sideMap">
           <div class="sideMap">
-            <a class="sideMap__pic" href="#">
-              <img src="@/assets/images/storeInfo_map1.png" alt="">
+            <a
+              class="sideMap__pic"
+              href="#"
+            >
+              <img
+                src="@/assets/images/storeInfo_map1.png"
+                alt=""
+              >
             </a>
             <div class="mt-3">
               <a href="#">開啟google地圖</a>
@@ -136,8 +152,15 @@
         <ul class="row campInfo__row">
           <li class="col-12 col-md-3 camp1">
             <div class="campInfo__itemBox">
-              <img class="campInfo__bgPic" src="@/assets/images/campInfo/campInfo3.jpg" alt="">
-              <a href="#" class="campInfo__itemMask">
+              <img
+                class="campInfo__bgPic"
+                src="@/assets/images/campInfo/campInfo3.jpg"
+                alt=""
+              >
+              <a
+                href="#"
+                class="campInfo__itemMask"
+              >
                 <div class="campInfo__itemTxt">
                   <h5>北部</h5>
                   <p>North</p>
@@ -147,8 +170,15 @@
           </li>
           <li class="col-12 col-md-3 camp2">
             <div class="campInfo__itemBox">
-              <img class="campInfo__bgPic" src="@/assets/images/campInfo/campInfo1.jpg" alt="">
-              <a href="#" class="campInfo__itemMask">
+              <img
+                class="campInfo__bgPic"
+                src="@/assets/images/campInfo/campInfo1.jpg"
+                alt=""
+              >
+              <a
+                href="#"
+                class="campInfo__itemMask"
+              >
                 <div class="campInfo__itemTxt">
                   <h5>中部</h5>
                   <p>North</p>
@@ -158,8 +188,15 @@
           </li>
           <li class="col-12 col-md-3 camp3">
             <div class="campInfo__itemBox">
-              <img class="campInfo__bgPic" src="@/assets/images/campInfo/campInfo4.jpg" alt="">
-              <a href="#" class="campInfo__itemMask">
+              <img
+                class="campInfo__bgPic"
+                src="@/assets/images/campInfo/campInfo4.jpg"
+                alt=""
+              >
+              <a
+                href="#"
+                class="campInfo__itemMask"
+              >
                 <div class="campInfo__itemTxt">
                   <h5>南部</h5>
                   <p>North</p>
@@ -169,8 +206,15 @@
           </li>
           <li class="col-12 col-md-3 camp4">
             <div class="campInfo__itemBox">
-              <img class="campInfo__bgPic" src="@/assets/images/campInfo/campInfo2.jpg" alt="">
-              <a href="#" class="campInfo__itemMask">
+              <img
+                class="campInfo__bgPic"
+                src="@/assets/images/campInfo/campInfo2.jpg"
+                alt=""
+              >
+              <a
+                href="#"
+                class="campInfo__itemMask"
+              >
                 <div class="campInfo__itemTxt">
                   <h5>東部</h5>
                   <p>North</p>

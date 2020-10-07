@@ -35,12 +35,20 @@
                   </div>
                 </div>
                 <!-- <ul v-if="amount" class="prdList__content"> -->
-                <ul v-if="payment" class="prdList__content">
-                  <li v-for="prdObj in products"
-                      :key="prdObj.product.id" class="prdList__row d-flex"
+                <ul
+                  v-if="payment"
+                  class="prdList__content"
+                >
+                  <li
+                    v-for="prdObj in products"
+                    :key="prdObj.product.id"
+                    class="prdList__row d-flex"
                   >
                     <div class="prdList__Item flex-2 text-left">
-                      <img src="" alt="">
+                      <img
+                        src=""
+                        alt=""
+                      >
                       {{ prdObj.product.title }}
                     </div>
                     <div class="prdList__Item flex-1">
@@ -63,7 +71,10 @@
                   </div>
                   <div class="orderCount__box">
                     <div class="orderCount__list p-2">
-                      <div v-if="coupon && coupon.percent" class="d-flex justify-content-between mb-1">
+                      <div
+                        v-if="coupon && coupon.percent"
+                        class="d-flex justify-content-between mb-1"
+                      >
                         <span>折扣金額</span>
                         <span>-NT${{ orderDiscountAmount }}</span>
                       </div>
@@ -145,12 +156,19 @@
                   </li>
                   <li>
                     <span class="m-orderInfoList__itemTitle">付款狀態</span>
-                    <span v-if="paid" class="m-orderInfoList__itemTxt text-success">已經付款</span>
-                    <span v-else class="m-orderInfoList__itemTxt text-danger">尚未付款</span>
+                    <span
+                      v-if="paid"
+                      class="m-orderInfoList__itemTxt text-success"
+                    >已經付款</span>
+                    <span
+                      v-else
+                      class="m-orderInfoList__itemTxt text-danger"
+                    >尚未付款</span>
                   </li>
                 </ul>
-                <button class="btn btn-primary btn-block py-1"
-                        @click="paySubmit"
+                <button
+                  class="btn btn-primary btn-block py-1"
+                  @click="paySubmit"
                 >
                   確認付款
                 </button>
@@ -254,8 +272,8 @@ export default {
                 }
               });
             })
-            .catch((err) => {
-              console.log(err);
+            .catch(() => {
+              // console.log(err);
             });
         }
       });
