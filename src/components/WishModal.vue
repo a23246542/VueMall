@@ -18,7 +18,6 @@
         style="min-width: 350px;"
         aria-labelledby="dropdownMenuButton"
       >
-        <!-- <a class="dropdown-item" href="#">Action</a> -->
         <div class="px-4 py-3">
           <table class="table table-sm mb-0">
             <thead>
@@ -28,10 +27,6 @@
               >
                 已選購商品
               </th>
-              <!-- <th></th>
-                            <th>品名</th>
-                            <th>數量</th>
-                            <th>單價</th> -->
             </thead>
             <tbody>
               <tr v-if="carts.length>0">
@@ -53,17 +48,17 @@
               >
                 <td class="align-middle">
                   {{ item.product.title }}
-                  <!-- <div class="text-success" v-if="item.coupon">
-                                    已套用優惠券
-                                    </div> -->
                 </td>
-                <td class="align-middle text-right">
-                  x{{ item.quantity }}
-                </td>
-                <!-- <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td> -->
                 <td class="align-middle text-center">
-                  <!-- ## -->
                   {{ (item.quantity*item.product.price) | dollars }}
+                </td>
+                <td class="align-middle text-center">
+                  <button
+                    class="btn"
+                    @click.prevent="addCart(item)"
+                  >
+                    <i class="fas fa-cart-plus" />
+                  </button>
                 </td>
                 <td class="align-middle text-center">
                   <button
@@ -80,29 +75,8 @@
             </tbody>
             <tfoot>
               <tr>
-                <td
-                  colspan="3"
-                  class="text-right"
-                >
-                  總計
-                </td>
-                <td class="text-center">
-                  {{ cartTotal | dollars }}
-                </td>
-              </tr>
-              <!-- <tr>
-                                <td colspan="3" class="text-right text-success">折扣價</td>
-                                <td class="text-right text-success">{{ cart.final_total }}</td>
-                            </tr> -->
-              <tr>
                 <td colspan="4">
-                  <router-link
-                    :to="{name:'購物車'}"
-                    tag="a"
-                    class="btn btn-block btn-success btn-sm"
-                  >
-                    結帳去
-                  </router-link>
+                  加入購物車
                 </td>
               </tr>
             </tfoot>
@@ -137,21 +111,23 @@ export default {
     this.getCart();
   },
   methods: {
-    getCart() {
+    addWish() {
+
+    },
+    addAllWish() {
+
+    },
+    getWish() {
       this.$store.dispatch('getCart');
     },
-    editCart(id, qty) {
-      this.$store.dispatch('editCart', { id, qty });
-    },
-    delCart(item) { // %%405 delete方法用錯
+    delWish(item) {
       const productId = item.product.id;
-      // this.$store.dispatch('delCart',item);
       this.$store.dispatch('delCart', productId)
         .then(() => {
           this.$bus.$emit('message:push', `${item.product.title} 已刪除`, 'success');
         });
     },
-    delAllCart() {
+    delAllWish() {
       this.$store.dispatch('delAllCart');
     },
   },
