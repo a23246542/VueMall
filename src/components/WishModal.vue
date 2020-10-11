@@ -9,8 +9,8 @@
         aria-haspopup="true"
         aria-expanded="false"
       >
-        <i class="fas fa-shopping-cart text-white" />
-        <span class="badge badge-pill badge-danger">{{ carts.length }}</span>
+        <i class="fas fa-heart text-white" />
+        <!-- <span class="badge badge-pill badge-danger">{{ carts.length }}</span> -->
         <!-- <span class="badge badge-pill badge-danger">3</span> -->
       </button>
       <div
@@ -36,7 +36,7 @@
                 >
                   <button
                     class="btn btn-outline-danger btn-sm"
-                    @click="delAllCart"
+                    @click="delAllWish"
                   >
                     刪除全部品項
                   </button>
@@ -55,7 +55,7 @@
                 <td class="align-middle text-center">
                   <button
                     class="btn"
-                    @click.prevent="addCart(item)"
+                    @click.prevent="addWish(item)"
                   >
                     <i class="fas fa-cart-plus" />
                   </button>
@@ -63,7 +63,7 @@
                 <td class="align-middle text-center">
                   <button
                     class="btn"
-                    @click.prevent="delCart(item)"
+                    @click.prevent="delWish(item)"
                   >
                     <i
                       class="fa fa-trash"
@@ -79,6 +79,11 @@
                   加入購物車
                 </td>
               </tr>
+              <tr>
+                <td @click="getWishPrd">
+                  取得產品id
+                </td>
+              </tr>
             </tfoot>
           </table>
         </div>
@@ -91,12 +96,31 @@
 export default {
   data() {
     return {
+      // getWishPrdNames: [],
       // carts:[],
       // cartPagination:{},
       // cartTotal:0
     };
   },
   computed: {
+    // getWishPrdObjs() {
+    //   const vm = this;
+    //   // return this.getWishsIds.filter((id) => {
+    //   //   console.log(this);
+    //   //   return vm.$store.state.CusProducts.products.includes(id);
+    //   // });
+    //   this.getWishPrdNames = this.getWishIds.map((wishId) => {
+    //     return this.$store.state.CusProducts.products.find((prdObj) => {
+    //       return wishId === prdObj.id;
+    //     });
+    //   });
+    // },
+    wishItemPrdObjs() {
+      return this.$store.state.WishList.wishItemPrdObjs;
+    },
+    getWishIds() {
+      return this.$store.state.WishList.wishItemIdList;
+    },
     carts() {
       return this.$store.state.Cart.cart.carts;
     },
@@ -107,10 +131,44 @@ export default {
       return this.$store.getters.cartTotal;
     },
   },
+  watch: {
+    '$store.state.CusProducts.products': {
+      deep: true,
+      handler(newVal) {
+        // const wishPrdObjs = this.getWishIds.map((wishId) => {
+        //   return newVal.find((prdObj) => {
+        //     return wishId === prdObj.id;
+        //   });
+        // });
+        const wishPrdObjs2 = newVal.filter((prdObj) => {
+          return this.getWishIds.includes(prdObj.id);// @@如何確保getWishIds已存在
+        });
+        this.$store.commit('SET_WISHOBJS', wishPrdObjs2);
+      },
+    },
+  },
   created() {
-    this.getCart();
+    this.getWish();
   },
   methods: {
+    getWishPrd() {
+      // const vm = this;
+      // this.getWishPrdNames = this.getWishIds.map((wishId) => {
+      //   // @@!不懂eslint consistent-return 跟return
+      //   // return vm.$store.state.CusProducts.products.forEach((itemObj) => {
+      //   vm.$store.state.CusProducts.products.forEach((itemObj) => {
+      //     if (itemObj.id === wishId) {
+      //       console.log(itemObj.title);
+      //       return itemObj.title;
+      //     }
+      //   });
+      // });
+      this.getWishPrdNames = this.getWishIds.map((wishId) => {
+        return this.$store.state.CusProducts.products.find((prdObj) => {
+          return wishId === prdObj.id;
+        });
+      });
+    },
     addWish() {
 
     },
@@ -118,7 +176,7 @@ export default {
 
     },
     getWish() {
-      this.$store.dispatch('getCart');
+      this.$store.dispatch('initWisht');
     },
     delWish(item) {
       const productId = item.product.id;
@@ -139,6 +197,9 @@ export default {
         right: 0;
         left: auto;//##必加
     }
+    .fa-heart {
+      font-size: 19px;
+    }
     .btn>.badge{
         position: absolute;
         top: -1px;
@@ -150,6 +211,7 @@ export default {
     }
 
     .dropdown-toggle::after{
-      border-top:.3em solid #fff;
+      // border-top:.3em solid #fff;
+      display: none;
     }
 </style>

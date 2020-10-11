@@ -5,10 +5,18 @@ export default {
   state: {
     // wishStorage: JSON.parse(localStorage.getItem('collectedItems')) || [],
     wishItemIdList: [],
+    wishPrd: [],
+    wishItemPrdObjs: [],
   },
   mutations: {
-    INIT_WISHT(state, payload) {
-      state.wishItemIdList = payload;
+    INIT_WISHT(state, prdIdAry) {
+      state.wishItemIdList = prdIdAry;
+      // state.wishItemIdList = prdIdAry.filter((id) => {
+      //   return state.CusProducts.products.includes(id);
+      // });
+    },
+    SET_WISHOBJS(state, payload) {
+      state.wishItemPrdObjs = payload;
     },
     ADD_WISH(state, itemId) {
       state.wishItemIdList.push(itemId);
