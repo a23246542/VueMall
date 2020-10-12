@@ -24,7 +24,7 @@
         </p>
       </section>
       <section class="metaPrdTab">
-        <ul class="d-flex justify-content-center mb-0">
+        <ul class="metaPrdTab__container d-flex justify-content-center mb-0">
           <li class="metaPrdTab__item flex-center">
             <div class="metaPrdTab__itemBox metaPrdTab__itemBox--tent">
               <div>
