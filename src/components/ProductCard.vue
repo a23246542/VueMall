@@ -19,7 +19,7 @@
         <span class="productCard__imgWrap__badge badge badge-primary">{{ productTag }}</span>
         <span
           class="productCard__favoriteBadge"
-          @click="clickHeart"
+          @click="clickHeart($event)"
         >
           <i :class="heartStyle" />
         </span>
@@ -175,12 +175,13 @@ export default {
       // this.$store.dispatch('addToCart',{productId,qty})
       // this.$store.dispatch('getCart');//%%
     },
-    clickHeart() {
-      const posi = this.wishItemIdList.indexOf(this.thisProduct.id);
-      if (posi === -1) {
+    clickHeart(event) {
+      if (event.toElement.classList.contains('far')) { // 未加入收藏
         this.$store.commit('ADD_WISH', this.thisProduct.id);
-      } else {
-        this.$store.commit('REMOVE_WISH', posi);
+      }
+
+      if (event.toElement.classList.contains('fas')) { // 已加入收藏
+        this.$store.commit('REMOVE_WISH', this.thisProduct.id);
       }
     },
     openSingleProudct() {

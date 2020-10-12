@@ -38,14 +38,9 @@ export default {
       // });
       // this.$store.commit('ADD_WISHOBJS', wishItemPrdObjs);
     },
-    REMOVE_WISH(state, index) {
-      // const indexObj = state.wishItemPrdObjs.map((item) => item.id).indexOf('itemId');// ##
-      // state.wishItemPrdObjs.splice(indexObj, 1); // 可合併
-      // const indexId = state.wishItemIdList.indexOf(itemId);
-      // state.wishItemIdList.splice(indexId, 1);
-
-      // state.wishItemPrdObjs.splice(index, 1);
-      state.wishItemIdList.splice(index, 1);
+    REMOVE_WISH(state, itemId) {
+      const indexId = state.wishItemIdList.indexOf(itemId);
+      state.wishItemIdList.splice(indexId, 1);
       storage.setItem('wishList', state.wishItemIdList);
     },
   },
