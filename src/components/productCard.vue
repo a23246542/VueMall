@@ -127,7 +127,7 @@ export default {
     addToCart(item, qty = 1) {
       this.$store.commit('LOADING', true);
       const api = 'ec/shopping';
-      const cartItem = { product: item.id, quantity: qty };
+      const cartItem = { productId: item.id, qty };
       // const ifInCart = this.carts.some((cartItem)=>{
       //         return cartItem.product.id === item.id;
       // })
@@ -136,7 +136,7 @@ export default {
       const hasInCartItem = this.carts.find((cart) => cart.product.id === cartItem.id);
       // console.log(hasInCartItem,!hasInCartItem);
       if (!hasInCartItem) {
-        this.$instanceCus.post(api, cartItem)
+        this.$store.dispatch('addToCart', cartItem)
           .then(() => {
             this.$store.commit('LOADING', false);
             this.$bus.$emit('message:push', `${item.title}已加入購物車`, 'success');

@@ -29,19 +29,6 @@
               </th>
             </thead>
             <tbody>
-              <tr>
-                <td
-                  colspan="4"
-                  class="text-right"
-                >
-                  <button
-                    class="btn btn-outline-danger btn-sm"
-                    @click="delAllWish"
-                  >
-                    刪除全部品項
-                  </button>
-                </td>
-              </tr>
               <tr
                 v-for="item in wishItemPrdObjs"
                 :key="item.id"
@@ -74,14 +61,14 @@
               </tr>
             </tbody>
             <tfoot>
-              <tr>
+              <!-- <tr>
                 <td
                   colspan="4"
                   @click="buyAllWish"
                 >
                   全部加入購物車
                 </td>
-              </tr>
+              </tr> -->
             </tfoot>
           </table>
         </div>
@@ -94,10 +81,6 @@
 export default {
   data() {
     return {
-      // getWishPrdNames: [],
-      // carts:[],
-      // cartPagination:{},
-      // cartTotal:0
     };
   },
   computed: {
@@ -108,35 +91,9 @@ export default {
     wishItemIds() {
       return this.$store.state.WishList.wishItemIdList;
     },
-    // carts() {
-    //   return this.$store.state.Cart.cart.carts;
-    // },
-    // cartPagination() {
-    //   return this.$store.state.Cart.cart.pagination;
-    // },
-    // cartTotal() {
-    //   return this.$store.getters.cartTotal;
-    // },
-  },
-  watch: {
-    // '$store.state.CusProducts.products': {
-    //   deep: true,
-    //   handler(newVal) {
-    //     const wishPrdObjs = newVal.filter((prdObj) => {
-    //       return this.wishItemIds.includes(prdObj.id);// @@如何確保wishItemIds已存在
-    //     });
-    //     this.$store.commit('SET_WISHOBJS', wishPrdObjs);
-    //   },
-    // },
-    // '$store.state.WishList.wishItemIdList': {
-    //   deep: true,
-    //   handler(newVal) {
-    //     const wishPrdObjs = newVal.filter((prdObj) => {
-    //       return this.wishItemIds.includes(prdObj.id);// @@如何確保wishItemIds已存在
-    //     });
-    //     this.$store.commit('SET_WISHOBJS', wishPrdObjs);
-    //   },
-    // },
+    carts() {
+      return this.$store.state.Cart.cart.carts;
+    },
   },
   created() {
     this.initWishList();
@@ -148,11 +105,11 @@ export default {
     buyWishItem(item, qty = 1) {
       this.$store.commit('LOADING', true);
       // const api = 'ec/shopping';
-      const buyItem = { productId: item.id, quantity: qty };
+      const buyItem = { productId: item.id, qty };
 
       // ~~不管購物車是否存在 購物車都直接加1
-      const hasInCartItem = this.carts.find((cart) => cart.product.id === buyItem.prodcutId);
-      if (!hasInCartItem.product.id) { // 如果購物車沒有
+      const hasInCartItem = this.carts.find((cart) => cart.product.id === buyItem.productId);
+      if (hasInCartItem === undefined) {
         this.$store.dispatch('addToCart', buyItem)
           .then(() => {
             this.$store.commit('REMOVE_WISH', item.id);
@@ -179,9 +136,6 @@ export default {
       this.$store.commit('REMOVE_WISH', productId);
     },
     buyAllWish() {
-
-    },
-    delAllWish() {
 
     },
   },
