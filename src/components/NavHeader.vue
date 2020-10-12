@@ -72,13 +72,7 @@
               </router-link>
             </li>
             <li class="navHeader__navItem p-sm nav-item">
-              <router-link
-                :to="{name:'home'}"
-                tag="a"
-                class="navHeader__navLink navHeader__navLink--icon nav-link"
-              >
-                <i class="fas fa-heart text-white" />
-              </router-link>
+              <WishModal />
             </li>
             <li class="navHeader__navItem p-sm nav-item">
               <!-- <CartModal
@@ -113,11 +107,13 @@
 </template>
 <script>
 import CartModal from '@/components/CartModal.vue';
+import WishModal from '@/components/WishModal.vue';
 
 export default {
   name: 'NavHeader',
   components: {
     CartModal,
+    WishModal,
   },
 };
 </script>

@@ -88,8 +88,9 @@
         "off"
       ],
       "no-return-assign": [
-        "error"
-      ]
+        "warn"
+      ],
+      "no-unused-vars": "warn"
     }
   },
   "browserslist": [

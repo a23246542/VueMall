@@ -19,7 +19,7 @@
         <span class="productCard__imgWrap__badge badge badge-primary">{{ productTag }}</span>
         <span
           class="productCard__favoriteBadge"
-          @click="clickHeart"
+          @click="clickHeart($event)"
         >
           <i :class="heartStyle" />
         </span>
@@ -127,7 +127,7 @@ export default {
     addToCart(item, qty = 1) {
       this.$store.commit('LOADING', true);
       const api = 'ec/shopping';
-      const cartItem = { product: item.id, quantity: qty };
+      const cartItem = { productId: item.id, qty };
       // const ifInCart = this.carts.some((cartItem)=>{
       //         return cartItem.product.id === item.id;
       // })
@@ -136,7 +136,7 @@ export default {
       const hasInCartItem = this.carts.find((cart) => cart.product.id === cartItem.id);
       // console.log(hasInCartItem,!hasInCartItem);
       if (!hasInCartItem) {
-        this.$instanceCus.post(api, cartItem)
+        this.$store.dispatch('addToCart', cartItem)
           .then(() => {
             this.$store.commit('LOADING', false);
             this.$bus.$emit('message:push', `${item.title}已加入購物車`, 'success');
@@ -175,12 +175,13 @@ export default {
       // this.$store.dispatch('addToCart',{productId,qty})
       // this.$store.dispatch('getCart');//%%
     },
-    clickHeart() {
-      const posi = this.wishItemIdList.indexOf(this.thisProduct.id);
-      if (posi === -1) {
+    clickHeart(event) {
+      if (event.toElement.classList.contains('far')) { // 未加入收藏
         this.$store.commit('ADD_WISH', this.thisProduct.id);
-      } else {
-        this.$store.commit('REMOVE_WISH', posi);
+      }
+
+      if (event.toElement.classList.contains('fas')) { // 已加入收藏
+        this.$store.commit('REMOVE_WISH', this.thisProduct.id);
       }
     },
     openSingleProudct() {

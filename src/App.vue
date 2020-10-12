@@ -23,7 +23,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('initWisht');
+    this.$store.dispatch('initWish');
   },
 };
 </script>
