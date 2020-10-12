@@ -44,27 +44,31 @@ export default {
       });
     },
     addToCart(context, { productId, qty }) {
-      // this.$store.commit('LOADING',true);
-      const api = 'ec/shopping';
-      const cartItem = { product: productId, quantity: qty };
+      return new Promise((resolve) => {
+        const api = 'ec/shopping';
+        const cartItem = { product: productId, quantity: qty };
 
-      // this.$instanceCus.post(api, cartItem)@@this有效嗎
-      instanceCus.post(api, cartItem)
-        .then(() => {
-          // this.$bus.$emit('message:push', `${item.title}已加入購物車`, 'success');//todo item讀取不到
-          this.$refs.cart.getCart();
-        });
-      // ##這邊判斷post patch會跑兩次api
-      // .catch((err) => {
-      //     console.dir(err.response.data);
-      //     if(err.response.data.errors[0]==="該商品已放入購物車當中。"){
-      //         this.$bus.$emit('message:push',`${item.title}已存在購物車`)
-      //     }
-      // })
+        // this.$instanceCus.post(api, cartItem)@@this有效嗎
+        instanceCus.post(api, cartItem)
+          .then(() => {
+            // this.$refs.cart.getCart();
+            context.dispatch('getCart')
+              .then(() => {
+                resolve();
+              });
+          });
+        // ##這邊判斷post patch會跑兩次api
+        // .catch((err) => {
+        //     console.dir(err.response.data);
+        //     if(err.response.data.errors[0]==="該商品已放入購物車當中。"){
+        //         this.$bus.$emit('message:push',`${item.title}已存在購物車`)
+        //     }
+        // })
+      });
     },
     editCart(context, { productId, newQty }) {
       return new Promise((resolve) => {
-        context.commit('LOADING', true);
+        // context.commit('LOADING', true);
         // console.log(productId, newQty);
 
         const api = 'ec/shopping';

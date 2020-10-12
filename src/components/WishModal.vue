@@ -29,7 +29,7 @@
               </th>
             </thead>
             <tbody>
-              <tr v-if="carts.length>0">
+              <tr>
                 <td
                   colspan="4"
                   class="text-right"
@@ -43,19 +43,19 @@
                 </td>
               </tr>
               <tr
-                v-for="item in carts"
-                :key="item.product.id"
+                v-for="item in wishItemPrdObjs"
+                :key="item.id"
               >
                 <td class="align-middle">
-                  {{ item.product.title }}
+                  {{ item.title }}
                 </td>
                 <td class="align-middle text-center">
-                  {{ (item.quantity*item.product.price) | dollars }}
+                  {{ item.price | dollars }}
                 </td>
                 <td class="align-middle text-center">
                   <button
                     class="btn"
-                    @click.prevent="addWish(item)"
+                    @click.prevent="buyWishItem(item)"
                   >
                     <i class="fas fa-cart-plus" />
                   </button>
@@ -63,7 +63,7 @@
                 <td class="align-middle text-center">
                   <button
                     class="btn"
-                    @click.prevent="delWish(item)"
+                    @click.prevent="delWishItem(item)"
                   >
                     <i
                       class="fa fa-trash"
@@ -75,13 +75,11 @@
             </tbody>
             <tfoot>
               <tr>
-                <td colspan="4">
-                  加入購物車
-                </td>
-              </tr>
-              <tr>
-                <td @click="getWishPrd">
-                  取得產品id
+                <td
+                  colspan="4"
+                  @click="buyAllWish"
+                >
+                  全部加入購物車
                 </td>
               </tr>
             </tfoot>
@@ -103,90 +101,88 @@ export default {
     };
   },
   computed: {
-    // getWishPrdObjs() {
-    //   const vm = this;
-    //   // return this.getWishsIds.filter((id) => {
-    //   //   console.log(this);
-    //   //   return vm.$store.state.CusProducts.products.includes(id);
-    //   // });
-    //   this.getWishPrdNames = this.getWishIds.map((wishId) => {
-    //     return this.$store.state.CusProducts.products.find((prdObj) => {
-    //       return wishId === prdObj.id;
-    //     });
-    //   });
-    // },
     wishItemPrdObjs() {
-      return this.$store.state.WishList.wishItemPrdObjs;
+      // return this.$store.state.WishList.wishItemPrdObjs;
+      return this.$store.getters.wishItemPrdObjs;
     },
-    getWishIds() {
+    wishItemIds() {
       return this.$store.state.WishList.wishItemIdList;
     },
-    carts() {
-      return this.$store.state.Cart.cart.carts;
-    },
-    cartPagination() {
-      return this.$store.state.Cart.cart.pagination;
-    },
-    cartTotal() {
-      return this.$store.getters.cartTotal;
-    },
+    // carts() {
+    //   return this.$store.state.Cart.cart.carts;
+    // },
+    // cartPagination() {
+    //   return this.$store.state.Cart.cart.pagination;
+    // },
+    // cartTotal() {
+    //   return this.$store.getters.cartTotal;
+    // },
   },
   watch: {
-    '$store.state.CusProducts.products': {
-      deep: true,
-      handler(newVal) {
-        // const wishPrdObjs = this.getWishIds.map((wishId) => {
-        //   return newVal.find((prdObj) => {
-        //     return wishId === prdObj.id;
-        //   });
-        // });
-        const wishPrdObjs2 = newVal.filter((prdObj) => {
-          return this.getWishIds.includes(prdObj.id);// @@如何確保getWishIds已存在
-        });
-        this.$store.commit('SET_WISHOBJS', wishPrdObjs2);
-      },
-    },
+    // '$store.state.CusProducts.products': {
+    //   deep: true,
+    //   handler(newVal) {
+    //     const wishPrdObjs = newVal.filter((prdObj) => {
+    //       return this.wishItemIds.includes(prdObj.id);// @@如何確保wishItemIds已存在
+    //     });
+    //     this.$store.commit('SET_WISHOBJS', wishPrdObjs);
+    //   },
+    // },
+    // '$store.state.WishList.wishItemIdList': {
+    //   deep: true,
+    //   handler(newVal) {
+    //     const wishPrdObjs = newVal.filter((prdObj) => {
+    //       return this.wishItemIds.includes(prdObj.id);// @@如何確保wishItemIds已存在
+    //     });
+    //     this.$store.commit('SET_WISHOBJS', wishPrdObjs);
+    //   },
+    // },
   },
   created() {
-    this.getWish();
+    this.initWishList();
   },
   methods: {
-    getWishPrd() {
-      // const vm = this;
-      // this.getWishPrdNames = this.getWishIds.map((wishId) => {
-      //   // @@!不懂eslint consistent-return 跟return
-      //   // return vm.$store.state.CusProducts.products.forEach((itemObj) => {
-      //   vm.$store.state.CusProducts.products.forEach((itemObj) => {
-      //     if (itemObj.id === wishId) {
-      //       console.log(itemObj.title);
-      //       return itemObj.title;
-      //     }
-      //   });
-      // });
-      this.getWishPrdNames = this.getWishIds.map((wishId) => {
-        return this.$store.state.CusProducts.products.find((prdObj) => {
-          return wishId === prdObj.id;
-        });
-      });
+    initWishList() {
+      this.$store.dispatch('initWish');
     },
-    addWish() {
+    buyWishItem(item, qty = 1) {
+      this.$store.commit('LOADING', true);
+      // const api = 'ec/shopping';
+      const buyItem = { productId: item.id, quantity: qty };
 
+      // ~~不管購物車是否存在 購物車都直接加1
+      const hasInCartItem = this.carts.find((cart) => cart.product.id === buyItem.prodcutId);
+      if (!hasInCartItem.product.id) { // 如果購物車沒有
+        this.$store.dispatch('addToCart', buyItem)
+          .then(() => {
+            this.$store.commit('REMOVE_WISH', item.id);
+            this.$store.commit('LOADING', false);
+            this.$bus.$emit('message:push', `${item.title}已加入購物車`, 'success');
+            // this.$store.dispatch('getCart');
+          });
+      } else {
+        const data = {
+          productId: hasInCartItem.product.id,
+          newQty: hasInCartItem.quantity + 1,
+        };
+        // console.dir(data);
+        this.$store.dispatch('editCart', data)
+          .then(() => {
+            this.$store.commit('REMOVE_WISH', item.id);
+            this.$store.commit('LOADING', false);
+            this.$bus.$emit('message:push', `${item.title}已加入購物車`, 'success');
+          });
+      }
     },
-    addAllWish() {
+    delWishItem(item) {
+      const productId = item.id;
+      this.$store.commit('REMOVE_WISH', productId);
+    },
+    buyAllWish() {
 
-    },
-    getWish() {
-      this.$store.dispatch('initWisht');
-    },
-    delWish(item) {
-      const productId = item.product.id;
-      this.$store.dispatch('delCart', productId)
-        .then(() => {
-          this.$bus.$emit('message:push', `${item.product.title} 已刪除`, 'success');
-        });
     },
     delAllWish() {
-      this.$store.dispatch('delAllCart');
+
     },
   },
 };
