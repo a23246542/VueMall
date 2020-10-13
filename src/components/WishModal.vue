@@ -14,7 +14,7 @@
         <!-- <span class="badge badge-pill badge-danger">3</span> -->
       </button>
       <div
-        class="dropdown-menu"
+        class="dropdown-menu dropdown-menu-right"
         style="min-width: 350px;"
         aria-labelledby="dropdownMenuButton"
       >

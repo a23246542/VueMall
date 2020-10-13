@@ -1,6 +1,26 @@
 <template>
-  <nav class="navHeader navbar navbar-expand-lg">
+  <nav class="navHeader navbar navbar-expand-lg navbar-dark">
     <div class="container">
+      <router-link
+        :to="{name:'home'}"
+        class="navHeader__logo navbar-brand d-lg-none"
+        tag="a"
+      >
+        <img
+          src="@/assets/images/Meta-logo-white.png"
+          alt=""
+        >
+        <h1 class="text-hide mb-0">
+          meta
+        </h1>
+      </router-link>
+      <WishModal
+        class="d-lg-none"
+      />
+      <CartModal
+        ref="cartModal"
+        class="d-lg-none"
+      />
       <button
         class="navbar-toggler"
         type="button"
@@ -17,7 +37,7 @@
         class="collapse navbar-collapse"
       >
         <ul class="navHeader__navbar navbar-nav w-lg-100">
-          <div class="d-flex align-items-center">
+          <div class="m-navbarNav d-flex align-items-center">
             <li class="navHeader__navItem nav-item">
               <!-- <a class="nav-link" href="#">首頁 <span class="sr-only">(current)</span></a> -->
               <router-link
@@ -50,7 +70,7 @@
           </div>
           <router-link
             :to="{name:'home'}"
-            class="navHeader__logo navbar-brand"
+            class="navHeader__logo navbar-brand d-none d-lg-inline-block"
             tag="a"
           >
             <img
@@ -61,7 +81,7 @@
               meta
             </h1>
           </router-link>
-          <div class="d-flex align-items-center">
+          <div class="m-navbarNav d-flex align-items-center">
             <li class="navHeader__navItem nav-item">
               <!-- <span class="badge badge-pill badge-danger">3</span> -->
               <router-link
@@ -71,10 +91,10 @@
                 我的訂單<span class="sr-only">(current)</span>
               </router-link>
             </li>
-            <li class="navHeader__navItem p-sm nav-item">
+            <li class="navHeader__navItem m-none p-sm nav-item">
               <WishModal />
             </li>
-            <li class="navHeader__navItem p-sm nav-item">
+            <li class="navHeader__navItem m-none p-sm nav-item">
               <!-- <CartModal
                         ref="cart"
                         @emitCart="getEmitCart"
@@ -83,7 +103,7 @@
                 ref="cartModal"
               />
             </li>
-            <li class="navHeader__navItem p-sm nav-item">
+            <li class="m-admin navHeader__navItem p-sm nav-item">
               <router-link
                 :to="{name:'Dashboard'}"
                 tag="a"

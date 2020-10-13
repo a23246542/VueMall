@@ -10,6 +10,7 @@ import VueAxios from 'vue-axios';
 import $ from 'jquery';
 // import 'jquery';//@@跟上面差別
 // @@全域效能問題
+import 'popper.js';
 import 'bootstrap';// js模組
 // @@不寫.css載入js
 // import 'bootstrap/scss/bootstrap.scss';//all.scss import了

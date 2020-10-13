@@ -23,6 +23,8 @@
 
   }
 
+  
+
   &__navItem{
     padding: 0 15px;
     &.p-sm{
@@ -37,5 +39,19 @@
       font-size: 18px;
     }
 
+  }
+}
+
+.m-navbarNav{
+  @include pad(){
+    display: flex;
+    flex-direction: column;
+  }
+  
+}
+
+.m-admin{
+  @include pad(){
+    display: none;
   }
 }
