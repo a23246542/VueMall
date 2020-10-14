@@ -5,6 +5,13 @@
     display: none;
   }
 }
+.m-container-fluid{
+  @include pad(){
+    width: 100%;
+    max-width: 100%;
+    padding: 0;//##
+  }
+}
 .bg-cover{
     background-size: cover;
     background-position: 50% 50%;
