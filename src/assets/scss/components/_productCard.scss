@@ -1,6 +1,9 @@
 .productCardCol{
   padding-left: 12px;
   padding-right: 12px;
+  @include pad(){
+    padding: 0 15px;
+  }
 }
 
 .productCard{

@@ -243,7 +243,7 @@
     </section>
     <div class="adBar" />
     <section>
-      <div class="container">
+      <div class="container  m-container-fluid">
         <div class="featureProduct">
           <h3 class="meta__sectionTitle">
             精選商品
@@ -278,7 +278,7 @@
       </div>
     </section>
     <section>
-      <div class="container">
+      <div class="container m-container-fluid">
         <div class="metaNews">
           <div class="metaNews__title">
             <h3 class="meta__sectionTitle metaNews__sectionTitle">
