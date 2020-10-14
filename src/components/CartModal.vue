@@ -40,6 +40,7 @@
                   class="text-right"
                 >
                   <button
+                    type="button"
                     class="btn btn-outline-danger btn-sm"
                     @click="delAllCart"
                   >
@@ -67,6 +68,7 @@
                 </td>
                 <td class="align-middle text-center">
                   <button
+                    type="button"
                     class="btn"
                     @click.prevent="delCart(item)"
                   >

@@ -3,6 +3,7 @@
     <!-- <BaseLoading :active.sync="isLoading"/> -->
     <div class="mt-4 text-right">
       <button
+        type="button"
         class="newBtn btn btn-primary"
         @click="openModal('new')"
       >
@@ -61,12 +62,14 @@
             <td>
               <div class="btn-group">
                 <button
+                  type="button"
                   class="btn btn-outline-primary btn-sm"
                   @click="openModal('edit',item)"
                 >
                   編輯
                 </button>
                 <button
+                  type="button"
                   class="btn btn-outline-danger btn-sm"
                   @click="openModal('delete',item)"
                 >
@@ -80,6 +83,7 @@
     </div>
     <div class="text-right">
       <button
+        type="button"
         class="btn btn-danger mr-5"
         @click="openDelAllProducts"
       >

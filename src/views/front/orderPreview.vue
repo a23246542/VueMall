@@ -49,6 +49,7 @@
                           <div class="input-group input-group-sm d-inline-flex w-auto flex-nowrap">
                             <span class="input-group-prepend">
                               <button
+                                type="button"
                                 class="btn btn-primary"
                                 @click.prevent="updateCartQty('add1',item)"
                               >+</button>
@@ -64,6 +65,7 @@
                             >
                             <span class="input-group-append">
                               <button
+                                type="button"
                                 class="btn btn-primary"
                                 @click.prevent="updateCartQty('subtract1',item)"
                               >-</button>

@@ -72,6 +72,7 @@
           </td>
           <td>
             <button
+              type="button"
               class="btn btn-outline-primary btn-sm"
               @click="openEditModal(item)"
             >

@@ -167,6 +167,7 @@
                   </li>
                 </ul>
                 <button
+                  type="button"
                   class="btn btn-primary btn-block py-1"
                   @click="paySubmit"
                 >

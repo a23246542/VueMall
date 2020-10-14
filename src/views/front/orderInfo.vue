@@ -80,6 +80,7 @@
         </div>
       </div>
       <button
+        type="button"
         class="btn btn-secondary1-light mt-5"
         @click="$router.go(-1)"
       >

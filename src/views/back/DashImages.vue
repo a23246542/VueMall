@@ -33,12 +33,14 @@
           </div>
           <div class="card-footer text-right">
             <button
+              type="button"
               class="btn btn-outline-info btn-sm mr-3"
               @click="openModal('read',item,index)"
             >
               查看
             </button>
             <button
+              type="button"
               class="btn btn-outline-danger btn-sm"
               @click="openModal('delete',item,index)"
             >

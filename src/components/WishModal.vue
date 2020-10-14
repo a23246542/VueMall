@@ -41,6 +41,7 @@
                 </td>
                 <td class="align-middle text-center">
                   <button
+                    type="button"
                     class="btn"
                     @click.prevent="buyWishItem(item)"
                   >
@@ -49,6 +50,7 @@
                 </td>
                 <td class="align-middle text-center">
                   <button
+                    type="button"
                     class="btn"
                     @click.prevent="delWishItem(item)"
                   >

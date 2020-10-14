@@ -6,6 +6,7 @@
     <div>
       <div class="mt-4 text-right">
         <button
+          type="button"
           class="btn btn-primary"
           @click="openModal('new')"
         >
@@ -60,12 +61,14 @@
             <td>
               <div class="btn-group">
                 <button
+                  type="button"
                   class="btn btn-outline-primary btn-sm"
                   @click="openModal('edit',item)"
                 >
                   編輯
                 </button>
                 <button
+                  type="button"
                   class="btn btn-outline-danger btn-sm"
                   @click="openModal('delete',item)"
                 >

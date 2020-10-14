@@ -81,6 +81,7 @@
           <div class="input-group w-auto">
             <div class="input-group-prepend">
               <button
+                type="button"
                 class="btn btn-secondary"
                 @click="updateProductQty('add')"
               >
@@ -95,6 +96,7 @@
             >
             <div class="input-group-append mr-3">
               <button
+                type="button"
                 class="btn btn-secondary"
                 @click="updateProductQty('reduce')"
               >
@@ -107,12 +109,14 @@
         <!-- <div class="productSingle__buyArea d-flex justify-content-end pr-4"> -->
         <div class="productSingle__buyArea">
           <button
+            type="button"
             class="btn productSingle__nowBuy btn-primary mr-3"
             @click="buyProduct('directBuy')"
           >
             直接購買
           </button>
           <button
+            type="button"
             class="btn productSingle__addCar btn-primary"
             @click="buyProduct()"
           >

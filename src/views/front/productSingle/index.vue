@@ -54,7 +54,10 @@
           <!-- ##input-group -->
           <div class="input-group w-auto">
             <div class="input-group-prepend">
-              <button class="btn btn-secondary">
+              <button
+                type="button"
+                class="btn btn-secondary"
+              >
                 +
               </button>
             </div>
@@ -65,7 +68,10 @@
               style="max-width:100px"
             >
             <div class="input-group-append mr-3">
-              <button class="btn btn-secondary">
+              <button
+                type="button"
+                class="btn btn-secondary"
+              >
                 -
               </button>
             </div>
@@ -73,10 +79,16 @@
           <small class="text-success">尚有庫存</small>
         </div>
         <div>
-          <button class="btn productSingle__nowBuy btn-primary mr-3">
+          <button
+            type="button"
+            class="btn productSingle__nowBuy btn-primary mr-3"
+          >
             直接購買
           </button>
-          <button class="btn productSingle__addCar btn-primary">
+          <button
+            type="button"
+            class="btn productSingle__addCar btn-primary"
+          >
             加入購物車
           </button>
         </div>
