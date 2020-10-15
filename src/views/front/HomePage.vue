@@ -263,11 +263,11 @@
                   <div
                     v-for="(item) in limitedProducts"
                     :key="item.id"
-                    class="col-xl-4 col-sm-6 productCardCol"
+                    class="col-xl-4 col-sm-6 productCardCol mb-3"
                   >
                     <ProductCard
                       :this-product="item"
-                      :mb="'mb-2'"
+                      :mb="'mb-0'"
                     />
                   </div>
                 </div>
