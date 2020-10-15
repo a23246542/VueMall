@@ -108,4 +108,9 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
+
+  if(to.meta.title){
+    window.document.title = `META露營趣-${to.meta.title}`;
+  }
+
 });
