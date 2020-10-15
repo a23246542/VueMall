@@ -9,9 +9,8 @@ export default {
   },
   getters: {
     wishItemPrdObjs(state, getter, rootState) {
-      return rootState.CusProducts.products.filter((prdObj) => {
-        return state.wishItemIdList.includes(prdObj.id);
-      });
+      return rootState.CusProducts.products
+        .filter((prdObj) => state.wishItemIdList.includes(prdObj.id));
     },
   },
   mutations: {

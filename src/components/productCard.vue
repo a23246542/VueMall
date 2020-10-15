@@ -126,7 +126,6 @@ export default {
   methods: {
     addToCart(item, qty = 1) {
       this.$store.commit('LOADING', true);
-      const api = 'ec/shopping';
       const cartItem = { productId: item.id, qty };
       // const ifInCart = this.carts.some((cartItem)=>{
       //         return cartItem.product.id === item.id;

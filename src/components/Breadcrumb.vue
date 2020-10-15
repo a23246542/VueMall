@@ -1,6 +1,6 @@
 <template>
   <nav
-    v-if="breadcrumbList[0].title"
+    v-if="breadcrumbList[0]"
     aria-label="breadcrumb"
   >
     <ol class="breadcrumb bg-transparent">

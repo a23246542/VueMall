@@ -66,17 +66,17 @@ export default {
     nowPage(newVal) {
       // console.log('改變頁數', newVal);
       switch (newVal) {
-      case 'order_preview':
-        this.barWidth = '33%';
-        break;
-      case 'order_info':
-        this.barWidth = '66%';
-        break;
-      case 'order_confirm':
-        this.barWidth = '100%';
-        break;
-      default:
-        break;
+        case 'order_preview':
+          this.barWidth = '33%';
+          break;
+        case 'order_info':
+          this.barWidth = '66%';
+          break;
+        case 'order_confirm':
+          this.barWidth = '100%';
+          break;
+        default:
+          break;
       }
     },
   },
@@ -87,9 +87,9 @@ export default {
     // this.initBar();
   },
   methods: {
-    changeBar(nowPage) {// eslint-disable-line
-      // console.log('換頁');
-    },
+    // changeBar(nowPage) {
+    //   // console.log('換頁');
+    // },
   },
 };
 </script>

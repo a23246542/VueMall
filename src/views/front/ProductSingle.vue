@@ -320,9 +320,7 @@ export default {
     },
   },
   watch: {
-    // eslint disable
-    'product.title': function () { // eslint-disable-line
-    // ['product.title'] () { // @@eslint(func-names)
+    product() {
       const breadcrumbList = [
         {
           routerName: 'home',

@@ -85,14 +85,13 @@ router.beforeEach((to, from, next) => {
             next();
           } else { // res.success為false
             app.$store.commit('LOADING', false);
-            /* eslint-disable */
-            console.log('響應驗證失敗');
+            // console.log('響應驗證失敗');
             next({
               name: 'login',
             });
           }
-        }).catch((err) => {
-          console.log('響應驗證失敗', err);
+        }).catch(() => {
+          // console.log('響應驗證失敗', err);
           app.$store.commit('LOADING', false);
           next({
             name: 'login',
@@ -109,8 +108,7 @@ router.beforeEach((to, from, next) => {
     next();
   }
 
-  if(to.meta.title){
+  if (to.meta.title) {
     window.document.title = `META露營趣-${to.meta.title}`;
   }
-
 });
