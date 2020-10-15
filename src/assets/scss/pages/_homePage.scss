@@ -94,6 +94,7 @@ body{
     padding-bottom: 15px;
     margin-left: 10%;
     margin-bottom: 50px;
+    white-space: nowrap;
     font-size: 40px;
     letter-spacing: 1px;
     color: $brand-secondary1;
@@ -269,7 +270,7 @@ body{
     background-color: $brand-secondary1;
     @include phone(){
       height: 370px;
-      margin-bottom: 27%;
+      margin-bottom: 55%;
     }
   }
 
@@ -365,10 +366,26 @@ body{
     // padding: 135px 280px 110px 0;
     justify-content:flex-end;
     background-color: rgba(255, 255, 255, .8);
+    @include pad(){
+      position: relative;
+      width: 100%;
+      // flex-wrap: wrap;
+      // flex-direction: row-reverse;
+      // flex-direction: column-reverse;
+      justify-content: center;
+      padding: 135px 0 35px;
+    }
+
+    @include phone(){
+      padding: 28% 0 35px;
+    }
   }
 
   &__txtBox{
     margin-right: 8%;
+    @include phone(){
+      margin: 0;
+    }
   }
 
   &__txt{
@@ -398,10 +415,16 @@ body{
       height: 2px;
       background-color: $brand-primary;
     }
+    @include pad(){
+      font-size: 30px;
+    }
   }
 
   &__pTxt{
     font-size: 23px;
+    @include pad(){
+      font-size: 18px;
+    }
   }
 
   &__pic{
@@ -415,6 +438,14 @@ body{
       max-width: 100%;
       height: auto;
     }
+    @include phone(){
+      width: 80%;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
   }
 }
 
@@ -422,11 +453,12 @@ body{
   padding-top: 110px;
   // margin-bottom: 150px;//..無效
   color:$brand-secondary1;
-  display: flex;
-  justify-content: flex-end;
+  // display: flex;
+  // justify-content: flex-end;
   &__contentBlock{
     position: relative;
     width: 80%;
+    margin-left: auto;
     display: flex;
     flex-direction: row-reverse;
     // padding: 100px 0;
@@ -434,12 +466,26 @@ body{
     // padding: 135px 280px 110px 0;
     justify-content:flex-end;
     background-color: rgba(255, 255, 255, .8);
+    @include phone(){
+      width: 100%;
+      // margin: 0;
+      // flex-direction: row;
+      // flex-wrap: wrap;
+      // padding: 147px 0 35px;
+      padding: 38% 0 35px;
+      justify-content: center;
+    }
   }
 
   &__txtBox{
     width: 50%;
     margin-left: 40%;
     overflow: hidden;
+    @include phone(){
+      // margin: 0 auto;
+      width: 80%;
+      margin: 0;
+    }
   }
 
   &__txt{
@@ -467,10 +513,16 @@ body{
       height: 2px;
       background-color: $brand-primary;
     }
+    @include phone(){
+      font-size: 30px;
+    }
   }
 
   &__pTxt{
     font-size: 23px;
+    @include phone(){
+      font-size: 18px;
+    }
   }
 
   &__pic{
@@ -489,6 +541,12 @@ body{
     //   height: 100%;
     //   object-fit:cover;
     // }
+    @include phone(){
+      width: 86%;
+      padding-top: 43%;
+      top: -13%;
+      background-color: #ECEAE6;
+    }
   }
   &__picItem{
     position: absolute;
@@ -515,6 +573,9 @@ body{
       top: 14%;
       right: 0;
       z-index: 1;
+      @include phone(){
+        right: 5px;
+      }
     }
   }
 }
@@ -607,12 +668,21 @@ body{
   background-image: url("./assets/images/adbar1.png");
   background-size: cover;
   background-position: 50% 40%;
+  @include pad(){
+    background-position: 60%;
+  }
+  @include phone(){
+    background-position: 70%;
+  }
 }
 
 .featureProduct{
   margin-bottom: 150px;
   &__wrapper{
     display: flex;
+    @include pad(){
+      flex-wrap: wrap;
+    }
   }
 
   &__classBanner{
@@ -632,6 +702,14 @@ body{
     // @media screen and (max-width:762px){
     //   width: 100%;
     // }
+    @include pad(){
+      width: 100%;
+      height: 200px;//不會影響旁邊高度
+    }
+  }
+
+  &__listBox {
+    width: 100%;
   }
 
   &__bannerTitle{
@@ -654,6 +732,9 @@ body{
     >P{
       margin-bottom: 0;
       font-size: 28px;
+    }
+    @include pad(){
+      margin: 0;
     }
   }
 
@@ -702,9 +783,12 @@ body{
     @media screen and (max-width:1199px){//##這排法可改純寬度
       // align-self:flex-center;%%
       align-self:center;//##排法2
-      width: 85%;
-
+      align-content: space-around;
+      width: 100%;
       // width: 100%;
+    }
+    @include phone(){
+      flex-wrap: nowrap;
     }
   }
 
@@ -713,16 +797,32 @@ body{
     width: 43%;
     margin-right: 7%;
     margin-bottom: 40px;
-    @media screen and (max-width:767px){
-      width: 50%;
+    // @media screen and (max-width:767px){
+     @include pad(){ 
+      width: 45%;
+      margin-right: 0;
       padding: 0;
       box-sizing: border-box;
     }
+    @include phone(){
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    @include sm(){
+      display: flex;
+      width: 100%;
+      height: 100px;
+      margin-bottom: 20px;
+      border-top: .5px solid $brand-secondary1-light;
+      border-bottom:.5px solid $brand-secondary1-light;
+    }
     &:first-child(){
-      @media screen and (max-width:767px){
+      margin-top: 60px;
+      // @media screen and (max-width:767px){
+      @include phone(){
           margin-top: 0;
       }
-      margin-top: 60px;
     }
   }
 
@@ -732,13 +832,22 @@ body{
       max-width: 100%;
       height: auto;
     }
+    @include pad(){
+      width: 90%;
+    }
+    @include phone(){
+      width: 100%;
+    }
+    @include sm(){
+      width: 150px;
+    }
   }
 
   &__itemTxt{
     position: absolute;
     right: -9%;
     bottom: -12%;
-    width: 75%;
+    width: 73%;
     padding: 12px;
     background-color: rgba(255, 255, 255, .9);
     box-shadow:2px 2px 5px 1px rgba(0, 0, 0, 0.15);
@@ -750,6 +859,21 @@ body{
       // font-size: ;
       color: $brand-gray;
       line-height: 1.4;
+    }
+    @include pad(){
+      width: 240px;
+      right: 0;
+      bottom: -10%;
+    }
+    @include phone(){
+      width: 100%;
+    }
+    @include sm(){
+      position: static;
+      width: auto;
+      flex-grow: 1;
+      background-color:transparent;
+      box-shadow: none;
     }
   }
 }
