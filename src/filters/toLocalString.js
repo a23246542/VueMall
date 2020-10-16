@@ -1,3 +1,1 @@
-export default (val) => {
-  return val ? val.toLocalString('en') : '';
-};
+export default (val) => (val ? val.toLocalString('en') : '');

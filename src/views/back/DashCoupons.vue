@@ -335,9 +335,3 @@ export default {
 
     }
 </style>
-
-<style lang="scss" scoped>
-    // .table{
-    //     min-width: 670px;
-    // }
-</style>

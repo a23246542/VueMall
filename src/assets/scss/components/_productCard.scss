@@ -7,6 +7,7 @@
 }
 
 .productCard{
+  // height: 100%;//##卡片組件運用給高100%? 刪 
   &:hover{
     @include shadow($blur:.5rem);//##
   }
@@ -34,18 +35,27 @@
   }
 
   &__body{
-
+    display: flex;
+    // flex-direction: column;
+    // flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   &__title{
     font-size: 21px;
+    height: 50px;
+    margin-bottom: 5px;
     color:$brand-secondary-green;
+    word-break: break-all;
+    // text-align: justify;
+    // text-justify: inter-word;
     cursor: pointer;
   }
 
   &__content{
     font-size: 15px;
-    margin-bottom: 9px;
+    margin-bottom: 4px;
   }
 
   &__price{
@@ -69,4 +79,13 @@
       
     }
   }
+
+  &--style2{
+    background-color: transparent;
+    border:none;
+    &:hover{
+      background-color: #fff;
+    }  
+  }
+
 }

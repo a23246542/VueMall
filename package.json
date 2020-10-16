@@ -69,7 +69,10 @@
     "rules": {
       "indent": [
         "error",
-        2
+        2,
+        {
+          "SwitchCase":1
+        }
       ],
       "max-len": [
         1,
@@ -80,17 +83,7 @@
           "ignoreUrls": true,
           "ignoreStrings": true
         }
-      ],
-      "no-console": "warn",
-      "vue/max-attributes-per-line": "warn",
-      "vue/html-self-closing": "warn",
-      "arrow-body-style": [
-        "off"
-      ],
-      "no-return-assign": [
-        "warn"
-      ],
-      "no-unused-vars": "warn"
+      ]
     }
   },
   "browserslist": [

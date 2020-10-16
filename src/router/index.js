@@ -164,6 +164,12 @@ const router = new VueRouter({
   base: process.env.BASE_URL, // @@忘記是什麼變數
   routes,
   linkActiveClass: 'active',
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+    return { x: 0, y: 0 };// no-else-return
+  },
 });
 
 export default router;

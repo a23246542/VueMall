@@ -12,6 +12,13 @@
     padding: 0;//##
   }
 }
+
+.limit-2-line{
+  display:-webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+}
 .bg-cover{
     background-size: cover;
     background-position: 50% 50%;

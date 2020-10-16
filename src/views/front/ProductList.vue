@@ -4,10 +4,11 @@
       <div
         v-for="(item) in filterProducts"
         :key="item.id"
-        class="col-xl-4 col-sm-6 productCardCol"
+        class="col-xl-4 col-sm-6 productCardCol mb-5"
       >
         <ProductCard
           :this-product="item"
+          :card-class="'productCard--style2'"
         />
       </div>
     </div>

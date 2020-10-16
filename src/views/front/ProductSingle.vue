@@ -320,9 +320,7 @@ export default {
     },
   },
   watch: {
-    // eslint disable
-    'product.title': function () { // eslint-disable-line
-    // ['product.title'] () { // @@eslint(func-names)
+    product() {
       const breadcrumbList = [
         {
           routerName: 'home',
@@ -370,24 +368,24 @@ export default {
     },
     updateProductQty(type) {
       switch (type) {
-      case 'add':
-        if (this.product.qty === this.product.options.stock) {
+        case 'add':
+          if (this.product.qty === this.product.options.stock) {
           // ~@@[Vue warn]: Duplicate keys detected: 'NaN'. This may cause an update error.
-          this.$bus.$emit('message:push', '商品庫存不足');
-        } else {
-          this.product.qty += 1;
-        }
-        break;
-      case 'reduce':
+            this.$bus.$emit('message:push', '商品庫存不足');
+          } else {
+            this.product.qty += 1;
+          }
+          break;
+        case 'reduce':
 
-        if (this.product.qty === 1) {
-          this.$bus.$emit('message:push', '購買數量不能少於1');
-        } else {
-          this.product.qty -= 1;
-        }
-        break;
-      default:
-        break;
+          if (this.product.qty === 1) {
+            this.$bus.$emit('message:push', '購買數量不能少於1');
+          } else {
+            this.product.qty -= 1;
+          }
+          break;
+        default:
+          break;
       }
     },
     buyProduct(isDirectBuy) {
