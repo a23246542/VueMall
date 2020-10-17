@@ -10,7 +10,7 @@ export default {
     newPrdPagination: {},
     categories: [],
     searchText: 'all',
-    homePageSearchText: '地墊',
+    homePageSearchText: 'all',
   },
   getters: { // ##代參數  ##閉包
     getSearchProductsByNum: (state) => (num) => state.products
@@ -53,6 +53,9 @@ export default {
     },
     SEARCH_TEXT(state, payload) {
       state.searchText = payload;
+    },
+    HOME_SEARCH_TEXT(state, payload) {
+      state.homePageSearchText = payload;
     },
   },
   actions: {
