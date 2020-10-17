@@ -26,7 +26,10 @@
       <section class="metaPrdTab">
         <ul class="metaPrdTab__container d-flex justify-content-center mb-0">
           <li class="metaPrdTab__item flex-center">
-            <div class="metaPrdTab__itemBox metaPrdTab__itemBox--tent">
+            <div
+              class="metaPrdTab__itemBox metaPrdTab__itemBox--tent"
+              @click="slideToPrdArea"
+            >
               <div>
                 <div class="metaPrdTab__title">
                   <h3>帳篷</h3>
@@ -39,7 +42,10 @@
             </div>
           </li>
           <li class="metaPrdTab__item flex-center">
-            <div class="metaPrdTab__itemBox metaPrdTab__itemBox--bedding">
+            <div
+              class="metaPrdTab__itemBox metaPrdTab__itemBox--bedding"
+              @click="slideToPrdArea"
+            >
               <div>
                 <div class="metaPrdTab__title">
                   <h3>野外寢具</h3>
@@ -52,7 +58,10 @@
             </div>
           </li>
           <li class="metaPrdTab__item flex-center">
-            <div class="metaPrdTab__itemBox metaPrdTab__itemBox--funiture">
+            <div
+              class="metaPrdTab__itemBox metaPrdTab__itemBox--funiture"
+              @click="slideToPrdArea"
+            >
               <div>
                 <div class="metaPrdTab__title">
                   <h3>戶外家俱</h3>
@@ -65,7 +74,10 @@
             </div>
           </li>
           <li class="metaPrdTab__item flex-center">
-            <div class="metaPrdTab__itemBox metaPrdTab__itemBox--picnic">
+            <div
+              class="metaPrdTab__itemBox metaPrdTab__itemBox--picnic"
+              @click="slideToPrdArea"
+            >
               <div>
                 <div class="metaPrdTab__title">
                   <h3>野餐系列</h3>
@@ -398,7 +410,7 @@ export default {
         //   delay: 2000,
         //   disableOnInteraction: false,
         // },
-        slidesPerView: 1,
+        slidesPerView: 2,
         spaceBetween: 15,
         pagination: {
           el: '.swiper-pagination',
@@ -411,9 +423,9 @@ export default {
           668: {
             slidesPerView: 3,
           },
-          569: {
-            slidesPerView: 2,
-          },
+          // 569: {
+          //   slidesPerView: 2,
+          // },
         },
       },
     };
@@ -423,7 +435,7 @@ export default {
     //   return this.$store.state.CusProducts.products;
     // },
     limitedProducts() {
-      return this.$store.getters.getProductsByNum(this.featurePrdListNum); // @@原理
+      return this.$store.getters.getSearchProductsByNum(this.featurePrdListNum); // @@原理
     },
     newProductList() {
       return this.$store.getters.getNewProductsByNum(10);
@@ -451,6 +463,9 @@ export default {
       this.$router.push({
         path: `/products/${itemId}`,
       });
+    },
+    slideToPrdArea() {
+
     },
   },
 };

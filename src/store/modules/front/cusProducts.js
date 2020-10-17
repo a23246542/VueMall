@@ -10,9 +10,16 @@ export default {
     newPrdPagination: {},
     categories: [],
     searchText: 'all',
+    homePageSearchText: '地墊',
   },
   getters: { // ##代參數  ##閉包
-    getProductsByNum: (state) => (num) => state.products.slice(0, num), // %%直接代參數
+    getSearchProductsByNum: (state) => (num) => state.products
+      .filter((prdItem) => {
+        if (state.homePageSearchText === 'all') return true;
+        return prdItem.category.toLowerCase()
+          .indexOf(state.homePageSearchText.toLowerCase()) !== -1;
+      })
+      .slice(0, num), // %%直接代參數
     getNewProductsByNum(state) {
       return (num) => state.newProducts.slice(0, num);
     },

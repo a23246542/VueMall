@@ -223,14 +223,14 @@ export default {
       let qty = item.quantity;
       // let num = qty;
       switch (type) {
-      case 'add1':
-        qty += 1;
-        break;
-      case 'subtract1':
-        qty -= 1;
-        break;
-      default:
-        break;
+        case 'add1':
+          qty += 1;
+          break;
+        case 'subtract1':
+          qty -= 1;
+          break;
+        default:
+          break;
       }
       // console.log('更新购物车', productId, qty);
       // this.$store.dispatch('editCart',{id,qty});//@@

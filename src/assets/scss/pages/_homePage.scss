@@ -1,32 +1,36 @@
 
 body{
-  &::-webkit-scrollbar{
-    // width: 5px;
-    // height: 10px;
-    // border-radius: 5px;
-    background-color: #ccc; // %%要跟thumb同時寫
+  @include media-breakpoint-up(md){
+
+    &::-webkit-scrollbar{
+      // width: 5px;
+      // height: 10px;
+      // border-radius: 5px;
+      background-color: #ccc; // %%要跟thumb同時寫
+    }
+  //"&"是必須與上一層同層級
+  //-webkit-scrollbar : 整體的scrollbar樣式
+  
+    &::-webkit-scrollbar-thumb{
+      width: 10px;
+      height: 20px;
+      border-radius: 15px;
+      background-color: $brand-secondary1-light;
+    }
+    //bar的樣式
+  
+    &::-webkit-scrollbar-track{}
+    //軌道的樣式
+  
+    ::-webkit-scrollbar-thumb:window-inactive{}
+    //頁面是在被啟用的情況下(非必要)
   }
-//"&"是必須與上一層同層級
-//-webkit-scrollbar : 整體的scrollbar樣式
-
-  &::-webkit-scrollbar-thumb{
-    width: 10px;
-    height: 20px;
-    border-radius: 15px;
-    background-color: $brand-secondary1-light;
-  }
-  //bar的樣式
-
-  &::-webkit-scrollbar-track{}
-  //軌道的樣式
-
-  ::-webkit-scrollbar-thumb:window-inactive{}
-  //頁面是在被啟用的情況下(非必要)
 
 }
 
 .meta{
-
+  width: 100%;
+  overflow: hidden;
   &__container{
     @include pad(){
       width: 100%;
@@ -66,7 +70,10 @@ body{
     &__p1{
       margin-right: 120px;
       font-size: 50px;
-      letter-spacing:3px
+      letter-spacing:3px;
+      @include phone(){
+        // font-size: 32px;
+      }
     }
 
     &__p2{
@@ -76,6 +83,9 @@ body{
       margin-left: 170px;
       font-size: 30px;
       letter-spacing: 2px;
+      @include phone(){
+        // font-size: 20px;
+      }
     }
 
     &__subP{
@@ -101,7 +111,9 @@ body{
     background: url("./assets/images/titleIcon_main.png") no-repeat;
     background-position: bottom right;
     background-size: 80%;
-
+    @include phone(){
+      font-size: 30px;
+    }
     // &--metaNews{
 
     // }
@@ -121,6 +133,10 @@ body{
       left: 0;
       margin: auto;
       background-color: rgba(255, 255, 255, .3);
+    }
+    @include phone(){
+      height: 880px;
+      margin-bottom: 50px;
     }
   }
 
@@ -151,6 +167,9 @@ body{
       background-color: $brand-secondary1;
 
     }
+    @include phone(){
+      // font-size: 30px;
+    }
   }
 
   >p{
@@ -160,12 +179,15 @@ body{
 
 .metaPrdTab{
   // margin-bottom: 100px;
-
+  @include pad(){
+    width: 100%;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling:touch;
+  }
   &__container{
     @include pad(){
       // width: 100vw;
       width: 100%;
-      overflow-x: scroll;
       flex-wrap: nowrap;
     }
   }
@@ -270,7 +292,7 @@ body{
     background-color: $brand-secondary1;
     @include phone(){
       height: 370px;
-      margin-bottom: 55%;
+      margin-bottom: 48%;
     }
   }
 
@@ -373,7 +395,7 @@ body{
       // flex-direction: row-reverse;
       // flex-direction: column-reverse;
       justify-content: center;
-      padding: 135px 0 35px;
+      padding: 75px 0 35px;
     }
 
     @include phone(){
@@ -455,6 +477,9 @@ body{
   color:$brand-secondary1;
   // display: flex;
   // justify-content: flex-end;
+  @include phone(){
+    margin-top: 53px;
+  }
   &__contentBlock{
     position: relative;
     width: 80%;
@@ -466,6 +491,9 @@ body{
     // padding: 135px 280px 110px 0;
     justify-content:flex-end;
     background-color: rgba(255, 255, 255, .8);
+    @include pad(){
+      padding: 9% 0;
+    }
     @include phone(){
       width: 100%;
       // margin: 0;
@@ -513,7 +541,7 @@ body{
       height: 2px;
       background-color: $brand-primary;
     }
-    @include phone(){
+    @include pad(){
       font-size: 30px;
     }
   }
@@ -541,6 +569,10 @@ body{
     //   height: 100%;
     //   object-fit:cover;
     // }
+    @include pad(){
+      width: 50%;
+      padding-top: 37%;
+    }
     @include phone(){
       width: 86%;
       padding-top: 43%;
@@ -582,6 +614,9 @@ body{
 
 .newProductList{
   margin-bottom: 120px;
+  @include phone(){
+    margin-bottom: 70px;
+  }
 
 }
 
@@ -630,7 +665,9 @@ body{
   &__title{
     // margin-bottom: 6px;
     overflow: hidden;
-    line-clamp: 1;//..
+    text-overflow: ellipsis;
+    // line-clamp: 1;//會錯誤
+    -webkit-line-clamp:1;
     white-space: nowrap;
     font-size: 18px;
     font-weight: bold;
@@ -673,11 +710,15 @@ body{
   }
   @include phone(){
     background-position: 70%;
+    margin-bottom: 60px;
   }
 }
 
 .featureProduct{
   margin-bottom: 150px;
+  @include phone(){
+    margin-bottom: 100px;
+  }
   &__wrapper{
     display: flex;
     @include pad(){
@@ -690,7 +731,8 @@ body{
     justify-content: center;
     align-items: center;
     width: 250px;
-    margin-bottom: .5rem;//##!原來這樣縮高度就可跟卡片mb-2一樣了
+    // margin-bottom: .5rem;//##!原來這樣縮高度就可跟卡片mb-2一樣了
+    margin-bottom: 15px;
     // height: 700px;
     background-image: url("./assets/images/tent_bg.jpg");
     background-size:cover;
@@ -704,7 +746,7 @@ body{
     // }
     @include pad(){
       width: 100%;
-      height: 200px;//不會影響旁邊高度
+      height: 165px;//不會影響旁邊高度
     }
   }
 
@@ -723,10 +765,17 @@ body{
     padding: 13px;
     // box-shadow: 10px 10px 0px 0px $brand-primary;
     box-shadow: 10px 10px 0px 0px $brand-secondary1-light;
-    
+    @include pad(){
+      display: flex;
+      // align-items: bottom; //@@為何反而跑到下面?
+      align-items: baseline;
+    }
     >h4{
       margin-bottom: 0;
       font-size: 42px;
+      @include pad(){
+        margin-right: 12px;
+      }
     }
 
     >P{
@@ -752,6 +801,9 @@ body{
     // flex-wrap: wrap;
     
   }
+  @include pad(){
+    margin-bottom: 0;
+  }
   &__title{
     width: 30%;
     // text-align: center;
@@ -770,6 +822,15 @@ body{
     position: relative;
     top: -40px;
     margin-left: 3%;
+    @include pad(){
+      font-size: 40px;
+      margin-left: 70px;
+    }
+    @include phone(){
+      font-size: 30px;
+      margin-left: 30px;
+      margin-bottom: 25px;
+    }
   }
 
   &__wrapper{
@@ -788,7 +849,8 @@ body{
       // width: 100%;
     }
     @include phone(){
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
+      height: 550px;
     }
   }
 
@@ -805,8 +867,8 @@ body{
       box-sizing: border-box;
     }
     @include phone(){
-      width: 90%;
-      margin: 0 auto;
+      width: 50%;
+      // margin: 0 auto;
     }
 
     @include sm(){
@@ -840,6 +902,13 @@ body{
     }
     @include sm(){
       width: 150px;
+      height: 100%;
+      flex-basis: 150px;
+      >img{
+        width: 100%;
+        height: 100%;
+        object-fit:cover;
+      }
     }
   }
 
