@@ -1,18 +1,11 @@
 .productSingle{
   margin-bottom: 100px;
-  // &.container{
-  //   width: 1200px;
-  // }
 
   &__thumbImgs{
-    // height: 90px;
-    // justify-content: flex-start;
-    // justify-content: space-around;
+
     padding-bottom: 10px;
     >li{
-      // flex-grow:0;
-      // flex: 1 1 auto;
-      // flex: ;//@@因bg没加会不见
+
       img{
         max-width: 100%;
         
@@ -20,14 +13,6 @@
     }
   }
   .thumbImgs{
-    // overflow: hidden;
-    // margin: 0 -10px;//##!蝦皮 但會出現卷軸失敗
-    // &__oneThumbCol{//##蝦皮
-    //   display: inline-block;
-    //   width: 20%;
-    //   box-sizing: border-box;
-    //   padding: 0 10px;
-    // }
     &__oneThumbImg{
       position: relative;
         width: 103px;
@@ -83,9 +68,6 @@
     color: #707070;
   }
 
-  &__favorite{
-
-  }
 
   &__price{
     vertical-align:baseline;
@@ -117,11 +99,6 @@
   .promoTags{
     &__title{
       color:$brand-secondary1-light;
-      // border-bottom:1px solid $brand-secondary1-light;
-    }
-
-    &__container{
-
     }
 
     &__tag{
@@ -132,16 +109,6 @@
 
   .productInfo{
 
-    &__nav{
-      >ul{
-        
-      }
-
-      li{
-        
-      }
-
-    }
     .nav{
       &__item{
         position: relative;
@@ -180,11 +147,6 @@
         }
 
       }
-      // ##不用這麼寫
-      // &__item.&__item--active{
-      //   color: $brand-primary;
-      //   background-color: #fff;
-      // }
     }
 
     &__contentArea{
@@ -194,9 +156,6 @@
     &__p{ //%%
       line-height: 1.8;
     }
-
-    // %%%這邊應該改用js-來用
-    // 三個不同的類別...要換很麻煩
 
     &__featureView{
       display: none;
@@ -234,9 +193,6 @@
     color: $brand-secondary1-light;
   }
 
-  &__group{
-
-  }
 
 }
 
@@ -277,12 +233,6 @@
 
   &__picBox{
     flex-shrink: 0;
-    // 大的適合contain
-    // width:120px;
-    // height: 120px;
-    // 小的適合cover
-    // width:72px;
-    // height: 72px;
     width: 80px;
     height: 80px;
     img{
@@ -291,13 +241,6 @@
       height: 100%;
       // object-fit:contain;
       object-fit:cover;
-
-      // width: auto;
-      // height: auto;
-      // max-width: 100%;
-      // max-width: 100%;
-      // @@需要垂直居中
-      // vertical-align: middle
     }
   }
 }

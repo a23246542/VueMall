@@ -3,42 +3,12 @@
     word-break: break-word;
 }
 
-html,body{ //@@html bg被蓋掉
+html,body{ 
   background-color: $brand-background;
-  // font-family: Huakang;##中文字可 英數字要改
-}
-h1, h2, h3, h4, h5, h6{//##title下h才能繼承
-  // font-size: inherit; //%%導致很多沒寫死px的縮小便16
 }
 
-// 在一些共用的區塊上，
-// 連結的顏色的複用性會比較高，
-// 所以就直接在a連結上面直接寫顏色，
-// 這樣就不必在每個區塊上還要再寫一次顏色設定。
 
-// =====reset====================
-// body,div,p,h1,h2,h3,h4,h5,h6,ul,li,dl,dt,a,input,button,textarea,select{
-//   margin: 0;
-//   padding: 0;
-//   outline: none;
-// }
-// html,body{
-//   font-family:Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif;
-//   color: #333333;
-//   background-color: #ffffff;
-//   min-width: 1226px;
-//   font-size: 12px;
-// }
-// a{
-//   text-decoration: none;
-// }
 ul{
   list-style: none;
   padding-left: 0;
 }
-// input{
-//   font: normal;
-// }
-// input:focus,a:focus{
-//   outline: none;
-// }

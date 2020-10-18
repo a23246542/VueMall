@@ -12,12 +12,6 @@ body{
       border-radius: 15px;
       background-color: $brand-secondary1-light;
     }
-  
-    &::-webkit-scrollbar-track{}
-    //軌道的樣式
-  
-    ::-webkit-scrollbar-thumb:window-inactive{}
-    //頁面是在被啟用的情況下(非必要)
   }
 
 }
@@ -195,7 +189,7 @@ body{
   &__itemBox{
     position: relative;
     width: 100%;
-    padding-bottom: 100%;//..自身or寬度? 
+    padding-bottom: 100%;
     background-size: cover;
     background-position: 50% 50%;
     text-align: center;

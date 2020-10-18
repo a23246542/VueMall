@@ -1,11 +1,8 @@
 @import "~bootstrap/scss/functions";
 @import "./helpers/variables";
-@import "~bootstrap/scss/bootstrap";//@@重複
-// @import "~bootstrap";//一次元件全部導入 @@之前沒加好像沒事
+@import "~bootstrap/scss/bootstrap";
 
 
-//中文字體,"Microsoft JhengHei"
-//數字字體 "Yu Gothic"
 @import "./helpers/base";
 @import "./helpers/util";
 @import "./helpers/mixin";
@@ -25,7 +22,6 @@
 @import "./pages/homePage";
 @import "./pages/aboutUs";
 
-// @import "./pages/dashboard";
 @import "./pages/product-list";
 @import "./pages/product-single";
 
@@ -37,11 +33,3 @@
 @import "./pages/shopping/orderSuccess";
 
 
-
-// @import "~vue2-editor/dist/vue2-editor.css";//##套件css改放main.js
-
-// /* Import the Quill styles you want */
-// // @import '/node_modules/quill/dist/quill.core.css';
-// @import '~quill/dist/quill.core.css';
-// @import '~quill/dist/quill.bubble.css';
-// @import '~quill/dist/quill.snow.css';

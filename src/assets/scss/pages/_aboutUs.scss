@@ -7,10 +7,6 @@
 
 .meta__sectionTitle{//##這種方法
 
-  &.store__sectionTitle{
-    // margin-left: 0;
-  }
-
   &.campInfo__sectionTitle{
     margin-left: 0;
     margin-bottom: 70px;
@@ -55,10 +51,6 @@
     &__contentP:nth-child(1){
       margin-bottom: 30px;
     }
-    &__contentP:nth-child(2){
-
-    }
-
 
   }
 
@@ -116,13 +108,10 @@
     float: right;
     width: 51%;
     margin-left: -51%;
-    // min-height: 300px;
     position: relative;
     right: -15%;//##
     z-index: 5;//##保險
     transform:translateY(20%);//@@伸縮卡卡
-    // margin-top: 12%;
-    // background-color: #f8e18d;
     a{
       display: block;
     }

@@ -1,8 +1,7 @@
-//@@
-// @mixin shadow($w:0,$h:.5rem,$blur:1rem,$color,$spread:0) {
+
+
 @mixin shadow($w:0,$h:.5rem,$blur:1rem,$color:rgba(0, 0, 0, 0.15)) {
     box-shadow:$w $h $blur $color;
-    // box-shadow:0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 @mixin flex($hov:space-between,$col:center){
@@ -41,9 +40,6 @@
   width:$w;
   height: $h;
 }
-// @mixin border($bw:1px,$bc,$bs:solid) {
-//   border: $bw $bs $bc; 
-// }
 
 @mixin pc(){
   @media screen and (max-width:1199.98px){

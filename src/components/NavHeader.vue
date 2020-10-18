@@ -120,9 +120,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// @import "../assets/scss/helpers/helpers.scss";
+// @import "../assets/scss/all.scss";
 .navbar-dark .navbar-nav .nav-link{
   &:hover{
-    color: #fff ;
+    color: #fff;
+    // color: $link-hover-color;
   }
 }
 </style>
