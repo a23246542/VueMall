@@ -206,8 +206,8 @@
                       <!-- <img :src="item.imageUrl[0]"
                       class="prdNewCard__img bg-cover" alt="..."> -->
                       <span
-                        class="prdNewCard__favoriteBadge"
-                        @click="clickHeart(item.id)"
+                        class="prdNewCard__favoriteBadge swiper-no-class"
+                        @click="clickHeart($event, item.id)"
                       >
                         <i :class="heartStyle(item.id)" />
                       </span>
@@ -232,7 +232,6 @@
                       > @@ prevent失敗 -->
                       <!-- // @@ 有時可以有時不行 卡住 -->
                       <div
-                        href=""
                         class="prdNewCard__cart"
                       >
                         <i
@@ -416,6 +415,13 @@ export default {
         // },
         slidesPerView: 2,
         spaceBetween: 15,
+        noSwiping: true,
+        // noSwipingClass: 'prdNewCard__favoriteBadge',
+        // swipeHandler: 'prdNewCard__favoriteBadge',
+        // freeModeMomentum: false,
+        // on: {
+        //   click: (e) => { console.log(e); },
+        // },
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
@@ -477,6 +483,10 @@ export default {
         scrollTop: $('.featureProduct').offset().top,
       }, 1500);
     },
+    // progress(swiperPayload) {
+    //   const obj = swiperPayload[0];
+    //   this.clickHeart()
+    // },
   },
 };
 </script>

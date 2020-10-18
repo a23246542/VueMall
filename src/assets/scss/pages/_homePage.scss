@@ -642,6 +642,7 @@ body{
   }
   &__favoriteBadge{
     position: absolute;
+    z-index: 10;
     bottom: 4px;
     right: 10px;
     font-size: 18px;
@@ -697,6 +698,9 @@ body{
     right: 5px;
     bottom: 3px;
     cursor: pointer;
+    &:hover{
+      color: $brand-primary;
+    }
   }
 }
 
