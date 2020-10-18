@@ -83,9 +83,9 @@
               <button
                 type="button"
                 class="btn btn-secondary"
-                @click="updateProductQty('add')"
+                @click="updateProductQty('reduce')"
               >
-                +
+                -
               </button>
             </div>
             <input
@@ -98,9 +98,9 @@
               <button
                 type="button"
                 class="btn btn-secondary"
-                @click="updateProductQty('reduce')"
+                @click="updateProductQty('add')"
               >
-                -
+                +
               </button>
             </div>
           </div>
@@ -241,7 +241,10 @@
               >
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="sidePrdItem__infoBox p-3">
-                    <div class="sidePrdItem__title text-truncate">
+                    <div
+                      class="sidePrdItem__title text-truncate"
+                      @click="openRelatPrd(item.id)"
+                    >
                       {{ item.title }}
                     </div>
 
@@ -427,6 +430,14 @@ export default {
             }
           });
       }
+    },
+    openRelatPrd(prdId) {
+      // this.$router.push(`products/${prdId}`);// @@失敗
+      this.$router.push({
+        path: `/products/${prdId}`,
+      })
+        .catch(() => {});
+      this.getSingleProduct();
     },
   },
 };

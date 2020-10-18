@@ -25,7 +25,7 @@
               v-for="item in classObj.sort"
               :key="item"
               href="#"
-              class="list-group-item list-group-item-action rounded-0"
+              class="mainClass__item list-group-item list-group-item-action rounded-0"
             >
               <span
                 class="mainClass__title"
@@ -150,7 +150,7 @@ export default {
       // this.searchText = text;
       this.$router.push({ // ##
         name: 'products',
-      });
+      }).catch(() => {});
       this.$store.commit('SEARCH_TEXT', text);
       // console.log(text);
     },
@@ -205,10 +205,10 @@ export default {
             // background-color: #C9420D;
             // }
           }
-
           &__title{
+            display:inline-block;
             padding-left: 10%;
-            margin-bottom:26px;
+            margin-bottom:12px;
             color:inherit;
             // border:1px solid red;
             // border-left:3px solid inherit;//@@不行inherit
