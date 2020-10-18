@@ -11,13 +11,20 @@ export default {
     },
   },
   methods: {
-    clickHeart(itemId) {
-      // console.log('clickHeart');
-      const posi = this.wishItemIdList.indexOf(itemId);
-      if (posi === -1) {
-        this.$store.commit('ADD_WISH', itemId);
-      } else {
-        this.$store.commit('REMOVE_WISH', posi);
+    clickHeart(event, prdId) {
+      console.log('clickHeart', event);
+      // const posi = this.wishItemIdList.indexOf(prdId);
+      // if (posi === -1) {
+      //   this.$store.commit('ADD_WISH', prdId);
+      // } else {
+      //   this.$store.commit('REMOVE_WISH', prdId);
+      // }
+      if (event.toElement.classList.contains('far')) { // 未加入收藏
+        this.$store.commit('ADD_WISH', prdId);
+      }
+
+      if (event.toElement.classList.contains('fas')) { // 已加入收藏
+        this.$store.commit('REMOVE_WISH', prdId);
       }
     },
     heartStyle(itemId) { // ##

@@ -26,7 +26,10 @@
       <section class="metaPrdTab">
         <ul class="metaPrdTab__container d-flex justify-content-center mb-0">
           <li class="metaPrdTab__item flex-center">
-            <div class="metaPrdTab__itemBox metaPrdTab__itemBox--tent">
+            <div
+              class="metaPrdTab__itemBox metaPrdTab__itemBox--tent"
+              @click="setHomeSearchText('帳篷','TENT'),slideToPrdArea()"
+            >
               <div>
                 <div class="metaPrdTab__title">
                   <h3>帳篷</h3>
@@ -39,7 +42,10 @@
             </div>
           </li>
           <li class="metaPrdTab__item flex-center">
-            <div class="metaPrdTab__itemBox metaPrdTab__itemBox--bedding">
+            <div
+              class="metaPrdTab__itemBox metaPrdTab__itemBox--bedding"
+              @click="setHomeSearchText('寢具','BEDDING'),slideToPrdArea()"
+            >
               <div>
                 <div class="metaPrdTab__title">
                   <h3>野外寢具</h3>
@@ -52,11 +58,14 @@
             </div>
           </li>
           <li class="metaPrdTab__item flex-center">
-            <div class="metaPrdTab__itemBox metaPrdTab__itemBox--funiture">
+            <div
+              class="metaPrdTab__itemBox metaPrdTab__itemBox--funiture"
+              @click="setHomeSearchText('戶外家具','Furniture'),slideToPrdArea()"
+            >
               <div>
                 <div class="metaPrdTab__title">
                   <h3>戶外家俱</h3>
-                  <div>TENT</div>
+                  <div>Furniture</div>
                 </div>
                 <div class="metaPrdTab__txt">
                   不可或缺<br>感受家裡溫度
@@ -65,11 +74,14 @@
             </div>
           </li>
           <li class="metaPrdTab__item flex-center">
-            <div class="metaPrdTab__itemBox metaPrdTab__itemBox--picnic">
+            <div
+              class="metaPrdTab__itemBox metaPrdTab__itemBox--picnic"
+              @click="setHomeSearchText('野餐','PICNIC'),slideToPrdArea()"
+            >
               <div>
                 <div class="metaPrdTab__title">
                   <h3>野餐系列</h3>
-                  <div>TENT</div>
+                  <div>PICNIC</div>
                 </div>
                 <div class="metaPrdTab__txt">
                   享受佈置<br>打造戶外氛圍
@@ -194,8 +206,8 @@
                       <!-- <img :src="item.imageUrl[0]"
                       class="prdNewCard__img bg-cover" alt="..."> -->
                       <span
-                        class="prdNewCard__favoriteBadge"
-                        @click="clickHeart(item.id)"
+                        class="prdNewCard__favoriteBadge swiper-no-class"
+                        @click="clickHeart($event, item.id)"
                       >
                         <i :class="heartStyle(item.id)" />
                       </span>
@@ -220,7 +232,6 @@
                       > @@ prevent失敗 -->
                       <!-- // @@ 有時可以有時不行 卡住 -->
                       <div
-                        href=""
                         class="prdNewCard__cart"
                       >
                         <i
@@ -250,10 +261,13 @@
           </h3>
           <div class="featureProduct__wrapper">
             <div class="featureProduct__classBanner flex-shrink-0">
-              <div class="featureProduct__bannerTitle">
+              <div
+                class="featureProduct__bannerTitle"
+                :class="{'changeLocation':limitedProducts.length <= 3}"
+              >
                 <!-- <div class="featureProduct__bannerTitleBox"> -->
-                <h4>帳篷</h4>
-                <p>TENT</p>
+                <h4>{{ featureProductTitles[0] }}</h4>
+                <p>{{ featureProductTitles[1] }}</p>
                 <!-- </div> -->
               </div>
             </div>
@@ -390,6 +404,7 @@ export default {
     return {
       featurePrdList: [],
       featurePrdListNum: 6,
+      featureProductTitles: ['帳篷', 'TENT'],
       swiperOptions: {
         direction: 'horizontal',
         speed: 2000,
@@ -398,8 +413,15 @@ export default {
         //   delay: 2000,
         //   disableOnInteraction: false,
         // },
-        slidesPerView: 1,
+        slidesPerView: 2,
         spaceBetween: 15,
+        noSwiping: true,
+        // noSwipingClass: 'prdNewCard__favoriteBadge',
+        // swipeHandler: 'prdNewCard__favoriteBadge',
+        // freeModeMomentum: false,
+        // on: {
+        //   click: (e) => { console.log(e); },
+        // },
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
@@ -411,9 +433,9 @@ export default {
           668: {
             slidesPerView: 3,
           },
-          569: {
-            slidesPerView: 2,
-          },
+          // 569: {
+          //   slidesPerView: 2,
+          // },
         },
       },
     };
@@ -423,7 +445,7 @@ export default {
     //   return this.$store.state.CusProducts.products;
     // },
     limitedProducts() {
-      return this.$store.getters.getProductsByNum(this.featurePrdListNum); // @@原理
+      return this.$store.getters.getSearchProductsByNum(this.featurePrdListNum); // @@原理
     },
     newProductList() {
       return this.$store.getters.getNewProductsByNum(10);
@@ -452,6 +474,19 @@ export default {
         path: `/products/${itemId}`,
       });
     },
+    setHomeSearchText(categoryTxt, ...categoryEngTxt) {
+      this.featureProductTitles = [categoryTxt, ...categoryEngTxt];
+      this.$store.commit('HOME_SEARCH_TEXT', categoryTxt);
+    },
+    slideToPrdArea() {
+      $('body,html').animate({
+        scrollTop: $('.featureProduct').offset().top,
+      }, 1500);
+    },
+    // progress(swiperPayload) {
+    //   const obj = swiperPayload[0];
+    //   this.clickHeart()
+    // },
   },
 };
 </script>

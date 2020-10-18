@@ -45,6 +45,12 @@
 //   border: $bw $bs $bc; 
 // }
 
+@mixin pc(){
+  @media screen and (max-width:1199.98px){
+    @content;
+  }
+}
+
 @mixin pad(){
   @media screen and (max-width:991.98px){
     @content;

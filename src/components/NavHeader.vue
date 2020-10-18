@@ -39,16 +39,6 @@
         <ul class="navHeader__navbar navbar-nav w-lg-100">
           <div class="m-navbarNav d-flex align-items-center">
             <li class="navHeader__navItem nav-item">
-              <!-- <a class="nav-link" href="#">首頁 <span class="sr-only">(current)</span></a> -->
-              <router-link
-                :to="{name:'home'}"
-                tag="a"
-                class="navHeader__navLink nav-link"
-              >
-                首頁<span class="sr-only">(current)</span>
-              </router-link>
-            </li>
-            <li class="navHeader__navItem nav-item">
               <router-link
                 :to="{name:'關於我們'}"
                 tag="a"
@@ -74,7 +64,7 @@
             tag="a"
           >
             <img
-              src="@/assets/images/Meta-logo-white.png"
+              src="@/assets/images/Meta-logo-white.svg"
               alt=""
             >
             <h1 class="text-hide mb-0">
@@ -85,8 +75,9 @@
             <li class="navHeader__navItem nav-item">
               <!-- <span class="badge badge-pill badge-danger">3</span> -->
               <router-link
-                :to="{name:'home'}"
+                :to="{name:'orderList'}"
                 class="navHeader__navLink nav-link"
+                :disabled="true"
               >
                 我的訂單<span class="sr-only">(current)</span>
               </router-link>
@@ -137,3 +128,14 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+// @import "~@/assets/scss/helpers/helpers.scss";
+.navbar-dark .navbar-nav .nav-link{
+  // color: #fff;
+  &:hover{
+    // color:  darken(#C9420D, 15%);
+    color: #fff ;
+  }
+}
+</style>

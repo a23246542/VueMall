@@ -57,7 +57,7 @@
 
 <script>
 import $ from 'jquery';
-import { instanceAdmin } from '../api/https';
+import { instanceAdmin } from '@/api/https';
 
 export default {
   props: {

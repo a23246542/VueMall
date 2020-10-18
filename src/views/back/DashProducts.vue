@@ -123,9 +123,9 @@
 <script>
 import $ from 'jquery';
 import DashOtherModal from '@/components/admin/DashOtherModal.vue';
-import DashProductModal from '../../components/DashProductModal.vue';
-import DashDelProductModal from '../../components/DashDelProductModal.vue';
-import BasePagination from '../../components/BasePagination.vue';
+import DashProductModal from '@/components/DashProductModal.vue';
+import DashDelProductModal from '@/components/DashDelProductModal.vue';
+import BasePagination from '@/components/BasePagination.vue';
 
 import { instanceAdmin } from '../../api/https';
 
@@ -201,23 +201,23 @@ export default {
       // console.log(action, item);
       // this.$store.commit('LOADING',true);//@@非同步沒效果
       switch (action) {
-      case 'new':
-        this.isNew = true;
-        this.$refs.dashProductModal.openNewModal();
-        break;// %%往下執行
-      case 'edit':
-        this.tempProduct = JSON.parse(JSON.stringify(item));
-        this.isNew = false;
-        this.$refs.dashProductModal.openEditModal(this.tempProduct.id);
-        // this.$store.commit('LOADING',false);//非同步問題
-        break;
-      case 'delete':
-        this.tempProduct = JSON.parse(JSON.stringify(item));
-        this.$refs.dashDelProductModal.openDelModal();
-        // $('#delProductModal').modal('show');##可以取到組件內dom
-        break;
-      default:
-        break;
+        case 'new':
+          this.isNew = true;
+          this.$refs.dashProductModal.openNewModal();
+          break;// %%往下執行
+        case 'edit':
+          this.tempProduct = JSON.parse(JSON.stringify(item));
+          this.isNew = false;
+          this.$refs.dashProductModal.openEditModal(this.tempProduct.id);
+          // this.$store.commit('LOADING',false);//非同步問題
+          break;
+        case 'delete':
+          this.tempProduct = JSON.parse(JSON.stringify(item));
+          this.$refs.dashDelProductModal.openDelModal();
+          // $('#delProductModal').modal('show');##可以取到組件內dom
+          break;
+        default:
+          break;
       }
       // this.$store.commit('LOADING',false);
     },
