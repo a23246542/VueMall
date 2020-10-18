@@ -48,7 +48,6 @@
               </router-link>
             </li>
             <li class="navHeader__navItem nav-item">
-              <!-- <a class="nav-link" href="#">首頁 <span class="sr-only">(current)</span></a> -->
               <router-link
                 :to="{name:'products'}"
                 tag="a"
@@ -73,7 +72,6 @@
           </router-link>
           <div class="m-navbarNav d-flex align-items-center">
             <li class="navHeader__navItem nav-item">
-              <!-- <span class="badge badge-pill badge-danger">3</span> -->
               <router-link
                 :to="{name:'orderList'}"
                 class="navHeader__navLink nav-link"
@@ -86,10 +84,6 @@
               <WishModal />
             </li>
             <li class="navHeader__navItem m-none p-sm nav-item">
-              <!-- <CartModal
-                        ref="cart"
-                        @emitCart="getEmitCart"
-                        /> -->
               <CartModal
                 ref="cartModal"
               />
@@ -107,10 +101,6 @@
               </router-link>
             </li>
           </div>
-          <!-- <li class="nav-item">
-                      <a class="nav-link disabled" href="#" tabindex="-1"
-                      aria-disabled="true">Disabled</a>
-                  </li> -->
         </ul>
       </div>
     </div>
@@ -130,11 +120,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// @import "~@/assets/scss/helpers/helpers.scss";
 .navbar-dark .navbar-nav .nav-link{
-  // color: #fff;
   &:hover{
-    // color:  darken(#C9420D, 15%);
     color: #fff ;
   }
 }

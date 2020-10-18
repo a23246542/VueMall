@@ -3,7 +3,6 @@
     id="dashOrders"
     class="table-responsive"
   >
-    <!-- ## !因沒設data會報錯 -->
     <table
       v-if="orders.length"
       class="table mt-4"
@@ -36,7 +35,6 @@
           v-for="item in orders"
           :key="item.id"
         >
-          <!-- <td>{{ item.create_at | date }}</td> -->
           <td>{{ item.created.timestamp | date }}</td>
           <td>{{ item.id.slice(-16) }}</td>
           <td>
@@ -89,9 +87,7 @@
       @change-page="getOrders"
     />
     <!-- 分頁結束 -->
-
     <!-- 談窗開始 -->
-    <!-- <DashModal id="dashOrderModal" -->
     <DashModal
       v-if="tempOrder.id"
       id="dashOrderModal"
@@ -104,7 +100,6 @@
           <div class="col-md-6">
             <div class="pl-3">
               <p>
-                <!-- <span>訂單時間：</span><span>{{tempOrder.created.timestamp | date}}</span> -->
                 <span>訂單時間：</span><span>{{ tempOrder.created.datetime }}</span>
               </p>
               <div
@@ -139,11 +134,9 @@
               折扣：無
             </p>
             <p>付款方式：{{ tempOrder.payment }}</p>
-            <!-- ##付款後面會多一格空格 -->
             <div>
               付款：
               <div class="custom-control custom-checkbox d-inline-block">
-                <!-- <span>付款：</span> %%-->
                 <input
                   id="paidCheck"
                   v-model="tempOrder.paid"
@@ -245,6 +238,7 @@
     <!-- 談窗結束 -->
   </div>
 </template>
+
 <script>
 import Pagination from '@/components/BasePagination.vue';
 import DashModal from '@/components/admin/DashOtherModal.vue';
@@ -273,12 +267,10 @@ export default {
       this.orderId = orderItem.id;
       this.getSingleOrder()
         .then(() => {
-          // console.dir($('#dashOrderModal'));
           Vue.nextTick(() => {
             $('#dashOrderModal').modal('show');
           });
         });
-      // $("#dashOrderModal").modal("show");
     },
     async getOrders(page = 1) {
       this.$store.commit('LOADING', true);
@@ -293,7 +285,6 @@ export default {
     async getSingleOrder() {
       this.$store.commit('LOADING', true);
       const api = `ec/orders/${this.orderId}`;// @@mock重複
-      // const api = `ec/orders/id`;
       await this.$instanceAdmin.get(api)
         .then((res) => {
           this.tempOrder = res.data.data;

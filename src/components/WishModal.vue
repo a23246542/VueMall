@@ -10,8 +10,6 @@
         aria-expanded="false"
       >
         <i class="fas fa-heart text-white" />
-        <!-- <span class="badge badge-pill badge-danger">{{ carts.length }}</span> -->
-        <!-- <span class="badge badge-pill badge-danger">3</span> -->
       </button>
       <div
         class="dropdown-menu dropdown-menu-right"
@@ -62,16 +60,6 @@
                 </td>
               </tr>
             </tbody>
-            <tfoot>
-              <!-- <tr>
-                <td
-                  colspan="4"
-                  @click="buyAllWish"
-                >
-                  全部加入購物車
-                </td>
-              </tr> -->
-            </tfoot>
           </table>
         </div>
       </div>
@@ -87,7 +75,6 @@ export default {
   },
   computed: {
     wishItemPrdObjs() {
-      // return this.$store.state.WishList.wishItemPrdObjs;
       return this.$store.getters.wishItemPrdObjs;
     },
     wishItemIds() {
@@ -106,7 +93,6 @@ export default {
     },
     buyWishItem(item, qty = 1) {
       this.$store.commit('LOADING', true);
-      // const api = 'ec/shopping';
       const buyItem = { productId: item.id, qty };
 
       // ~~不管購物車是否存在 購物車都直接加1
@@ -117,14 +103,12 @@ export default {
             this.$store.commit('REMOVE_WISH', item.id);
             this.$store.commit('LOADING', false);
             this.$bus.$emit('message:push', `${item.title}已加入購物車`, 'success');
-            // this.$store.dispatch('getCart');
           });
       } else {
         const data = {
           productId: hasInCartItem.product.id,
           newQty: hasInCartItem.quantity + 1,
         };
-        // console.dir(data);
         this.$store.dispatch('editCart', data)
           .then(() => {
             this.$store.commit('REMOVE_WISH', item.id);
@@ -145,25 +129,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .dropdown-menu {
-        right: 0;
-        left: auto;//##必加
-    }
-    .fa-heart {
-      font-size: 19px;
-    }
-    .btn>.badge{
-        position: absolute;
-        top: -1px;
-        right: 19px;
-    }
-    .badge-pill{
-        padding-right:.4em;
-        padding-left:.4em;
-    }
+  .dropdown-menu {
+    right: 0;
+    left: auto;//##必加
+  }
+  .fa-heart {
+    font-size: 19px;
+  }
+  .btn>.badge{
+    position: absolute;
+    top: -1px;
+    right: 19px;
+  }
+  .badge-pill{
+    padding-right:.4em;
+    padding-left:.4em;
+  }
 
-    .dropdown-toggle::after{
-      // border-top:.3em solid #fff;
-      display: none;
-    }
+  .dropdown-toggle::after{
+    // border-top:.3em solid #fff;
+    display: none;
+  }
 </style>

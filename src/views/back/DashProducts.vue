@@ -1,6 +1,5 @@
 <template>
   <div id="dashProducts">
-    <!-- <BaseLoading :active.sync="isLoading"/> -->
     <div class="mt-4 text-right">
       <button
         type="button"
@@ -46,11 +45,7 @@
               {{ item.price }}
             </td>
             <td style="vertical-align: middle">
-              <!-- <span v-if="item.enabled">啟用</span>
-              <span v-else>未啟用</span> -->
               <label class="toggle-control">
-                <!-- <input type="checkbox"> -->
-                <!-- <input type="checkbox" :checked="item.enabled"> -->
                 <input
                   v-model="item.enabled"
                   type="checkbox"
@@ -158,35 +153,17 @@ export default {
       currentPage: '0',
     };
   },
-  computed: {
-    // isLoading(){//已註冊為全域
-    //     return this.$store.state.isLoading;
-    // }
-  },
   created() {
-    // console.log(this.$route.query.page);
-
-    // if(this.$route.query.page){
     this.currentPage = this.$route.query.page;
-    // console.log('page', this.currentPage);
-    this.getProducts(this.currentPage);// @@#如是undefined的話 參數會用預設值page=1
-    // }else{
-    //   this.getProducts();
-    // }
+    this.getProducts(this.currentPage);
   },
   methods: {
     getProducts(page = 1, paged = 10, orderBy = 'created_at', sort = 'desc') {
       this.$router.push({
-        // name:'dashProducts',
         query: { page },
       });
-
       const vm = this;
-      // vm.isLoading = true;
-      // vm.$store.state.isLoading = true;
-      // vm.$store.dispatch('updateLoading',true);
       vm.$store.commit('LOADING', true);
-      // console.log('執行getProducts');
       this.tempProduct = {
         imageUrl: [],
       };
@@ -198,8 +175,6 @@ export default {
         });
     },
     openModal(action, item) {
-      // console.log(action, item);
-      // this.$store.commit('LOADING',true);//@@非同步沒效果
       switch (action) {
         case 'new':
           this.isNew = true;
@@ -209,17 +184,14 @@ export default {
           this.tempProduct = JSON.parse(JSON.stringify(item));
           this.isNew = false;
           this.$refs.dashProductModal.openEditModal(this.tempProduct.id);
-          // this.$store.commit('LOADING',false);//非同步問題
           break;
         case 'delete':
           this.tempProduct = JSON.parse(JSON.stringify(item));
           this.$refs.dashDelProductModal.openDelModal();
-          // $('#delProductModal').modal('show');##可以取到組件內dom
           break;
         default:
           break;
       }
-      // this.$store.commit('LOADING',false);
     },
     clearModal() {
       // 清空tempProduct modal 恢復原狀
@@ -228,54 +200,36 @@ export default {
       };
     },
     enabledProduct(item) {
-      // console.log(item.id,item);
       this.$store.commit('LOADING', true);
       const api = `ec/product/${item.id}`;
       this.$instanceAdmin.patch(api, item)
         .then(() => {
-          // ##不需要再get 畫面跟api分開
           this.$store.commit('LOADING', false);
         });
     },
     delAllProducts() {
       this.$store.commit('LOADING', true);
       const productIds = this.products.map((prdItem) => prdItem.id);
-      // console.log(productIds);
-
-      // @@是否this.$instanceAdmin.delete()會讀取不到
       this.$http.all(productIds.map((id) => {
         const api = `ec/product/${id}`;
-        // console.log(this);
         return this.$instanceAdmin.delete(api);
       }))
         .then(() => {
-          // console.log(res);// ##回傳陣列裝每一個api的res
           this.$store.commit('LOADING', false);
           this.getProducts();
         });
-      //   .then(axios.spread((...res) => {
-      // }));
     },
     openDelAllProducts() {
       $('#delAll').modal('show');
     },
   },
 };
-
 </script>
 
 <style lang="scss">
   #dashProducts{
     .table{
       min-width: 800px;
-      // @include shadow();//SassError: no mixin named shadow
     }
-    // .newBtn{
-    //   // background-color: $brand-secondary-green;//SassError: Undefined variable
-    // }
-
-    // &__table{//## bem dashProducts為class才用
-    //   min-width: 800px;
-    // }
   }
 </style>

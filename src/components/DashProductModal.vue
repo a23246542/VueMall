@@ -64,15 +64,7 @@
                   class="w-100 flex-shrink-0 px-2 text-center"
                 >
                   <div class="form-group">
-                    <!-- <label for="imageUrl">編輯圖片網址</label>要有id對應%% -->
-                    <!-- <label :for="'img'+index">圖片網址{{isReadonly(url)?
-                      "(不可編輯)":"(可編輯)"}}</label> -->
                     <label :for="'img'+index">圖片網址</label>
-                    <!-- <input :id="'img'+index" type="text"
-                    class="form-control" placeholder="請輸入圖片連結"
-                            :readonly="isReadonly(url)"
-                            v-model="tempProduct.imageUrl[index]"
-                            > -->
                     <input
                       :id="'img'+index"
                       v-model="tempProduct.imageUrl[index]"
@@ -100,7 +92,6 @@
                   placeholder="請輸入標題"
                 >
               </div>
-
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="category">分類</label>
@@ -180,10 +171,6 @@
               </div>
               <div class="form-group">
                 <label for="description">產品描述</label>
-                <!-- <textarea id="description" v-model="tempProduct.description" type="text"
-                          class="form-control" placeholder="請輸入產品描述"
-                          style="height:140px"
-                /> -->
                 <VueEditor
                   id="description"
                   v-model="tempProduct.description"
@@ -206,9 +193,6 @@
               </div>
               <div class="form-group">
                 <div class="form-check">
-                  <!-- <input id="is_enabled" v-model="tempProduct.enabled" class="form-check-input"
-                    type="checkbox" :true-value="1" :false-value="0"> -->
-                  <!-- %%這次api不需要更改true-value -->
                   <input
                     id="is_enabled"
                     v-model="tempProduct.enabled"
@@ -260,17 +244,14 @@ export default {
    * @param filePath 暫存上傳圖檔後回傳的圖片網址
    * @param status 用於切換上傳圖片時的小 icon，主要是增加使用者體驗。-[]還未新增
    */
-  // @@props的型別檢查用法
   components: {
     VueEditor,
   },
   props: {
-    // isNew: true,//@@報錯 The "isNew" property should be a constructor
     isNew: Boolean,
   },
   data() {
     return {
-      // @@一開始v-model綁定的是空的物件屬性不會報錯
       tempProduct: {
         imageUrl: [],
         options: {
@@ -283,42 +264,14 @@ export default {
       filePath: '',
     };
   },
-  computed: {
-    // isReadonly(){ // @@如果是上傳六角的圖片就不可編輯
-    //     return function(url){
-    //         if(url.indexOf("hexschool")!==-1){
-    //             return true;
-    //         }
-    //     }
-    // }
-  },
   watch: {
-    // ['this.tempProduct.imageUrl'](){
-    // console.log("圖片改動");
-
-    // }
-    // ['this.tempProduct.imageUrl']:{//%%不用this
     'tempProduct.imageUrl': {
       handler(Val) {
-        // console.log(oldVal,Val);//無意義
-        // console.log("圖片陣列改動");
-        // 方法1 會無限迴圈
-        // let emptyIndex = 0;
-        // Val.forEach((url,index) => {
-        //     if(url==""){
-        //         emptyIndex = index;
-        //     }
-        // })
-        // Val.splice(emptyIndex,1);
-
-        // 方法2
         let emptyIndex = 0;
         const ifHasEmpty = Val.some((item, index) => {
-          // if(item===""){ return true}
           emptyIndex = index;
           return item === '';
         });
-        // console.log(ifHasEmpty);
         if (ifHasEmpty) {
           this.removeBlankImg(emptyIndex);
         }
@@ -338,10 +291,6 @@ export default {
           specification: '',
         },
       };
-      // ------等於下面-----------------
-      // this.tempProduct = {};
-      // this.$set(this.tempProduct,'imageUrl',[]);
-      // ---------------------------------
       this.$store.commit('LOADING', false);
       $('#productModal').modal('show');
     },
@@ -351,7 +300,6 @@ export default {
       instanceAdmin.get(api)
         .then((res) => {
           this.tempProduct = res.data.data;// ##重新賦值
-          // this.$set(this.tempProduct,'options',{});//##增加欄位時才能用 且只能用一次
           this.$store.commit('LOADING', false);
           $('#productModal').modal('show');
         });

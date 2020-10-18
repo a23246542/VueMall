@@ -1,5 +1,4 @@
 <template>
-  <!-- <div> -->
   <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     <a
       class="navbar-brand col-sm-3 col-md-2 mr-0"
@@ -30,7 +29,6 @@
       </li>
     </ul>
   </nav>
-  <!-- </div> -->
 </template>
 <script>
 
@@ -54,6 +52,3 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-//    @import "../assets/scss/pages/dashboard";//##可以作用
-</style>

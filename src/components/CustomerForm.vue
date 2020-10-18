@@ -15,7 +15,6 @@
       @submit.prevent="handleSubmit(createOrder)"
     >
       <div class="form-group">
-        <!-- <ValidationProvider rule="required" v-slot="{ errors, classes, passed }" >%%s -->
         <ValidationProvider
           v-slot="{ errors, classes, passed }"
           rules="required"
@@ -35,7 +34,6 @@
             placeholder="輸入姓名"
             :class="classes"
           >
-          <!-- <span v-if="errors[0]" class="text-danger">{{errors[0]}}</span> -->
           <span
             v-if="errors[0]"
             class="invalid-feedback"
@@ -234,7 +232,3 @@ export default {
   },
 };
 </script>
-
-<style>
-
-</style>

@@ -3,13 +3,8 @@ body{
   @include media-breakpoint-up(md){
 
     &::-webkit-scrollbar{
-      // width: 5px;
-      // height: 10px;
-      // border-radius: 5px;
       background-color: #ccc; // %%要跟thumb同時寫
     }
-  //"&"是必須與上一層同層級
-  //-webkit-scrollbar : 整體的scrollbar樣式
   
     &::-webkit-scrollbar-thumb{
       width: 10px;
@@ -17,7 +12,6 @@ body{
       border-radius: 15px;
       background-color: $brand-secondary1-light;
     }
-    //bar的樣式
   
     &::-webkit-scrollbar-track{}
     //軌道的樣式
@@ -71,14 +65,9 @@ body{
       margin-right: 120px;
       font-size: 50px;
       letter-spacing:3px;
-      @include phone(){
-        // font-size: 32px;
-      }
     }
 
     &__p2{
-      // position: relative;
-      // top: -100%;//..無效
       margin-top: -8px;
       margin-left: 170px;
       font-size: 30px;
@@ -215,11 +204,6 @@ body{
     >div{
       position: absolute;
       z-index: 10;
-      // top: 0;
-      // left: 0;
-      // right: 0;
-      // bottom: 0;
-      // margin: auto;
       top: 50%;
       left: 50%;
       transform:translate(-50%,-50%);
@@ -392,9 +376,6 @@ body{
     @include pad(){
       position: relative;
       width: 100%;
-      // flex-wrap: wrap;
-      // flex-direction: row-reverse;
-      // flex-direction: column-reverse;
       justify-content: center;
       padding: 75px 0 35px;
     }
@@ -412,9 +393,6 @@ body{
   }
 
   &__txt{
-    // margin-right: 10%;
-    // display: flex;
-    // flex-wrap: nowrap;//%%還是會斷行 只針對超出部分
     padding-top: 27px;
     align-items: center;
     text-align: center;
@@ -474,10 +452,7 @@ body{
 
 .metaCopyPart3{
   padding-top: 110px;
-  // margin-bottom: 150px;//..無效
   color:$brand-secondary1;
-  // display: flex;
-  // justify-content: flex-end;
   @include phone(){
     margin-top: 53px;
   }
@@ -487,9 +462,7 @@ body{
     margin-left: auto;
     display: flex;
     flex-direction: row-reverse;
-    // padding: 100px 0;
     padding: 6% 0;//..上下百分比
-    // padding: 135px 280px 110px 0;
     justify-content:flex-end;
     background-color: rgba(255, 255, 255, .8);
     @include pad(){
@@ -497,10 +470,6 @@ body{
     }
     @include phone(){
       width: 100%;
-      // margin: 0;
-      // flex-direction: row;
-      // flex-wrap: wrap;
-      // padding: 147px 0 35px;
       padding: 38% 0 35px;
       justify-content: center;
     }
@@ -562,14 +531,6 @@ body{
     left: 0;
     padding-top: 35%;// ##高度
     width: 40%;
-    // >img{
-    //   // position: absolute;
-    //   display: inline-block;
-    //   max-width: 50%;
-    //   // height: auto;
-    //   height: 100%;
-    //   object-fit:cover;
-    // }
     @include pad(){
       width: 50%;
       padding-top: 37%;
@@ -583,9 +544,6 @@ body{
   }
   &__picItem{
     position: absolute;
-    // top: 0;
-    // left: 0;
-    // width: 50%;
     height: 80%;// ##
     img{// ## img 100%
       // max-width: 100%;
@@ -622,11 +580,6 @@ body{
 }
 
 .prdNewCard{
-  // &__imgBox{
-  //   position: relative;
-  //   margin-bottom: 15px;
-  //   width: 100%;//%%難依照高調整固定高
-  // }
   &__imgWrap{
     position: relative;
     width: 100%;
@@ -648,10 +601,6 @@ body{
     font-size: 18px;
     color: #fff;
     cursor: pointer;
-
-    &--far{}
-
-    &--fas{}
   }
 
 
@@ -688,9 +637,6 @@ body{
     margin-bottom: 0;
     font-size: 14px;
     text-decoration: line-through;
-    // text-decoration: wavy;
-    // text-decoration: overline;
-    // text-decoration: double;
   }
 
   &__cart{
@@ -736,19 +682,12 @@ body{
     justify-content: center;
     align-items: center;
     width: 250px;
-    // margin-bottom: .5rem;//##!原來這樣縮高度就可跟卡片mb-2一樣了
+    // margin-bottom: .5rem;//##!這樣縮高度就可跟卡片mb-2一樣
     margin-bottom: 15px;
     // height: 700px;
     background-image: url("./assets/images/tent_bg.jpg");
     background-size:cover;
     background-position: 58% 50%;
-    // >img{
-    //   max-width: 100%;
-    //   height: auto;
-    // }
-    // @media screen and (max-width:762px){
-    //   width: 100%;
-    // }
     @include pc(){
       width: 100%;
       height: 165px;//不會影響旁邊高度
@@ -762,13 +701,9 @@ body{
   &__bannerTitle{
     margin-bottom:300px;
     color: #fff;
-    // background-color: $brand-secondary1-light;
     border:1px solid #fff;
     text-align: center;
-    // padding-right: 10px;
-    // padding-bottom: 10px;
     padding: 13px;
-    // box-shadow: 10px 10px 0px 0px $brand-primary;
     box-shadow: 10px 10px 0px 0px $brand-secondary1-light;
     &.changeLocation{
       @include media-breakpoint-up(xl){
@@ -779,7 +714,7 @@ body{
     }
     @include pc(){
       display: flex;
-      // align-items: bottom; //@@為何反而跑到下面?
+      // align-items: bottom; //@@反而跑到下面
       align-items: baseline;
       margin-bottom: 0;
     }
@@ -800,9 +735,6 @@ body{
     }
   }
 
-  &__bannerTitleBox{
-    
-  }
 }
 
 .metaNews{
@@ -810,8 +742,6 @@ body{
   margin-bottom: 80px;
   @media screen and (max-width:1199px){
     flex-flow: column nowrap; //##排法2
-    // justify-content:center;//..
-    // flex-wrap: wrap;
     
   }
   @include pad(){
@@ -819,7 +749,6 @@ body{
   }
   &__title{
     width: 30%;
-    // text-align: center;
     >h3{
       font-family: Huakang;// ..內建
       // font-size: 30px;
@@ -852,8 +781,6 @@ body{
     flex-wrap: wrap;//##需要加
     flex-direction: column;
     height: 680px;//##配合colmn+wrap
-    // align-items:flex-start;//
-    // align-items: center;
     @media screen and (max-width:1199px){//##這排法可改純寬度
       // align-self:flex-center;%%
       align-self:center;//##排法2

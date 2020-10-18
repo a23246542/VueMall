@@ -190,21 +190,13 @@
                   v-for="item in newProductList"
                   :key="item.id"
                 >
-                  <!-- <img :src="item.imageUrl[0]" alt="" style="width:100%"> -->
-                  <!-- <ProductCard
-                    :this-product="item"
-                    :mb="'mb-0'"
-                  ></ProductCard> -->
                   <div class="prdNewCard border-0">
-                    <!-- <div class="prdNewCard__imgBox"> -->
                     <div
                       class="prdNewCard__imgWrap bg-cover"
                       :style="{
                         backgroundImage:`url(${item.imageUrl[0]})`
                       }"
                     >
-                      <!-- <img :src="item.imageUrl[0]"
-                      class="prdNewCard__img bg-cover" alt="..."> -->
                       <span
                         class="prdNewCard__favoriteBadge swiper-no-class"
                         @click="clickHeart($event, item.id)"
@@ -227,10 +219,6 @@
                           NT${{ item.origin_price }}
                         </i>
                       </p>
-                      <!-- <a href="#" class="prdNewCard__cart"
-                         @click.prevent="addToCart(item)"
-                      > @@ prevent失敗 -->
-                      <!-- // @@ 有時可以有時不行 卡住 -->
                       <div
                         class="prdNewCard__cart"
                       >
@@ -265,10 +253,8 @@
                 class="featureProduct__bannerTitle"
                 :class="{'changeLocation':limitedProducts.length <= 3}"
               >
-                <!-- <div class="featureProduct__bannerTitleBox"> -->
                 <h4>{{ featureProductTitles[0] }}</h4>
                 <p>{{ featureProductTitles[1] }}</p>
-                <!-- </div> -->
               </div>
             </div>
             <div class="featureProduct__listBox">
@@ -384,12 +370,12 @@
     </section>
   </div>
 </template>
+
 <script>
 import ProductCard from '@/components/ProductCard.vue';
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
 import Wish from '@/mixin/Wish';
 import Cart from '@/mixin/Cart';
-// import 'swiper/css/swiper.css';
 import 'swiper/swiper-bundle.css';// ##github
 
 export default {
@@ -409,10 +395,6 @@ export default {
         direction: 'horizontal',
         speed: 2000,
         loop: true,
-        // autoplay: {
-        //   delay: 2000,
-        //   disableOnInteraction: false,
-        // },
         slidesPerView: 2,
         spaceBetween: 15,
         noSwiping: true,
@@ -433,19 +415,13 @@ export default {
           668: {
             slidesPerView: 3,
           },
-          // 569: {
-          //   slidesPerView: 2,
-          // },
         },
       },
     };
   },
   computed: {
-    // products() {
-    //   return this.$store.state.CusProducts.products;
-    // },
     limitedProducts() {
-      return this.$store.getters.getSearchProductsByNum(this.featurePrdListNum); // @@原理
+      return this.$store.getters.getSearchProductsByNum(this.featurePrdListNum);
     },
     newProductList() {
       return this.$store.getters.getNewProductsByNum(10);
@@ -454,18 +430,11 @@ export default {
       return this.$refs.newPrdSwiper.$swiper;
     },
   },
-  watch: {
-    products() {
-      // this.featurePrdList
-    },
-  },
   created() {
     this.$store.dispatch('getProducts');
     this.$store.dispatch('getNewProducts');
   },
   mounted() {
-    // const vm = this;
-    // console.log('Current Swiper instance object', this.swiper);
     this.swiper.slideTo(1, 2000, true);// @@資料已完成.啟動
   },
   methods: {
@@ -483,10 +452,6 @@ export default {
         scrollTop: $('.featureProduct').offset().top,
       }, 1500);
     },
-    // progress(swiperPayload) {
-    //   const obj = swiperPayload[0];
-    //   this.clickHeart()
-    // },
   },
 };
 </script>

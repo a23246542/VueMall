@@ -38,18 +38,7 @@ export default {
   },
   data() {
     return {
-      messages: [
-        // {
-        //     message:"訊息內容",
-        //     status:'success',
-        //     id:123
-        // },
-        // {
-        //     message:"訊息內容",
-        //     status:'danger',
-        //     id:4123
-        // }
-      ],
+      messages: [],
     };
   },
   created() {
@@ -59,7 +48,6 @@ export default {
   },
   methods: {
     updateMessage(message, status) {
-      // todo 如果有同樣的訊息則移除?
       const timeStamp = Math.floor(new Date() / 1000);
       this.messages.push({
         message,
@@ -85,27 +73,25 @@ export default {
 </script>
 
 <style lang="scss">
-    #message-alert{
-        position: fixed;
-        max-width: 30%;
-        top: 40px;
-        right: 30px;
-        z-index: 100;
-        // transition: all .5s;//##沒用
+  #message-alert{
+    position: fixed;
+    max-width: 30%;
+    top: 40px;
+    right: 30px;
+    z-index: 100;
 
-        //vue列表過度動畫
-        .list-item {
-            display: inline-block;
-            margin-right: 10px;
-        }
-        .list-enter-active, .list-leave-active {
-            transition: all 1s;
-        }
-        .list-enter, .list-leave-to
-        /* .list-leave-active for below version 2.1.8 */ {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
+    //vue列表過度動畫
+    .list-item {
+        display: inline-block;
+        margin-right: 10px;
     }
+    .list-enter-active, .list-leave-active {
+        transition: all 1s;
+    }
+    .list-enter, .list-leave-to{
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+  }
 
 </style>

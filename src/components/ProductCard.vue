@@ -1,14 +1,8 @@
 <template>
-  <!-- <div class=`col-xl-4 col-sm-6 mb-${mb} productCardCol`
-  > //@@代參數-->
   <div
     class="productCard card  rounded-0"
     :class="[mb,cardClass]"
   >
-    <!-- <img :src="thisProduct.imageUrl[0]"
-    class="productCard__img card-img-top img-fluid" alt="..."
-                    @click="openSingleProudct(thisProduct.id)"
-                > -->
     <div class="p-2">
       <div
         class="productCard__imgWrap bg-cover"
@@ -48,15 +42,6 @@
         </div>
         <div class="d-flex align-items-center">
           <div class="form-inline mr-2">
-            <!-- ###寫入只能用v-model了 -->
-            <!-- <select class="form-control"
-                              v-model="product.num"
-                              >
-                                  <option v-for="i in 5" :key="'num'+i"
-                                  :value="i"
-                                  >{{i}}</option>
-                              </select> -->
-            <!-- ##v-model沒有值的話 option預設不會顯示 雙向綁定變空白 -->
             <select
               v-model="thisProduct.num"
               class="productCard__num form-control form-control-sm"
@@ -88,21 +73,14 @@
 </template>
 
 <script>
-// import { mapState } from 'vuex';
-
 export default {
-
   props: {
-    // item:Object, // @@奇怪的right-hand-side報錯後來又正常
-    // item:{},
     thisProduct: {
       type: Object,
       required: true,
     },
     mb: {
-      // type: [String, Number],
       type: String,
-      // default: 'mb-5',
       default: '',
     },
     cardClass: {
@@ -125,67 +103,32 @@ export default {
         ? 'far fa-heart'
         : 'fas fa-heart text-primary';
     },
-    // ...mapState(['wishItemIdList']), // %%
     wishItemIdList() {
-      return this.$store.state.WishList.wishItemIdList; // @@放在各別卡片是否更耗效能
+      return this.$store.state.WishList.wishItemIdList;
     },
   },
-  // mounted() {
-  //   // const { name } = this.$route;
-  //   // if ( name === 'products'){
-
-  //   // }
-  // },
   methods: {
     addToCart(item, qty = 1) {
       this.$store.commit('LOADING', true);
       const cartItem = { productId: item.id, qty };
-      // const ifInCart = this.carts.some((cartItem)=>{
-      //         return cartItem.product.id === item.id;
-      // })
-      // 會是undefine 或{...}
-      // @@ todo改掉就錯了 變成同個產品數量重複加
       const hasInCartItem = this.carts.find((cart) => cart.product.id === cartItem.id);
-      // console.log(hasInCartItem,!hasInCartItem);
       if (!hasInCartItem) {
         this.$store.dispatch('addToCart', cartItem)
           .then(() => {
             this.$store.commit('LOADING', false);
             this.$bus.$emit('message:push', `${item.title}已加入購物車`, 'success');
-            // this.$refs.cartModal.getCart();
             this.$store.dispatch('getCart');
           });
       } else {
-        // console.log('已經有了');
-        // console.log(hasInCartItem);
         const data = {
           productId: hasInCartItem.product.id,
           newQty: hasInCartItem.quantity + qty,
         };
-        // console.dir(data);
         this.$store.dispatch('editCart', data)
           .then(() => {
             this.$bus.$emit('message:push', `${item.title}已加入購物車`, 'success');
           });
       }
-
-      // this.$instanceCus.post(api,cartItem)
-      // .then((res) => {
-      //     this.$store.commit('LOADING',false);
-      //     this.$bus.$emit('message:push',`${item.title}已加入購物車`,'success')
-      //     // this.$refs.cartModal.getCart();
-      //     this.$store.dispatch('getCart');
-      // })
-      // // ###這邊判斷post patch缺點會跑兩次api
-      // .catch((err) => {
-      //     this.$store.commit('LOADING',false);
-      //     console.dir(err.response.data);
-      //     if(err.response.data.errors[0]==="該商品已放入購物車當中。"){
-      //         this.$bus.$emit('message:push',`${item.title}已存在購物車`)
-      //     }
-      // })
-      // this.$store.dispatch('addToCart',{productId,qty})
-      // this.$store.dispatch('getCart');//%%
     },
     clickHeart(event) {
       if (event.toElement.classList.contains('far')) { // 未加入收藏
@@ -197,14 +140,8 @@ export default {
       }
     },
     openSingleProudct() {
-      // console.log(this.thisProduct.id);
       this.$router.push({
         path: `/products/${this.thisProduct.id}`,
-        // path: `products/${this.thisProduct.id}`,
-        // path: `${this.thisProduct.id}`,
-        // path:`/coupon`
-        // name: 'productSingle',
-        // params: { prdId: this.thisProduct.id },
       }).catch(() => {});
       // console.log('跳頁');
     },

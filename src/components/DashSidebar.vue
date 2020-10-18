@@ -12,7 +12,6 @@
             class="nav-link fz-35"
             href="#"
           >
-            <!-- <span data-feather="home"></span> -->
             <i class="fas fa-box-open" /> 產品列表
             <span class="sr-only">(current)</span>
           </router-link>
@@ -24,7 +23,6 @@
             class="nav-link fz-35"
             href="#"
           >
-            <!-- <span data-feather="layers"></span> -->
             <i class="far fa-list-alt" /> 訂單列表
           </router-link>
         </li>
@@ -35,7 +33,6 @@
             class="nav-link fz-35"
             href="#"
           >
-            <!-- <span data-feather="bar-chart-2"></span> -->
             <i class="fas fa-ticket-alt" /> 優惠券列表
           </router-link>
         </li>
@@ -46,7 +43,6 @@
             class="nav-link fz-35"
             href="#"
           >
-            <!-- <span data-feather="file"></span> -->
             <i class="fas fa-images" /> 圖片儲存列表
           </router-link>
         </li>
@@ -55,8 +51,6 @@
   </nav>
 </template>
 <script>
-
-// feather.replace()
 
 export default {
   data() {

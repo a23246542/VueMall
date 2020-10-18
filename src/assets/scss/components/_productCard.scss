@@ -26,7 +26,7 @@
 
   &__favoriteBadge{
     position: absolute;
-    z-index: 10;//%%竟然因沒加z-index vue click不到
+    z-index: 10;//%%沒z-index vue click不到
     bottom: 4px;
     right: 13px;
     font-size: 22px;

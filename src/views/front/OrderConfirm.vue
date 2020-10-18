@@ -34,7 +34,6 @@
                     小計
                   </div>
                 </div>
-                <!-- <ul v-if="amount" class="prdList__content"> -->
                 <ul
                   v-if="payment"
                   class="prdList__content"
@@ -181,6 +180,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   data() {
@@ -200,12 +200,8 @@ export default {
   },
   computed: {
     orderDiscountAmount() {
-      // if (this.coupon.percent) {
       const amountAll = (this.amount * 100) / this.coupon.percent;
       return (amountAll - this.amount);
-      // } else {
-      //   return 0;//@@不能接return?
-      // }
     },
     thisOrder() {
       return this.$store.state.CusOrders.thisOrder;
@@ -238,13 +234,6 @@ export default {
     },
     paySubmit() {
       const vm = this;
-      // const swalWithBootstrapButtons = Swal.mixin({
-      //   customClass: {
-      //     confirmButton: 'btn btn-success',
-      //     cancelButton: 'btn btn-danger',
-      //   },
-      //   buttonsStyling: false,
-      // });
       vm.$swal({
         title: '確認付款?',
         text: '你將支付這筆費用',
@@ -278,10 +267,6 @@ export default {
             });
         }
       });
-      // this.$router.push({
-      //   name: '訂單完成',
-      //   query: { orderId: this.orderId },
-      // });
     },
   },
 };

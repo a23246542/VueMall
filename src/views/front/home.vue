@@ -4,10 +4,10 @@
     <router-view
       class="header-pt"
     />
-    <!-- </div> -->
     <NavFooter />
   </div>
 </template>
+
 <script>
 import NavHeader from '@/components/NavHeader.vue';
 import NavFooter from '@/components/NavFooter.vue';

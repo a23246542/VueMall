@@ -11,14 +11,12 @@
       >
         <i class="fas fa-shopping-cart text-white" />
         <span class="badge badge-pill badge-danger">{{ carts.length }}</span>
-        <!-- <span class="badge badge-pill badge-danger">3</span> -->
       </button>
       <div
         class="dropdown-menu"
         style="min-width: 350px;"
         aria-labelledby="dropdownMenuButton"
       >
-        <!-- <a class="dropdown-item" href="#">Action</a> -->
         <div class="px-4 py-3">
           <table class="table table-sm mb-0">
             <thead>
@@ -28,10 +26,6 @@
               >
                 已選購商品
               </th>
-              <!-- <th></th>
-                            <th>品名</th>
-                            <th>數量</th>
-                            <th>單價</th> -->
             </thead>
             <tbody>
               <tr v-if="carts.length>0">
@@ -54,14 +48,10 @@
               >
                 <td class="align-middle">
                   {{ item.product.title }}
-                  <!-- <div class="text-success" v-if="item.coupon">
-                                    已套用優惠券
-                                    </div> -->
                 </td>
                 <td class="align-middle text-right">
                   x{{ item.quantity }}
                 </td>
-                <!-- <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td> -->
                 <td class="align-middle text-center">
                   <!-- ## -->
                   {{ (item.quantity*item.product.price) | dollars }}
@@ -92,10 +82,6 @@
                   {{ cartTotal | dollars }}
                 </td>
               </tr>
-              <!-- <tr>
-                                <td colspan="3" class="text-right text-success">折扣價</td>
-                                <td class="text-right text-success">{{ cart.final_total }}</td>
-                            </tr> -->
               <tr>
                 <td colspan="4">
                   <router-link
@@ -119,9 +105,6 @@
 export default {
   data() {
     return {
-      // carts:[],
-      // cartPagination:{},
-      // cartTotal:0
     };
   },
   computed: {
@@ -145,9 +128,8 @@ export default {
     editCart(id, qty) {
       this.$store.dispatch('editCart', { id, qty });
     },
-    delCart(item) { // %%405 delete方法用錯
+    delCart(item) {
       const productId = item.product.id;
-      // this.$store.dispatch('delCart',item);
       this.$store.dispatch('delCart', productId)
         .then(() => {
           this.$bus.$emit('message:push', `${item.product.title} 已刪除`, 'success');

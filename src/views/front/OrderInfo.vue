@@ -20,7 +20,6 @@
                 class="d-flex"
                 :class="{'mb-2':index!==carts.length-1}"
               >
-                <!-- <td class="flex-1 align-middle">@@div垂直置中無用 -->
                 <td class="flex-1 d-flex align-items-center">
                   <div
                     class="bg-cover w-100"
@@ -31,8 +30,6 @@
                     }"
                   />
                 </td>
-                <!-- <td class="flex-1 align-middle text-right">x{{ item.quantity }}</td> -->
-                <!-- <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td> -->
                 <td class="flex-2 p-2 pl-3">
                   <div>
                     {{ item.product.title }}
@@ -40,7 +37,6 @@
                   <small>
                     {{ item.quantity }} {{ item.product.unit }}
                   </small>
-                  <!-- ## -->
                   <div>
                     {{ (item.quantity*item.product.price) | dollars }}
                   </div>
@@ -103,7 +99,6 @@ export default {
     };
   },
   computed: {
-    // ...mapState(['cart.carts'])
     ...mapState({
       carts: (state) => state.Cart.cart.carts,
       pagination: (state) => state.Cart.cart.pagination,
@@ -112,33 +107,21 @@ export default {
     ...mapGetters(['cartTotal', 'discountAmount', 'amountAll']),
   },
   watch: {
-    // '$store.getters.cartTotal': function () { // @@監聽不到
-    //   console.log('監聽cartTotal');
-    //   this.$store.dispatch('setOrderCartTotal');
-    // },
     cartTotal() {
       this.$store.dispatch('setOrderCartTotal');
     },
   },
   created() {
     this.$store.dispatch('getCart');// %%
-    // this.$emit('changPage','orderInfo');
     this.$store.dispatch('changePage', 'order_info');
-  },
-  mounted() {
-    // setTimeout(() => {
-    //   this.$emit('changPage', 1);
-    // }, 1000);
   },
   methods: {
     createOrder(customerForm) {
-      // console.log(customerForm);
       this.$store.commit('LOADING', false);
       this.form = customerForm;
       if (this.coupon.code) {
         this.$set(this.form, 'coupon', this.coupon.code);
       }
-
       const api = 'ec/orders';
       const vm = this;
       this.$instanceCus.post(api, this.form)
@@ -150,12 +133,8 @@ export default {
             query: { orderId },
           });
         }).catch(() => {
-
         });
     },
   },
 };
 </script>
-<style lang="scss" scoped>
-
-</style>

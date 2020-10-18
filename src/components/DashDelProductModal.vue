@@ -86,8 +86,6 @@ export default {
       }
     },
     cancelDelProduct() {
-      // %%prop给父層清空
-      // this.$emit('cancel');
       this.$emit('update:tempProduct', {
         imageUrl: [],
       });

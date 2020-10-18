@@ -48,18 +48,15 @@ export default {
   props: {
     pages: {
       type: Object,
-      // default: {},// @@lint要有預設值且function?
       default: () => {},
     },
   },
   data() {
     return {
-      // %%不能跟prop重複
       currentPage: '1',
     };
   },
   methods: {
-    // changPage(){//%%
     emitPage(page) {
       this.currentPage = page;
       this.$emit('change-page', page);
@@ -67,7 +64,3 @@ export default {
   },
 };
 </script>
-
-<style>
-
-</style>

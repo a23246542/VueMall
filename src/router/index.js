@@ -18,9 +18,8 @@ const routes = [
     children: [
       {
         path: '',
-        name: 'home', // -[]首頁改index
+        name: 'home',
         component: () => import('@/views/front/HomePage.vue'),
-        // component:() => import('../views/front/products.vue')
       },
       {
         path: 'products',
@@ -31,28 +30,15 @@ const routes = [
             path: '',
             name: 'products',
             component: () => import('@/views/front/ProductList'),
-            // children: [
-            //   {
-            //   path: ':productId',
-            //   name: 'productSingle',
-            //   component: () => import('../views/front/productSingle'),
-            //   },
-            // ]
           },
           {
             path: ':productId',
             name: 'productSingle',
             component: () => import('@/views/front/ProductSingle'),
-            // component: () => import('../views/front/productSingle/index'),
           },
 
         ],
       },
-      // {
-      //   path: 'products/:productId',
-      //   name: 'productSingle',
-      //   component: () => import('../views/front/productSingle'),
-      // },
       {
         path: 'about',
         name: '關於我們',
@@ -81,12 +67,6 @@ const routes = [
         path: 'order_preview',
         name: '購物清單',
         component: () => import('@/views/front/OrderPreview'),
-        // -[]cart
-        // -[]CustomerForm
-        // components:{
-        //     Cart: () => import('@/components/Cart'),
-        //     CustomerForm: () => import('@/views/front/orderForm1')
-        // }
       },
       {
         path: 'order_info',
@@ -97,25 +77,12 @@ const routes = [
         path: 'order_confirm',
         name: '最後確認',
         component: () => import('@/views/front/OrderConfirm'),
-        // -[]Cart購物明細
-        // -[]orderInfo寄送資訊與付款方式
       },
       {
         path: 'order_success', // query ?orderId:orderId
         name: '訂單完成',
         component: () => import('@/views/front/OrderSuccess'),
       },
-      // {
-      //   // path:'payment/:orderId',
-      //   path: 'payment',
-      //   name: '付款頁',
-      //   component: () => import('@/views/front/payment.vue'),
-      // },
-      // {
-      //     path:'pay_success/:orderId',
-      //     name:'付款完成',
-      //     component:() => import('@/views/front/')
-      // }
     ],
 
   },
@@ -129,8 +96,7 @@ const routes = [
     path: '/admin',
     name: 'Dashboard',
     component: () => import('@/views/back/Dashboard.vue'),
-    redirect: '/admin/products', // ##前台右鍵後台開新分頁會直接略過router.beforeEach
-    // meta:{ requireAuth: true },//##有redirect沒用
+    redirect: '/admin/products',
     children: [
       {
         path: 'products',
@@ -161,14 +127,14 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  base: process.env.BASE_URL, // @@忘記是什麼變數
+  base: process.env.BASE_URL,
   routes,
   linkActiveClass: 'active',
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;
     }
-    return { x: 0, y: 0 };// no-else-return
+    return { x: 0, y: 0 };
   },
 });
 

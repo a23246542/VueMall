@@ -20,8 +20,6 @@
             訂單確認
           </li>
         </ul>
-        <!-- @@bem -->
-        <!-- <div class="progress progress--processStep"> -->
         <div class="processStep__progress progress">
           <div
             class="progress-bar"
@@ -43,6 +41,7 @@
     <NavFooter />
   </div>
 </template>
+
 <script>
 import NavHeader from '@/components/NavHeader.vue';
 import NavFooter from '@/components/NavFooter.vue';
@@ -64,7 +63,6 @@ export default {
   },
   watch: {
     nowPage(newVal) {
-      // console.log('改變頁數', newVal);
       switch (newVal) {
         case 'order_preview':
           this.barWidth = '33%';
@@ -79,17 +77,6 @@ export default {
           break;
       }
     },
-  },
-  // activated() {
-  //   console.log(this.$route.name);// @@activated無效
-  // },
-  mounted() {
-    // this.initBar();
-  },
-  methods: {
-    // changeBar(nowPage) {
-    //   // console.log('換頁');
-    // },
   },
 };
 </script>

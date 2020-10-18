@@ -85,6 +85,7 @@
     </DashModal>
   </div>
 </template>
+
 <script>
 import pagination from '@/components/BasePagination.vue';
 import DashModal from '@/components/admin/DashOtherModal.vue';
@@ -100,10 +101,8 @@ export default {
       pagination: {},
       title: '',
       modalUse: '',
-      // ##道理一樣
       checkedItem: {}, // 選中的對象,
       checkedindex: 0,
-
     };
   },
   created() {
@@ -119,14 +118,10 @@ export default {
       }
       this.checkedItem = { ...item };
       this.checkedindex = index;
-
-      // console.dir(this.$refs.dashStorageModal);
-      // this.$refs.dashStorageModal.modal('show');
       $('#dashStorageModal').modal('show');
     },
     getStorages(page = 1, paged = 25, orderBy = 'created_at', sort = 'desc') {
       this.$store.commit('LOADING', true);
-      // const api ="storage?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}";//%%500報錯 符號錯誤
       const api = `storage?page=${page}&paged=${paged}&orderBy=${orderBy}&sort=${sort}`;
       this.$instanceAdmin.get(api)
         .then((res) => {
@@ -138,23 +133,19 @@ export default {
     postStorage() {
       this.$store.commit('LOADING', true);
       const api = 'storage';
-
       const uploadedFile = this.$refs.storage.files[0];
       const formData = new FormData();
       formData.append('file', uploadedFile);
-
       this.$instanceAdmin.post(api, formData, {
         headers: {
           'content-type': 'multipart/form-data',
         },
       })
         .then((res) => {
-          // this.getStorages();//較慢
           this.storages.unshift(res.data.data);
           this.$store.commit('LOADING', false);
         });
     },
-    // destoryStorage(item,index){
     destoryStorage() {
       const { checkedItem, checkedindex } = this;// ##
       this.$store.commit('LOADING', true);
@@ -162,7 +153,6 @@ export default {
       this.$instanceAdmin.delete(api)
         .then(() => {
           this.storages.splice(checkedindex, 1);
-          // this.$refs.dashStorageModal.modal('hide');//##jquery無效
           $('#dashStorageModal').modal('hide');
           this.$store.commit('LOADING', false);
         });
@@ -174,50 +164,29 @@ export default {
 
 <style lang="scss">
 #dashStorage{
-
-    .card-body{
-        // height: 300px;
-        display: flex;
-        // align-items: center;
-        justify-content: center;
-        img{
-            height: 300px;
-            object-fit: contain;
-            // width: 100%;@#也可
-        }
+  .card-body{
+    display: flex;
+    justify-content: center;
+    img{
+      height: 300px;
+      object-fit: contain;
     }
-
-    .custom-file{
-        width:auto;
-
-    }
-    .custom-file-input{ //隱藏且覆蓋在上面
-        cursor: pointer;
-    }
-    .custom-file-input:lang(en) ~ .custom-file-label::after{
-        content:'上傳';
-        right: auto;
-        left: 0;
-        border-left:0;//
-        border-right:inherit;//##
-        border-top-right-radius:0;
-        border-bottom-right-radius:0;
-    }
+  }
+  .custom-file{
+  width:auto;
+  }
+  .custom-file-input{ //隱藏且覆蓋在上面
+    cursor: pointer;
+  }
+  .custom-file-input:lang(en) ~ .custom-file-label::after{
+    content:'上傳';
+    right: auto;
+    left: 0;
+    border-left:0;//
+    border-right:inherit;//##
+    border-top-right-radius:0;
+    border-bottom-right-radius:0;
+  }
 }
 
-</style>
-<style lang="scss" scoped>
-    // .card-body{
-    //     height: 300px;
-    //     display: flex;
-    //     align-items: center;
-
-    //     img{
-    //         // vertical-align: middle;
-    //         // width: 300px;
-    //         // height: 400px;
-    //         width: 100%;
-    //         object-fit: contain;
-    //     }
-    // }
 </style>

@@ -14,10 +14,6 @@
         >
         <div class="productSingle__cusScroll overflow-x-auto">
           <ul class="d-flex productSingle__thumbImgs thumbImgs mb-0 list-unstyled">
-            <!-- <div class="thumbImgs__oneThumbCol"
-                            v-for="(item,index) in product.imageUrl" :key="item"
-                          > -->
-            <!-- <li class="thumbImgs__oneThumbImg flex-shrink-0 bg-cover" -->
             <li
               v-for="(item,index) in product.imageUrl"
               :key="item"
@@ -30,7 +26,6 @@
               }"
               @click="setThumbImgIndex(index)"
             />
-          <!-- </div> -->
           </ul>
         </div>
       </div>
@@ -57,8 +52,6 @@
           >
             產品編號{{ product.id.slice(-5).toUpperCase() }}
           </small>
-          <!-- <span>{{product.origin_price | dollars}}</span>/<span>
-          {{product.price | dollars}}</span> -->
           <span
             v-if="true"
             class="productSingle__favorite text-primary"
@@ -77,7 +70,6 @@
           <span><del>NT{{ product.price | dollars }}</del></span>
         </div>
         <div class="d-flex align-items-end mb-6">
-          <!-- ##input-group -->
           <div class="input-group w-auto">
             <div class="input-group-prepend">
               <button
@@ -106,7 +98,6 @@
           </div>
           <small class="text-success">尚有庫存</small>
         </div>
-        <!-- <div class="productSingle__buyArea d-flex justify-content-end pr-4"> -->
         <div class="productSingle__buyArea">
           <button
             type="button"
@@ -126,8 +117,6 @@
         <p class="pl-2 mb-5">
           <small class="text-muted"> 付款後，從備貨到寄出商品為 2 個工作天。（不包含假日）</small>
         </p>
-        <!-- <div>
-                    </div> -->
         <div class="promoTags">
           <div class="promoTags__title border-bottom">
             <span>優惠活動</span>
@@ -172,13 +161,11 @@
             </ul>
           </div>
           <div class="productInfo__contentArea  bg-white text-secondary2">
-            <!-- <div class="productInfo__view"> -->
             <div
               class="productInfo__featureView productInfo__p ql-editor"
               :class="{'productInfo__featureView--show'
                 :selectedPrdInfoView==='feature'}"
             >
-              <!-- <p>{{ product.description }}</p> -->
               <!-- eslint-disable -->
             <p v-html="product.description" />
             <!-- eslint-enable -->
@@ -200,7 +187,6 @@
               :class="{'productInfo__shipmentRuleView--show'
                 :selectedPrdInfoView==='shipmentRule'}"
             >
-              <!-- <p>/注意事項</p> -->
               <div>
                 <p>
                   /商品保固說明<br>
@@ -221,7 +207,6 @@
                 </p>
               </div>
             </div>
-          <!-- </div> -->
           </div>
         </div>
       </div>
@@ -250,11 +235,8 @@
 
                     <div class="sidePrdItem__price">
                       NT${{ item.price }}
-                    <!-- <small class="sidePrdItem__originPrice"><del>NT$28500</del></small> -->
                     </div>
-                  <!-- <span class="sidePrdItem__subClassTag">帳篷</span> -->
                   </div>
-                  <!-- @@picBox 或boxPic -->
                   <div class="sidePrdItem__picBox">
                     <img
                       :src="item.imageUrl[0]"
@@ -314,12 +296,10 @@ export default {
         randomSet.add(getRandomInt(1, this.allProducts.length));
       }
       const randomIndexs = Array.from(randomSet);
-      // console.log(randomIndexs);
 
       relatedProducts = randomIndexs.map((item) => this.allProducts[item]);
 
       return relatedProducts;
-      // return 1;
     },
   },
   watch: {
@@ -340,13 +320,11 @@ export default {
         },
       ];
 
-      // this.$store.dispatch('setBreadcrumbList', ['home', 'products', 'productSingle']);
       this.$store.dispatch('setBreadcrumbList', breadcrumbList);
     },
   },
   created() {
     this.getSingleProduct();
-    // console.log('產品內頁的route', this.$route);
   },
   methods: {
     getSingleProduct() {
@@ -358,8 +336,6 @@ export default {
         .then((res) => {
           this.$store.commit('LOADING', false);
           this.product = res.data.data;
-          // this.product.qty=1;
-          // this.$set(this.product,qty,1);//%%qrt nodefined
           this.$set(this.product, 'qty', 1);
         });
     },
@@ -373,7 +349,6 @@ export default {
       switch (type) {
         case 'add':
           if (this.product.qty === this.product.options.stock) {
-          // ~@@[Vue warn]: Duplicate keys detected: 'NaN'. This may cause an update error.
             this.$bus.$emit('message:push', '商品庫存不足');
           } else {
             this.product.qty += 1;
@@ -398,7 +373,6 @@ export default {
         product: this.product.id,
         quantity: this.product.qty,
       };
-      // const hasInCartItem = this.carts.find((cartItem) => cartItem.product.id === this.product.id);// %%eslint no-shadow
       const hasInCartItem = this.carts.find((cart) => cart.product.id === this.product.id);// %%eslint no-shadow
 
       if (!hasInCartItem) {
@@ -406,7 +380,6 @@ export default {
           .then(() => {
             this.$store.commit('LOADING', false);
             this.$bus.$emit('message:push', `${this.product.title}已加入購物車`, 'success');
-            // this.$refs.cartModal.getCart();
             this.$store.dispatch('getCart');
             if (isDirectBuy) {
               this.$router.push({
@@ -432,7 +405,6 @@ export default {
       }
     },
     openRelatPrd(prdId) {
-      // this.$router.push(`products/${prdId}`);// @@失敗
       this.$router.push({
         path: `/products/${prdId}`,
       })
@@ -444,21 +416,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* Import the Quill styles you want */
-/* @import '~quill/dist/quill.core.css';
-@import '~quill/dist/quill.bubble.css';
-@import '~quill/dist/quill.snow.css'; */
+
 .ql-editor {
   overflow-x: hidden;
-  /* font-size: 12px; */
 }
 
-/* %%組件 */
 /* eslint-disable */
 /deep/.ql-editor img {
   max-width: 100% !important;
   height: auto;
 }
-
 /* eslint-enable */
 </style>

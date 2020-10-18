@@ -18,7 +18,6 @@
                   class="cart__item row mb-3"
                 >
                   <div class="col-3 col-md-3">
-                    <!-- <div class="flex-1"> -->
                     <!-- 圖片 -->
                     <img
                       class="img-fluid"
@@ -27,11 +26,8 @@
                     >
                   </div>
                   <div class="col-9 col-md-9">
-                    <!-- <div class="flex-3">  -->
-                    <!-- @@row是否需要搭配h-100 -->
                     <div class="row h-100">
                       <!-- 名稱跟單價 -->
-                      <!-- <div class="col-md-6 align-self-md-center"> -->
                       <div class="col-md-6">
                         <div class="d-flex flex-column h-100">
                           <div class="fz-2 fw-b mb-md-2">
@@ -42,7 +38,6 @@
                           </div>
                         </div>
                       </div>
-                      <!-- <div class="col-md-6 align-self-md-center"> -->
                       <div class="col-md-6">
                         <div class="d-flex justify-content-between align-items-center h-100">
                           <!-- 數量加減 -->
@@ -73,8 +68,6 @@
                           </div>
                           <div class="d-flex align-items-center">
                             <!-- 小計 -->
-                            <!-- @@top -->
-                            <!-- <p class="h4 mb-0 px-2 align-top"> -->
                             <p class="h4 mb-0 px-2">
                               {{ (item.product.price*item.quantity) | dollars }}
                             </p>
@@ -94,8 +87,6 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <div class="d-flex justify-content-between align-items-center"> -->
-                    <!-- </div> -->
                   </div>
                 </div>
               </div>
@@ -108,7 +99,6 @@
             <div class="cartSummary__header card-header border-0">
               訂單摘要
             </div>
-            <!-- <div class="cartSummary__body card-body p-4"> -->
             <div class="cartSummary__body card-body pb-4">
               <p class="d-flex justify-content-between pb-2 border-bottom">
                 <span>小計</span>
@@ -134,8 +124,6 @@
                     </div>
                   </span>
                 </div>
-                <!-- <p v-show="discountAmount" class="d-flex justify-content-between
-                pb-3 text-red border-bottom"> -->
                 <p
                   v-if="discountAmount"
                   class="d-flex justify-content-between pb-3 text-red border-bottom"
@@ -172,18 +160,11 @@
 </template>
 
 <script>
-// import Cart from "@/components/Cart";
 import { mapGetters } from 'vuex';
-// import { debounce } from 'vue-debounce';
-// import _ from 'lodash';
 
 export default {
-  components: {
-    // Cart,
-  },
   data() {
     return {
-      // cart:this.cart
       coupon: {},
       couponCode: '',
     };
@@ -196,17 +177,11 @@ export default {
       return this.$store.getters.cartTotal;
     },
     ...mapGetters(['amountAll', 'discountAmount']),
-    // ...mapGetters({
-    //   orderTotal:'/amountAll'//@@重命名
-    // })
   },
   watch: {
     cartTotal() {
       this.$store.dispatch('setOrderCartTotal');
     },
-    // ['$store.state.CusOrders.coupon.percent'](){
-    //   console.log('取得coupon');
-    // }
   },
   created() {
     this.getCart();
@@ -232,8 +207,6 @@ export default {
         default:
           break;
       }
-      // console.log('更新购物车', productId, qty);
-      // this.$store.dispatch('editCart',{id,qty});//@@
       const data = {
         productId,
         newQty: qty,
@@ -242,10 +215,6 @@ export default {
       this.$store.dispatch('editCart', data);
     },
     stayUpdateCart(val, e) {
-      // console.log(val);
-      // console.dir(e);
-      // console.dir(e.target.dataset.itemId);
-
       const data = {
         productId: e.target.dataset.itemId, // 產品id
         newQty: val, // 值
@@ -264,37 +233,14 @@ export default {
       const api = 'ec/coupon/search';
       vm.$store.commit('LOADING', true);
       vm.$instanceCus.post(api, coupon).then((res) => {
-        // vm.getCart();
-        // vm.$store.commit('LOADING', false);
-        // if (!response.data.success) {
-        //   const { message } = response.data;
-        //   const status = 'danger';
-        //   vm.$store.dispatch('updateMessage', { message, status });
-        // }
         this.coupon = res.data.data;
         this.$store.commit('COUPON', this.coupon);
         this.$store.commit('LOADING', false);
-
-        // this.$swal.fire({
-        //   position: 'top-end',
-        //   icon: 'success',
-        //   title: '恭喜成功拿到折扣',
-        //   showConfirmButton: false,
-        //   timer: 1500,
-        // });
-
-        // this.getCart();
       }).catch(() => {
         this.$store.commit('COUPON', {});// ##無效的優惠券
         this.$store.commit('LOADING', false);
-        // const { message } = err.response.data;
-        // alert(message);
       });
     },
   },
 };
 </script>
-
-<style>
-
-</style>
