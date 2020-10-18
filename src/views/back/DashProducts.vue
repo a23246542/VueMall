@@ -123,9 +123,9 @@
 <script>
 import $ from 'jquery';
 import DashOtherModal from '@/components/admin/DashOtherModal.vue';
-import DashProductModal from '../../components/DashProductModal.vue';
-import DashDelProductModal from '../../components/DashDelProductModal.vue';
-import BasePagination from '../../components/BasePagination.vue';
+import DashProductModal from '@/components/DashProductModal.vue';
+import DashDelProductModal from '@/components/DashDelProductModal.vue';
+import BasePagination from '@/components/BasePagination.vue';
 
 import { instanceAdmin } from '../../api/https';
 

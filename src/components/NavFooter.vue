@@ -5,7 +5,7 @@
         <div class="navFooter__logo">
           <img
             src="@/assets/images/Meta-logo.png"
-            alt=""
+            alt="META"
           >
         </div>
         <div class="navFooter__links">
@@ -17,13 +17,19 @@
                 </div>
                 <ul>
                   <li class="footerLink__txt">
-                    品牌故事
+                    <a href="#">
+                      品牌故事
+                    </a>
                   </li>
                   <li class="footerLink__txt">
-                    最新消息
+                    <a href="#">
+                      最新消息
+                    </a>
                   </li>
                   <li class="footerLink__txt">
-                    聯絡我們
+                    <a href="#">
+                      聯絡我們
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -35,16 +41,24 @@
                 </div>
                 <ul>
                   <li class="footerLink__txt">
-                    付款方式
+                    <a href="#">
+                      付款方式
+                    </a>
                   </li>
                   <li class="footerLink__txt">
-                    運送方式
+                    <a href="#">
+                      運送方式
+                    </a>
                   </li>
                   <li class="footerLink__txt">
-                    退換貨方式
+                    <a href="#">
+                      退換貨方式
+                    </a>
                   </li>
                   <li class="footerLink__txt">
-                    常見Q&A
+                    <a href="#">
+                      常見Q&A
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -56,10 +70,14 @@
                 </div>
                 <ul>
                   <li class="footerLink__txt">
-                    網站條款
+                    <a href="#">
+                      網站條款
+                    </a>
                   </li>
                   <li class="footerLink__txt">
-                    隱私權政策
+                    <a href="#">
+                      隱私權政策
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -71,31 +89,29 @@
                 </div>
                 <ul class="footerLink__iconBlock">
                   <li class="footerLink__icon">
-                    <img
-                      src="@/assets/icons/facebook.png"
-                      alt=""
-                    >
+                    <a href="#">
+                      <i class="fab fa-facebook-square" />
+                    </a>
                   </li>
                   <li
                     class="footerLink__icon"
                     style="padding-top:1px"
                   >
-                    <img
-                      src="@/assets/icons/line.png"
-                      alt=""
-                    >
+                    <a href="#">
+                      <i class="fab fa-line" />
+                    </a>
                   </li>
                   <li class="footerLink__icon">
-                    <img
-                      src="@/assets/icons/instagram.png"
-                      alt=""
-                    >
+                    <a href="#">
+                      <i class="fab fa-instagram-square" />
+                    </a>
                   </li>
                   <li class="footerLink__icon">
-                    <img
-                      src="@/assets/icons/youtube.png"
-                      alt=""
-                    >
+                    <a href="#">
+                      <i
+                        class="fab fa-youtube-square"
+                      />
+                    </a>
                   </li>
                 </ul>
               </div>
