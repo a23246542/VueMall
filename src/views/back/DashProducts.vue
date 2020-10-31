@@ -161,7 +161,8 @@ export default {
     getProducts(page = 1, paged = 10, orderBy = 'created_at', sort = 'desc') {
       this.$router.push({
         query: { page },
-      });
+      })
+        .catch(() => {});
       const vm = this;
       vm.$store.commit('LOADING', true);
       this.tempProduct = {

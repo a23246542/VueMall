@@ -176,7 +176,7 @@
                   v-model="tempProduct.description"
                   class=""
                   style=""
-                  :placeholder="請輸入產品描述"
+                  :placeholder="'請輸入產品描述'"
                   @image-added="uploadEditerImg"
                 />
               </div>

@@ -49,15 +49,15 @@ instanceLogin.interceptors.response.use((res) => {
 });
 
 // ===================後台api=============================================
+/* eslint-disable */
 instanceAdmin.interceptors.request.use(async (config) => {
   const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1');
-  // config.headers.Authorization = `Bearer ${token}`; // @@eslint出現no-param-reassign，要如何給設定
-  // return config;
+  config.headers.Authorization = `Bearer ${token}`; // @@eslint出現no-param-reassign，要如何給設定
+  return config;
 
-  // let { authorization } = config.headers.Authorization;
-  let { authorization } = config.headers;
-  authorization = `Bearer ${token}`;
-  return authorization;
+  // let { authorization } = config.headers;
+  // authorization = `Bearer ${token}`;
+  // return config;
 }, (err) => Promise.reject(err));
 
 // console.log('請求錯誤');
@@ -69,12 +69,15 @@ instanceAdmin.interceptors.response.use((res) => res,
   (err) => {
   // console.log('響應錯誤');
   // console.dir(err);
-    if (err.response.status === 401) { // message: "Unauthenticated."
-      Vue.$store.commit('LOADING', false);// @@可以的原理
-      router.push({ name: 'login' });
-    }
+
+    // if (err.response.status === 401) { // @@變成報錯 message: "Unauthenticated."
+    //   Vue.$store.commit('LOADING', false);// @@可以的原理
+    //   router.push({ name: 'login' });
+    // }
     return Promise.reject(err);
   });
+
+  /* eslint-enable */
 // ===================前台api===================================
 // Vue.prototype.instanceCus = instanceCus;
 instanceCus.interceptors.request.use((config) => config, (err) => Promise.reject(err));
