@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import axios from 'axios';
-import router from '../router';// @做router.push
+// import router from '../router';// @做router.push
 
 // ============后台admin==========================================
 const http = {

@@ -231,19 +231,22 @@ export default {
     },
   },
   watch: {
-    thisOrder() {
-      const {
-        id, message, user, coupon, amount, products, payment, paid, createdAt,
-      } = this.thisOrder;
-      this.orderId = id;
-      this.message = message;
-      this.user = user;
-      this.coupon = coupon;
-      this.amount = amount;
-      this.products = products;
-      this.payment = payment;
-      this.paid = paid;
-      this.created_at = createdAt;
+    thisOrder: {
+      handler() {
+        const {
+          id, message, user, coupon, amount, products, payment, paid, createdAt,
+        } = this.thisOrder;
+        this.orderId = id;
+        this.message = message;
+        this.user = user;
+        this.coupon = coupon;
+        this.amount = amount;
+        this.products = products;
+        this.payment = payment;
+        this.paid = paid;
+        this.created_at = createdAt;
+      },
+      deep: true,
     },
   },
   created() {

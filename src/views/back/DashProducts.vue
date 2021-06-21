@@ -78,6 +78,7 @@
     </div>
     <div class="text-right">
       <button
+        disabled
         type="button"
         class="btn btn-danger mr-5"
         @click="openDelAllProducts"

@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .header-pt{
   padding-top: 80px;
 }

@@ -1,42 +1,47 @@
 <template>
-  <div class="shopping">
+  <div class="shopping header-pt">
     <NavHeader />
-    <div
-      v-if="nowPage"
-      class="processStep row"
-    >
-      <div class="col-md-8 mx-auto">
-        <ul class="d-flex">
-          <li class="processStep__item">
-            <span class="processStep__number">1</span>
-            購物車
-          </li>
-          <li class="processStep__item">
-            <span class="processStep__number">2</span>
-            填寫資料
-          </li>
-          <li class="processStep__item">
-            <span class="processStep__number">3</span>
-            訂單確認
-          </li>
-        </ul>
-        <div class="processStep__progress progress">
-          <div
-            class="progress-bar"
-            role="progressbar"
-            aria-valuenow="25"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            :style="{width:barWidth}"
-          >
+    <div class="container">
+      <div
+        v-if="nowPage"
+        class="processStep row"
+      >
+        <div class="col-md-8 mx-auto">
+          <ul class="d-flex">
+            <li class="processStep__item">
+              <span class="processStep__number">1</span>
+              購物車
+            </li>
+            <li class="processStep__item">
+              <span class="processStep__number">2</span>
+              填寫資料
+            </li>
+            <li class="processStep__item">
+              <span class="processStep__number">3</span>
+              訂單確認
+            </li>
+          </ul>
+          <div class="processStep__progress progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              :style="{width:barWidth}"
+            >
             <!-- style="width: 33%;" -->
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <router-view
+    <!-- <router-view
       style="margin-bottom:80px"
       @change-page="changeBar"
+    /> -->
+    <router-view
+      style="margin-bottom:80px"
     />
     <NavFooter />
   </div>
@@ -80,3 +85,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.header-pt{
+  padding-top: 80px;
+}
+</style>

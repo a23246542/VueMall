@@ -71,7 +71,7 @@
             </h1>
           </router-link>
           <div class="m-navbarNav d-flex align-items-center">
-            <li class="navHeader__navItem nav-item">
+            <!-- <li class="navHeader__navItem nav-item">
               <router-link
                 :to="{name:'orderList'}"
                 class="navHeader__navLink nav-link"
@@ -79,7 +79,7 @@
               >
                 我的訂單<span class="sr-only">(current)</span>
               </router-link>
-            </li>
+            </li> -->
             <li class="navHeader__navItem m-none p-sm nav-item">
               <WishModal />
             </li>

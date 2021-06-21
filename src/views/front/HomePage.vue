@@ -224,7 +224,7 @@
                       >
                         <i
                           class="fas fa-shopping-cart"
-                          @click.prevent="addToCart(item)"
+                          @click="addToCart(item)"
                         />
                       </div>
                     </div>
@@ -394,7 +394,7 @@ export default {
       swiperOptions: {
         direction: 'horizontal',
         speed: 2000,
-        loop: true,
+        loop: false,
         slidesPerView: 2,
         spaceBetween: 15,
         noSwiping: true,

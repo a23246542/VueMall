@@ -55,7 +55,7 @@
           </td>
           <td class="text-right">
             {{ item.amount | dollars }}
-            (折扣率{{ item.coupon.percent+'%' }})
+            <!-- (折扣率{{ item.coupon.percent+'%' }}) -->
           </td>
           <td>{{ item.payment }}</td>
           <td>
@@ -127,7 +127,8 @@
           <div class="col-md-6">
             <p>購買人：{{ tempOrder.user.name }}</p>
             <p>訂單金額：{{ tempOrder.amount }}</p>
-            <p v-if="tempOrder.coupon.code">
+            <!-- <p v-if="tempOrder.coupon.code"> -->
+            <p v-if="tempOrder.coupon">
               折扣率：{{ tempOrder.coupon.percent+'%' }}  活動：{{ tempOrder.coupon.title }}
             </p>
             <p v-else>
