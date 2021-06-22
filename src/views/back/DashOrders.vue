@@ -35,48 +35,50 @@
           v-for="item in orders"
           :key="item.id"
         >
-          <td>{{ item.created.timestamp | date }}</td>
-          <td>{{ item.id.slice(-16) }}</td>
-          <td>
-            <ul class="list-unstyled">
-              <li
-                v-for="(product, i) in item.products"
-                :key="i"
-                class="d-flex"
-              >
-                <span class="flex-1 mr-2">
-                  {{ product.product.title }}
-                </span>
-                <span>
-                  數量：{{ product.quantity }}{{ product.product.unit }}
-                </span>
-              </li>
-            </ul>
-          </td>
-          <td class="text-right">
-            {{ item.amount | dollars }}
+          <template v-if="item.products.length">
+            <td>{{ item.created.timestamp | date }}</td>
+            <td>{{ item.id.slice(-16) }}</td>
+            <td>
+              <ul class="list-unstyled">
+                <li
+                  v-for="(product, i) in item.products"
+                  :key="i"
+                  class="d-flex"
+                >
+                  <span class="flex-1 mr-2">
+                    {{ product.product.title }}
+                  </span>
+                  <span>
+                    數量：{{ product.quantity }}{{ product.product.unit }}
+                  </span>
+                </li>
+              </ul>
+            </td>
+            <td class="text-right">
+              {{ item.amount | dollars }}
             <!-- (折扣率{{ item.coupon.percent+'%' }}) -->
-          </td>
-          <td>{{ item.payment }}</td>
-          <td>
-            <strong
-              v-if="item.paid"
-              class="text-success"
-            >已付款</strong>
-            <span
-              v-else
-              class="text-danger"
-            >未付款</span>
-          </td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-outline-primary btn-sm"
-              @click="openEditModal(item)"
-            >
-              編輯
-            </button>
-          </td>
+            </td>
+            <td>{{ item.payment }}</td>
+            <td>
+              <strong
+                v-if="item.paid"
+                class="text-success"
+              >已付款</strong>
+              <span
+                v-else
+                class="text-danger"
+              >未付款</span>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-outline-primary btn-sm"
+                @click="openEditModal(item)"
+              >
+                編輯
+              </button>
+            </td>
+          </template>
         </tr>
       </tbody>
     </table>
