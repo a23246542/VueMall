@@ -6,11 +6,11 @@ export default {
   },
   methods: {
     clickHeart(event, prdId) {
-      if (event.toElement.classList.contains('far')) { // 未加入收藏
+      if (event.target?.classList.contains('far')) { // 未加入收藏
         this.$store.commit('ADD_WISH', prdId);
       }
 
-      if (event.toElement.classList.contains('fas')) { // 已加入收藏
+      if (event.target?.classList.contains('fas')) { // 已加入收藏
         this.$store.commit('REMOVE_WISH', prdId);
       }
     },
